@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.9] - 2026-06-03
+
+### Docs
+- Update README.md
+- Update SUMD.md
+- Update SUMR.md
+- Update project/README.md
+- Update project/context.md
+
+### Test
+- Update tests/test_gui_driver.py
+- Update tests/test_recovery.py
+
+### Other
+- Update .code2llm_cache/Makefile_1780501878397000000_11621.pkl
+- Update .code2llm_cache/__init___1780507995134714539_520.pkl
+- Update .code2llm_cache/__init___1780508761853400467_418.pkl
+- Update .code2llm_cache/__init___1780508767142171777_1288.pkl
+- Update .code2llm_cache/__init___1780508797109141319_192.pkl
+- Update .code2llm_cache/__init___1780508940564561188_548.pkl
+- Update .code2llm_cache/__init___1780508951499669977_182.pkl
+- Update .code2llm_cache/__init___1780509020324356037_624.pkl
+- Update .code2llm_cache/activity_1780508769107427336_1679.pkl
+- Update .code2llm_cache/backend_selector_1780508783042718816_3282.pkl
+- ... and 37 more files
+
 ## [0.1.6] - 2026-06-03
 
 ### Docs

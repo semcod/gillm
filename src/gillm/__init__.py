@@ -5,16 +5,20 @@ integrates NLP2DSL client SDK for parsing intents, and supports
 contract validation via Intract.
 """
 
-from gillm import capture, focus, injection, intents, nlp_bridge, orchestrator
+from gillm import adapters, capture, contracts, drivers, focus, injection, intents, nlp_bridge, orchestrator, recovery
 from gillm.orchestrator import DriveOrchestrator
 
-__version__ = "0.1.6"
+__version__ = "0.1.9"
 __all__ = [
     "DriveOrchestrator",
+    "adapters",
     "capture",
+    "contracts",
+    "drivers",
     "focus",
     "injection",
     "intents",
     "nlp_bridge",
     "orchestrator",
+    "recovery",
 ]

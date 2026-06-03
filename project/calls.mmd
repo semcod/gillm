@@ -1,88 +1,110 @@
 flowchart LR
-%% generated in 0.02s
+%% generated in 0.00s
     subgraph src__gillm
-        src__gillm__focus__wayland__WaylandLinuxStrategy___focus_via_wmctrl["_focus_via_wmctrl"]
-        src__gillm__injection__os_injector__input_mode_from_env["input_mode_from_env"]
-        src__gillm__injection__backends__ydotool_enter_keycode["ydotool_enter_keycode"]
-        src__gillm__injection__os_injector__try_load_profile["try_load_profile"]
-        src__gillm__injection__injector__Injector___candidate_backends["_candidate_backends"]
-        src__gillm__injection__os_injector___injection_result["_injection_result"]
-        src__gillm__focus__wayland__WaylandLinuxStrategy__inject_keys["inject_keys"]
-        src__gillm__capture__mss_backend__resolve_scale["resolve_scale"]
-        src__gillm__injection__backends__type_with_backend["type_with_backend"]
-        src__gillm__injection__os_injector___os_injector_skip_reason["_os_injector_skip_reason"]
-        src__gillm__capture__mss_backend__capture_primary_rgb_wayland_fallback["capture_primary_rgb_wayland_fa"]
-        src__gillm__injection__os_injector___resolve_input_method["_resolve_input_method"]
-        src__gillm__capture__mss_backend__capture_primary_rgb["capture_primary_rgb"]
-        src__gillm__injection__os_injector___post_focus_delay_seconds["_post_focus_delay_seconds"]
-        src__gillm__injection__backends__press_wtype["press_wtype"]
-        src__gillm__capture__mss_backend__rgb_mostly_black["rgb_mostly_black"]
-        src__gillm__capture__mss_backend___parse_png_to_rgb["_parse_png_to_rgb"]
-        src__gillm__injection__backends__type_with_wtype["type_with_wtype"]
-        src__gillm__injection__os_injector__inject_with_profile["inject_with_profile"]
-        src__gillm__injection__os_injector___ydotool["_ydotool"]
-        src__gillm__injection__os_injector__iter_config_paths["iter_config_paths"]
-        src__gillm__injection__os_injector___is_wayland_session["_is_wayland_session"]
-        src__gillm__orchestrator__drive__DriveOrchestrator__inject_text["inject_text"]
-        src__gillm__capture__mss_backend__downscale_rgb_nearest["downscale_rgb_nearest"]
-        src__gillm__injection__injector___unique_backend_names["_unique_backend_names"]
-        src__gillm__injection__injector___forced_injector_backend["_forced_injector_backend"]
-        src__gillm__injection__os_injector__os_injector_env_forced["os_injector_env_forced"]
-        src__gillm__capture__portal_backend___portal_python["_portal_python"]
-        src__gillm__injection__os_injector___inject_profile_text["_inject_profile_text"]
         src__gillm__injection__injector__Injector__submit_only["submit_only"]
-        src__gillm__injection__injector__Injector___type_with_backend["_type_with_backend"]
-        src__gillm__injection__injector___session_backend_order["_session_backend_order"]
-        src__gillm__focus__x11___run["_run"]
-        src__gillm__injection__os_injector___read_json["_read_json"]
-        src__gillm__injection__backends__ydotool_ctrl_keycode["ydotool_ctrl_keycode"]
-        src__gillm__focus__wayland___scan_for_key["_scan_for_key"]
-        src__gillm__injection__os_injector___focus_with_xdotool["_focus_with_xdotool"]
-        src__gillm__config__cached_config["cached_config"]
-        src__gillm__config___merge_submit_keys["_merge_submit_keys"]
-        src__gillm__focus__x11__X11LinuxStrategy___inject_via_xdotool["_inject_via_xdotool"]
-        src__gillm__injection__injector__Injector__type_text["type_text"]
-        src__gillm__config__load_config["load_config"]
-        src__gillm__injection__backends___ydotool_submit_command["_ydotool_submit_command"]
+        src__gillm__injection__os_injector__focus_with_profile["focus_with_profile"]
+        src__gillm__capture__mss_backend__rgb_mostly_black["rgb_mostly_black"]
+        src__gillm__capture__portal_backend___portal_python["_portal_python"]
+        src__gillm__injection__backends__ydotool_enter_keycode["ydotool_enter_keycode"]
         src__gillm__injection__backends___log["_log"]
-        src__gillm__focus__x11__X11LinuxStrategy___focus_via_xdotool["_focus_via_xdotool"]
-        src__gillm__injection__os_injector___focus_with_ydotool["_focus_with_ydotool"]
-        src__gillm__injection__os_injector___xdotool["_xdotool"]
-        src__gillm__injection__backends__ydotool_submit_mode["ydotool_submit_mode"]
+        src__gillm__runtime__backend_selector__BackendSelector__candidate_backends["candidate_backends"]
+        src__gillm__drivers__composite__CompositeGuiDriver__focus["focus"]
+        src__gillm__runtime__env__cmd_timeout_seconds["cmd_timeout_seconds"]
+        src__gillm__runtime__env__dry_run_from_env["dry_run_from_env"]
+        src__gillm__config__load_config["load_config"]
+        src__gillm__runtime__profiles__save_profile["save_profile"]
+        src__gillm__runtime__env__session_type["session_type"]
+        src__gillm__capture__mss_backend__capture_primary_rgb["capture_primary_rgb"]
+        src__gillm__runtime__profiles__capture_mouse_xy["capture_mouse_xy"]
+        src__gillm__recovery__repair_hints__recovery_hints_for_context["recovery_hints_for_context"]
+        src__gillm__recovery__diagnose__classify_failure["classify_failure"]
+        src__gillm__runtime__activity__emit_activity_warn["emit_activity_warn"]
+        src__gillm__orchestrator__drive__DriveOrchestrator__inject_text["inject_text"]
+        src__gillm__runtime__activity__try_bootstrap_koru_activity_sink["try_bootstrap_koru_activity_si"]
+        src__gillm__focus__x11___run["_run"]
+        src__gillm__runtime__command_runner__resolve_input_method["resolve_input_method"]
+        src__gillm__runtime__backend_selector__unique_backend_names["unique_backend_names"]
+        src__gillm__injection__injector__Injector__type_text["type_text"]
+        src__gillm__injection__os_injector__inject_with_profile["inject_with_profile"]
         src__gillm__focus__darwin__DarwinStrategy__focus_window["focus_window"]
-        src__gillm__injection__backends__extra_enter_count["extra_enter_count"]
-        src__gillm__injection__backends__type_with_ydotool["type_with_ydotool"]
-        src__gillm__injection__os_injector__dry_run_from_env["dry_run_from_env"]
-        src__gillm__config__resolve_xdg_path["resolve_xdg_path"]
-        src__gillm__injection__os_injector__capture_mouse_xy["capture_mouse_xy"]
-        src__gillm__injection__os_injector___cmd_timeout_seconds["_cmd_timeout_seconds"]
         src__gillm__injection__injector___submit_key_for["_submit_key_for"]
-        src__gillm__injection__os_injector___focus_profile_chat["_focus_profile_chat"]
-        src__gillm__orchestrator__drive__DriveOrchestrator__focus_target_window["focus_target_window"]
-        src__gillm__focus__wayland__WaylandLinuxStrategy___inject_via_ydotool["_inject_via_ydotool"]
-        src__gillm__focus__registry__resolve_active_os_strategy["resolve_active_os_strategy"]
-        src__gillm__injection__os_injector__default_config_path["default_config_path"]
-        src__gillm__focus__wayland___gnome_compositor["_gnome_compositor"]
-        src__gillm__focus__x11__X11LinuxStrategy___focus_via_wmctrl["_focus_via_wmctrl"]
         src__gillm__focus__wayland___prefer_ydotool["_prefer_ydotool"]
-        src__gillm__injection__os_injector___clipboard_backend["_clipboard_backend"]
-        src__gillm__orchestrator__drive__DriveOrchestrator__capture_screenshot["capture_screenshot"]
-        src__gillm__intents__contract__gui_contract["gui_contract"]
-        src__gillm__injection__os_injector___run_cmd["_run_cmd"]
-        src__gillm__config___cached_config["_cached_config"]
-        src__gillm__focus__wayland__WaylandLinuxStrategy___inject_via_wtype["_inject_via_wtype"]
-        src__gillm__orchestrator__drive__DriveOrchestrator__log["log"]
-        src__gillm__injection__os_injector___set_clipboard["_set_clipboard"]
-        src__gillm__injection__os_injector__save_profile["save_profile"]
-        src__gillm__injection__os_injector__os_injector_env_disabled["os_injector_env_disabled"]
-        src__gillm__capture__portal_backend__capture_portal_png["capture_portal_png"]
-        src__gillm__injection__os_injector__focus_mode_from_env["focus_mode_from_env"]
-        src__gillm__config__default_config_path["default_config_path"]
-        src__gillm__injection__backends__type_with_xdotool["type_with_xdotool"]
+        src__gillm__injection__os_injector___injection_result["_injection_result"]
+        src__gillm__recovery__repair_hints___dedupe["_dedupe"]
+        src__gillm__orchestrator__drive__DriveOrchestrator__focus_target_window["focus_target_window"]
+        src__gillm__injection__backends__type_with_ydotool["type_with_ydotool"]
+        src__gillm__focus__x11__X11LinuxStrategy___inject_via_xdotool["_inject_via_xdotool"]
+        src__gillm__runtime__command_runner__clipboard_backend["clipboard_backend"]
+        src__gillm__runtime__command_runner__run_cmd_checked["run_cmd_checked"]
+        src__gillm__focus__wayland__WaylandLinuxStrategy__inject_keys["inject_keys"]
+        src__gillm__capture__mss_backend__downscale_rgb_nearest["downscale_rgb_nearest"]
         src__gillm__injection__os_injector__try_drive_with_profile["try_drive_with_profile"]
+        src__gillm__config__resolve_xdg_path["resolve_xdg_path"]
+        src__gillm__runtime__backend_selector__BackendSelector____init__["__init__"]
+        src__gillm__runtime__profiles__load_profile["load_profile"]
+        src__gillm__drivers__composite__CompositeGuiDriver__execute["execute"]
+        src__gillm__config__default_config_path["default_config_path"]
+        src__gillm__runtime__profiles__iter_config_paths["iter_config_paths"]
+        src__gillm__config___merge_submit_keys["_merge_submit_keys"]
+        src__gillm__injection__os_injector___focus_with_ydotool["_focus_with_ydotool"]
+        src__gillm__recovery__diagnose__probe_environment["probe_environment"]
+        src__gillm__focus__wayland___scan_for_key["_scan_for_key"]
+        src__gillm__injection__injector___session_type["_session_type"]
+        src__gillm__runtime__backend_selector__session_backend_order["session_backend_order"]
+        src__gillm__injection__backends__type_with_backend["type_with_backend"]
+        src__gillm__runtime__command_runner__set_clipboard["set_clipboard"]
+        src__gillm__recovery__repair_hints___hints_for_kind["_hints_for_kind"]
+        src__gillm__config__cached_config["cached_config"]
+        src__gillm__injection__os_injector___os_injector_skip_reason["_os_injector_skip_reason"]
+        src__gillm__injection__backends__type_with_xdotool["type_with_xdotool"]
+        src__gillm__injection__backends__ydotool_ctrl_keycode["ydotool_ctrl_keycode"]
+        src__gillm__capture__portal_backend__capture_portal_png["capture_portal_png"]
+        src__gillm__drivers__composite__CompositeGuiDriver__probe["probe"]
+        src__gillm__injection__injector__Injector___type_with_backend["_type_with_backend"]
+        src__gillm__injection__os_injector___focus_profile_chat["_focus_profile_chat"]
+        src__gillm__drivers__composite__CompositeGuiDriver__type_text["type_text"]
+        src__gillm__runtime__env__is_wayland_session["is_wayland_session"]
+        src__gillm__focus__wayland__WaylandLinuxStrategy___focus_via_wmctrl["_focus_via_wmctrl"]
+        src__gillm__runtime__activity__emit_activity["emit_activity"]
+        src__gillm__runtime__activity__set_activity_sink["set_activity_sink"]
+        src__gillm__injection__os_injector___inject_profile_text["_inject_profile_text"]
+        src__gillm__runtime__env__post_focus_delay_seconds["post_focus_delay_seconds"]
+        src__gillm__runtime__env__input_mode_from_env["input_mode_from_env"]
+        src__gillm__runtime__env__focus_mode_from_env["focus_mode_from_env"]
+        src__gillm__runtime__command_runner__xdotool["xdotool"]
+        src__gillm__runtime__env__forced_injector_backend["forced_injector_backend"]
+        src__gillm__injection__os_injector___resolve_input_method["_resolve_input_method"]
+        src__gillm__injection__backends__extra_enter_count["extra_enter_count"]
+        src__gillm__injection__backends__ydotool_submit_mode["ydotool_submit_mode"]
+        src__gillm__drivers__composite__CompositeGuiDriver____init__["__init__"]
+        src__gillm__focus__x11__X11LinuxStrategy___focus_via_wmctrl["_focus_via_wmctrl"]
+        src__gillm__runtime__command_runner__run_cmd["run_cmd"]
+        src__gillm__capture__mss_backend__capture_primary_rgb_wayland_fallback["capture_primary_rgb_wayland_fa"]
+        src__gillm__recovery__repair_hints__recovery_hints_for_reload["recovery_hints_for_reload"]
+        src__gillm__runtime__profiles__default_config_path["default_config_path"]
+        src__gillm__capture__mss_backend__resolve_scale["resolve_scale"]
+        src__gillm__focus__registry__resolve_active_os_strategy["resolve_active_os_strategy"]
+        src__gillm__focus__wayland___gnome_compositor["_gnome_compositor"]
+        src__gillm__focus__wayland__WaylandLinuxStrategy___inject_via_ydotool["_inject_via_ydotool"]
+        src__gillm__runtime__profiles___read_json["_read_json"]
+        src__gillm__intents__contract__gui_contract["gui_contract"]
+        src__gillm__runtime__profiles__capture_from_xdotool["capture_from_xdotool"]
+        src__gillm__focus__x11__X11LinuxStrategy___focus_via_xdotool["_focus_via_xdotool"]
+        src__gillm__injection__os_injector___focus_with_xdotool["_focus_with_xdotool"]
+        src__gillm__injection__backends___ydotool_submit_command["_ydotool_submit_command"]
+        src__gillm__focus__wayland__WaylandLinuxStrategy___inject_via_wtype["_inject_via_wtype"]
+        src__gillm__recovery__diagnose__diagnose_drive_reply["diagnose_drive_reply"]
+        src__gillm__orchestrator__drive__DriveOrchestrator__log["log"]
+        src__gillm__runtime__env__os_injector_env_disabled["os_injector_env_disabled"]
+        src__gillm__capture__mss_backend___parse_png_to_rgb["_parse_png_to_rgb"]
+        src__gillm__runtime__env__os_injector_env_forced["os_injector_env_forced"]
+        src__gillm__runtime__command_runner__ydotool["ydotool"]
+        src__gillm__injection__backends__type_with_wtype["type_with_wtype"]
+        src__gillm__injection__backends__press_wtype["press_wtype"]
+        src__gillm__orchestrator__drive__DriveOrchestrator__capture_screenshot["capture_screenshot"]
         src__gillm__intents__contract__validate_contract_runtime["validate_contract_runtime"]
-        src__gillm__injection__os_injector__load_profile["load_profile"]
-        src__gillm__injection__os_injector__capture_from_xdotool["capture_from_xdotool"]
+        src__gillm__runtime__profiles__try_load_profile["try_load_profile"]
+        src__gillm__config___cached_config["_cached_config"]
     end
     src__gillm__config__default_config_path --> src__gillm__config__resolve_xdg_path
     src__gillm__config__load_config --> src__gillm__config___merge_submit_keys
@@ -111,55 +133,6 @@ flowchart LR
     src__gillm__injection__backends__type_with_backend --> src__gillm__injection__backends__ydotool_enter_keycode
     src__gillm__injection__backends__type_with_backend --> src__gillm__injection__backends__ydotool_submit_mode
     src__gillm__injection__backends__type_with_backend --> src__gillm__injection__backends__ydotool_ctrl_keycode
-    src__gillm__injection__injector___submit_key_for --> src__gillm__config__cached_config
-    src__gillm__injection__injector___session_backend_order --> src__gillm__injection__injector___unique_backend_names
-    src__gillm__injection__injector__Injector___candidate_backends --> src__gillm__injection__injector___forced_injector_backend
-    src__gillm__injection__injector__Injector___candidate_backends --> src__gillm__injection__injector___session_backend_order
-    src__gillm__injection__injector__Injector___type_with_backend --> src__gillm__injection__backends__type_with_backend
-    src__gillm__injection__injector__Injector__type_text --> src__gillm__injection__injector___submit_key_for
-    src__gillm__injection__injector__Injector__submit_only --> src__gillm__injection__injector___submit_key_for
-    src__gillm__injection__os_injector__try_load_profile --> src__gillm__injection__os_injector__iter_config_paths
-    src__gillm__injection__os_injector__try_load_profile --> src__gillm__injection__os_injector__load_profile
-    src__gillm__injection__os_injector__load_profile --> src__gillm__injection__os_injector___read_json
-    src__gillm__injection__os_injector__load_profile --> src__gillm__injection__os_injector__default_config_path
-    src__gillm__injection__os_injector__save_profile --> src__gillm__injection__os_injector___read_json
-    src__gillm__injection__os_injector__save_profile --> src__gillm__injection__os_injector__default_config_path
-    src__gillm__injection__os_injector__capture_from_xdotool --> src__gillm__injection__os_injector__capture_mouse_xy
-    src__gillm__injection__os_injector___run_cmd --> src__gillm__injection__os_injector___cmd_timeout_seconds
-    src__gillm__injection__os_injector___xdotool --> src__gillm__injection__os_injector___run_cmd
-    src__gillm__injection__os_injector___ydotool --> src__gillm__injection__os_injector___run_cmd
-    src__gillm__injection__os_injector___set_clipboard --> src__gillm__injection__os_injector___run_cmd
-    src__gillm__injection__os_injector___resolve_input_method --> src__gillm__injection__os_injector__input_mode_from_env
-    src__gillm__injection__os_injector___resolve_input_method --> src__gillm__injection__os_injector___clipboard_backend
-    src__gillm__injection__os_injector___resolve_input_method --> src__gillm__injection__os_injector___is_wayland_session
-    src__gillm__injection__os_injector___focus_profile_chat --> src__gillm__injection__backends___log
-    src__gillm__injection__os_injector___focus_profile_chat --> src__gillm__injection__os_injector___is_wayland_session
-    src__gillm__injection__os_injector___focus_profile_chat --> src__gillm__injection__os_injector___focus_with_ydotool
-    src__gillm__injection__os_injector___focus_profile_chat --> src__gillm__injection__os_injector___focus_with_xdotool
-    src__gillm__injection__os_injector___focus_with_ydotool --> src__gillm__injection__os_injector___ydotool
-    src__gillm__injection__os_injector___focus_with_ydotool --> src__gillm__injection__backends___log
-    src__gillm__injection__os_injector___focus_with_xdotool --> src__gillm__injection__os_injector___xdotool
-    src__gillm__injection__os_injector___focus_with_xdotool --> src__gillm__injection__backends___log
-    src__gillm__injection__os_injector___inject_profile_text --> src__gillm__injection__os_injector___is_wayland_session
-    src__gillm__injection__os_injector___inject_profile_text --> src__gillm__injection__backends___log
-    src__gillm__injection__os_injector___inject_profile_text --> src__gillm__injection__os_injector___set_clipboard
-    src__gillm__injection__os_injector___inject_profile_text --> src__gillm__injection__os_injector___xdotool
-    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__injection__os_injector__focus_mode_from_env
-    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__injection__os_injector___resolve_input_method
-    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__injection__os_injector___post_focus_delay_seconds
-    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__injection__os_injector___focus_profile_chat
-    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__injection__os_injector___inject_profile_text
-    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__injection__os_injector___injection_result
-    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__injection__backends___log
-    src__gillm__injection__os_injector___os_injector_skip_reason --> src__gillm__injection__os_injector__os_injector_env_disabled
-    src__gillm__injection__os_injector___os_injector_skip_reason --> src__gillm__injection__os_injector___is_wayland_session
-    src__gillm__injection__os_injector___os_injector_skip_reason --> src__gillm__injection__os_injector__os_injector_env_forced
-    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__injection__os_injector___os_injector_skip_reason
-    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__injection__os_injector__try_load_profile
-    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__injection__os_injector__inject_with_profile
-    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__injection__os_injector__os_injector_env_forced
-    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__injection__backends___log
-    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__injection__os_injector__dry_run_from_env
     src__gillm__focus__x11__X11LinuxStrategy___focus_via_xdotool --> src__gillm__focus__x11___run
     src__gillm__focus__x11__X11LinuxStrategy___focus_via_wmctrl --> src__gillm__focus__x11___run
     src__gillm__focus__x11__X11LinuxStrategy___inject_via_xdotool --> src__gillm__focus__x11___run
@@ -178,3 +151,75 @@ flowchart LR
     src__gillm__orchestrator__drive__DriveOrchestrator__capture_screenshot --> src__gillm__intents__contract__gui_contract
     src__gillm__orchestrator__drive__DriveOrchestrator__capture_screenshot --> src__gillm__intents__contract__validate_contract_runtime
     src__gillm__orchestrator__drive__DriveOrchestrator__capture_screenshot --> src__gillm__capture__mss_backend__capture_primary_rgb_wayland_fallback
+    src__gillm__recovery__repair_hints__recovery_hints_for_context --> src__gillm__recovery__repair_hints___hints_for_kind
+    src__gillm__recovery__repair_hints__recovery_hints_for_context --> src__gillm__recovery__repair_hints___dedupe
+    src__gillm__recovery__repair_hints__recovery_hints_for_context --> src__gillm__recovery__repair_hints__recovery_hints_for_reload
+    src__gillm__recovery__repair_hints___hints_for_kind --> src__gillm__recovery__repair_hints__recovery_hints_for_reload
+    src__gillm__recovery__diagnose__probe_environment --> src__gillm__runtime__env__session_type
+    src__gillm__recovery__diagnose__probe_environment --> src__gillm__runtime__env__is_wayland_session
+    src__gillm__recovery__diagnose__diagnose_drive_reply --> src__gillm__recovery__diagnose__classify_failure
+    src__gillm__recovery__diagnose__diagnose_drive_reply --> src__gillm__recovery__diagnose__probe_environment
+    src__gillm__recovery__diagnose__diagnose_drive_reply --> src__gillm__recovery__repair_hints__recovery_hints_for_context
+    src__gillm__injection__injector___submit_key_for --> src__gillm__config__cached_config
+    src__gillm__injection__injector___session_type --> src__gillm__runtime__env__session_type
+    src__gillm__injection__injector__Injector___type_with_backend --> src__gillm__injection__backends__type_with_backend
+    src__gillm__injection__injector__Injector__type_text --> src__gillm__injection__injector___submit_key_for
+    src__gillm__injection__injector__Injector__submit_only --> src__gillm__injection__injector___submit_key_for
+    src__gillm__injection__os_injector___resolve_input_method --> src__gillm__runtime__env__input_mode_from_env
+    src__gillm__injection__os_injector___focus_profile_chat --> src__gillm__injection__backends___log
+    src__gillm__injection__os_injector___focus_profile_chat --> src__gillm__injection__os_injector___focus_with_ydotool
+    src__gillm__injection__os_injector___focus_profile_chat --> src__gillm__injection__os_injector___focus_with_xdotool
+    src__gillm__injection__os_injector___focus_with_ydotool --> src__gillm__injection__backends___log
+    src__gillm__injection__os_injector___focus_with_xdotool --> src__gillm__injection__backends___log
+    src__gillm__injection__os_injector___inject_profile_text --> src__gillm__injection__backends___log
+    src__gillm__injection__os_injector__focus_with_profile --> src__gillm__runtime__env__focus_mode_from_env
+    src__gillm__injection__os_injector__focus_with_profile --> src__gillm__runtime__env__post_focus_delay_seconds
+    src__gillm__injection__os_injector__focus_with_profile --> src__gillm__injection__os_injector___focus_profile_chat
+    src__gillm__injection__os_injector__focus_with_profile --> src__gillm__injection__os_injector___injection_result
+    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__runtime__env__focus_mode_from_env
+    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__injection__os_injector___resolve_input_method
+    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__runtime__env__post_focus_delay_seconds
+    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__runtime__activity__emit_activity
+    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__injection__os_injector___focus_profile_chat
+    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__injection__os_injector___inject_profile_text
+    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__injection__os_injector___injection_result
+    src__gillm__injection__os_injector__inject_with_profile --> src__gillm__injection__backends___log
+    src__gillm__injection__os_injector___os_injector_skip_reason --> src__gillm__runtime__env__os_injector_env_disabled
+    src__gillm__injection__os_injector___os_injector_skip_reason --> src__gillm__runtime__env__os_injector_env_forced
+    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__injection__os_injector___os_injector_skip_reason
+    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__runtime__profiles__try_load_profile
+    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__injection__os_injector__inject_with_profile
+    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__runtime__env__os_injector_env_forced
+    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__runtime__activity__emit_activity_warn
+    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__injection__backends___log
+    src__gillm__injection__os_injector__try_drive_with_profile --> src__gillm__runtime__env__dry_run_from_env
+    src__gillm__drivers__composite__CompositeGuiDriver____init__ --> src__gillm__runtime__env__session_type
+    src__gillm__drivers__composite__CompositeGuiDriver__probe --> src__gillm__runtime__env__session_type
+    src__gillm__drivers__composite__CompositeGuiDriver__focus --> src__gillm__runtime__profiles__try_load_profile
+    src__gillm__drivers__composite__CompositeGuiDriver__focus --> src__gillm__injection__os_injector__focus_with_profile
+    src__gillm__drivers__composite__CompositeGuiDriver__type_text --> src__gillm__runtime__profiles__try_load_profile
+    src__gillm__drivers__composite__CompositeGuiDriver__type_text --> src__gillm__injection__os_injector__inject_with_profile
+    src__gillm__drivers__composite__CompositeGuiDriver__execute --> src__gillm__recovery__diagnose__classify_failure
+    src__gillm__drivers__composite__CompositeGuiDriver__execute --> src__gillm__recovery__repair_hints__recovery_hints_for_context
+    src__gillm__runtime__backend_selector__session_backend_order --> src__gillm__runtime__backend_selector__unique_backend_names
+    src__gillm__runtime__backend_selector__BackendSelector____init__ --> src__gillm__runtime__env__session_type
+    src__gillm__runtime__backend_selector__BackendSelector__candidate_backends --> src__gillm__runtime__env__forced_injector_backend
+    src__gillm__runtime__backend_selector__BackendSelector__candidate_backends --> src__gillm__runtime__backend_selector__session_backend_order
+    src__gillm__runtime__command_runner__run_cmd --> src__gillm__runtime__env__cmd_timeout_seconds
+    src__gillm__runtime__command_runner__run_cmd_checked --> src__gillm__runtime__command_runner__run_cmd
+    src__gillm__runtime__command_runner__xdotool --> src__gillm__runtime__command_runner__run_cmd_checked
+    src__gillm__runtime__command_runner__ydotool --> src__gillm__runtime__command_runner__run_cmd_checked
+    src__gillm__runtime__command_runner__set_clipboard --> src__gillm__runtime__command_runner__run_cmd_checked
+    src__gillm__runtime__command_runner__resolve_input_method --> src__gillm__runtime__env__input_mode_from_env
+    src__gillm__runtime__command_runner__resolve_input_method --> src__gillm__runtime__command_runner__clipboard_backend
+    src__gillm__runtime__command_runner__resolve_input_method --> src__gillm__runtime__env__is_wayland_session
+    src__gillm__runtime__profiles__load_profile --> src__gillm__runtime__profiles___read_json
+    src__gillm__runtime__profiles__load_profile --> src__gillm__runtime__profiles__default_config_path
+    src__gillm__runtime__profiles__save_profile --> src__gillm__runtime__profiles___read_json
+    src__gillm__runtime__profiles__save_profile --> src__gillm__runtime__profiles__default_config_path
+    src__gillm__runtime__profiles__try_load_profile --> src__gillm__runtime__profiles__iter_config_paths
+    src__gillm__runtime__profiles__try_load_profile --> src__gillm__runtime__profiles__load_profile
+    src__gillm__runtime__profiles__capture_mouse_xy --> src__gillm__runtime__command_runner__run_cmd
+    src__gillm__runtime__profiles__capture_from_xdotool --> src__gillm__runtime__profiles__capture_mouse_xy
+    src__gillm__runtime__env__is_wayland_session --> src__gillm__runtime__env__session_type
+    src__gillm__runtime__activity__try_bootstrap_koru_activity_sink --> src__gillm__runtime__activity__set_activity_sink

@@ -8,15 +8,15 @@ method that does the right thing.
 
 from __future__ import annotations
 
-import os
-import shutil
 import subprocess
-from collections.abc import Callable, Iterable
+from collections.abc import Callable
 from dataclasses import dataclass, field
 
 from gillm.config import cached_config
 from gillm.injection.backends import type_with_backend
 from gillm.injection.errors import InjectorError
+from gillm.runtime.backend_selector import BackendSelector
+from gillm.runtime.env import session_type
 
 
 def _submit_key_for(ide: str) -> str:
@@ -25,47 +25,13 @@ def _submit_key_for(ide: str) -> str:
 
 
 def _which(name: str) -> str | None:
+    import shutil
+
     return shutil.which(name)
 
 
 def _session_type() -> str:
-    """Return ``"wayland"``, ``"x11"`` or ``""`` based on env."""
-    sess = os.environ.get("XDG_SESSION_TYPE", "").lower()
-    if sess in ("wayland", "x11"):
-        return sess
-    if os.environ.get("WAYLAND_DISPLAY"):
-        return "wayland"
-    if os.environ.get("DISPLAY"):
-        return "x11"
-    return ""
-
-
-def _forced_injector_backend() -> str | None:
-    """Optional ``KORU_INJECTOR_BACKEND=xdotool|wtype|ydotool`` — use only that tool."""
-    raw = os.environ.get("KORU_INJECTOR_BACKEND", "").strip().lower()
-    if raw in ("xdotool", "wtype", "ydotool"):
-        return raw
-    return None
-
-
-def _unique_backend_names(names: Iterable[str]) -> list[str]:
-    out: list[str] = []
-    for name in names:
-        if name not in out:
-            out.append(name)
-    return out
-
-
-def _session_backend_order(session: str) -> list[str]:
-    if session == "x11":
-        preferred = ["xdotool"]
-    elif session == "wayland":
-        preferred = ["wtype", "ydotool"]
-    elif not os.environ.get("DISPLAY"):
-        preferred = ["wtype", "ydotool"]
-    else:
-        preferred = []
-    return _unique_backend_names([*preferred, "xdotool", "wtype", "ydotool"])
+    return session_type()
 
 
 @dataclass
@@ -119,49 +85,18 @@ class Injector:
 
     def probe(self) -> list[BackendStatus]:
         """Return per-backend availability."""
+        selector = BackendSelector(session=self.session, which=self.which, log=self.log)
         return [
-            self._probe_one("xdotool", session_required="x11"),
-            self._probe_one("wtype", session_required="wayland"),
-            self._probe_one("ydotool", session_required="wayland"),
-            self._probe_one("wl-copy", session_required="wayland"),
-            self._probe_one("xclip", session_required="x11"),
+            BackendStatus(name=name, available=available, reason=reason)
+            for name, available, reason in selector.probe()
         ]
 
     def _candidate_backends(self) -> list[str]:
-        forced = _forced_injector_backend()
-        if forced is not None:
-            return self._forced_backend_candidates(forced)
-
-        if self.log:
-            self.log(f"injector: session={self.session or 'unknown'}")
-        out = self._available_backend_candidates(_session_backend_order(self.session))
-        if self.log:
-            self.log(f"injector: candidate backends: {out}")
-        return out
-
-    def _forced_backend_candidates(self, forced: str) -> list[str]:
-        if self.which(forced):
-            if self.log:
-                self.log(f"injector: forced backend={forced} (KORU_INJECTOR_BACKEND)")
-            return [forced]
-        if self.log:
-            self.log(f"injector: forced backend={forced} not found, no backends available")
-        return []
-
-    def _available_backend_candidates(self, names: Iterable[str]) -> list[str]:
-        out: list[str] = []
-        for name in names:
-            if not self.which(name):
-                continue
-            out.append(name)
-            if self.log:
-                self.log(f"injector: candidate backend {name} available")
-        return out
+        return BackendSelector(session=self.session, which=self.which, log=self.log).candidate_backends()
 
     def select_backend(self) -> str | None:
         """Pick the most reliable backend for the current session."""
-        candidates = self._candidate_backends()
-        return candidates[0] if candidates else None
+        return BackendSelector(session=self.session, which=self.which, log=self.log).select_backend()
 
     def _type_with_backend(
         self,
@@ -315,22 +250,6 @@ class Injector:
                     self.log(f"injector: submit via {backend} failed: {exc}")
                 errors.append(f"{backend}: {exc}")
         raise InjectorError("all keyboard submit backends failed: " + "; ".join(errors))
-
-    def _probe_one(self, tool: str, *, session_required: str) -> BackendStatus:
-        path = self.which(tool)
-        if not path:
-            return BackendStatus(
-                name=tool,
-                available=False,
-                reason=f"{tool!r} is not in PATH",
-            )
-        if self.session and session_required and self.session != session_required:
-            return BackendStatus(
-                name=tool,
-                available=False,
-                reason=f"requires {session_required} session, current is {self.session!r}",
-            )
-        return BackendStatus(name=tool, available=True, reason=path)
 
     def _call(self, cmd: list[str]) -> None:
         if self.log:

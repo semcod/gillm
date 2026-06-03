@@ -1,12 +1,17 @@
-# code2llm | 30f 3277L | python:26,shell:2,yaml:1,toml:1 | 2026-06-03
-# generated in 0.02s
-# CC̅=3.5 | critical:0/137 | dups:0 | cycles:0
+# code2llm | 49f 4632L | python:43,yaml:2,shell:2,toml:1 | 2026-06-03
+# generated in 0.01s
+# CC̅=3.6 | critical:4/188 | dups:0 | cycles:0
 
-HEALTH[0]: ok
+HEALTH[4]:
+  🟡 CC    _hints_for_kind CC=15 (limit:15)
+  🟡 CC    classify_failure CC=24 (limit:15)
+  🟡 CC    execute CC=18 (limit:15)
+  🟡 CC    drive_payload_to_action_plan CC=21 (limit:15)
 
-REFACTOR[0]: none needed
+REFACTOR[1]:
+  1. split 4 high-CC methods  (CC>15)
 
-PIPELINES[63]:
+PIPELINES[95]:
   [1] Src [submit_key_for]: submit_key_for
       PURITY: 100% pure
   [2] Src [clear_config_cache]: clear_config_cache
@@ -17,121 +22,138 @@ PIPELINES[63]:
       PURITY: 100% pure
   [5] Src [parse_intent]: parse_intent
       PURITY: 100% pure
-  [6] Src [_which]: _which
+  [6] Src [try_os_injector_drive]: try_os_injector_drive
       PURITY: 100% pure
-  [7] Src [_session_type]: _session_type
+  [7] Src [format_os_injector_ack]: format_os_injector_ack
       PURITY: 100% pure
-  [8] Src [_default_runner]: _default_runner
+  [8] Src [apply_keyboard_injection]: apply_keyboard_injection
       PURITY: 100% pure
-  [9] Src [probe]: probe
+  [9] Src [register_os_strategy]: register_os_strategy
       PURITY: 100% pure
-  [10] Src [_candidate_backends]: _candidate_backends → _forced_injector_backend
+  [10] Src [list_os_strategy_ids]: list_os_strategy_ids
       PURITY: 100% pure
-  [11] Src [_forced_backend_candidates]: _forced_backend_candidates
+  [11] Src [matches_current_environment]: matches_current_environment
       PURITY: 100% pure
-  [12] Src [_available_backend_candidates]: _available_backend_candidates
+  [12] Src [capabilities]: capabilities
       PURITY: 100% pure
-  [13] Src [select_backend]: select_backend
+  [13] Src [focus_window]: focus_window
       PURITY: 100% pure
-  [14] Src [_type_with_backend]: _type_with_backend → type_with_backend → _log → log
+  [14] Src [inject_keys]: inject_keys
       PURITY: 100% pure
-  [15] Src [_type_text_backends]: _type_text_backends
+  [15] Src [_focus_via_xdotool]: _focus_via_xdotool → _run
       PURITY: 100% pure
-  [16] Src [_log_type_text_request]: _log_type_text_request
+  [16] Src [_focus_via_wmctrl]: _focus_via_wmctrl → _run
       PURITY: 100% pure
-  [17] Src [_dry_run_type_text_result]: _dry_run_type_text_result
+  [17] Src [_inject_via_xdotool]: _inject_via_xdotool → _run
       PURITY: 100% pure
-  [18] Src [_try_type_text_backends]: _try_type_text_backends
+  [18] Src [_run]: _run
       PURITY: 100% pure
-  [19] Src [_all_type_backends_failed]: _all_type_backends_failed
+  [19] Src [matches_current_environment]: matches_current_environment
       PURITY: 100% pure
-  [20] Src [type_text]: type_text → _submit_key_for → cached_config → _cached_config → ...(2 more)
+  [20] Src [capabilities]: capabilities
       PURITY: 100% pure
-  [21] Src [submit_only]: submit_only → _submit_key_for → cached_config → _cached_config → ...(2 more)
+  [21] Src [focus_window]: focus_window
       PURITY: 100% pure
-  [22] Src [_probe_one]: _probe_one
+  [22] Src [inject_keys]: inject_keys → _prefer_ydotool → _gnome_compositor
       PURITY: 100% pure
-  [23] Src [_call]: _call
+  [23] Src [_focus_via_wmctrl]: _focus_via_wmctrl → _run
       PURITY: 100% pure
-  [24] Src [save_profile]: save_profile → _read_json
+  [24] Src [_inject_via_wtype]: _inject_via_wtype → _run
       PURITY: 100% pure
-  [25] Src [profile_from_mouse]: profile_from_mouse
+  [25] Src [_inject_via_ydotool]: _inject_via_ydotool → _scan_for_key
       PURITY: 100% pure
-  [26] Src [capture_from_xdotool]: capture_from_xdotool → capture_mouse_xy
+  [26] Src [__post_init__]: __post_init__
       PURITY: 100% pure
-  [27] Src [try_drive_with_profile]: try_drive_with_profile → _os_injector_skip_reason → os_injector_env_disabled
+  [27] Src [_term_program_is_vscode_family]: _term_program_is_vscode_family
       PURITY: 100% pure
-  [28] Src [try_os_injector_drive]: try_os_injector_drive
+  [28] Src [__repr__]: __repr__
       PURITY: 100% pure
-  [29] Src [format_os_injector_ack]: format_os_injector_ack
+  [29] Src [_run]: _run
       PURITY: 100% pure
-  [30] Src [apply_keyboard_injection]: apply_keyboard_injection
+  [30] Src [capabilities]: capabilities
       PURITY: 100% pure
-  [31] Src [register_os_strategy]: register_os_strategy
+  [31] Src [focus_window]: focus_window → _run
       PURITY: 100% pure
-  [32] Src [list_os_strategy_ids]: list_os_strategy_ids
+  [32] Src [matches_current_environment]: matches_current_environment
       PURITY: 100% pure
-  [33] Src [matches_current_environment]: matches_current_environment
+  [33] Src [capabilities]: capabilities
       PURITY: 100% pure
-  [34] Src [capabilities]: capabilities
+  [34] Src [focus_window]: focus_window
       PURITY: 100% pure
-  [35] Src [focus_window]: focus_window
+  [35] Src [__init__]: __init__
       PURITY: 100% pure
-  [36] Src [inject_keys]: inject_keys
+  [36] Src [focus_target_window]: focus_target_window → gui_contract
       PURITY: 100% pure
-  [37] Src [_focus_via_xdotool]: _focus_via_xdotool → _run
+  [37] Src [inject_text]: inject_text → gui_contract
       PURITY: 100% pure
-  [38] Src [_focus_via_wmctrl]: _focus_via_wmctrl → _run
+  [38] Src [capture_screenshot]: capture_screenshot → gui_contract
       PURITY: 100% pure
-  [39] Src [_inject_via_xdotool]: _inject_via_xdotool → _run
+  [39] Src [execute_step]: execute_step
       PURITY: 100% pure
-  [40] Src [_run]: _run
+  [40] Src [execute_workflow]: execute_workflow
       PURITY: 100% pure
-  [41] Src [matches_current_environment]: matches_current_environment
+  [41] Src [drive_natural_language]: drive_natural_language
       PURITY: 100% pure
-  [42] Src [capabilities]: capabilities
+  [42] Src [to_dict]: to_dict
       PURITY: 100% pure
-  [43] Src [focus_window]: focus_window
+  [43] Src [to_dict]: to_dict
       PURITY: 100% pure
-  [44] Src [inject_keys]: inject_keys → _prefer_ydotool → _gnome_compositor
+  [44] Src [diagnose_drive_reply]: diagnose_drive_reply → classify_failure
       PURITY: 100% pure
-  [45] Src [_focus_via_wmctrl]: _focus_via_wmctrl → _run
+  [45] Src [_which]: _which
       PURITY: 100% pure
-  [46] Src [_inject_via_wtype]: _inject_via_wtype → _run
+  [46] Src [_session_type]: _session_type → session_type
       PURITY: 100% pure
-  [47] Src [_inject_via_ydotool]: _inject_via_ydotool → _scan_for_key
+  [47] Src [_default_runner]: _default_runner
       PURITY: 100% pure
-  [48] Src [__post_init__]: __post_init__
+  [48] Src [probe]: probe
       PURITY: 100% pure
-  [49] Src [_term_program_is_vscode_family]: _term_program_is_vscode_family
+  [49] Src [_candidate_backends]: _candidate_backends
       PURITY: 100% pure
-  [50] Src [__repr__]: __repr__
+  [50] Src [select_backend]: select_backend
       PURITY: 100% pure
 
 LAYERS:
-  src/                            CC̄=3.5    ←in:0  →out:0
-  │ !! os_injector                511L  2C   31m  CC=9      ←0
-  │ injector                   357L  3C   24m  CC=10     ←0
+  src/                            CC̄=3.6    ←in:0  →out:0
+  │ os_injector                323L  0C   10m  CC=9      ←1
+  │ injector                   276L  3C   18m  CC=10     ←0
   │ wayland                    236L  1C   11m  CC=9      ←0
   │ backends                   207L  0C   11m  CC=5      ←2
+  │ !! composite                  180L  1C    8m  CC=18     ←0
   │ drive                      154L  1C    8m  CC=12     ←1
+  │ !! diagnose                   150L  2C    5m  CC=24     ←1
+  │ driver                     136L  7C   11m  CC=2      ←0
   │ mss_backend                130L  1C    6m  CC=6      ←1
   │ x11                        128L  1C    8m  CC=11     ←2
+  │ profiles                   117L  1C    9m  CC=7      ←2
   │ portal_backend             113L  1C    2m  CC=8      ←1
   │ config                     112L  1C    8m  CC=7      ←1
   │ strategy                   108L  5C    7m  CC=5      ←0
+  │ !! repair_hints                98L  0C    4m  CC=15     ←2
+  │ backend_selector            96L  1C    8m  CC=6      ←0
+  │ !! koru                        94L  0C    3m  CC=21     ←0
+  │ dry_run                     89L  1C    8m  CC=10     ←0
+  │ command_runner              88L  1C    7m  CC=7      ←1
+  │ env                         87L  0C   10m  CC=6      ←6
   │ main                        80L  0C    1m  CC=9      ←0
   │ contract                    78L  0C    2m  CC=7      ←1
   │ darwin                      72L  1C    5m  CC=4      ←0
   │ client                      70L  1C    2m  CC=5      ←0
   │ drive_backend               66L  0C    3m  CC=4      ←0
+  │ activity                    62L  0C    5m  CC=3      ←1
+  │ __init__                    51L  0C    0m  CC=0.0    ←0
   │ registry                    50L  0C    4m  CC=5      ←1
   │ windows                     43L  1C    4m  CC=1      ←0
   │ __init__                    37L  0C    0m  CC=0.0    ←0
   │ __init__                    33L  0C    0m  CC=0.0    ←0
+  │ __init__                    24L  0C    0m  CC=0.0    ←0
+  │ __init__                    23L  0C    0m  CC=0.0    ←0
   │ __init__                    20L  0C    0m  CC=0.0    ←0
   │ __init__                    16L  0C    0m  CC=0.0    ←0
   │ errors                      10L  1C    0m  CC=0.0    ←0
+  │ __init__                     6L  0C    0m  CC=0.0    ←0
+  │ errors                       5L  1C    0m  CC=0.0    ←0
+  │ __init__                     5L  0C    0m  CC=0.0    ←0
   │ __init__                     5L  0C    0m  CC=0.0    ←0
   │ __init__                     5L  0C    0m  CC=0.0    ←0
   │ __init__                     5L  0C    0m  CC=0.0    ←0
@@ -139,9 +161,13 @@ LAYERS:
   │
   ./                              CC̄=0.0    ←in:0  →out:0
   │ !! goal.yaml                  511L  0C    0m  CC=0.0    ←0
+  │ Makefile                   293L  0C    0m  CC=0.0    ←0
   │ pyproject.toml              64L  0C    0m  CC=0.0    ←0
   │ project.sh                  50L  0C    0m  CC=0.0    ←0
   │ tree.sh                      1L  0C    0m  CC=0.0    ←0
+  │
+  testql-scenarios/               CC̄=0.0    ←in:0  →out:0
+  │ generated-cli-tests.testql.toon.yaml    20L  0C    0m  CC=0.0    ←0
   │
 
 COUPLING: no cross-package imports detected

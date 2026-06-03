@@ -1,49 +1,49 @@
 # code2llm call graph | /home/tom/github/semcod/gillm
-# generated in 0.11s
-# nodes: 82 | edges: 94 | modules: 12
-# CC̄=3.5
+# generated in 0.05s
+# nodes: 104 | edges: 117 | modules: 20
+# CC̄=3.6
 
 HUBS[20]:
   src.gillm.injection.backends._log
     CC=2  in:26  out:1  total:27
+  src.gillm.drivers.composite.CompositeGuiDriver.execute
+    CC=18  in:0  out:22  total:22
+  src.gillm.recovery.diagnose.diagnose_drive_reply
+    CC=9  in:0  out:21  total:21
   src.gillm.injection.os_injector.inject_with_profile
-    CC=6  in:1  out:12  total:13
-  src.gillm.injection.os_injector._inject_profile_text
-    CC=7  in:1  out:12  total:13
+    CC=5  in:2  out:12  total:14
+  src.gillm.drivers.composite.CompositeGuiDriver.type_text
+    CC=6  in:0  out:14  total:14
   src.gillm.injection.injector.Injector.submit_only
     CC=9  in:0  out:13  total:13
   src.gillm.injection.backends.type_with_ydotool
     CC=5  in:1  out:12  total:13
-  src.gillm.injection.os_injector.load_profile
+  src.gillm.runtime.profiles.load_profile
     CC=5  in:1  out:12  total:13
-  src.gillm.injection.os_injector.iter_config_paths
-    CC=4  in:1  out:11  total:12
+  src.gillm.injection.os_injector._inject_profile_text
+    CC=7  in:1  out:12  total:13
   src.gillm.focus.x11._run
     CC=1  in:11  out:1  total:12
+  src.gillm.runtime.profiles.iter_config_paths
+    CC=4  in:1  out:11  total:12
   src.gillm.capture.portal_backend.capture_portal_png
     CC=8  in:1  out:11  total:12
+  src.gillm.config.load_config
+    CC=4  in:1  out:10  total:11
+  src.gillm.runtime.profiles.capture_mouse_xy
+    CC=7  in:1  out:10  total:11
   src.gillm.injection.backends.type_with_backend
     CC=5  in:1  out:10  total:11
   src.gillm.capture.mss_backend._parse_png_to_rgb
     CC=4  in:1  out:10  total:11
-  src.gillm.injection.os_injector._is_wayland_session
-    CC=6  in:4  out:7  total:11
-  src.gillm.config.load_config
-    CC=4  in:1  out:10  total:11
-  src.gillm.injection.os_injector.capture_mouse_xy
-    CC=6  in:1  out:10  total:11
-  src.gillm.injection.os_injector._run_cmd
-    CC=5  in:4  out:7  total:11
-  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
-    CC=11  in:0  out:10  total:10
+  src.gillm.runtime.env.session_type
+    CC=4  in:6  out:4  total:10
   src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
     CC=7  in:0  out:10  total:10
+  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
+    CC=11  in:0  out:10  total:10
   src.gillm.capture.mss_backend.capture_primary_rgb
     CC=2  in:1  out:8  total:9
-  src.gillm.injection.backends.type_with_wtype
-    CC=3  in:1  out:8  total:9
-  src.gillm.injection.backends.type_with_xdotool
-    CC=3  in:1  out:8  total:9
 
 MODULES:
   src.gillm.capture.mss_backend  [6 funcs]
@@ -63,6 +63,12 @@ MODULES:
     default_config_path  CC=1  out:1
     load_config  CC=4  out:10
     resolve_xdg_path  CC=2  out:3
+  src.gillm.drivers.composite  [5 funcs]
+    __init__  CC=2  out:3
+    execute  CC=18  out:22
+    focus  CC=3  out:6
+    probe  CC=3  out:3
+    type_text  CC=6  out:14
   src.gillm.focus.darwin  [1 funcs]
     focus_window  CC=4  out:5
   src.gillm.focus.registry  [1 funcs]
@@ -91,26 +97,23 @@ MODULES:
     type_with_ydotool  CC=5  out:12
     ydotool_ctrl_keycode  CC=2  out:3
     ydotool_enter_keycode  CC=2  out:3
-  src.gillm.injection.injector  [8 funcs]
-    _candidate_backends  CC=5  out:6
+  src.gillm.injection.injector  [5 funcs]
     _type_with_backend  CC=1  out:1
     submit_only  CC=9  out:13
     type_text  CC=6  out:8
-    _forced_injector_backend  CC=2  out:3
-    _session_backend_order  CC=4  out:2
+    _session_type  CC=1  out:1
     _submit_key_for  CC=1  out:2
-    _unique_backend_names  CC=3  out:1
-  src.gillm.injection.os_injector  [30 funcs]
-    _clipboard_backend  CC=3  out:2
-    _cmd_timeout_seconds  CC=3  out:4
+  src.gillm.injection.os_injector  [10 funcs]
     _focus_profile_chat  CC=6  out:7
     _focus_with_xdotool  CC=4  out:7
     _focus_with_ydotool  CC=4  out:7
     _inject_profile_text  CC=7  out:12
     _injection_result  CC=1  out:0
-    _is_wayland_session  CC=6  out:7
     _os_injector_skip_reason  CC=9  out:7
-    _post_focus_delay_seconds  CC=3  out:5
+    _resolve_input_method  CC=7  out:4
+    focus_with_profile  CC=2  out:5
+    inject_with_profile  CC=5  out:12
+    try_drive_with_profile  CC=8  out:9
   src.gillm.intents.contract  [2 funcs]
     gui_contract  CC=1  out:1
     validate_contract_runtime  CC=7  out:6
@@ -119,6 +122,53 @@ MODULES:
     focus_target_window  CC=1  out:5
     inject_text  CC=1  out:4
     log  CC=2  out:1
+  src.gillm.recovery.diagnose  [3 funcs]
+    classify_failure  CC=24  out:1
+    diagnose_drive_reply  CC=9  out:21
+    probe_environment  CC=3  out:6
+  src.gillm.recovery.repair_hints  [4 funcs]
+    _dedupe  CC=4  out:5
+    _hints_for_kind  CC=15  out:4
+    recovery_hints_for_context  CC=3  out:3
+    recovery_hints_for_reload  CC=4  out:0
+  src.gillm.runtime.activity  [4 funcs]
+    emit_activity  CC=3  out:1
+    emit_activity_warn  CC=3  out:1
+    set_activity_sink  CC=1  out:0
+    try_bootstrap_koru_activity_sink  CC=3  out:3
+  src.gillm.runtime.backend_selector  [4 funcs]
+    __init__  CC=3  out:2
+    candidate_backends  CC=5  out:6
+    session_backend_order  CC=4  out:2
+    unique_backend_names  CC=3  out:1
+  src.gillm.runtime.command_runner  [7 funcs]
+    clipboard_backend  CC=3  out:2
+    resolve_input_method  CC=7  out:4
+    run_cmd  CC=2  out:4
+    run_cmd_checked  CC=4  out:4
+    set_clipboard  CC=3  out:6
+    xdotool  CC=1  out:1
+    ydotool  CC=2  out:3
+  src.gillm.runtime.env  [10 funcs]
+    cmd_timeout_seconds  CC=3  out:4
+    dry_run_from_env  CC=1  out:3
+    focus_mode_from_env  CC=2  out:3
+    forced_injector_backend  CC=2  out:3
+    input_mode_from_env  CC=2  out:3
+    is_wayland_session  CC=6  out:5
+    os_injector_env_disabled  CC=1  out:3
+    os_injector_env_forced  CC=1  out:3
+    post_focus_delay_seconds  CC=3  out:5
+    session_type  CC=4  out:4
+  src.gillm.runtime.profiles  [8 funcs]
+    _read_json  CC=4  out:5
+    capture_from_xdotool  CC=1  out:1
+    capture_mouse_xy  CC=7  out:10
+    default_config_path  CC=1  out:1
+    iter_config_paths  CC=4  out:11
+    load_profile  CC=5  out:12
+    save_profile  CC=3  out:7
+    try_load_profile  CC=4  out:3
 
 EDGES:
   src.gillm.config.default_config_path → src.gillm.config.resolve_xdg_path
@@ -148,26 +198,26 @@ EDGES:
   src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.ydotool_enter_keycode
   src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.ydotool_submit_mode
   src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.ydotool_ctrl_keycode
-  src.gillm.injection.injector._submit_key_for → src.gillm.config.cached_config
-  src.gillm.injection.injector._session_backend_order → src.gillm.injection.injector._unique_backend_names
-  src.gillm.injection.injector.Injector._candidate_backends → src.gillm.injection.injector._forced_injector_backend
-  src.gillm.injection.injector.Injector._candidate_backends → src.gillm.injection.injector._session_backend_order
-  src.gillm.injection.injector.Injector._type_with_backend → src.gillm.injection.backends.type_with_backend
-  src.gillm.injection.injector.Injector.type_text → src.gillm.injection.injector._submit_key_for
-  src.gillm.injection.injector.Injector.submit_only → src.gillm.injection.injector._submit_key_for
-  src.gillm.injection.os_injector.try_load_profile → src.gillm.injection.os_injector.iter_config_paths
-  src.gillm.injection.os_injector.try_load_profile → src.gillm.injection.os_injector.load_profile
-  src.gillm.injection.os_injector.load_profile → src.gillm.injection.os_injector._read_json
-  src.gillm.injection.os_injector.load_profile → src.gillm.injection.os_injector.default_config_path
-  src.gillm.injection.os_injector.save_profile → src.gillm.injection.os_injector._read_json
-  src.gillm.injection.os_injector.save_profile → src.gillm.injection.os_injector.default_config_path
-  src.gillm.injection.os_injector.capture_from_xdotool → src.gillm.injection.os_injector.capture_mouse_xy
-  src.gillm.injection.os_injector._run_cmd → src.gillm.injection.os_injector._cmd_timeout_seconds
-  src.gillm.injection.os_injector._xdotool → src.gillm.injection.os_injector._run_cmd
-  src.gillm.injection.os_injector._ydotool → src.gillm.injection.os_injector._run_cmd
-  src.gillm.injection.os_injector._set_clipboard → src.gillm.injection.os_injector._run_cmd
-  src.gillm.injection.os_injector._resolve_input_method → src.gillm.injection.os_injector.input_mode_from_env
-  src.gillm.injection.os_injector._resolve_input_method → src.gillm.injection.os_injector._clipboard_backend
-  src.gillm.injection.os_injector._resolve_input_method → src.gillm.injection.os_injector._is_wayland_session
-  src.gillm.injection.os_injector._focus_profile_chat → src.gillm.injection.backends._log
-  src.gillm.injection.os_injector._focus_profile_chat → src.gillm.injection.os_injector._is_wayland_session
+  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool → src.gillm.focus.x11._run
+  src.gillm.focus.x11.X11LinuxStrategy._focus_via_wmctrl → src.gillm.focus.x11._run
+  src.gillm.focus.x11.X11LinuxStrategy._inject_via_xdotool → src.gillm.focus.x11._run
+  src.gillm.focus.wayland._prefer_ydotool → src.gillm.focus.wayland._gnome_compositor
+  src.gillm.focus.wayland.WaylandLinuxStrategy.inject_keys → src.gillm.focus.wayland._prefer_ydotool
+  src.gillm.focus.wayland.WaylandLinuxStrategy._focus_via_wmctrl → src.gillm.focus.x11._run
+  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_wtype → src.gillm.focus.x11._run
+  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool → src.gillm.focus.wayland._scan_for_key
+  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool → src.gillm.focus.x11._run
+  src.gillm.focus.darwin.DarwinStrategy.focus_window → src.gillm.focus.x11._run
+  src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window → src.gillm.intents.contract.gui_contract
+  src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window → src.gillm.intents.contract.validate_contract_runtime
+  src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window → src.gillm.focus.registry.resolve_active_os_strategy
+  src.gillm.orchestrator.drive.DriveOrchestrator.inject_text → src.gillm.intents.contract.gui_contract
+  src.gillm.orchestrator.drive.DriveOrchestrator.inject_text → src.gillm.intents.contract.validate_contract_runtime
+  src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot → src.gillm.intents.contract.gui_contract
+  src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot → src.gillm.intents.contract.validate_contract_runtime
+  src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot → src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback
+  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints._hints_for_kind
+  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints._dedupe
+  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints.recovery_hints_for_reload
+  src.gillm.recovery.repair_hints._hints_for_kind → src.gillm.recovery.repair_hints.recovery_hints_for_reload
+  src.gillm.recovery.diagnose.probe_environment → src.gillm.runtime.env.session_type

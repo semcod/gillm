@@ -1,19 +1,26 @@
-# gillm | 34f 3947L | python:31,shell:2,less:1 | 2026-06-03
-# stats: 133 func | 26 cls | 34 mod | CC̄=3.4 | critical:0 | cycles:0
-# alerts[5]: CC main=9; CC _os_injector_skip_reason=9; CC try_drive_with_profile=9; CC test_inject_with_profile_paste_path_uses_clipboard_then_ctrl_v=9; CC capture_portal_png=8
+# gillm | 53f 5357L | python:50,shell:2,less:1 | 2026-06-03
+# stats: 162 func | 39 cls | 53 mod | CC̄=3.7 | critical:3 | cycles:0
+# alerts[5]: CC classify_failure=24; CC drive_payload_to_action_plan=21; CC _hints_for_kind=15; CC main=9; CC _os_injector_skip_reason=9
 # hotspots[5]: main fan=15; type_with_backend fan=10; inject_with_profile fan=10; _parse_png_to_rgb fan=9; test_inject_with_profile_paste_path_uses_clipboard_then_ctrl_v fan=9
 # evolution: baseline
 # Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
-M[34]:
-  app.doql.less,29
+M[53]:
+  app.doql.less,288
   project.sh,50
-  src/gillm/__init__.py,21
+  src/gillm/__init__.py,25
+  src/gillm/adapters/__init__.py,6
+  src/gillm/adapters/koru.py,95
   src/gillm/capture/__init__.py,17
   src/gillm/capture/mss_backend.py,131
   src/gillm/capture/portal_backend.py,114
   src/gillm/cli/__init__.py,6
   src/gillm/cli/main.py,81
   src/gillm/config.py,113
+  src/gillm/contracts/__init__.py,24
+  src/gillm/contracts/driver.py,137
+  src/gillm/drivers/__init__.py,7
+  src/gillm/drivers/composite.py,181
+  src/gillm/drivers/dry_run.py,90
   src/gillm/focus/__init__.py,38
   src/gillm/focus/darwin.py,73
   src/gillm/focus/registry.py,51
@@ -25,22 +32,40 @@ M[34]:
   src/gillm/injection/backends.py,208
   src/gillm/injection/drive_backend.py,67
   src/gillm/injection/errors.py,11
-  src/gillm/injection/injector.py,358
-  src/gillm/injection/os_injector.py,512
+  src/gillm/injection/injector.py,277
+  src/gillm/injection/os_injector.py,324
   src/gillm/intents/__init__.py,6
   src/gillm/intents/contract.py,79
   src/gillm/nlp_bridge/__init__.py,6
   src/gillm/nlp_bridge/client.py,71
   src/gillm/orchestrator/__init__.py,6
   src/gillm/orchestrator/drive.py,155
+  src/gillm/recovery/__init__.py,21
+  src/gillm/recovery/diagnose.py,151
+  src/gillm/recovery/repair_hints.py,99
+  src/gillm/runtime/__init__.py,52
+  src/gillm/runtime/activity.py,63
+  src/gillm/runtime/backend_selector.py,97
+  src/gillm/runtime/command_runner.py,89
+  src/gillm/runtime/env.py,88
+  src/gillm/runtime/errors.py,6
+  src/gillm/runtime/profiles.py,118
   tests/test_drive_backend.py,72
   tests/test_gillm.py,97
+  tests/test_gui_driver.py,43
   tests/test_injector.py,286
   tests/test_os_injector.py,352
   tests/test_os_strategies.py,382
+  tests/test_recovery.py,49
   tree.sh,2
 D:
   src/gillm/__init__.py:
+  src/gillm/adapters/__init__.py:
+  src/gillm/adapters/koru.py:
+    e: drive_payload_to_action_plan,koru_drive_to_payload,_steps_from_prefer
+    drive_payload_to_action_plan(payload)
+    koru_drive_to_payload()
+    _steps_from_prefer(prefer)
   src/gillm/capture/__init__.py:
   src/gillm/capture/mss_backend.py:
     e: resolve_scale,downscale_rgb_nearest,rgb_mostly_black,capture_primary_rgb,capture_primary_rgb_wayland_fallback,_parse_png_to_rgb,CapturedImage
@@ -70,6 +95,23 @@ D:
     _cached_config()
     cached_config()
     clear_config_cache()
+  src/gillm/contracts/__init__.py:
+  src/gillm/contracts/driver.py:
+    e: WindowTarget,CapturedImage,DriverStatus,ActionResult,ActionPlan,ExecutionOutcome,GuiDriver
+    WindowTarget:  # Best-effort window focus target.
+    CapturedImage:
+    DriverStatus: to_dict(0)
+    ActionResult: to_dict(0)
+    ActionPlan: chat_inject_and_submit(1)
+    ExecutionOutcome: to_dict(0)
+    GuiDriver: probe(0),focus(1),type_text(1),hotkey(0),click(2),screenshot(0),execute(1)  # Stable GUI control surface for orchestrators (Koru, CLI, tes
+  src/gillm/drivers/__init__.py:
+  src/gillm/drivers/composite.py:
+    e: CompositeGuiDriver
+    CompositeGuiDriver: __init__(0),probe(0),focus(1),type_text(1),hotkey(0),click(2),screenshot(0),execute(1)  # Production GuiDriver backed by Injector + os_injector profil
+  src/gillm/drivers/dry_run.py:
+    e: DryRunGuiDriver
+    DryRunGuiDriver: __init__(0),log(0),probe(0),focus(1),type_text(1),hotkey(0),click(2),screenshot(0),execute(1)  # Records actions without touching the OS.
   src/gillm/focus/__init__.py:
   src/gillm/focus/darwin.py:
     e: _run,DarwinStrategy
@@ -125,49 +167,23 @@ D:
     e: InjectorError
     InjectorError:  # No usable backend, or the backend call failed.
   src/gillm/injection/injector.py:
-    e: _submit_key_for,_which,_session_type,_forced_injector_backend,_unique_backend_names,_session_backend_order,_default_runner,BackendStatus,InjectionResult,Injector
+    e: _submit_key_for,_which,_session_type,_default_runner,BackendStatus,InjectionResult,Injector
     BackendStatus: to_dict(0)  # Result of probing a single backend.
     InjectionResult: to_dict(0)
-    Injector: probe(0),_candidate_backends(0),_forced_backend_candidates(1),_available_backend_candidates(1),select_backend(0),_type_with_backend(3),_type_text_backends(0),_log_type_text_request(3),_dry_run_type_text_result(0),_try_type_text_backends(4),_all_type_backends_failed(1),type_text(1),submit_only(0),_probe_one(1),_call(1)  # Pick the best available backend and type text through it.
+    Injector: probe(0),_candidate_backends(0),select_backend(0),_type_with_backend(3),_type_text_backends(0),_log_type_text_request(3),_dry_run_type_text_result(0),_try_type_text_backends(4),_all_type_backends_failed(1),type_text(1),submit_only(0),_call(1)  # Pick the best available backend and type text through it.
     _submit_key_for(ide)
     _which(name)
     _session_type()
-    _forced_injector_backend()
-    _unique_backend_names(names)
-    _session_backend_order(session)
     _default_runner(cmd;stdin)
   src/gillm/injection/os_injector.py:
-    e: default_config_path,iter_config_paths,os_injector_env_disabled,os_injector_env_forced,dry_run_from_env,focus_mode_from_env,input_mode_from_env,_is_wayland_session,_cmd_timeout_seconds,_post_focus_delay_seconds,try_load_profile,_read_json,load_profile,save_profile,profile_from_mouse,capture_mouse_xy,capture_from_xdotool,_run_cmd,_xdotool,_ydotool,_clipboard_backend,_set_clipboard,_resolve_input_method,_injection_result,_focus_profile_chat,_focus_with_ydotool,_focus_with_xdotool,_inject_profile_text,inject_with_profile,_os_injector_skip_reason,try_drive_with_profile,OsInjectorError,OsInjectorProfile
-    OsInjectorError:  # Raised when profile config or xdotool operations fail.
-    OsInjectorProfile:  # Chat anchor: pixel position under the cursor at calibration 
-    default_config_path()
-    iter_config_paths()
-    os_injector_env_disabled()
-    os_injector_env_forced()
-    dry_run_from_env()
-    focus_mode_from_env()
-    input_mode_from_env()
-    _is_wayland_session()
-    _cmd_timeout_seconds()
-    _post_focus_delay_seconds()
-    try_load_profile(tool_id)
-    _read_json(path)
-    load_profile(tool_id)
-    save_profile(profile)
-    profile_from_mouse(tool_id)
-    capture_mouse_xy()
-    capture_from_xdotool()
-    _run_cmd(cmd)
-    _xdotool(argv_tail)
-    _ydotool(argv_tail)
-    _clipboard_backend()
-    _set_clipboard(text)
+    e: _resolve_input_method,_injection_result,_focus_profile_chat,_focus_with_ydotool,_focus_with_xdotool,_inject_profile_text,focus_with_profile,inject_with_profile,_os_injector_skip_reason,try_drive_with_profile
     _resolve_input_method()
     _injection_result()
     _focus_profile_chat(profile;focus;post_focus_delay)
     _focus_with_ydotool(profile;focus)
     _focus_with_xdotool(profile;focus)
     _inject_profile_text()
+    focus_with_profile(profile)
     inject_with_profile()
     _os_injector_skip_reason(tool_id)
     try_drive_with_profile()
@@ -184,6 +200,70 @@ D:
   src/gillm/orchestrator/drive.py:
     e: DriveOrchestrator
     DriveOrchestrator: __init__(2),log(1),focus_target_window(1),inject_text(4),capture_screenshot(1),execute_step(2),execute_workflow(2),drive_natural_language(2)  # Consolidated orchestrator for GUI drive tasks.
+  src/gillm/recovery/__init__.py:
+  src/gillm/recovery/diagnose.py:
+    e: probe_environment,classify_failure,diagnose_drive_reply,EnvironmentDiagnostics,DriveFailureContext
+    EnvironmentDiagnostics: to_dict(0)
+    DriveFailureContext: to_dict(0)
+    probe_environment()
+    classify_failure()
+    diagnose_drive_reply(reply)
+  src/gillm/recovery/repair_hints.py:
+    e: recovery_hints_for_reload,recovery_hints_for_context,_hints_for_kind,_dedupe
+    recovery_hints_for_reload()
+    recovery_hints_for_context(ctx)
+    _hints_for_kind(kind;ctx)
+    _dedupe(items)
+  src/gillm/runtime/__init__.py:
+  src/gillm/runtime/activity.py:
+    e: set_activity_sink,noop_activity_sink,emit_activity,emit_activity_warn,try_bootstrap_koru_activity_sink
+    set_activity_sink(sink)
+    noop_activity_sink(_category;_message;preview)
+    emit_activity(category;message)
+    emit_activity_warn(message)
+    try_bootstrap_koru_activity_sink()
+  src/gillm/runtime/backend_selector.py:
+    e: unique_backend_names,session_backend_order,BackendSelector
+    BackendSelector: __init__(0),candidate_backends(0),select_backend(0),_forced_backend_candidates(1),_available_backend_candidates(1),probe(0)  # Pick keyboard injection backends for the current session.
+    unique_backend_names(names)
+    session_backend_order(session)
+  src/gillm/runtime/command_runner.py:
+    e: run_cmd,run_cmd_checked,xdotool,ydotool,clipboard_backend,set_clipboard,resolve_input_method,CommandResult
+    CommandResult:
+    run_cmd(cmd)
+    run_cmd_checked(cmd)
+    xdotool(argv_tail)
+    ydotool(argv_tail)
+    clipboard_backend()
+    set_clipboard(text)
+    resolve_input_method()
+  src/gillm/runtime/env.py:
+    e: session_type,is_wayland_session,os_injector_env_disabled,os_injector_env_forced,dry_run_from_env,focus_mode_from_env,input_mode_from_env,cmd_timeout_seconds,post_focus_delay_seconds,forced_injector_backend
+    session_type()
+    is_wayland_session()
+    os_injector_env_disabled()
+    os_injector_env_forced()
+    dry_run_from_env()
+    focus_mode_from_env()
+    input_mode_from_env()
+    cmd_timeout_seconds()
+    post_focus_delay_seconds()
+    forced_injector_backend()
+  src/gillm/runtime/errors.py:
+    e: OsInjectorError
+    OsInjectorError:  # Raised when profile config or OS injection operations fail.
+  src/gillm/runtime/profiles.py:
+    e: default_config_path,iter_config_paths,_read_json,load_profile,save_profile,profile_from_mouse,try_load_profile,capture_mouse_xy,capture_from_xdotool,OsInjectorProfile
+    OsInjectorProfile:  # Chat anchor: pixel position under the cursor at calibration 
+    default_config_path()
+    iter_config_paths()
+    _read_json(path)
+    load_profile(tool_id)
+    save_profile(profile)
+    profile_from_mouse(tool_id)
+    try_load_profile(tool_id)
+    capture_mouse_xy()
+    capture_from_xdotool()
   tests/test_drive_backend.py:
     e: test_try_os_injector_drive_returns_none_when_no_profile,test_try_os_injector_drive_raises_on_error,test_format_os_injector_ack_includes_target,test_apply_keyboard_injection_delegates_to_injector,test_apply_keyboard_injection_propagates_injector_error
     test_try_os_injector_drive_returns_none_when_no_profile(monkeypatch)
@@ -200,6 +280,13 @@ D:
     test_orchestrator_execution()
     test_orchestrator_nlp_drive(monkeypatch)
     test_contract_validation()
+  tests/test_gui_driver.py:
+    e: test_session_backend_order_wayland_prefers_wtype,test_backend_selector_forced_backend,test_dry_run_driver_executes_chat_plan,test_dry_run_driver_probe,test_action_plan_chat_factory
+    test_session_backend_order_wayland_prefers_wtype()
+    test_backend_selector_forced_backend()
+    test_dry_run_driver_executes_chat_plan()
+    test_dry_run_driver_probe()
+    test_action_plan_chat_factory()
   tests/test_injector.py:
     e: _fake_runner,_which_factory,test_select_backend_x11_prefers_xdotool,test_select_backend_wayland_prefers_wtype_over_ydotool,test_select_backend_wayland_falls_back_to_ydotool,test_select_backend_unknown_session_without_display_prefers_wayland_tools,test_select_backend_no_tools_returns_none,test_type_text_dry_run_does_not_call_runner,test_type_text_xdotool_types_and_submits,test_type_text_xdotool_supports_extra_enter,test_type_text_ydotool_uses_configurable_enter_key,test_type_text_ydotool_submit_newline_mode,test_type_text_ydotool_submit_ctrl_enter_mode,test_type_text_wtype_uses_modifiers_for_jetbrains,test_type_text_no_submit_only_types,test_type_text_propagates_runner_error,test_type_text_empty_raises,test_type_text_no_backend_raises,test_probe_marks_unavailable_when_missing_tool,test_probe_marks_unavailable_on_wrong_session,test_wtype_rejects_multi_modifier_submit_key,test_type_text_wayland_falls_back_when_wtype_fails,test_injector_forced_backend,test_wtype_single_modifier_still_works
     _fake_runner(commands)
@@ -253,3 +340,10 @@ D:
     X11LinuxStrategyTests: test_does_not_match_when_wayland_display_present(0),test_matches_classic_x11(0),test_focus_uses_xdotool_first(0)
     DarwinStrategyTests: test_matches_only_on_darwin(0),test_focus_uses_osascript(0)
     WindowsStrategyTests: test_matches_only_on_windows(0),test_capabilities_are_empty_placeholder(0)
+  tests/test_recovery.py:
+    e: test_probe_environment_has_session,test_diagnose_plugin_unavailable,test_diagnose_version_mismatch,test_koru_drive_payload_maps_to_action_plan,test_recovery_hints_for_wayland_reload
+    test_probe_environment_has_session()
+    test_diagnose_plugin_unavailable()
+    test_diagnose_version_mismatch()
+    test_koru_drive_payload_maps_to_action_plan()
+    test_recovery_hints_for_wayland_reload()

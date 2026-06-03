@@ -6,6 +6,7 @@ SUMD - Structured Unified Markdown Descriptor for AI-aware project refactorizati
 
 - [Metadata](#metadata)
 - [Architecture](#architecture)
+- [Workflows](#workflows)
 - [Dependencies](#dependencies)
 - [Call Graph](#call-graph)
 - [Test Contracts](#test-contracts)
@@ -15,12 +16,12 @@ SUMD - Structured Unified Markdown Descriptor for AI-aware project refactorizati
 ## Metadata
 
 - **name**: `gillm`
-- **version**: `0.1.5`
+- **version**: `0.1.6`
 - **python_requires**: `>=3.10`
 - **license**: Apache-2.0
 - **ai_model**: `openrouter/qwen/qwen3-coder-next`
 - **ecosystem**: SUMD + DOQL + testql + taskfile
-- **generated_from**: pyproject.toml, testql(1), app.doql.less, goal.yaml, .env.example, project/(5 analysis files)
+- **generated_from**: pyproject.toml, Makefile, testql(1), app.doql.less, goal.yaml, .env.example, project/(5 analysis files)
 
 ## Architecture
 
@@ -35,7 +36,7 @@ SUMD (description) → DOQL/source (code) → taskfile (automation) → testql (
 
 app {
   name: gillm;
-  version: 0.1.5;
+  version: 0.1.6;
 }
 
 dependencies {
@@ -50,16 +51,277 @@ interface[type="cli"] page[name="gillm"] {
 
 }
 
+workflow[name="venv"] {
+  trigger: manual;
+  step-1: run cmd=if [ ! -x "$(PYTHON)" ]; then \;
+  step-2: run cmd=echo "Creating virtual environment in $(VENV)..."; \;
+  step-3: run cmd=python3 -m venv "$(VENV)"; \;
+  step-4: run cmd=fi;
+}
+
+workflow[name="install"] {
+  trigger: manual;
+  step-1: run cmd=$(PIP) install -e .;
+  step-2: run cmd=echo "✓ code2llm installed with TOON format support";
+}
+
+workflow[name="dev-install"] {
+  trigger: manual;
+  step-1: run cmd=$(PIP) install -e ".[dev]";
+  step-2: run cmd=echo "✓ code2llm installed with dev dependencies";
+}
+
+workflow[name="test"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m pytest tests/ -v --tb=short;
+}
+
+workflow[name="test-fast"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m pytest -m "not slow and not integration" -v --tb=short -n auto;
+}
+
+workflow[name="test-slow"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m pytest -m "slow" -v --tb=short;
+}
+
+workflow[name="test-integration"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m pytest -m "integration" -v --tb=short;
+}
+
+workflow[name="test-unit"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m pytest -m "unit" -v --tb=short;
+}
+
+workflow[name="test-cov"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m pytest tests/ --cov=code2llm --cov-report=html --cov-report=term 2>/dev/null || echo "No tests yet";
+}
+
+workflow[name="test-toon"] {
+  trigger: manual;
+  step-1: run cmd=echo "🎯 Testing TOON format...";
+  step-2: run cmd=$(PYTHON) -m code2llm ./ -v -o ./test_toon -m hybrid -f toon;
+  step-3: run cmd=$(PYTHON) validate_toon.py test_toon/analysis.toon;
+  step-4: run cmd=echo "✓ TOON format test complete";
+}
+
+workflow[name="validate-toon"] {
+  trigger: manual;
+  step-1: depend target=test-toon;
+}
+
+workflow[name="test-all-formats"] {
+  trigger: manual;
+  step-1: run cmd=echo "📊 Testing all output formats...";
+  step-2: run cmd=$(PYTHON) -m code2llm ./ -v -o ./test_all -m hybrid -f all;
+  step-3: run cmd=$(PYTHON) validate_toon.py test_all/analysis.toon;
+  step-4: run cmd=echo "✓ All formats test complete";
+}
+
+workflow[name="test-comprehensive"] {
+  trigger: manual;
+  step-1: run cmd=echo "🚀 Running comprehensive test suite...";
+  step-2: run cmd=bash project.sh;
+  step-3: run cmd=echo "✓ Comprehensive tests complete";
+}
+
+workflow[name="lint"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m flake8 code2llm/ --max-line-length=100 --ignore=E203,W503 2>/dev/null || echo "flake8 not installed";
+  step-2: run cmd=$(PYTHON) -m black --check code2llm/ 2>/dev/null || echo "black not installed";
+  step-3: run cmd=echo "✓ Linting complete";
+}
+
+workflow[name="format"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m black code2llm/ --line-length=100 2>/dev/null || echo "black not installed, run: pip install black";
+  step-2: run cmd=echo "✓ Code formatted";
+}
+
+workflow[name="typecheck"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m mypy code2llm/ --ignore-missing-imports 2>/dev/null || echo "mypy not installed";
+}
+
+workflow[name="check"] {
+  trigger: manual;
+  step-1: run cmd=echo "✓ All checks passed";
+}
+
+workflow[name="run"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) -m code2llm ../python/stts_core -v -o ./output;
+}
+
+workflow[name="analyze"] {
+  trigger: manual;
+  step-1: run cmd=echo "🎯 Running TOON format analysis on current project...";
+  step-2: run cmd=$(PYTHON) -m code2llm ./ -v -o ./analysis -m hybrid -f toon;
+  step-3: run cmd=$(PYTHON) validate_toon.py analysis/analysis.toon;
+  step-4: run cmd=echo "✓ TOON analysis complete - check analysis/analysis.toon";
+}
+
+workflow[name="analyze-all"] {
+  trigger: manual;
+  step-1: run cmd=echo "📊 Running analysis with all formats...";
+  step-2: run cmd=$(PYTHON) -m code2llm ./ -v -o ./analysis_all -m hybrid -f all;
+  step-3: run cmd=$(PYTHON) validate_toon.py analysis_all/analysis.toon;
+  step-4: run cmd=echo "✓ All formats analysis complete - check analysis_all/";
+}
+
+workflow[name="toon-demo"] {
+  trigger: manual;
+  step-1: run cmd=echo "🎯 Quick TOON format demo...";
+  step-2: run cmd=$(PYTHON) -m code2llm ./ -v -o ./demo -m hybrid -f toon;
+  step-3: run cmd=echo "📁 Generated: demo/analysis.toon";
+  step-4: run cmd=echo "📊 Size: $$(du -h demo/analysis.toon | cut -f1)";
+  step-5: run cmd=echo "🔍 Preview:";
+  step-6: run cmd=head -20 demo/analysis.toon;
+}
+
+workflow[name="toon-compare"] {
+  trigger: manual;
+  step-1: run cmd=echo "📊 Comparing TOON vs YAML formats...";
+  step-2: run cmd=$(PYTHON) -m code2llm ./ -v -o ./compare -m hybrid -f toon,yaml;
+  step-3: run cmd=echo "📁 Files generated:";
+  step-4: run cmd=echo "  - TOON:  compare/analysis.toon  ($$(du -h compare/analysis.toon | cut -f1))";
+  step-5: run cmd=echo "  - YAML:  compare/analysis.yaml  ($$(du -h compare/analysis.yaml | cut -f1))";
+  step-6: run cmd=echo "  - Ratio: $$(echo "scale=1; $$(du -k compare/analysis.yaml | cut -f1) / $$(du -k compare/analysis.toon | cut -f1)" | bc)x smaller";
+  step-7: run cmd=$(PYTHON) validate_toon.py compare/analysis.yaml compare/analysis.toon;
+}
+
+workflow[name="toon-validate"] {
+  trigger: manual;
+  step-1: run cmd=echo "🔍 Validating TOON format structure...";
+  step-2: run cmd=$(PYTHON) validate_toon.py analysis/analysis.toon 2>/dev/null || $(PYTHON) validate_toon.py test_toon/analysis.toon 2>/dev/null || echo "Run 'make test-toon' first";
+}
+
+workflow[name="build"] {
+  trigger: manual;
+  step-1: run cmd=rm -rf build/ dist/ *.egg-info;
+  step-2: run cmd=$(PYTHON) -m build;
+  step-3: run cmd=echo "✓ Build complete - check dist/";
+}
+
+workflow[name="publish-test"] {
+  trigger: manual;
+  step-1: run cmd=echo "🚀 Publishing to TestPyPI...";
+  step-2: run cmd=bash -c 'if [ -z "$${TWINE_USERNAME}" ] && [ -z "$${TWINE_PASSWORD}" ] && [ -z "$${PYPI_API_TOKEN}" ]; then \;
+  step-3: run cmd=echo "⚠️  No PyPI credentials found. Set TWINE_USERNAME and TWINE_PASSWORD or PYPI_API_TOKEN"; \;
+  step-4: run cmd=echo "   Example: TWINE_USERNAME=__token__ TWINE_PASSWORD=pypi-xxx make publish-test"; \;
+  step-5: run cmd=echo "   Skipping publish-test."; \;
+  step-6: run cmd=else \;
+  step-7: run cmd=$(PYTHON) -m venv publish-test-env && \;
+  step-8: run cmd=publish-test-env/bin/pip install twine && \;
+  step-9: run cmd=publish-test-env/bin/python -m twine upload --repository testpypi dist/* && \;
+  step-10: run cmd=rm -rf publish-test-env && \;
+  step-11: run cmd=echo "✓ Published to TestPyPI"; \;
+  step-12: run cmd=fi';
+}
+
+workflow[name="bump-patch"] {
+  trigger: manual;
+  step-1: run cmd=echo "🔢 Bumping patch version...";
+  step-2: run cmd=$(PYTHON) scripts/bump_version.py patch 2>/dev/null || echo "Create scripts/bump_version.py or edit pyproject.toml manually";
+}
+
+workflow[name="bump-minor"] {
+  trigger: manual;
+  step-1: run cmd=echo "🔢 Bumping minor version...";
+  step-2: run cmd=$(PYTHON) scripts/bump_version.py minor 2>/dev/null || echo "Create scripts/bump_version.py or edit pyproject.toml manually";
+}
+
+workflow[name="bump-major"] {
+  trigger: manual;
+  step-1: run cmd=echo "🔢 Bumping major version...";
+  step-2: run cmd=$(PYTHON) scripts/bump_version.py major 2>/dev/null || echo "Create scripts/bump_version.py or edit pyproject.toml manually";
+}
+
+workflow[name="publish"] {
+  trigger: manual;
+  step-1: run cmd=echo "🚀 Publishing to PyPI...";
+  step-2: run cmd=bash -c 'if [ -z "$${TWINE_USERNAME}" ] && [ -z "$${TWINE_PASSWORD}" ] && [ -z "$${PYPI_API_TOKEN}" ]; then \;
+  step-3: run cmd=echo "⚠️  No PyPI credentials found. Set TWINE_USERNAME and TWINE_PASSWORD or PYPI_API_TOKEN"; \;
+  step-4: run cmd=echo "   Example: TWINE_USERNAME=__token__ TWINE_PASSWORD=pypi-xxx make publish"; \;
+  step-5: run cmd=echo "   Skipping publish."; \;
+  step-6: run cmd=else \;
+  step-7: run cmd=echo "🔢 Bumping patch version..."; \;
+  step-8: run cmd=$(MAKE) bump-patch; \;
+  step-9: run cmd=echo "🔨 Rebuilding package with new version..."; \;
+  step-10: run cmd=$(MAKE) build; \;
+  step-11: run cmd=echo "📦 Publishing to PyPI..."; \;
+  step-12: run cmd=$(PYTHON) -m venv publish-env; \;
+  step-13: run cmd=publish-env/bin/pip install twine; \;
+  step-14: run cmd=publish-env/bin/python -m twine upload dist/*; \;
+  step-15: run cmd=rm -rf publish-env; \;
+  step-16: run cmd=echo "✓ Published to PyPI"; \;
+  step-17: run cmd=fi';
+}
+
+workflow[name="mermaid-png"] {
+  trigger: manual;
+  step-1: run cmd=$(PYTHON) mermaid_to_png.py --batch output output;
+}
+
+workflow[name="install-mermaid"] {
+  trigger: manual;
+  step-1: run cmd=npm install -g @mermaid-js/mermaid-cli;
+}
+
+workflow[name="check-mermaid"] {
+  trigger: manual;
+  step-1: run cmd=echo "Checking available Mermaid renderers...";
+  step-2: run cmd=which mmdc > /dev/null && echo "✓ mmdc (mermaid-cli)" || echo "✗ mmdc (run: npm install -g @mermaid-js/mermaid-cli)";
+  step-3: run cmd=which npx > /dev/null && echo "✓ npx (for @mermaid-js/mermaid-cli)" || echo "✗ npx (install Node.js)";
+  step-4: run cmd=which puppeteer > /dev/null && echo "✓ puppeteer" || echo "✗ puppeteer (run: npm install -g puppeteer)";
+}
+
+workflow[name="clean"] {
+  trigger: manual;
+  step-1: run cmd=rm -rf build/ dist/ *.egg-info;
+  step-2: run cmd=rm -rf .pytest_cache .coverage htmlcov/;
+  step-3: run cmd=rm -rf code2llm/__pycache__ code2llm/*/__pycache__;
+  step-4: run cmd=rm -rf test_* demo compare analysis analysis_all output_* 2>/dev/null || true;
+  step-5: run cmd=find . -name "*.pyc" -delete 2>/dev/null || true;
+  step-6: run cmd=find . -name "__pycache__" -type d -exec rm -rf {} + 2>/dev/null || true;
+  step-7: run cmd=echo "✓ Cleaned build artifacts and test outputs";
+}
+
+workflow[name="clean-png"] {
+  trigger: manual;
+  step-1: run cmd=rm -f output/*.png;
+  step-2: run cmd=echo "✓ Cleaned PNG files";
+}
+
+workflow[name="quickstart"] {
+  trigger: manual;
+  step-1: run cmd=echo "🚀 Quick Start with code2llm TOON format:";
+  step-2: run cmd=echo "";
+  step-3: run cmd=echo "1. Install:        make install";
+  step-4: run cmd=echo "2. Test TOON:      make test-toon";
+  step-5: run cmd=echo "3. Analyze:        make analyze";
+  step-6: run cmd=echo "4. Compare:        make toon-compare";
+  step-7: run cmd=echo "5. All formats:    make test-all-formats";
+  step-8: run cmd=echo "";
+  step-9: run cmd=echo "📖 For more: make help";
+}
+
 deploy {
-  target: pip;
+  target: makefile;
 }
 
 environment[name="local"] {
-  runtime: python;
+  runtime: docker-compose;
   env_file: .env;
   python_version: >=3.10;
 }
 ```
+
+## Workflows
 
 ## Dependencies
 
@@ -92,16 +354,16 @@ pfix>=0.1.60
 |----------|----|----|-----|-------|
 | `_log` *(in src.gillm.injection.backends)* | 2 | 26 | 1 | **27** |
 | `inject_with_profile` *(in src.gillm.injection.os_injector)* | 6 | 1 | 12 | **13** |
-| `_inject_profile_text` *(in src.gillm.injection.os_injector)* | 7 | 1 | 12 | **13** |
-| `submit_only` *(in src.gillm.injection.injector.Injector)* | 9 | 0 | 13 | **13** |
-| `type_with_ydotool` *(in src.gillm.injection.backends)* | 5 | 1 | 12 | **13** |
 | `load_profile` *(in src.gillm.injection.os_injector)* | 5 | 1 | 12 | **13** |
+| `submit_only` *(in src.gillm.injection.injector.Injector)* | 9 | 0 | 13 | **13** |
+| `_inject_profile_text` *(in src.gillm.injection.os_injector)* | 7 | 1 | 12 | **13** |
+| `type_with_ydotool` *(in src.gillm.injection.backends)* | 5 | 1 | 12 | **13** |
 | `iter_config_paths` *(in src.gillm.injection.os_injector)* | 4 | 1 | 11 | **12** |
 | `_run` *(in src.gillm.focus.x11)* | 1 | 11 | 1 | **12** |
 
 ```toon markpact:analysis path=project/calls.toon.yaml
 # code2llm call graph | /home/tom/github/semcod/gillm
-# generated in 0.11s
+# generated in 0.05s
 # nodes: 82 | edges: 94 | modules: 12
 # CC̄=3.5
 
@@ -110,13 +372,13 @@ HUBS[20]:
     CC=2  in:26  out:1  total:27
   src.gillm.injection.os_injector.inject_with_profile
     CC=6  in:1  out:12  total:13
-  src.gillm.injection.os_injector._inject_profile_text
-    CC=7  in:1  out:12  total:13
+  src.gillm.injection.os_injector.load_profile
+    CC=5  in:1  out:12  total:13
   src.gillm.injection.injector.Injector.submit_only
     CC=9  in:0  out:13  total:13
+  src.gillm.injection.os_injector._inject_profile_text
+    CC=7  in:1  out:12  total:13
   src.gillm.injection.backends.type_with_ydotool
-    CC=5  in:1  out:12  total:13
-  src.gillm.injection.os_injector.load_profile
     CC=5  in:1  out:12  total:13
   src.gillm.injection.os_injector.iter_config_paths
     CC=4  in:1  out:11  total:12
@@ -126,24 +388,24 @@ HUBS[20]:
     CC=8  in:1  out:11  total:12
   src.gillm.injection.backends.type_with_backend
     CC=5  in:1  out:10  total:11
-  src.gillm.capture.mss_backend._parse_png_to_rgb
-    CC=4  in:1  out:10  total:11
   src.gillm.injection.os_injector._is_wayland_session
     CC=6  in:4  out:7  total:11
   src.gillm.config.load_config
     CC=4  in:1  out:10  total:11
-  src.gillm.injection.os_injector.capture_mouse_xy
-    CC=6  in:1  out:10  total:11
+  src.gillm.capture.mss_backend._parse_png_to_rgb
+    CC=4  in:1  out:10  total:11
   src.gillm.injection.os_injector._run_cmd
     CC=5  in:4  out:7  total:11
-  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
-    CC=11  in:0  out:10  total:10
+  src.gillm.injection.os_injector.capture_mouse_xy
+    CC=6  in:1  out:10  total:11
   src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
     CC=7  in:0  out:10  total:10
+  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
+    CC=11  in:0  out:10  total:10
+  src.gillm.intents.contract.validate_contract_runtime
+    CC=7  in:3  out:6  total:9
   src.gillm.capture.mss_backend.capture_primary_rgb
     CC=2  in:1  out:8  total:9
-  src.gillm.injection.backends.type_with_wtype
-    CC=3  in:1  out:8  total:9
   src.gillm.injection.backends.type_with_xdotool
     CC=3  in:1  out:8  total:9
 
@@ -291,7 +553,7 @@ EDGES:
 
 ```toon markpact:analysis path=project/calls.toon.yaml
 # code2llm call graph | /home/tom/github/semcod/gillm
-# generated in 0.11s
+# generated in 0.05s
 # nodes: 82 | edges: 94 | modules: 12
 # CC̄=3.5
 
@@ -300,13 +562,13 @@ HUBS[20]:
     CC=2  in:26  out:1  total:27
   src.gillm.injection.os_injector.inject_with_profile
     CC=6  in:1  out:12  total:13
-  src.gillm.injection.os_injector._inject_profile_text
-    CC=7  in:1  out:12  total:13
+  src.gillm.injection.os_injector.load_profile
+    CC=5  in:1  out:12  total:13
   src.gillm.injection.injector.Injector.submit_only
     CC=9  in:0  out:13  total:13
+  src.gillm.injection.os_injector._inject_profile_text
+    CC=7  in:1  out:12  total:13
   src.gillm.injection.backends.type_with_ydotool
-    CC=5  in:1  out:12  total:13
-  src.gillm.injection.os_injector.load_profile
     CC=5  in:1  out:12  total:13
   src.gillm.injection.os_injector.iter_config_paths
     CC=4  in:1  out:11  total:12
@@ -316,24 +578,24 @@ HUBS[20]:
     CC=8  in:1  out:11  total:12
   src.gillm.injection.backends.type_with_backend
     CC=5  in:1  out:10  total:11
-  src.gillm.capture.mss_backend._parse_png_to_rgb
-    CC=4  in:1  out:10  total:11
   src.gillm.injection.os_injector._is_wayland_session
     CC=6  in:4  out:7  total:11
   src.gillm.config.load_config
     CC=4  in:1  out:10  total:11
-  src.gillm.injection.os_injector.capture_mouse_xy
-    CC=6  in:1  out:10  total:11
+  src.gillm.capture.mss_backend._parse_png_to_rgb
+    CC=4  in:1  out:10  total:11
   src.gillm.injection.os_injector._run_cmd
     CC=5  in:4  out:7  total:11
-  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
-    CC=11  in:0  out:10  total:10
+  src.gillm.injection.os_injector.capture_mouse_xy
+    CC=6  in:1  out:10  total:11
   src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
     CC=7  in:0  out:10  total:10
+  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
+    CC=11  in:0  out:10  total:10
+  src.gillm.intents.contract.validate_contract_runtime
+    CC=7  in:3  out:6  total:9
   src.gillm.capture.mss_backend.capture_primary_rgb
     CC=2  in:1  out:8  total:9
-  src.gillm.injection.backends.type_with_wtype
-    CC=3  in:1  out:8  total:9
   src.gillm.injection.backends.type_with_xdotool
     CC=3  in:1  out:8  total:9
 
@@ -468,8 +730,8 @@ EDGES:
 ### Code Analysis (`project/analysis.toon.yaml`)
 
 ```toon markpact:analysis path=project/analysis.toon.yaml
-# code2llm | 30f 3277L | python:26,shell:2,yaml:1,toml:1 | 2026-06-03
-# generated in 0.02s
+# code2llm | 32f 3590L | python:26,shell:2,yaml:2,toml:1 | 2026-06-03
+# generated in 0.01s
 # CC̅=3.5 | critical:0/137 | dups:0 | cycles:0
 
 HEALTH[0]: ok
@@ -609,9 +871,13 @@ LAYERS:
   │
   ./                              CC̄=0.0    ←in:0  →out:0
   │ !! goal.yaml                  511L  0C    0m  CC=0.0    ←0
+  │ Makefile                   293L  0C    0m  CC=0.0    ←0
   │ pyproject.toml              64L  0C    0m  CC=0.0    ←0
   │ project.sh                  50L  0C    0m  CC=0.0    ←0
   │ tree.sh                      1L  0C    0m  CC=0.0    ←0
+  │
+  testql-scenarios/               CC̄=0.0    ←in:0  →out:0
+  │ generated-cli-tests.testql.toon.yaml    20L  0C    0m  CC=0.0    ←0
   │
 
 COUPLING: no cross-package imports detected
@@ -632,7 +898,7 @@ SUMMARY:
   dup_groups:    4
   dup_fragments: 10
   saved_lines:   37
-  scan_ms:       4807
+  scan_ms:       2319
 
 HOTSPOTS[5] (files with most duplication):
   src/gillm/focus/wayland.py  dup=17L  groups=2  frags=2  (0.6%)
@@ -709,8 +975,8 @@ NEXT[2] (ranked by impact):
 
 
 RISKS[2]:
-  ⚠ Splitting goal.yaml may break 0 import paths
   ⚠ Splitting src/gillm/injection/os_injector.py may break 31 import paths
+  ⚠ Splitting goal.yaml may break 0 import paths
 
 METRICS-TARGET:
   CC̄:          3.5 → ≤2.4
@@ -744,7 +1010,7 @@ PATTERNS (language parser shared logic):
     - Standardized FunctionInfo/ClassInfo models
 
 HISTORY:
-  (first run — no previous data)
+  prev CC̄=3.5 → now CC̄=3.5
 ```
 
 ## Intent

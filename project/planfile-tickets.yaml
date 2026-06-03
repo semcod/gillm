@@ -24,7 +24,7 @@ tickets:
     main'
 - signal: code2llm_smell_shotgun_surgery
   title: 'Address code smell: Shotgun Surgery: data'
-  description: 'code2llm reports `Shotgun Surgery: data` in `src/gillm/injection/os_injector.py:135`.
+  description: 'code2llm reports `Shotgun Surgery: data` in `src/gillm/runtime/command_runner.py:67`.
 
 
     Mutation of variable ''data'' spans 5 functions. Changing this logic requires
@@ -39,15 +39,15 @@ tickets:
   - code-smell
   - shotgun-surgery
   files:
-  - src/gillm/injection/os_injector.py
-  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/injection/os_injector.py:135:Shotgun
+  - src/gillm/runtime/command_runner.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/runtime/command_runner.py:67:Shotgun
     Surgery: data'
 - signal: code2llm_smell_shotgun_surgery
-  title: 'Address code smell: Shotgun Surgery: img'
-  description: 'code2llm reports `Shotgun Surgery: img` in `src/gillm/cli/main.py:12`.
+  title: 'Address code smell: Shotgun Surgery: key'
+  description: 'code2llm reports `Shotgun Surgery: key` in `src/gillm/runtime/profiles.py:28`.
 
 
-    Mutation of variable ''img'' spans 5 functions. Changing this logic requires work
+    Mutation of variable ''key'' spans 5 functions. Changing this logic requires work
     in many places.
 
 
@@ -59,15 +59,15 @@ tickets:
   - code-smell
   - shotgun-surgery
   files:
-  - src/gillm/cli/main.py
-  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/cli/main.py:12:Shotgun Surgery:
-    img'
+  - src/gillm/runtime/profiles.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/runtime/profiles.py:28:Shotgun
+    Surgery: key'
 - signal: code2llm_smell_shotgun_surgery
   title: 'Address code smell: Shotgun Surgery: out'
-  description: 'code2llm reports `Shotgun Surgery: out` in `src/gillm/injection/os_injector.py:39`.
+  description: 'code2llm reports `Shotgun Surgery: out` in `src/gillm/runtime/profiles.py:28`.
 
 
-    Mutation of variable ''out'' spans 5 functions. Changing this logic requires work
+    Mutation of variable ''out'' spans 6 functions. Changing this logic requires work
     in many places.
 
 
@@ -79,12 +79,32 @@ tickets:
   - code-smell
   - shotgun-surgery
   files:
-  - src/gillm/injection/os_injector.py
-  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/injection/os_injector.py:39:Shotgun
+  - src/gillm/runtime/profiles.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/runtime/profiles.py:28:Shotgun
     Surgery: out'
 - signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: proc'
+  description: 'code2llm reports `Shotgun Surgery: proc` in `src/gillm/capture/portal_backend.py:88`.
+
+
+    Mutation of variable ''proc'' spans 8 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - src/gillm/capture/portal_backend.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/capture/portal_backend.py:88:Shotgun
+    Surgery: proc'
+- signal: code2llm_smell_shotgun_surgery
   title: 'Address code smell: Shotgun Surgery: raw'
-  description: 'code2llm reports `Shotgun Surgery: raw` in `src/gillm/injection/os_injector.py:39`.
+  description: 'code2llm reports `Shotgun Surgery: raw` in `src/gillm/runtime/env.py:61`.
 
 
     Mutation of variable ''raw'' spans 16 functions. Changing this logic requires
@@ -99,12 +119,12 @@ tickets:
   - code-smell
   - shotgun-surgery
   files:
-  - src/gillm/injection/os_injector.py
-  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/injection/os_injector.py:39:Shotgun
+  - src/gillm/runtime/env.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/runtime/env.py:61:Shotgun
     Surgery: raw'
 - signal: code2llm_smell_shotgun_surgery
   title: 'Address code smell: Shotgun Surgery: value'
-  description: 'code2llm reports `Shotgun Surgery: value` in `src/gillm/injection/backends.py:40`.
+  description: 'code2llm reports `Shotgun Surgery: value` in `src/gillm/runtime/env.py:61`.
 
 
     Mutation of variable ''value'' spans 5 functions. Changing this logic requires
@@ -119,16 +139,89 @@ tickets:
   - code-smell
   - shotgun-surgery
   files:
-  - src/gillm/injection/backends.py
-  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/injection/backends.py:40:Shotgun
+  - src/gillm/runtime/env.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/runtime/env.py:61:Shotgun
     Surgery: value'
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: src.gillm.adapters.koru.drive_payload_to_action_plan
+    (CC=21)'
+  description: 'code2llm reports `src.gillm.adapters.koru.drive_payload_to_action_plan`
+    at `src/gillm/adapters/koru.py:17` with cyclomatic complexity 21 (limit 15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - src/gillm/adapters/koru.py
+  dedupe_key: code2llm:cc:src/gillm/adapters/koru.py:src.gillm.adapters.koru.drive_payload_to_action_plan
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: src.gillm.drivers.composite.CompositeGuiDriver.execute
+    (CC=18)'
+  description: 'code2llm reports `src.gillm.drivers.composite.CompositeGuiDriver.execute`
+    at `src/gillm/drivers/composite.py:130` with cyclomatic complexity 18 (limit 15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - src/gillm/drivers/composite.py
+  dedupe_key: code2llm:cc:src/gillm/drivers/composite.py:src.gillm.drivers.composite.CompositeGuiDriver.execute
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: src.gillm.recovery.diagnose.classify_failure
+    (CC=24)'
+  description: 'code2llm reports `src.gillm.recovery.diagnose.classify_failure` at
+    `src/gillm/recovery/diagnose.py:78` with cyclomatic complexity 24 (limit 15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - src/gillm/recovery/diagnose.py
+  dedupe_key: code2llm:cc:src/gillm/recovery/diagnose.py:src.gillm.recovery.diagnose.classify_failure
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: src.gillm.recovery.repair_hints._hints_for_kind
+    (CC=15)'
+  description: 'code2llm reports `src.gillm.recovery.repair_hints._hints_for_kind`
+    at `src/gillm/recovery/repair_hints.py:36` with cyclomatic complexity 15 (limit
+    15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - src/gillm/recovery/repair_hints.py
+  dedupe_key: code2llm:cc:src/gillm/recovery/repair_hints.py:src.gillm.recovery.repair_hints._hints_for_kind
 - signal: code2llm_smell_data_clump
-  title: 'Address code smell: Data Clump: text, call, submit_key, log, extra_enters'
-  description: 'code2llm reports `Data Clump: text, call, submit_key, log, extra_enters`
-    in `src/gillm/injection/backends.py:57`.
+  title: 'Address code smell: Data Clump: submit_key, extra_enters, log, call, text'
+  description: 'code2llm reports `Data Clump: submit_key, extra_enters, log, call,
+    text` in `src/gillm/injection/backends.py:57`.
 
 
-    Arguments (text, call, submit_key, log, extra_enters) are used together in multiple
+    Arguments (submit_key, extra_enters, log, call, text) are used together in multiple
     functions: src.gillm.injection.backends.type_with_xdotool, src.gillm.injection.backends.type_with_wtype.
 
 
@@ -142,14 +235,14 @@ tickets:
   files:
   - src/gillm/injection/backends.py
   dedupe_key: 'code2llm:smell:data_clump:src/gillm/injection/backends.py:57:Data Clump:
-    text, call, submit_key, log, extra_enters'
+    submit_key, extra_enters, log, call, text'
 - signal: code2llm_smell_data_clump
-  title: 'Address code smell: Data Clump: text, call, submit_key, log, extra_enters'
-  description: 'code2llm reports `Data Clump: text, call, submit_key, log, extra_enters`
-    in `src/gillm/injection/backends.py:95`.
+  title: 'Address code smell: Data Clump: submit_key, extra_enters, log, call, text'
+  description: 'code2llm reports `Data Clump: submit_key, extra_enters, log, call,
+    text` in `src/gillm/injection/backends.py:95`.
 
 
-    Arguments (text, call, submit_key, log, extra_enters) are used together in multiple
+    Arguments (submit_key, extra_enters, log, call, text) are used together in multiple
     functions: src.gillm.injection.backends.type_with_xdotool, src.gillm.injection.backends.type_with_wtype.
 
 
@@ -163,7 +256,67 @@ tickets:
   files:
   - src/gillm/injection/backends.py
   dedupe_key: 'code2llm:smell:data_clump:src/gillm/injection/backends.py:95:Data Clump:
-    text, call, submit_key, log, extra_enters'
+    submit_key, extra_enters, log, call, text'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: y, x, self'
+  description: 'code2llm reports `Data Clump: y, x, self` in `src/gillm/drivers/composite.py:120`.
+
+
+    Arguments (y, x, self) are used together in multiple functions: src.gillm.drivers.composite.CompositeGuiDriver.click,
+    src.gillm.drivers.dry_run.DryRunGuiDriver.click, src.gillm.contracts.driver.GuiDriver.click.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/gillm/drivers/composite.py
+  dedupe_key: 'code2llm:smell:data_clump:src/gillm/drivers/composite.py:120:Data Clump:
+    y, x, self'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: y, x, self'
+  description: 'code2llm reports `Data Clump: y, x, self` in `src/gillm/drivers/dry_run.py:54`.
+
+
+    Arguments (y, x, self) are used together in multiple functions: src.gillm.drivers.composite.CompositeGuiDriver.click,
+    src.gillm.drivers.dry_run.DryRunGuiDriver.click, src.gillm.contracts.driver.GuiDriver.click.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/gillm/drivers/dry_run.py
+  dedupe_key: 'code2llm:smell:data_clump:src/gillm/drivers/dry_run.py:54:Data Clump:
+    y, x, self'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: y, x, self'
+  description: 'code2llm reports `Data Clump: y, x, self` in `src/gillm/contracts/driver.py:132`.
+
+
+    Arguments (y, x, self) are used together in multiple functions: src.gillm.drivers.composite.CompositeGuiDriver.click,
+    src.gillm.drivers.dry_run.DryRunGuiDriver.click, src.gillm.contracts.driver.GuiDriver.click.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/gillm/contracts/driver.py
+  dedupe_key: 'code2llm:smell:data_clump:src/gillm/contracts/driver.py:132:Data Clump:
+    y, x, self'
 - signal: code2llm_smell_god_function
   title: 'Address code smell: God Function: _parse_png_to_rgb'
   description: 'code2llm reports `God Function: _parse_png_to_rgb` in `src/gillm/capture/mss_backend.py:108`.
@@ -185,10 +338,10 @@ tickets:
     Function: _parse_png_to_rgb'
 - signal: code2llm_smell_god_function
   title: 'Address code smell: God Function: capture_mouse_xy'
-  description: 'code2llm reports `God Function: capture_mouse_xy` in `src/gillm/injection/os_injector.py:179`.
+  description: 'code2llm reports `God Function: capture_mouse_xy` in `src/gillm/runtime/profiles.py:99`.
 
 
-    Function ''capture_mouse_xy'' is oversized: CC=6, fan-out=8, mutations=7.
+    Function ''capture_mouse_xy'' is oversized: CC=7, fan-out=8, mutations=8.
 
 
     Make the smallest refactor that removes the smell and run local tests.'
@@ -199,9 +352,9 @@ tickets:
   - code-smell
   - god-function
   files:
-  - src/gillm/injection/os_injector.py
-  dedupe_key: 'code2llm:smell:god_function:src/gillm/injection/os_injector.py:179:God
-    Function: capture_mouse_xy'
+  - src/gillm/runtime/profiles.py
+  dedupe_key: 'code2llm:smell:god_function:src/gillm/runtime/profiles.py:99:God Function:
+    capture_mouse_xy'
 - signal: code2llm_smell_god_function
   title: 'Address code smell: God Function: capture_primary_rgb'
   description: 'code2llm reports `God Function: capture_primary_rgb` in `src/gillm/capture/mss_backend.py:65`.
@@ -221,6 +374,25 @@ tickets:
   - src/gillm/capture/mss_backend.py
   dedupe_key: 'code2llm:smell:god_function:src/gillm/capture/mss_backend.py:65:God
     Function: capture_primary_rgb'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: diagnose_drive_reply'
+  description: 'code2llm reports `God Function: diagnose_drive_reply` in `src/gillm/recovery/diagnose.py:109`.
+
+
+    Function ''diagnose_drive_reply'' is oversized: CC=9, fan-out=9, mutations=13.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/gillm/recovery/diagnose.py
+  dedupe_key: 'code2llm:smell:god_function:src/gillm/recovery/diagnose.py:109:God
+    Function: diagnose_drive_reply'
 - signal: code2llm_smell_god_function
   title: 'Address code smell: God Function: downscale_rgb_nearest'
   description: 'code2llm reports `God Function: downscale_rgb_nearest` in `src/gillm/capture/mss_backend.py:23`.
@@ -261,10 +433,10 @@ tickets:
     Function: execute_step'
 - signal: code2llm_smell_god_function
   title: 'Address code smell: God Function: inject_with_profile'
-  description: 'code2llm reports `God Function: inject_with_profile` in `src/gillm/injection/os_injector.py:372`.
+  description: 'code2llm reports `God Function: inject_with_profile` in `src/gillm/injection/os_injector.py:194`.
 
 
-    Function ''inject_with_profile'' is oversized: CC=6, fan-out=10, mutations=11.
+    Function ''inject_with_profile'' is oversized: CC=5, fan-out=10, mutations=11.
 
 
     Make the smallest refactor that removes the smell and run local tests.'
@@ -276,7 +448,7 @@ tickets:
   - god-function
   files:
   - src/gillm/injection/os_injector.py
-  dedupe_key: 'code2llm:smell:god_function:src/gillm/injection/os_injector.py:372:God
+  dedupe_key: 'code2llm:smell:god_function:src/gillm/injection/os_injector.py:194:God
     Function: inject_with_profile'
 - signal: code2llm_smell_god_function
   title: 'Address code smell: God Function: press_wtype'
