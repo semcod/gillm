@@ -56,7 +56,7 @@ class NLPBridgeClient:
     def parse_intent(self, text: str) -> list[dict[str, Any]]:
         """Parse natural language command into structured workflow steps.
 
-        # @intract.v1 scope:method intent:nlp_parse priority:3 domain:nlp input:text output:steps effect:parse_intent meaning:"Parses natural language commands to GUI actions"
+        # @intract.v1 scope:method intent:nlp:parse priority:3 domain:nlp input:text output:steps effect:parse_intent meaning:"Parses natural language commands to GUI actions"
         """
         try:
             res = self.client.workflow_from_text(text)

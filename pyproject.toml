@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gllm"
-version = "0.1.2"
+version = "0.1.3"
 description = "GUI Control Plugin with NLP & Intent Contracts"
 readme = "README.md"
 requires-python = ">=3.10"
