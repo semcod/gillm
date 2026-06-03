@@ -1,0 +1,173 @@
+# code2llm call graph | /home/tom/github/semcod/gillm
+# generated in 0.11s
+# nodes: 82 | edges: 94 | modules: 12
+# CC̄=3.5
+
+HUBS[20]:
+  src.gillm.injection.backends._log
+    CC=2  in:26  out:1  total:27
+  src.gillm.injection.os_injector.inject_with_profile
+    CC=6  in:1  out:12  total:13
+  src.gillm.injection.os_injector._inject_profile_text
+    CC=7  in:1  out:12  total:13
+  src.gillm.injection.injector.Injector.submit_only
+    CC=9  in:0  out:13  total:13
+  src.gillm.injection.backends.type_with_ydotool
+    CC=5  in:1  out:12  total:13
+  src.gillm.injection.os_injector.load_profile
+    CC=5  in:1  out:12  total:13
+  src.gillm.injection.os_injector.iter_config_paths
+    CC=4  in:1  out:11  total:12
+  src.gillm.focus.x11._run
+    CC=1  in:11  out:1  total:12
+  src.gillm.capture.portal_backend.capture_portal_png
+    CC=8  in:1  out:11  total:12
+  src.gillm.injection.backends.type_with_backend
+    CC=5  in:1  out:10  total:11
+  src.gillm.capture.mss_backend._parse_png_to_rgb
+    CC=4  in:1  out:10  total:11
+  src.gillm.injection.os_injector._is_wayland_session
+    CC=6  in:4  out:7  total:11
+  src.gillm.config.load_config
+    CC=4  in:1  out:10  total:11
+  src.gillm.injection.os_injector.capture_mouse_xy
+    CC=6  in:1  out:10  total:11
+  src.gillm.injection.os_injector._run_cmd
+    CC=5  in:4  out:7  total:11
+  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
+    CC=11  in:0  out:10  total:10
+  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
+    CC=7  in:0  out:10  total:10
+  src.gillm.capture.mss_backend.capture_primary_rgb
+    CC=2  in:1  out:8  total:9
+  src.gillm.injection.backends.type_with_wtype
+    CC=3  in:1  out:8  total:9
+  src.gillm.injection.backends.type_with_xdotool
+    CC=3  in:1  out:8  total:9
+
+MODULES:
+  src.gillm.capture.mss_backend  [6 funcs]
+    _parse_png_to_rgb  CC=4  out:10
+    capture_primary_rgb  CC=2  out:8
+    capture_primary_rgb_wayland_fallback  CC=3  out:4
+    downscale_rgb_nearest  CC=6  out:5
+    resolve_scale  CC=4  out:5
+    rgb_mostly_black  CC=5  out:4
+  src.gillm.capture.portal_backend  [2 funcs]
+    _portal_python  CC=6  out:4
+    capture_portal_png  CC=8  out:11
+  src.gillm.config  [6 funcs]
+    _cached_config  CC=1  out:2
+    _merge_submit_keys  CC=7  out:5
+    cached_config  CC=6  out:5
+    default_config_path  CC=1  out:1
+    load_config  CC=4  out:10
+    resolve_xdg_path  CC=2  out:3
+  src.gillm.focus.darwin  [1 funcs]
+    focus_window  CC=4  out:5
+  src.gillm.focus.registry  [1 funcs]
+    resolve_active_os_strategy  CC=4  out:2
+  src.gillm.focus.wayland  [7 funcs]
+    _focus_via_wmctrl  CC=4  out:3
+    _inject_via_wtype  CC=9  out:7
+    _inject_via_ydotool  CC=7  out:10
+    inject_keys  CC=9  out:8
+    _gnome_compositor  CC=4  out:3
+    _prefer_ydotool  CC=3  out:4
+    _scan_for_key  CC=5  out:1
+  src.gillm.focus.x11  [4 funcs]
+    _focus_via_wmctrl  CC=4  out:3
+    _focus_via_xdotool  CC=11  out:10
+    _inject_via_xdotool  CC=3  out:4
+    _run  CC=1  out:1
+  src.gillm.injection.backends  [11 funcs]
+    _log  CC=2  out:1
+    _ydotool_submit_command  CC=3  out:0
+    extra_enter_count  CC=3  out:4
+    press_wtype  CC=4  out:6
+    type_with_backend  CC=5  out:10
+    type_with_wtype  CC=3  out:8
+    type_with_xdotool  CC=3  out:8
+    type_with_ydotool  CC=5  out:12
+    ydotool_ctrl_keycode  CC=2  out:3
+    ydotool_enter_keycode  CC=2  out:3
+  src.gillm.injection.injector  [8 funcs]
+    _candidate_backends  CC=5  out:6
+    _type_with_backend  CC=1  out:1
+    submit_only  CC=9  out:13
+    type_text  CC=6  out:8
+    _forced_injector_backend  CC=2  out:3
+    _session_backend_order  CC=4  out:2
+    _submit_key_for  CC=1  out:2
+    _unique_backend_names  CC=3  out:1
+  src.gillm.injection.os_injector  [30 funcs]
+    _clipboard_backend  CC=3  out:2
+    _cmd_timeout_seconds  CC=3  out:4
+    _focus_profile_chat  CC=6  out:7
+    _focus_with_xdotool  CC=4  out:7
+    _focus_with_ydotool  CC=4  out:7
+    _inject_profile_text  CC=7  out:12
+    _injection_result  CC=1  out:0
+    _is_wayland_session  CC=6  out:7
+    _os_injector_skip_reason  CC=9  out:7
+    _post_focus_delay_seconds  CC=3  out:5
+  src.gillm.intents.contract  [2 funcs]
+    gui_contract  CC=1  out:1
+    validate_contract_runtime  CC=7  out:6
+  src.gillm.orchestrator.drive  [4 funcs]
+    capture_screenshot  CC=1  out:4
+    focus_target_window  CC=1  out:5
+    inject_text  CC=1  out:4
+    log  CC=2  out:1
+
+EDGES:
+  src.gillm.config.default_config_path → src.gillm.config.resolve_xdg_path
+  src.gillm.config.load_config → src.gillm.config._merge_submit_keys
+  src.gillm.config.load_config → src.gillm.config.default_config_path
+  src.gillm.config._cached_config → src.gillm.config.load_config
+  src.gillm.config.cached_config → src.gillm.config._cached_config
+  src.gillm.capture.portal_backend.capture_portal_png → src.gillm.capture.portal_backend._portal_python
+  src.gillm.capture.mss_backend.capture_primary_rgb → src.gillm.capture.mss_backend.resolve_scale
+  src.gillm.capture.mss_backend.capture_primary_rgb → src.gillm.capture.mss_backend.downscale_rgb_nearest
+  src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback → src.gillm.capture.portal_backend.capture_portal_png
+  src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback → src.gillm.capture.mss_backend._parse_png_to_rgb
+  src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback → src.gillm.capture.mss_backend.capture_primary_rgb
+  src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback → src.gillm.capture.mss_backend.rgb_mostly_black
+  src.gillm.capture.mss_backend._parse_png_to_rgb → src.gillm.capture.mss_backend.resolve_scale
+  src.gillm.injection.backends._log → src.gillm.orchestrator.drive.DriveOrchestrator.log
+  src.gillm.injection.backends.type_with_xdotool → src.gillm.injection.backends._log
+  src.gillm.injection.backends.type_with_wtype → src.gillm.injection.backends._log
+  src.gillm.injection.backends.type_with_wtype → src.gillm.injection.backends.press_wtype
+  src.gillm.injection.backends.type_with_ydotool → src.gillm.injection.backends._log
+  src.gillm.injection.backends.type_with_ydotool → src.gillm.injection.backends._ydotool_submit_command
+  src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends._log
+  src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.extra_enter_count
+  src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.type_with_xdotool
+  src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.type_with_wtype
+  src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.type_with_ydotool
+  src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.ydotool_enter_keycode
+  src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.ydotool_submit_mode
+  src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.ydotool_ctrl_keycode
+  src.gillm.injection.injector._submit_key_for → src.gillm.config.cached_config
+  src.gillm.injection.injector._session_backend_order → src.gillm.injection.injector._unique_backend_names
+  src.gillm.injection.injector.Injector._candidate_backends → src.gillm.injection.injector._forced_injector_backend
+  src.gillm.injection.injector.Injector._candidate_backends → src.gillm.injection.injector._session_backend_order
+  src.gillm.injection.injector.Injector._type_with_backend → src.gillm.injection.backends.type_with_backend
+  src.gillm.injection.injector.Injector.type_text → src.gillm.injection.injector._submit_key_for
+  src.gillm.injection.injector.Injector.submit_only → src.gillm.injection.injector._submit_key_for
+  src.gillm.injection.os_injector.try_load_profile → src.gillm.injection.os_injector.iter_config_paths
+  src.gillm.injection.os_injector.try_load_profile → src.gillm.injection.os_injector.load_profile
+  src.gillm.injection.os_injector.load_profile → src.gillm.injection.os_injector._read_json
+  src.gillm.injection.os_injector.load_profile → src.gillm.injection.os_injector.default_config_path
+  src.gillm.injection.os_injector.save_profile → src.gillm.injection.os_injector._read_json
+  src.gillm.injection.os_injector.save_profile → src.gillm.injection.os_injector.default_config_path
+  src.gillm.injection.os_injector.capture_from_xdotool → src.gillm.injection.os_injector.capture_mouse_xy
+  src.gillm.injection.os_injector._run_cmd → src.gillm.injection.os_injector._cmd_timeout_seconds
+  src.gillm.injection.os_injector._xdotool → src.gillm.injection.os_injector._run_cmd
+  src.gillm.injection.os_injector._ydotool → src.gillm.injection.os_injector._run_cmd
+  src.gillm.injection.os_injector._set_clipboard → src.gillm.injection.os_injector._run_cmd
+  src.gillm.injection.os_injector._resolve_input_method → src.gillm.injection.os_injector.input_mode_from_env
+  src.gillm.injection.os_injector._resolve_input_method → src.gillm.injection.os_injector._clipboard_backend
+  src.gillm.injection.os_injector._resolve_input_method → src.gillm.injection.os_injector._is_wayland_session
+  src.gillm.injection.os_injector._focus_profile_chat → src.gillm.injection.backends._log
+  src.gillm.injection.os_injector._focus_profile_chat → src.gillm.injection.os_injector._is_wayland_session

@@ -1,0 +1,26 @@
+flowchart TD
+%% generated in 0.02s
+
+    %% Entry points (blue)
+    classDef entry fill:#4dabf7,stroke:#1971c2,color:#fff
+
+    subgraph Core
+        src__gillm__config__resolve_xdg_path["resolve_xdg_path"]
+        src__gillm__config__AutopilotConfig__submit_key_for["submit_key_for"]
+        src__gillm__config__default_config_path["default_config_path"]
+        src__gillm__config__load_config["load_config"]
+        src__gillm__config___cached_config["_cached_config"]
+        src__gillm__config__cached_config["cached_config"]
+        src__gillm__config__clear_config_cache["clear_config_cache"]
+        src__gillm__cli__main__main["main"]
+        src__gillm__nlp_bridge__client__NLPBridgeClient__parse_intent["parse_intent"]
+        src__gillm__injection__injector___submit_key_for["_submit_key_for"]
+        src__gillm__injection__injector___which["_which"]
+        src__gillm__injection__injector___session_type["_session_type"]
+        src__gillm__injection__injector__BackendStatus__to_dict["to_dict"]
+        src__gillm__injection__injector__InjectionResult__to_dict["to_dict"]
+        src__gillm__injection__injector___default_runner["_default_runner"]
+        ...["+64 more"]
+    end
+
+    class src__gillm__config__AutopilotConfig__submit_key_for,src__gillm__config__clear_config_cache,src__gillm__cli__main__main,src__gillm__nlp_bridge__client__NLPBridgeClient__parse_intent,src__gillm__injection__injector___which,src__gillm__injection__injector___session_type,src__gillm__injection__injector__BackendStatus__to_dict,src__gillm__injection__injector__InjectionResult__to_dict,src__gillm__injection__injector___default_runner,src__gillm__injection__injector__Injector__probe entry

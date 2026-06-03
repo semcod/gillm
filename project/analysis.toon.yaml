@@ -1,0 +1,151 @@
+# code2llm | 30f 3277L | python:26,shell:2,yaml:1,toml:1 | 2026-06-03
+# generated in 0.02s
+# CC̅=3.5 | critical:0/137 | dups:0 | cycles:0
+
+HEALTH[0]: ok
+
+REFACTOR[0]: none needed
+
+PIPELINES[63]:
+  [1] Src [submit_key_for]: submit_key_for
+      PURITY: 100% pure
+  [2] Src [clear_config_cache]: clear_config_cache
+      PURITY: 100% pure
+  [3] Src [main]: main
+      PURITY: 100% pure
+  [4] Src [__init__]: __init__
+      PURITY: 100% pure
+  [5] Src [parse_intent]: parse_intent
+      PURITY: 100% pure
+  [6] Src [_which]: _which
+      PURITY: 100% pure
+  [7] Src [_session_type]: _session_type
+      PURITY: 100% pure
+  [8] Src [_default_runner]: _default_runner
+      PURITY: 100% pure
+  [9] Src [probe]: probe
+      PURITY: 100% pure
+  [10] Src [_candidate_backends]: _candidate_backends → _forced_injector_backend
+      PURITY: 100% pure
+  [11] Src [_forced_backend_candidates]: _forced_backend_candidates
+      PURITY: 100% pure
+  [12] Src [_available_backend_candidates]: _available_backend_candidates
+      PURITY: 100% pure
+  [13] Src [select_backend]: select_backend
+      PURITY: 100% pure
+  [14] Src [_type_with_backend]: _type_with_backend → type_with_backend → _log → log
+      PURITY: 100% pure
+  [15] Src [_type_text_backends]: _type_text_backends
+      PURITY: 100% pure
+  [16] Src [_log_type_text_request]: _log_type_text_request
+      PURITY: 100% pure
+  [17] Src [_dry_run_type_text_result]: _dry_run_type_text_result
+      PURITY: 100% pure
+  [18] Src [_try_type_text_backends]: _try_type_text_backends
+      PURITY: 100% pure
+  [19] Src [_all_type_backends_failed]: _all_type_backends_failed
+      PURITY: 100% pure
+  [20] Src [type_text]: type_text → _submit_key_for → cached_config → _cached_config → ...(2 more)
+      PURITY: 100% pure
+  [21] Src [submit_only]: submit_only → _submit_key_for → cached_config → _cached_config → ...(2 more)
+      PURITY: 100% pure
+  [22] Src [_probe_one]: _probe_one
+      PURITY: 100% pure
+  [23] Src [_call]: _call
+      PURITY: 100% pure
+  [24] Src [save_profile]: save_profile → _read_json
+      PURITY: 100% pure
+  [25] Src [profile_from_mouse]: profile_from_mouse
+      PURITY: 100% pure
+  [26] Src [capture_from_xdotool]: capture_from_xdotool → capture_mouse_xy
+      PURITY: 100% pure
+  [27] Src [try_drive_with_profile]: try_drive_with_profile → _os_injector_skip_reason → os_injector_env_disabled
+      PURITY: 100% pure
+  [28] Src [try_os_injector_drive]: try_os_injector_drive
+      PURITY: 100% pure
+  [29] Src [format_os_injector_ack]: format_os_injector_ack
+      PURITY: 100% pure
+  [30] Src [apply_keyboard_injection]: apply_keyboard_injection
+      PURITY: 100% pure
+  [31] Src [register_os_strategy]: register_os_strategy
+      PURITY: 100% pure
+  [32] Src [list_os_strategy_ids]: list_os_strategy_ids
+      PURITY: 100% pure
+  [33] Src [matches_current_environment]: matches_current_environment
+      PURITY: 100% pure
+  [34] Src [capabilities]: capabilities
+      PURITY: 100% pure
+  [35] Src [focus_window]: focus_window
+      PURITY: 100% pure
+  [36] Src [inject_keys]: inject_keys
+      PURITY: 100% pure
+  [37] Src [_focus_via_xdotool]: _focus_via_xdotool → _run
+      PURITY: 100% pure
+  [38] Src [_focus_via_wmctrl]: _focus_via_wmctrl → _run
+      PURITY: 100% pure
+  [39] Src [_inject_via_xdotool]: _inject_via_xdotool → _run
+      PURITY: 100% pure
+  [40] Src [_run]: _run
+      PURITY: 100% pure
+  [41] Src [matches_current_environment]: matches_current_environment
+      PURITY: 100% pure
+  [42] Src [capabilities]: capabilities
+      PURITY: 100% pure
+  [43] Src [focus_window]: focus_window
+      PURITY: 100% pure
+  [44] Src [inject_keys]: inject_keys → _prefer_ydotool → _gnome_compositor
+      PURITY: 100% pure
+  [45] Src [_focus_via_wmctrl]: _focus_via_wmctrl → _run
+      PURITY: 100% pure
+  [46] Src [_inject_via_wtype]: _inject_via_wtype → _run
+      PURITY: 100% pure
+  [47] Src [_inject_via_ydotool]: _inject_via_ydotool → _scan_for_key
+      PURITY: 100% pure
+  [48] Src [__post_init__]: __post_init__
+      PURITY: 100% pure
+  [49] Src [_term_program_is_vscode_family]: _term_program_is_vscode_family
+      PURITY: 100% pure
+  [50] Src [__repr__]: __repr__
+      PURITY: 100% pure
+
+LAYERS:
+  src/                            CC̄=3.5    ←in:0  →out:0
+  │ !! os_injector                511L  2C   31m  CC=9      ←0
+  │ injector                   357L  3C   24m  CC=10     ←0
+  │ wayland                    236L  1C   11m  CC=9      ←0
+  │ backends                   207L  0C   11m  CC=5      ←2
+  │ drive                      154L  1C    8m  CC=12     ←1
+  │ mss_backend                130L  1C    6m  CC=6      ←1
+  │ x11                        128L  1C    8m  CC=11     ←2
+  │ portal_backend             113L  1C    2m  CC=8      ←1
+  │ config                     112L  1C    8m  CC=7      ←1
+  │ strategy                   108L  5C    7m  CC=5      ←0
+  │ main                        80L  0C    1m  CC=9      ←0
+  │ contract                    78L  0C    2m  CC=7      ←1
+  │ darwin                      72L  1C    5m  CC=4      ←0
+  │ client                      70L  1C    2m  CC=5      ←0
+  │ drive_backend               66L  0C    3m  CC=4      ←0
+  │ registry                    50L  0C    4m  CC=5      ←1
+  │ windows                     43L  1C    4m  CC=1      ←0
+  │ __init__                    37L  0C    0m  CC=0.0    ←0
+  │ __init__                    33L  0C    0m  CC=0.0    ←0
+  │ __init__                    20L  0C    0m  CC=0.0    ←0
+  │ __init__                    16L  0C    0m  CC=0.0    ←0
+  │ errors                      10L  1C    0m  CC=0.0    ←0
+  │ __init__                     5L  0C    0m  CC=0.0    ←0
+  │ __init__                     5L  0C    0m  CC=0.0    ←0
+  │ __init__                     5L  0C    0m  CC=0.0    ←0
+  │ __init__                     5L  0C    0m  CC=0.0    ←0
+  │
+  ./                              CC̄=0.0    ←in:0  →out:0
+  │ !! goal.yaml                  511L  0C    0m  CC=0.0    ←0
+  │ pyproject.toml              64L  0C    0m  CC=0.0    ←0
+  │ project.sh                  50L  0C    0m  CC=0.0    ←0
+  │ tree.sh                      1L  0C    0m  CC=0.0    ←0
+  │
+
+COUPLING: no cross-package imports detected
+
+EXTERNAL:
+  validation: run `vallm batch .` → validation.toon
+  duplication: run `redup scan .` → duplication.toon

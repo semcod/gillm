@@ -1,0 +1,320 @@
+source: code2llm
+# generated in 0.02s
+schema: code2llm.planfile_tickets.v1
+project_root: /home/tom/github/semcod/gillm
+tickets:
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: main'
+  description: 'code2llm reports `God Function: main` in `src/gillm/cli/main.py:12`.
+
+
+    Function ''main'' is oversized: CC=9, fan-out=17, mutations=20.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/gillm/cli/main.py
+  dedupe_key: 'code2llm:smell:god_function:src/gillm/cli/main.py:12:God Function:
+    main'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: data'
+  description: 'code2llm reports `Shotgun Surgery: data` in `src/gillm/injection/os_injector.py:135`.
+
+
+    Mutation of variable ''data'' spans 5 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - src/gillm/injection/os_injector.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/injection/os_injector.py:135:Shotgun
+    Surgery: data'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: img'
+  description: 'code2llm reports `Shotgun Surgery: img` in `src/gillm/cli/main.py:12`.
+
+
+    Mutation of variable ''img'' spans 5 functions. Changing this logic requires work
+    in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - src/gillm/cli/main.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/cli/main.py:12:Shotgun Surgery:
+    img'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: out'
+  description: 'code2llm reports `Shotgun Surgery: out` in `src/gillm/injection/os_injector.py:39`.
+
+
+    Mutation of variable ''out'' spans 5 functions. Changing this logic requires work
+    in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - src/gillm/injection/os_injector.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/injection/os_injector.py:39:Shotgun
+    Surgery: out'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: raw'
+  description: 'code2llm reports `Shotgun Surgery: raw` in `src/gillm/injection/os_injector.py:39`.
+
+
+    Mutation of variable ''raw'' spans 16 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - src/gillm/injection/os_injector.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/injection/os_injector.py:39:Shotgun
+    Surgery: raw'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: value'
+  description: 'code2llm reports `Shotgun Surgery: value` in `src/gillm/injection/backends.py:40`.
+
+
+    Mutation of variable ''value'' spans 5 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - src/gillm/injection/backends.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:src/gillm/injection/backends.py:40:Shotgun
+    Surgery: value'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: text, call, submit_key, log, extra_enters'
+  description: 'code2llm reports `Data Clump: text, call, submit_key, log, extra_enters`
+    in `src/gillm/injection/backends.py:57`.
+
+
+    Arguments (text, call, submit_key, log, extra_enters) are used together in multiple
+    functions: src.gillm.injection.backends.type_with_xdotool, src.gillm.injection.backends.type_with_wtype.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/gillm/injection/backends.py
+  dedupe_key: 'code2llm:smell:data_clump:src/gillm/injection/backends.py:57:Data Clump:
+    text, call, submit_key, log, extra_enters'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: text, call, submit_key, log, extra_enters'
+  description: 'code2llm reports `Data Clump: text, call, submit_key, log, extra_enters`
+    in `src/gillm/injection/backends.py:95`.
+
+
+    Arguments (text, call, submit_key, log, extra_enters) are used together in multiple
+    functions: src.gillm.injection.backends.type_with_xdotool, src.gillm.injection.backends.type_with_wtype.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - src/gillm/injection/backends.py
+  dedupe_key: 'code2llm:smell:data_clump:src/gillm/injection/backends.py:95:Data Clump:
+    text, call, submit_key, log, extra_enters'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: _parse_png_to_rgb'
+  description: 'code2llm reports `God Function: _parse_png_to_rgb` in `src/gillm/capture/mss_backend.py:108`.
+
+
+    Function ''_parse_png_to_rgb'' is oversized: CC=4, fan-out=9, mutations=10.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/gillm/capture/mss_backend.py
+  dedupe_key: 'code2llm:smell:god_function:src/gillm/capture/mss_backend.py:108:God
+    Function: _parse_png_to_rgb'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: capture_mouse_xy'
+  description: 'code2llm reports `God Function: capture_mouse_xy` in `src/gillm/injection/os_injector.py:179`.
+
+
+    Function ''capture_mouse_xy'' is oversized: CC=6, fan-out=8, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/gillm/injection/os_injector.py
+  dedupe_key: 'code2llm:smell:god_function:src/gillm/injection/os_injector.py:179:God
+    Function: capture_mouse_xy'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: capture_primary_rgb'
+  description: 'code2llm reports `God Function: capture_primary_rgb` in `src/gillm/capture/mss_backend.py:65`.
+
+
+    Function ''capture_primary_rgb'' is oversized: CC=2, fan-out=6, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/gillm/capture/mss_backend.py
+  dedupe_key: 'code2llm:smell:god_function:src/gillm/capture/mss_backend.py:65:God
+    Function: capture_primary_rgb'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: downscale_rgb_nearest'
+  description: 'code2llm reports `God Function: downscale_rgb_nearest` in `src/gillm/capture/mss_backend.py:23`.
+
+
+    Function ''downscale_rgb_nearest'' is oversized: CC=6, fan-out=4, mutations=11.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/gillm/capture/mss_backend.py
+  dedupe_key: 'code2llm:smell:god_function:src/gillm/capture/mss_backend.py:23:God
+    Function: downscale_rgb_nearest'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: execute_step'
+  description: 'code2llm reports `God Function: execute_step` in `src/gillm/orchestrator/drive.py:87`.
+
+
+    Function ''execute_step'' is oversized: CC=12, fan-out=12, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/gillm/orchestrator/drive.py
+  dedupe_key: 'code2llm:smell:god_function:src/gillm/orchestrator/drive.py:87:God
+    Function: execute_step'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: inject_with_profile'
+  description: 'code2llm reports `God Function: inject_with_profile` in `src/gillm/injection/os_injector.py:372`.
+
+
+    Function ''inject_with_profile'' is oversized: CC=6, fan-out=10, mutations=11.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/gillm/injection/os_injector.py
+  dedupe_key: 'code2llm:smell:god_function:src/gillm/injection/os_injector.py:372:God
+    Function: inject_with_profile'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: press_wtype'
+  description: 'code2llm reports `God Function: press_wtype` in `src/gillm/injection/backends.py:76`.
+
+
+    Function ''press_wtype'' is oversized: CC=4, fan-out=5, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/gillm/injection/backends.py
+  dedupe_key: 'code2llm:smell:god_function:src/gillm/injection/backends.py:76:God
+    Function: press_wtype'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: validate_contract_runtime'
+  description: 'code2llm reports `God Function: validate_contract_runtime` in `src/gillm/intents/contract.py:52`.
+
+
+    Function ''validate_contract_runtime'' is oversized: CC=7, fan-out=6, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - src/gillm/intents/contract.py
+  dedupe_key: 'code2llm:smell:god_function:src/gillm/intents/contract.py:52:God Function:
+    validate_contract_runtime'
+applied: []
+skipped: []

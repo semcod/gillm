@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.6] - 2026-06-03
+
+### Docs
+- Update README.md
+- Update SUMD.md
+- Update SUMR.md
+- Update project/README.md
+- Update project/context.md
+
+### Test
+- Update testql-scenarios/generated-cli-tests.testql.toon.yaml
+
+### Other
+- Update .code2llm_cache/__init___1780490479007591247_407.pkl
+- Update .code2llm_cache/__init___1780490479007830515_165.pkl
+- Update .code2llm_cache/__init___1780490479007908354_84.pkl
+- Update .code2llm_cache/__init___1780490479008047007_128.pkl
+- Update .code2llm_cache/__init___1780490479009445450_128.pkl
+- Update .code2llm_cache/__init___1780498073226241568_766.pkl
+- Update .code2llm_cache/__init___1780498858657977511_520.pkl
+- Update .code2llm_cache/__init___1780498858672977566_829.pkl
+- Update .code2llm_cache/backends_1780490479008685718_6089.pkl
+- Update .code2llm_cache/client_1780498058546055824_2909.pkl
+- ... and 44 more files
+
 ## [0.1.5] - 2026-06-03
 
 ### Added

@@ -1,0 +1,1033 @@
+project: /home/tom/github/semcod/gillm
+generated_from: code2llm call graph analysis
+stats:
+  total_nodes: 82
+  total_edges: 94
+  modules_count: 12
+nodes:
+  src.gillm.focus.wayland.WaylandLinuxStrategy._focus_via_wmctrl:
+    name: _focus_via_wmctrl
+    module: src.gillm.focus.wayland
+    line: 180
+    cyclomatic_complexity: 4
+    calls_out: 3
+    calls_in: 0
+  src.gillm.injection.os_injector.input_mode_from_env:
+    name: input_mode_from_env
+    module: src.gillm.injection.os_injector
+    line: 80
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 1
+  src.gillm.injection.backends.ydotool_enter_keycode:
+    name: ydotool_enter_keycode
+    module: src.gillm.injection.backends
+    line: 14
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 1
+  src.gillm.injection.os_injector.try_load_profile:
+    name: try_load_profile
+    module: src.gillm.injection.os_injector
+    line: 123
+    cyclomatic_complexity: 4
+    calls_out: 3
+    calls_in: 1
+  src.gillm.injection.injector.Injector._candidate_backends:
+    name: _candidate_backends
+    module: src.gillm.injection.injector
+    line: 130
+    cyclomatic_complexity: 5
+    calls_out: 6
+    calls_in: 0
+  src.gillm.injection.os_injector._injection_result:
+    name: _injection_result
+    module: src.gillm.injection.os_injector
+    line: 264
+    cyclomatic_complexity: 1
+    calls_out: 0
+    calls_in: 2
+  src.gillm.focus.wayland.WaylandLinuxStrategy.inject_keys:
+    name: inject_keys
+    module: src.gillm.focus.wayland
+    line: 167
+    cyclomatic_complexity: 9
+    calls_out: 8
+    calls_in: 0
+  src.gillm.capture.mss_backend.resolve_scale:
+    name: resolve_scale
+    module: src.gillm.capture.mss_backend
+    line: 11
+    cyclomatic_complexity: 4
+    calls_out: 5
+    calls_in: 2
+  src.gillm.injection.backends.type_with_backend:
+    name: type_with_backend
+    module: src.gillm.injection.backends
+    line: 164
+    cyclomatic_complexity: 5
+    calls_out: 10
+    calls_in: 1
+  src.gillm.injection.os_injector._os_injector_skip_reason:
+    name: _os_injector_skip_reason
+    module: src.gillm.injection.os_injector
+    line: 436
+    cyclomatic_complexity: 9
+    calls_out: 7
+    calls_in: 1
+  src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback:
+    name: capture_primary_rgb_wayland_fallback
+    module: src.gillm.capture.mss_backend
+    line: 94
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 1
+  src.gillm.injection.os_injector._resolve_input_method:
+    name: _resolve_input_method
+    module: src.gillm.injection.os_injector
+    line: 255
+    cyclomatic_complexity: 7
+    calls_out: 4
+    calls_in: 1
+  src.gillm.capture.mss_backend.capture_primary_rgb:
+    name: capture_primary_rgb
+    module: src.gillm.capture.mss_backend
+    line: 65
+    cyclomatic_complexity: 2
+    calls_out: 8
+    calls_in: 1
+  src.gillm.injection.os_injector._post_focus_delay_seconds:
+    name: _post_focus_delay_seconds
+    module: src.gillm.injection.os_injector
+    line: 111
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 1
+  src.gillm.injection.backends.press_wtype:
+    name: press_wtype
+    module: src.gillm.injection.backends
+    line: 76
+    cyclomatic_complexity: 4
+    calls_out: 6
+    calls_in: 1
+  src.gillm.capture.mss_backend.rgb_mostly_black:
+    name: rgb_mostly_black
+    module: src.gillm.capture.mss_backend
+    line: 42
+    cyclomatic_complexity: 5
+    calls_out: 4
+    calls_in: 1
+  src.gillm.capture.mss_backend._parse_png_to_rgb:
+    name: _parse_png_to_rgb
+    module: src.gillm.capture.mss_backend
+    line: 108
+    cyclomatic_complexity: 4
+    calls_out: 10
+    calls_in: 1
+  src.gillm.injection.backends.type_with_wtype:
+    name: type_with_wtype
+    module: src.gillm.injection.backends
+    line: 95
+    cyclomatic_complexity: 3
+    calls_out: 8
+    calls_in: 1
+  src.gillm.injection.os_injector.inject_with_profile:
+    name: inject_with_profile
+    module: src.gillm.injection.os_injector
+    line: 372
+    cyclomatic_complexity: 6
+    calls_out: 12
+    calls_in: 1
+  src.gillm.injection.os_injector._ydotool:
+    name: _ydotool
+    module: src.gillm.injection.os_injector
+    line: 227
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 3
+  src.gillm.injection.os_injector.iter_config_paths:
+    name: iter_config_paths
+    module: src.gillm.injection.os_injector
+    line: 39
+    cyclomatic_complexity: 4
+    calls_out: 11
+    calls_in: 1
+  src.gillm.injection.os_injector._is_wayland_session:
+    name: _is_wayland_session
+    module: src.gillm.injection.os_injector
+    line: 88
+    cyclomatic_complexity: 6
+    calls_out: 7
+    calls_in: 4
+  src.gillm.orchestrator.drive.DriveOrchestrator.inject_text:
+    name: inject_text
+    module: src.gillm.orchestrator.drive
+    line: 57
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 0
+  src.gillm.capture.mss_backend.downscale_rgb_nearest:
+    name: downscale_rgb_nearest
+    module: src.gillm.capture.mss_backend
+    line: 23
+    cyclomatic_complexity: 6
+    calls_out: 5
+    calls_in: 1
+  src.gillm.injection.injector._unique_backend_names:
+    name: _unique_backend_names
+    module: src.gillm.injection.injector
+    line: 51
+    cyclomatic_complexity: 3
+    calls_out: 1
+    calls_in: 1
+  src.gillm.injection.injector._forced_injector_backend:
+    name: _forced_injector_backend
+    module: src.gillm.injection.injector
+    line: 43
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 1
+  src.gillm.injection.os_injector.os_injector_env_forced:
+    name: os_injector_env_forced
+    module: src.gillm.injection.os_injector
+    line: 62
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 3
+  src.gillm.capture.portal_backend._portal_python:
+    name: _portal_python
+    module: src.gillm.capture.portal_backend
+    line: 66
+    cyclomatic_complexity: 6
+    calls_out: 4
+    calls_in: 1
+  src.gillm.injection.os_injector._inject_profile_text:
+    name: _inject_profile_text
+    module: src.gillm.injection.os_injector
+    line: 340
+    cyclomatic_complexity: 7
+    calls_out: 12
+    calls_in: 1
+  src.gillm.injection.injector.Injector.submit_only:
+    name: submit_only
+    module: src.gillm.injection.injector
+    line: 278
+    cyclomatic_complexity: 9
+    calls_out: 13
+    calls_in: 0
+  src.gillm.injection.injector.Injector._type_with_backend:
+    name: _type_with_backend
+    module: src.gillm.injection.injector
+    line: 166
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  src.gillm.injection.injector._session_backend_order:
+    name: _session_backend_order
+    module: src.gillm.injection.injector
+    line: 59
+    cyclomatic_complexity: 4
+    calls_out: 2
+    calls_in: 1
+  src.gillm.focus.x11._run:
+    name: _run
+    module: src.gillm.focus.x11
+    line: 21
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 11
+  src.gillm.injection.os_injector._read_json:
+    name: _read_json
+    module: src.gillm.injection.os_injector
+    line: 135
+    cyclomatic_complexity: 4
+    calls_out: 5
+    calls_in: 2
+  src.gillm.injection.backends.ydotool_ctrl_keycode:
+    name: ydotool_ctrl_keycode
+    module: src.gillm.injection.backends
+    line: 32
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 1
+  src.gillm.focus.wayland._scan_for_key:
+    name: _scan_for_key
+    module: src.gillm.focus.wayland
+    line: 85
+    cyclomatic_complexity: 5
+    calls_out: 1
+    calls_in: 2
+  src.gillm.injection.os_injector._focus_with_xdotool:
+    name: _focus_with_xdotool
+    module: src.gillm.injection.os_injector
+    line: 323
+    cyclomatic_complexity: 4
+    calls_out: 7
+    calls_in: 1
+  src.gillm.config.cached_config:
+    name: cached_config
+    module: src.gillm.config
+    line: 89
+    cyclomatic_complexity: 6
+    calls_out: 5
+    calls_in: 1
+  src.gillm.config._merge_submit_keys:
+    name: _merge_submit_keys
+    module: src.gillm.config
+    line: 53
+    cyclomatic_complexity: 7
+    calls_out: 5
+    calls_in: 1
+  src.gillm.focus.x11.X11LinuxStrategy._inject_via_xdotool:
+    name: _inject_via_xdotool
+    module: src.gillm.focus.x11
+    line: 117
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 0
+  src.gillm.injection.injector.Injector.type_text:
+    name: type_text
+    module: src.gillm.injection.injector
+    line: 249
+    cyclomatic_complexity: 6
+    calls_out: 8
+    calls_in: 0
+  src.gillm.config.load_config:
+    name: load_config
+    module: src.gillm.config
+    line: 67
+    cyclomatic_complexity: 4
+    calls_out: 10
+    calls_in: 1
+  src.gillm.injection.backends._ydotool_submit_command:
+    name: _ydotool_submit_command
+    module: src.gillm.injection.backends
+    line: 114
+    cyclomatic_complexity: 3
+    calls_out: 0
+    calls_in: 2
+  src.gillm.injection.backends._log:
+    name: _log
+    module: src.gillm.injection.backends
+    line: 52
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 26
+  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool:
+    name: _focus_via_xdotool
+    module: src.gillm.focus.x11
+    line: 86
+    cyclomatic_complexity: 11
+    calls_out: 10
+    calls_in: 0
+  src.gillm.injection.os_injector._focus_with_ydotool:
+    name: _focus_with_ydotool
+    module: src.gillm.injection.os_injector
+    line: 306
+    cyclomatic_complexity: 4
+    calls_out: 7
+    calls_in: 1
+  src.gillm.injection.os_injector._xdotool:
+    name: _xdotool
+    module: src.gillm.injection.os_injector
+    line: 223
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 7
+  src.gillm.injection.backends.ydotool_submit_mode:
+    name: ydotool_submit_mode
+    module: src.gillm.injection.backends
+    line: 22
+    cyclomatic_complexity: 3
+    calls_out: 3
+    calls_in: 1
+  src.gillm.focus.darwin.DarwinStrategy.focus_window:
+    name: focus_window
+    module: src.gillm.focus.darwin
+    line: 54
+    cyclomatic_complexity: 4
+    calls_out: 5
+    calls_in: 0
+  src.gillm.injection.backends.extra_enter_count:
+    name: extra_enter_count
+    module: src.gillm.injection.backends
+    line: 40
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 1
+  src.gillm.injection.backends.type_with_ydotool:
+    name: type_with_ydotool
+    module: src.gillm.injection.backends
+    line: 133
+    cyclomatic_complexity: 5
+    calls_out: 12
+    calls_in: 1
+  src.gillm.injection.os_injector.dry_run_from_env:
+    name: dry_run_from_env
+    module: src.gillm.injection.os_injector
+    line: 67
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 1
+  src.gillm.config.resolve_xdg_path:
+    name: resolve_xdg_path
+    module: src.gillm.config
+    line: 16
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 1
+  src.gillm.injection.os_injector.capture_mouse_xy:
+    name: capture_mouse_xy
+    module: src.gillm.injection.os_injector
+    line: 179
+    cyclomatic_complexity: 6
+    calls_out: 10
+    calls_in: 1
+  src.gillm.injection.os_injector._cmd_timeout_seconds:
+    name: _cmd_timeout_seconds
+    module: src.gillm.injection.os_injector
+    line: 100
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 2
+  src.gillm.injection.injector._submit_key_for:
+    name: _submit_key_for
+    module: src.gillm.injection.injector
+    line: 22
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 2
+  src.gillm.injection.os_injector._focus_profile_chat:
+    name: _focus_profile_chat
+    module: src.gillm.injection.os_injector
+    line: 287
+    cyclomatic_complexity: 6
+    calls_out: 7
+    calls_in: 1
+  src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window:
+    name: focus_target_window
+    module: src.gillm.orchestrator.drive
+    line: 41
+    cyclomatic_complexity: 1
+    calls_out: 5
+    calls_in: 0
+  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool:
+    name: _inject_via_ydotool
+    module: src.gillm.focus.wayland
+    line: 212
+    cyclomatic_complexity: 7
+    calls_out: 10
+    calls_in: 0
+  src.gillm.focus.registry.resolve_active_os_strategy:
+    name: resolve_active_os_strategy
+    module: src.gillm.focus.registry
+    line: 32
+    cyclomatic_complexity: 4
+    calls_out: 2
+    calls_in: 1
+  src.gillm.injection.os_injector.default_config_path:
+    name: default_config_path
+    module: src.gillm.injection.os_injector
+    line: 35
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 2
+  src.gillm.focus.wayland._gnome_compositor:
+    name: _gnome_compositor
+    module: src.gillm.focus.wayland
+    line: 98
+    cyclomatic_complexity: 4
+    calls_out: 3
+    calls_in: 1
+  src.gillm.focus.x11.X11LinuxStrategy._focus_via_wmctrl:
+    name: _focus_via_wmctrl
+    module: src.gillm.focus.x11
+    line: 106
+    cyclomatic_complexity: 4
+    calls_out: 3
+    calls_in: 0
+  src.gillm.focus.wayland._prefer_ydotool:
+    name: _prefer_ydotool
+    module: src.gillm.focus.wayland
+    line: 107
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 1
+  src.gillm.injection.os_injector._clipboard_backend:
+    name: _clipboard_backend
+    module: src.gillm.injection.os_injector
+    line: 234
+    cyclomatic_complexity: 3
+    calls_out: 2
+    calls_in: 1
+  src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot:
+    name: capture_screenshot
+    module: src.gillm.orchestrator.drive
+    line: 78
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 0
+  src.gillm.intents.contract.gui_contract:
+    name: gui_contract
+    module: src.gillm.intents.contract
+    line: 16
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 3
+  src.gillm.injection.os_injector._run_cmd:
+    name: _run_cmd
+    module: src.gillm.injection.os_injector
+    line: 206
+    cyclomatic_complexity: 5
+    calls_out: 7
+    calls_in: 4
+  src.gillm.config._cached_config:
+    name: _cached_config
+    module: src.gillm.config
+    line: 85
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 1
+  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_wtype:
+    name: _inject_via_wtype
+    module: src.gillm.focus.wayland
+    line: 191
+    cyclomatic_complexity: 9
+    calls_out: 7
+    calls_in: 0
+  src.gillm.orchestrator.drive.DriveOrchestrator.log:
+    name: log
+    module: src.gillm.orchestrator.drive
+    line: 31
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  src.gillm.injection.os_injector._set_clipboard:
+    name: _set_clipboard
+    module: src.gillm.injection.os_injector
+    line: 242
+    cyclomatic_complexity: 3
+    calls_out: 6
+    calls_in: 1
+  src.gillm.injection.os_injector.save_profile:
+    name: save_profile
+    module: src.gillm.injection.os_injector
+    line: 162
+    cyclomatic_complexity: 3
+    calls_out: 7
+    calls_in: 0
+  src.gillm.injection.os_injector.os_injector_env_disabled:
+    name: os_injector_env_disabled
+    module: src.gillm.injection.os_injector
+    line: 57
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 1
+  src.gillm.capture.portal_backend.capture_portal_png:
+    name: capture_portal_png
+    module: src.gillm.capture.portal_backend
+    line: 88
+    cyclomatic_complexity: 8
+    calls_out: 11
+    calls_in: 1
+  src.gillm.injection.os_injector.focus_mode_from_env:
+    name: focus_mode_from_env
+    module: src.gillm.injection.os_injector
+    line: 72
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 1
+  src.gillm.config.default_config_path:
+    name: default_config_path
+    module: src.gillm.config
+    line: 48
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 1
+  src.gillm.injection.backends.type_with_xdotool:
+    name: type_with_xdotool
+    module: src.gillm.injection.backends
+    line: 57
+    cyclomatic_complexity: 3
+    calls_out: 8
+    calls_in: 1
+  src.gillm.injection.os_injector.try_drive_with_profile:
+    name: try_drive_with_profile
+    module: src.gillm.injection.os_injector
+    line: 455
+    cyclomatic_complexity: 9
+    calls_out: 9
+    calls_in: 0
+  src.gillm.intents.contract.validate_contract_runtime:
+    name: validate_contract_runtime
+    module: src.gillm.intents.contract
+    line: 52
+    cyclomatic_complexity: 7
+    calls_out: 6
+    calls_in: 3
+  src.gillm.injection.os_injector.load_profile:
+    name: load_profile
+    module: src.gillm.injection.os_injector
+    line: 145
+    cyclomatic_complexity: 5
+    calls_out: 12
+    calls_in: 1
+  src.gillm.injection.os_injector.capture_from_xdotool:
+    name: capture_from_xdotool
+    module: src.gillm.injection.os_injector
+    line: 200
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+edges:
+- caller: src.gillm.config.default_config_path
+  callee: src.gillm.config.resolve_xdg_path
+  call_type: resolved
+- caller: src.gillm.config.load_config
+  callee: src.gillm.config._merge_submit_keys
+  call_type: resolved
+- caller: src.gillm.config.load_config
+  callee: src.gillm.config.default_config_path
+  call_type: resolved
+- caller: src.gillm.config._cached_config
+  callee: src.gillm.config.load_config
+  call_type: resolved
+- caller: src.gillm.config.cached_config
+  callee: src.gillm.config._cached_config
+  call_type: resolved
+- caller: src.gillm.capture.portal_backend.capture_portal_png
+  callee: src.gillm.capture.portal_backend._portal_python
+  call_type: resolved
+- caller: src.gillm.capture.mss_backend.capture_primary_rgb
+  callee: src.gillm.capture.mss_backend.resolve_scale
+  call_type: resolved
+- caller: src.gillm.capture.mss_backend.capture_primary_rgb
+  callee: src.gillm.capture.mss_backend.downscale_rgb_nearest
+  call_type: resolved
+- caller: src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback
+  callee: src.gillm.capture.portal_backend.capture_portal_png
+  call_type: resolved
+- caller: src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback
+  callee: src.gillm.capture.mss_backend._parse_png_to_rgb
+  call_type: resolved
+- caller: src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback
+  callee: src.gillm.capture.mss_backend.capture_primary_rgb
+  call_type: resolved
+- caller: src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback
+  callee: src.gillm.capture.mss_backend.rgb_mostly_black
+  call_type: resolved
+- caller: src.gillm.capture.mss_backend._parse_png_to_rgb
+  callee: src.gillm.capture.mss_backend.resolve_scale
+  call_type: resolved
+- caller: src.gillm.injection.backends._log
+  callee: src.gillm.orchestrator.drive.DriveOrchestrator.log
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_xdotool
+  callee: src.gillm.injection.backends._log
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_wtype
+  callee: src.gillm.injection.backends._log
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_wtype
+  callee: src.gillm.injection.backends.press_wtype
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_ydotool
+  callee: src.gillm.injection.backends._log
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_ydotool
+  callee: src.gillm.injection.backends._ydotool_submit_command
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_backend
+  callee: src.gillm.injection.backends._log
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_backend
+  callee: src.gillm.injection.backends.extra_enter_count
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_backend
+  callee: src.gillm.injection.backends.type_with_xdotool
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_backend
+  callee: src.gillm.injection.backends.type_with_wtype
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_backend
+  callee: src.gillm.injection.backends.type_with_ydotool
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_backend
+  callee: src.gillm.injection.backends.ydotool_enter_keycode
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_backend
+  callee: src.gillm.injection.backends.ydotool_submit_mode
+  call_type: resolved
+- caller: src.gillm.injection.backends.type_with_backend
+  callee: src.gillm.injection.backends.ydotool_ctrl_keycode
+  call_type: resolved
+- caller: src.gillm.injection.injector._submit_key_for
+  callee: src.gillm.config.cached_config
+  call_type: resolved
+- caller: src.gillm.injection.injector._session_backend_order
+  callee: src.gillm.injection.injector._unique_backend_names
+  call_type: resolved
+- caller: src.gillm.injection.injector.Injector._candidate_backends
+  callee: src.gillm.injection.injector._forced_injector_backend
+  call_type: resolved
+- caller: src.gillm.injection.injector.Injector._candidate_backends
+  callee: src.gillm.injection.injector._session_backend_order
+  call_type: resolved
+- caller: src.gillm.injection.injector.Injector._type_with_backend
+  callee: src.gillm.injection.backends.type_with_backend
+  call_type: resolved
+- caller: src.gillm.injection.injector.Injector.type_text
+  callee: src.gillm.injection.injector._submit_key_for
+  call_type: resolved
+- caller: src.gillm.injection.injector.Injector.submit_only
+  callee: src.gillm.injection.injector._submit_key_for
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.try_load_profile
+  callee: src.gillm.injection.os_injector.iter_config_paths
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.try_load_profile
+  callee: src.gillm.injection.os_injector.load_profile
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.load_profile
+  callee: src.gillm.injection.os_injector._read_json
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.load_profile
+  callee: src.gillm.injection.os_injector.default_config_path
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.save_profile
+  callee: src.gillm.injection.os_injector._read_json
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.save_profile
+  callee: src.gillm.injection.os_injector.default_config_path
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.capture_from_xdotool
+  callee: src.gillm.injection.os_injector.capture_mouse_xy
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._run_cmd
+  callee: src.gillm.injection.os_injector._cmd_timeout_seconds
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._xdotool
+  callee: src.gillm.injection.os_injector._run_cmd
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._ydotool
+  callee: src.gillm.injection.os_injector._run_cmd
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._set_clipboard
+  callee: src.gillm.injection.os_injector._run_cmd
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._resolve_input_method
+  callee: src.gillm.injection.os_injector.input_mode_from_env
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._resolve_input_method
+  callee: src.gillm.injection.os_injector._clipboard_backend
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._resolve_input_method
+  callee: src.gillm.injection.os_injector._is_wayland_session
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._focus_profile_chat
+  callee: src.gillm.injection.backends._log
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._focus_profile_chat
+  callee: src.gillm.injection.os_injector._is_wayland_session
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._focus_profile_chat
+  callee: src.gillm.injection.os_injector._focus_with_ydotool
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._focus_profile_chat
+  callee: src.gillm.injection.os_injector._focus_with_xdotool
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._focus_with_ydotool
+  callee: src.gillm.injection.os_injector._ydotool
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._focus_with_ydotool
+  callee: src.gillm.injection.backends._log
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._focus_with_xdotool
+  callee: src.gillm.injection.os_injector._xdotool
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._focus_with_xdotool
+  callee: src.gillm.injection.backends._log
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._inject_profile_text
+  callee: src.gillm.injection.os_injector._is_wayland_session
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._inject_profile_text
+  callee: src.gillm.injection.backends._log
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._inject_profile_text
+  callee: src.gillm.injection.os_injector._set_clipboard
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._inject_profile_text
+  callee: src.gillm.injection.os_injector._xdotool
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.inject_with_profile
+  callee: src.gillm.injection.os_injector.focus_mode_from_env
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.inject_with_profile
+  callee: src.gillm.injection.os_injector._resolve_input_method
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.inject_with_profile
+  callee: src.gillm.injection.os_injector._post_focus_delay_seconds
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.inject_with_profile
+  callee: src.gillm.injection.os_injector._focus_profile_chat
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.inject_with_profile
+  callee: src.gillm.injection.os_injector._inject_profile_text
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.inject_with_profile
+  callee: src.gillm.injection.os_injector._injection_result
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.inject_with_profile
+  callee: src.gillm.injection.backends._log
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._os_injector_skip_reason
+  callee: src.gillm.injection.os_injector.os_injector_env_disabled
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._os_injector_skip_reason
+  callee: src.gillm.injection.os_injector._is_wayland_session
+  call_type: resolved
+- caller: src.gillm.injection.os_injector._os_injector_skip_reason
+  callee: src.gillm.injection.os_injector.os_injector_env_forced
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.try_drive_with_profile
+  callee: src.gillm.injection.os_injector._os_injector_skip_reason
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.try_drive_with_profile
+  callee: src.gillm.injection.os_injector.try_load_profile
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.try_drive_with_profile
+  callee: src.gillm.injection.os_injector.inject_with_profile
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.try_drive_with_profile
+  callee: src.gillm.injection.os_injector.os_injector_env_forced
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.try_drive_with_profile
+  callee: src.gillm.injection.backends._log
+  call_type: resolved
+- caller: src.gillm.injection.os_injector.try_drive_with_profile
+  callee: src.gillm.injection.os_injector.dry_run_from_env
+  call_type: resolved
+- caller: src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.focus.x11.X11LinuxStrategy._focus_via_wmctrl
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.focus.x11.X11LinuxStrategy._inject_via_xdotool
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.focus.wayland._prefer_ydotool
+  callee: src.gillm.focus.wayland._gnome_compositor
+  call_type: resolved
+- caller: src.gillm.focus.wayland.WaylandLinuxStrategy.inject_keys
+  callee: src.gillm.focus.wayland._prefer_ydotool
+  call_type: resolved
+- caller: src.gillm.focus.wayland.WaylandLinuxStrategy._focus_via_wmctrl
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_wtype
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
+  callee: src.gillm.focus.wayland._scan_for_key
+  call_type: resolved
+- caller: src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.focus.darwin.DarwinStrategy.focus_window
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window
+  callee: src.gillm.intents.contract.gui_contract
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window
+  callee: src.gillm.intents.contract.validate_contract_runtime
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window
+  callee: src.gillm.focus.registry.resolve_active_os_strategy
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.inject_text
+  callee: src.gillm.intents.contract.gui_contract
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.inject_text
+  callee: src.gillm.intents.contract.validate_contract_runtime
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot
+  callee: src.gillm.intents.contract.gui_contract
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot
+  callee: src.gillm.intents.contract.validate_contract_runtime
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot
+  callee: src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback
+  call_type: resolved
+modules:
+  src.gillm.capture.mss_backend:
+  - src.gillm.capture.mss_backend._parse_png_to_rgb
+  - src.gillm.capture.mss_backend.capture_primary_rgb
+  - src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback
+  - src.gillm.capture.mss_backend.downscale_rgb_nearest
+  - src.gillm.capture.mss_backend.resolve_scale
+  - src.gillm.capture.mss_backend.rgb_mostly_black
+  src.gillm.capture.portal_backend:
+  - src.gillm.capture.portal_backend._portal_python
+  - src.gillm.capture.portal_backend.capture_portal_png
+  src.gillm.config:
+  - src.gillm.config._cached_config
+  - src.gillm.config._merge_submit_keys
+  - src.gillm.config.cached_config
+  - src.gillm.config.default_config_path
+  - src.gillm.config.load_config
+  - src.gillm.config.resolve_xdg_path
+  src.gillm.focus.darwin:
+  - src.gillm.focus.darwin.DarwinStrategy.focus_window
+  src.gillm.focus.registry:
+  - src.gillm.focus.registry.resolve_active_os_strategy
+  src.gillm.focus.wayland:
+  - src.gillm.focus.wayland.WaylandLinuxStrategy._focus_via_wmctrl
+  - src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_wtype
+  - src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
+  - src.gillm.focus.wayland.WaylandLinuxStrategy.inject_keys
+  - src.gillm.focus.wayland._gnome_compositor
+  - src.gillm.focus.wayland._prefer_ydotool
+  - src.gillm.focus.wayland._scan_for_key
+  src.gillm.focus.x11:
+  - src.gillm.focus.x11.X11LinuxStrategy._focus_via_wmctrl
+  - src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
+  - src.gillm.focus.x11.X11LinuxStrategy._inject_via_xdotool
+  - src.gillm.focus.x11._run
+  src.gillm.injection.backends:
+  - src.gillm.injection.backends._log
+  - src.gillm.injection.backends._ydotool_submit_command
+  - src.gillm.injection.backends.extra_enter_count
+  - src.gillm.injection.backends.press_wtype
+  - src.gillm.injection.backends.type_with_backend
+  - src.gillm.injection.backends.type_with_wtype
+  - src.gillm.injection.backends.type_with_xdotool
+  - src.gillm.injection.backends.type_with_ydotool
+  - src.gillm.injection.backends.ydotool_ctrl_keycode
+  - src.gillm.injection.backends.ydotool_enter_keycode
+  - src.gillm.injection.backends.ydotool_submit_mode
+  src.gillm.injection.injector:
+  - src.gillm.injection.injector.Injector._candidate_backends
+  - src.gillm.injection.injector.Injector._type_with_backend
+  - src.gillm.injection.injector.Injector.submit_only
+  - src.gillm.injection.injector.Injector.type_text
+  - src.gillm.injection.injector._forced_injector_backend
+  - src.gillm.injection.injector._session_backend_order
+  - src.gillm.injection.injector._submit_key_for
+  - src.gillm.injection.injector._unique_backend_names
+  src.gillm.injection.os_injector:
+  - src.gillm.injection.os_injector._clipboard_backend
+  - src.gillm.injection.os_injector._cmd_timeout_seconds
+  - src.gillm.injection.os_injector._focus_profile_chat
+  - src.gillm.injection.os_injector._focus_with_xdotool
+  - src.gillm.injection.os_injector._focus_with_ydotool
+  - src.gillm.injection.os_injector._inject_profile_text
+  - src.gillm.injection.os_injector._injection_result
+  - src.gillm.injection.os_injector._is_wayland_session
+  - src.gillm.injection.os_injector._os_injector_skip_reason
+  - src.gillm.injection.os_injector._post_focus_delay_seconds
+  - src.gillm.injection.os_injector._read_json
+  - src.gillm.injection.os_injector._resolve_input_method
+  - src.gillm.injection.os_injector._run_cmd
+  - src.gillm.injection.os_injector._set_clipboard
+  - src.gillm.injection.os_injector._xdotool
+  - src.gillm.injection.os_injector._ydotool
+  - src.gillm.injection.os_injector.capture_from_xdotool
+  - src.gillm.injection.os_injector.capture_mouse_xy
+  - src.gillm.injection.os_injector.default_config_path
+  - src.gillm.injection.os_injector.dry_run_from_env
+  - src.gillm.injection.os_injector.focus_mode_from_env
+  - src.gillm.injection.os_injector.inject_with_profile
+  - src.gillm.injection.os_injector.input_mode_from_env
+  - src.gillm.injection.os_injector.iter_config_paths
+  - src.gillm.injection.os_injector.load_profile
+  - src.gillm.injection.os_injector.os_injector_env_disabled
+  - src.gillm.injection.os_injector.os_injector_env_forced
+  - src.gillm.injection.os_injector.save_profile
+  - src.gillm.injection.os_injector.try_drive_with_profile
+  - src.gillm.injection.os_injector.try_load_profile
+  src.gillm.intents.contract:
+  - src.gillm.intents.contract.gui_contract
+  - src.gillm.intents.contract.validate_contract_runtime
+  src.gillm.orchestrator.drive:
+  - src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot
+  - src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window
+  - src.gillm.orchestrator.drive.DriveOrchestrator.inject_text
+  - src.gillm.orchestrator.drive.DriveOrchestrator.log
+entry_points:
+- src.gillm.cli.main.main
+- src.gillm.config.AutopilotConfig.submit_key_for
+- src.gillm.config.clear_config_cache
+- src.gillm.focus.darwin.DarwinStrategy.capabilities
+- src.gillm.focus.darwin.DarwinStrategy.focus_window
+- src.gillm.focus.darwin.DarwinStrategy.inject_keys
+- src.gillm.focus.darwin.DarwinStrategy.matches_current_environment
+- src.gillm.focus.darwin._run
+- src.gillm.focus.registry.get_os_strategy
+- src.gillm.focus.registry.list_os_strategy_ids
+- src.gillm.focus.registry.register_os_strategy
+- src.gillm.focus.strategy.KeySequence.__post_init__
+- src.gillm.focus.strategy.OsStrategy.__repr__
+- src.gillm.focus.strategy.OsStrategy._term_program_is_vscode_family
+- src.gillm.focus.strategy.OsStrategy.capabilities
+- src.gillm.focus.strategy.OsStrategy.focus_window
+- src.gillm.focus.strategy.OsStrategy.inject_keys
+- src.gillm.focus.strategy.OsStrategy.matches_current_environment
+- src.gillm.focus.wayland.WaylandLinuxStrategy._focus_via_wmctrl
+- src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_wtype
+- src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
+- src.gillm.focus.wayland.WaylandLinuxStrategy.capabilities
+- src.gillm.focus.wayland.WaylandLinuxStrategy.focus_window
+- src.gillm.focus.wayland.WaylandLinuxStrategy.inject_keys
+- src.gillm.focus.wayland.WaylandLinuxStrategy.matches_current_environment
+- src.gillm.focus.wayland._run
+- src.gillm.focus.windows.WindowsStrategy.capabilities
+- src.gillm.focus.windows.WindowsStrategy.focus_window
+- src.gillm.focus.windows.WindowsStrategy.inject_keys
+- src.gillm.focus.windows.WindowsStrategy.matches_current_environment
+- src.gillm.focus.x11.X11LinuxStrategy._focus_via_wmctrl
+- src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
+- src.gillm.focus.x11.X11LinuxStrategy._inject_via_xdotool
+- src.gillm.focus.x11.X11LinuxStrategy.capabilities
+- src.gillm.focus.x11.X11LinuxStrategy.focus_window
+- src.gillm.focus.x11.X11LinuxStrategy.inject_keys
+- src.gillm.focus.x11.X11LinuxStrategy.matches_current_environment
+- src.gillm.injection.drive_backend.apply_keyboard_injection
+- src.gillm.injection.drive_backend.format_os_injector_ack
+- src.gillm.injection.drive_backend.try_os_injector_drive
+- src.gillm.injection.injector.BackendStatus.to_dict
+- src.gillm.injection.injector.InjectionResult.to_dict
+- src.gillm.injection.injector.Injector._all_type_backends_failed
+- src.gillm.injection.injector.Injector._available_backend_candidates
+- src.gillm.injection.injector.Injector._call
+- src.gillm.injection.injector.Injector._candidate_backends
+- src.gillm.injection.injector.Injector._dry_run_type_text_result
+- src.gillm.injection.injector.Injector._forced_backend_candidates
+- src.gillm.injection.injector.Injector._log_type_text_request
+- src.gillm.injection.injector.Injector._probe_one
+- src.gillm.injection.injector.Injector._try_type_text_backends
+- src.gillm.injection.injector.Injector._type_text_backends
+- src.gillm.injection.injector.Injector._type_with_backend
+- src.gillm.injection.injector.Injector.probe
+- src.gillm.injection.injector.Injector.select_backend
+- src.gillm.injection.injector.Injector.submit_only
+- src.gillm.injection.injector.Injector.type_text
+- src.gillm.injection.injector._default_runner
+- src.gillm.injection.injector._session_type
+- src.gillm.injection.injector._which
+- src.gillm.injection.os_injector.capture_from_xdotool
+- src.gillm.injection.os_injector.profile_from_mouse
+- src.gillm.injection.os_injector.save_profile
+- src.gillm.injection.os_injector.try_drive_with_profile
+- src.gillm.nlp_bridge.client.NLPBridgeClient.__init__
+- src.gillm.nlp_bridge.client.NLPBridgeClient.parse_intent
+- src.gillm.orchestrator.drive.DriveOrchestrator.__init__
+- src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot
+- src.gillm.orchestrator.drive.DriveOrchestrator.drive_natural_language
+- src.gillm.orchestrator.drive.DriveOrchestrator.execute_step
+- src.gillm.orchestrator.drive.DriveOrchestrator.execute_workflow
+- src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window
+- src.gillm.orchestrator.drive.DriveOrchestrator.inject_text

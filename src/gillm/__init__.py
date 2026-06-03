@@ -8,7 +8,7 @@ contract validation via Intract.
 from gillm import capture, focus, injection, intents, nlp_bridge, orchestrator
 from gillm.orchestrator import DriveOrchestrator
 
-__version__ = "0.1.5"
+__version__ = "0.1.6"
 __all__ = [
     "DriveOrchestrator",
     "capture",
