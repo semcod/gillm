@@ -1,5 +1,7 @@
 """OS strategies for window focus and key injection."""
 
+from importlib import import_module
+
 from gillm.focus.registry import (
     get_os_strategy,
     list_os_strategy_ids,
@@ -14,8 +16,13 @@ from gillm.focus.strategy import (
     StaticOsIdentityMixin,
 )
 
-# Auto-import strategies to register them
-from gillm.focus import darwin, wayland, windows, x11
+for module_name in (
+    "gillm.focus.darwin",
+    "gillm.focus.wayland",
+    "gillm.focus.windows",
+    "gillm.focus.x11",
+):
+    import_module(module_name)
 
 __all__ = [
     "FocusOutcome",

@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-import os
-from typing import Any, Sequence
+from typing import Any
 
 try:
     from nlp2dsl_sdk import NLP2DSLClient

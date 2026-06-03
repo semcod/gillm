@@ -8,7 +8,7 @@ from typing import Any, Callable
 
 from gillm.capture import capture_primary_rgb_wayland_fallback
 from gillm.focus import resolve_active_os_strategy
-from gillm.focus.strategy import FocusOutcome, KeySequence
+from gillm.focus.strategy import FocusOutcome
 from gillm.injection import Injector
 from gillm.intents import gui_contract, validate_contract_runtime
 from gillm.nlp_bridge import NLPBridgeClient

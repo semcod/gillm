@@ -2,9 +2,6 @@
 
 from __future__ import annotations
 
-import sys
-from unittest.mock import MagicMock
-
 import pytest
 
 from gillm import DriveOrchestrator
@@ -33,8 +30,6 @@ def test_focus_strategies_registry() -> None:
 def test_injector_dry_run() -> None:
     # Setup mock Injector that skips actual OS commands
     injector = Injector(which=lambda cmd: "/usr/bin/xdotool" if cmd == "xdotool" else None)
-    backends = injector._candidate_backends()
-    selected = injector.select_backend()
 
     # Dry-run type_text
     res = injector.type_text("print('test')", ide="vscode", submit=True, dry_run=True)
