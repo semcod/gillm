@@ -44,7 +44,8 @@ def test_injector_empty_text_error() -> None:
         injector.type_text("", dry_run=True)
 
 
-def test_nlp_bridge_heuristic_parsing() -> None:
+def test_nlp_bridge_heuristic_parsing(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr("gillm.nlp_bridge.client._ShimClient", None)
     client = NLPBridgeClient()
     steps = client.parse_intent("focus vscode and type hello world")
     assert len(steps) == 2

@@ -88,13 +88,6 @@ def _cached_config() -> AutopilotConfig:
 
 def cached_config() -> AutopilotConfig:
     """Process-lifetime memoised :func:`load_config`."""
-    for mod_name in ("koru.autopilot.injector", "koruide.injector", "koru.autopilot.config"):
-        if mod_name in sys.modules:
-            mod = sys.modules[mod_name]
-            if hasattr(mod, "cached_config"):
-                val = getattr(mod, "cached_config")
-                if val is not cached_config and callable(val):
-                    return val()
     return _cached_config()
 
 
