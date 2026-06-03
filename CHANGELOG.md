@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.5] - 2026-06-03
+
+### Added
+- `gillm.injection.drive_backend` — headless OS-profile and keyboard drive helpers (`try_os_injector_drive`, `format_os_injector_ack`, `apply_keyboard_injection`)
+- Unit tests moved from koru: `tests/test_injector.py`, `tests/test_os_injector.py`, `tests/test_drive_backend.py` (114+ tests)
+
+### Changed
+- Koru `koruide.daemon.handlers_drive` delegates injection backends to `gillm.injection.drive_backend`
+
 ## [0.1.4] - 2026-06-03
 
 ### Docs

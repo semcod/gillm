@@ -13,6 +13,24 @@ Generated on 2026-06-03 using [openrouter/qwen/qwen3-coder-next](https://openrou
 
 ---
 
+## Testing
+
+GUI injection (keyboard backends, xdotool/ydotool/wtype, OS injector profiles) is tested in this package:
+
+```bash
+cd gillm
+python -m pytest tests/ -q
+```
+
+Main modules:
+
+- `tests/test_injector.py` — :class:`gillm.injection.injector.Injector`
+- `tests/test_os_injector.py` — calibrated profiles under ``~/.koru/ide-os-injector.json``
+
+Koru keeps integration tests only (daemon wire protocol, IDE shims, CLI). Do not re-add duplicate injector unit tests under ``koru/tests/``.
+
+---
+
 ## License
 
 Licensed under Apache-2.0.
