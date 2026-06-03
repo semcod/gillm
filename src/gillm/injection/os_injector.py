@@ -86,6 +86,14 @@ def input_mode_from_env() -> str:
 
 
 def _is_wayland_session() -> bool:
+    import sys
+    for mod_name in ("koru.autopilot.os_injector", "koruide.os_injector"):
+        if mod_name in sys.modules:
+            mod = sys.modules[mod_name]
+            if hasattr(mod, "_is_wayland_session"):
+                val = getattr(mod, "_is_wayland_session")
+                if val is not _is_wayland_session and callable(val):
+                    return val()
     return os.environ.get("XDG_SESSION_TYPE", "").strip().lower() == "wayland"
 
 
@@ -341,7 +349,7 @@ def _inject_profile_text(
     if _log:
         _log(f"os_injector: injecting {len(text)} chars via {input_method}, submit={submit}")
     if _is_wayland_session():
-        from gllm.injection.injector import Injector
+        from gillm.injection.injector import Injector
 
         injector = Injector()
         res = injector.type_text(text, ide=profile.tool_id, submit=submit)

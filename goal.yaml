@@ -13,7 +13,7 @@
 
 version: '1.0'
 project:
-  name: gllm
+  name: gillm
   type:
   - python
   description: GUI Control Plugin with NLP & Intent Contracts
@@ -30,7 +30,7 @@ versioning:
 git:
   commit:
     strategy: conventional
-    scope: gllm
+    scope: gillm
     abstraction_level: auto
     abstraction_levels:
       high: '{type}({domain}): {benefit}'
@@ -224,7 +224,7 @@ strategies:
   python:
     test: pytest tests/ -v
     build: python -m build
-    publish: twine upload dist/gllm-{version}*
+    publish: twine upload dist/gillm-{version}*
     publish_enabled: true
     dependencies:
       file: requirements.txt

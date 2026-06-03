@@ -1,4 +1,4 @@
-"""Command-line interface for the gllm GUI control engine."""
+"""Command-line interface for the gillm GUI control engine."""
 
 from __future__ import annotations
 
@@ -6,12 +6,12 @@ import argparse
 import json
 import sys
 
-from gllm.orchestrator.drive import DriveOrchestrator
+from gillm.orchestrator.drive import DriveOrchestrator
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="gllm: LLM/NLP-driven GUI Control Engine"
+        description="gillm: LLM/NLP-driven GUI Control Engine"
     )
     subparsers = parser.add_subparsers(dest="command", help="Sub-commands")
 

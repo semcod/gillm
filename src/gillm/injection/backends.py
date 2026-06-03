@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from collections.abc import Callable
 
-from gllm.injection.errors import InjectorError
+from gillm.injection.errors import InjectorError
 
 RunnerCall = Callable[[list[str]], None]
 LogFn = Callable[[str], None] | None

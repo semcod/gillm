@@ -1,6 +1,6 @@
 """User-tunable autopilot config.
 
-Self-contained config module for gllm.
+Self-contained config module for gillm.
 """
 
 from __future__ import annotations
@@ -73,7 +73,7 @@ def load_config(path: Path | None = None) -> AutopilotConfig:
         data = tomllib.loads(config_path.read_text(encoding="utf-8"))
     except (OSError, tomllib.TOMLDecodeError, UnicodeDecodeError) as exc:
         print(
-            f"gllm autopilot: ignoring malformed config {config_path}: {exc}",
+            f"gillm autopilot: ignoring malformed config {config_path}: {exc}",
             file=sys.stderr,
         )
         return AutopilotConfig()
@@ -82,14 +82,25 @@ def load_config(path: Path | None = None) -> AutopilotConfig:
 
 
 @lru_cache(maxsize=1)
+def _cached_config() -> AutopilotConfig:
+    return load_config()
+
+
 def cached_config() -> AutopilotConfig:
     """Process-lifetime memoised :func:`load_config`."""
-    return load_config()
+    for mod_name in ("koru.autopilot.injector", "koruide.injector", "koru.autopilot.config"):
+        if mod_name in sys.modules:
+            mod = sys.modules[mod_name]
+            if hasattr(mod, "cached_config"):
+                val = getattr(mod, "cached_config")
+                if val is not cached_config and callable(val):
+                    return val()
+    return _cached_config()
 
 
 def clear_config_cache() -> None:
     """Drop the cached config."""
-    cached_config.cache_clear()
+    _cached_config.cache_clear()
 
 
 __all__ = [

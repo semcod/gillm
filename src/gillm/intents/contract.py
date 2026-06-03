@@ -8,7 +8,7 @@ from __future__ import annotations
 import logging
 from typing import Any, Callable, TypeVar
 
-logger = logging.getLogger("gllm.intents")
+logger = logging.getLogger("gillm.intents")
 
 F = TypeVar("F", bound=Callable[..., Any])
 

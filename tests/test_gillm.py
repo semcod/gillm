@@ -1,4 +1,4 @@
-"""Unit tests for the gllm package."""
+"""Unit tests for the gillm package."""
 
 from __future__ import annotations
 
@@ -7,12 +7,12 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from gllm import DriveOrchestrator
-from gllm.focus import get_os_strategy, list_os_strategy_ids, resolve_active_os_strategy
-from gllm.focus.strategy import FocusOutcome
-from gllm.injection import Injector, InjectorError
-from gllm.intents import gui_contract, validate_contract_runtime
-from gllm.nlp_bridge import NLPBridgeClient
+from gillm import DriveOrchestrator
+from gillm.focus import get_os_strategy, list_os_strategy_ids, resolve_active_os_strategy
+from gillm.focus.strategy import FocusOutcome
+from gillm.injection import Injector, InjectorError
+from gillm.intents import gui_contract, validate_contract_runtime
+from gillm.nlp_bridge import NLPBridgeClient
 
 
 def test_focus_strategies_registry() -> None:

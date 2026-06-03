@@ -14,9 +14,9 @@ import subprocess
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
 
-from gllm.config import cached_config
-from gllm.injection.backends import type_with_backend
-from gllm.injection.errors import InjectorError
+from gillm.config import cached_config
+from gillm.injection.backends import type_with_backend
+from gillm.injection.errors import InjectorError
 
 
 def _submit_key_for(ide: str) -> str:

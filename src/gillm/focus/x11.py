@@ -8,8 +8,8 @@ import subprocess
 import time
 from dataclasses import dataclass
 
-from gllm.focus.registry import register_os_strategy
-from gllm.focus.strategy import (
+from gillm.focus.registry import register_os_strategy
+from gillm.focus.strategy import (
     FocusOutcome,
     KeySequence,
     OsCapabilities,
@@ -77,7 +77,7 @@ class X11LinuxStrategy(StaticOsIdentityMixin, OsStrategy):
         if shutil.which("xdotool"):
             return self._inject_via_xdotool(sequence)
         if shutil.which("wtype"):
-            from gllm.focus.wayland import WaylandLinuxStrategy
+            from gillm.focus.wayland import WaylandLinuxStrategy
 
             return WaylandLinuxStrategy().inject_keys(sequence)
         return False

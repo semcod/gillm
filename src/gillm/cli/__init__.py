@@ -1,5 +1,5 @@
 """CLI entry point package."""
 
-from gllm.cli.main import main
+from gillm.cli.main import main
 
 __all__ = ["main"]

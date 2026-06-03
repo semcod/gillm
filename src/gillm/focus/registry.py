@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from gllm.focus.strategy import OsStrategy
+from gillm.focus.strategy import OsStrategy
 
 _REGISTRY: list[OsStrategy] = []
 
@@ -36,8 +36,8 @@ def resolve_active_os_strategy() -> OsStrategy:
             return strategy
     if not _REGISTRY:
         raise RuntimeError(
-            "gllm.focus.registry: no OsStrategy registered; "
-            "did import of gllm.focus fail?"
+            "gillm.focus.registry: no OsStrategy registered; "
+            "did import of gillm.focus fail?"
         )
     return _REGISTRY[-1]
 

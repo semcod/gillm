@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 
-from gllm.capture.portal_backend import PortalCaptureError, capture_portal_png
+from gillm.capture.portal_backend import PortalCaptureError, capture_portal_png
 
 
 def resolve_scale(override: float | None) -> float:

@@ -8,8 +8,8 @@ import subprocess
 import time
 from dataclasses import dataclass
 
-from gllm.focus.registry import register_os_strategy
-from gllm.focus.strategy import (
+from gillm.focus.registry import register_os_strategy
+from gillm.focus.strategy import (
     FocusOutcome,
     KeySequence,
     OsCapabilities,
