@@ -2,7 +2,9 @@
 
 app {
   name: gillm;
-  version: 0.1.8;
+  version: 0.1.10;
+  description: "GUI Control Plugin with NLP & Intent Contracts";
+  license: Apache-2.0;
 }
 
 dependencies {
@@ -14,7 +16,7 @@ interface[type="cli"] {
   framework: argparse;
 }
 interface[type="cli"] page[name="gillm"] {
-
+  entry: gillm.cli:main;
 }
 
 workflow[name="venv"] {
@@ -276,12 +278,24 @@ workflow[name="quickstart"] {
   step-9: run cmd=echo "📖 For more: make help";
 }
 
+tests {
+  import: testql-scenarios/**/*.testql.toon.yaml;
+}
+
+env_vars {
+  keys: OPENROUTER_API_KEY, LLM_MODEL, PFIX_AUTO_APPLY, PFIX_AUTO_INSTALL_DEPS, PFIX_AUTO_RESTART, PFIX_MAX_RETRIES, PFIX_DRY_RUN, PFIX_ENABLED, PFIX_GIT_COMMIT, PFIX_GIT_PREFIX, PFIX_CREATE_BACKUPS, XDG_CONFIG_HOME, KORU_PORTAL_PYTHON, KORU_VISION_SCALE, KORU_YDOTOOL_ENTER_KEYCODE, KORU_YDOTOOL_SUBMIT_MODE, KORU_YDOTOOL_CTRL_KEYCODE, KORU_INJECTOR_EXTRA_ENTER, WAYLAND_DISPLAY, XDG_SESSION_TYPE, DISPLAY, XDG_CURRENT_DESKTOP, GNOME_DESKTOP_SESSION_ID, KORU_OS_PREFER_YDOTOOL, TERM_PROGRAM, KORU_OS_INJECTOR, KORU_OS_INJECTOR_DRY_RUN, KORU_OS_INJECTOR_FOCUS, KORU_OS_INJECTOR_INPUT, KORU_OS_INJECTOR_CMD_TIMEOUT, KORU_OS_INJECTOR_POST_FOCUS_DELAY, KORU_INJECTOR_BACKEND;
+}
+
 deploy {
   target: makefile;
 }
 
 environment[name="local"] {
-  runtime: docker-compose;
+  runtime: python;
   env_file: .env;
+  template_file: .env.example;
   python_version: >=3.10;
+  vars: LLM_MODEL, OPENROUTER_API_KEY, PFIX_AUTO_APPLY, PFIX_AUTO_INSTALL_DEPS, PFIX_AUTO_RESTART, PFIX_CREATE_BACKUPS, PFIX_DRY_RUN, PFIX_ENABLED, PFIX_GIT_COMMIT, PFIX_GIT_PREFIX, PFIX_MAX_RETRIES;
+  runtime_llm: OPENROUTER_API_KEY;
+  runtime_pfix: PFIX_AUTO_APPLY, PFIX_AUTO_INSTALL_DEPS, PFIX_AUTO_RESTART, PFIX_CREATE_BACKUPS, PFIX_DRY_RUN, PFIX_ENABLED, PFIX_GIT_COMMIT, PFIX_GIT_PREFIX, PFIX_MAX_RETRIES;
 }
