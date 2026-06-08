@@ -1,20 +1,70 @@
 % ── Project Metadata ─────────────────────────────────────
-project_metadata('gillm', '0.1.8', 'python').
+project_metadata('gillm', '0.1.10', 'python').
 
 % ── Project Files ────────────────────────────────────────
-project_file('app.doql.less', 288, 'less').
+project_file('app.doql.less', 366, 'less').
+project_file('packages/cli2gillm/src/cli2gillm/__init__.py', 2, 'python').
+project_file('packages/cli2gillm/src/cli2gillm/cli.py', 71, 'python').
+project_file('packages/cli2gillm/src/cli2gillm/shell.py', 34, 'python').
+project_file('packages/cli2gillm/tests/test_cli2gillm.py', 7, 'python').
+project_file('packages/dsl2gillm/scripts/generate-proto.sh', 7, 'shell').
+project_file('packages/dsl2gillm/src/dsl2gillm/__init__.py', 35, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/bus.py', 89, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/cli.py', 167, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/codec.py', 67, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/codegen.py', 113, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/engine.py', 6, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/events.py', 134, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/grammar.py', 177, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', 245, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/models.py', 97, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 152, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/result.py', 29, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/schema_registry.py', 50, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/v1/__init__.py', 2, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/v1/command_pb2.py', 59, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/v1/result_pb2.py', 40, 'python').
+project_file('packages/dsl2gillm/tests/test_bus.py', 41, 'python').
+project_file('packages/dsl2gillm/tests/test_codegen.py', 19, 'python').
+project_file('packages/dsl2gillm/tests/test_dry_run.py', 14, 'python').
+project_file('packages/dsl2gillm/tests/test_parity.py', 19, 'python').
+project_file('packages/dsl2gillm/tests/test_parity_adapters.py', 51, 'python').
+project_file('packages/dsl2gillm/tests/test_protobuf.py', 18, 'python').
+project_file('packages/install-dev.sh', 15, 'shell').
+project_file('packages/mcp2gillm/src/mcp2gillm/__init__.py', 6, 'python').
+project_file('packages/mcp2gillm/src/mcp2gillm/cli.py', 23, 'python').
+project_file('packages/mcp2gillm/src/mcp2gillm/server.py', 84, 'python').
+project_file('packages/mcp2gillm/tests/test_mcp2gillm.py', 6, 'python').
+project_file('packages/nlp2gillm/src/nlp2gillm/__init__.py', 7, 'python').
+project_file('packages/nlp2gillm/src/nlp2gillm/cli.py', 56, 'python').
+project_file('packages/nlp2gillm/src/nlp2gillm/llm_backend.py', 81, 'python').
+project_file('packages/nlp2gillm/src/nlp2gillm/to_dsl.py', 54, 'python').
+project_file('packages/nlp2gillm/tests/test_llm_backend.py', 12, 'python').
+project_file('packages/nlp2gillm/tests/test_to_dsl.py', 10, 'python').
+project_file('packages/rest2gillm/src/rest2gillm/__init__.py', 6, 'python').
+project_file('packages/rest2gillm/src/rest2gillm/app.py', 88, 'python').
+project_file('packages/rest2gillm/src/rest2gillm/cli.py', 28, 'python').
+project_file('packages/rest2gillm/tests/test_rest2gillm.py', 29, 'python').
+project_file('packages/uri2gillm/src/uri2gillm/__init__.py', 19, 'python').
+project_file('packages/uri2gillm/src/uri2gillm/cli.py', 64, 'python').
+project_file('packages/uri2gillm/src/uri2gillm/decode.py', 55, 'python').
+project_file('packages/uri2gillm/src/uri2gillm/nlp2uri.py', 55, 'python').
+project_file('packages/uri2gillm/src/uri2gillm/run.py', 12, 'python').
+project_file('packages/uri2gillm/src/uri2gillm/uri.py', 53, 'python').
+project_file('packages/uri2gillm/tests/test_uri.py', 15, 'python').
 project_file('project.sh', 50, 'shell').
-project_file('src/gillm/__init__.py', 25, 'python').
+project_file('src/gillm/__init__.py', 56, 'python').
 project_file('src/gillm/adapters/__init__.py', 6, 'python').
 project_file('src/gillm/adapters/koru.py', 95, 'python').
 project_file('src/gillm/capture/__init__.py', 17, 'python').
 project_file('src/gillm/capture/mss_backend.py', 131, 'python').
 project_file('src/gillm/capture/portal_backend.py', 114, 'python').
 project_file('src/gillm/cli/__init__.py', 6, 'python').
-project_file('src/gillm/cli/main.py', 81, 'python').
-project_file('src/gillm/config.py', 113, 'python').
+project_file('src/gillm/cli/main.py', 98, 'python').
+project_file('src/gillm/config.py', 106, 'python').
 project_file('src/gillm/contracts/__init__.py', 24, 'python').
 project_file('src/gillm/contracts/driver.py', 137, 'python').
+project_file('src/gillm/control.py', 40, 'python').
 project_file('src/gillm/drivers/__init__.py', 7, 'python').
 project_file('src/gillm/drivers/composite.py', 181, 'python').
 project_file('src/gillm/drivers/dry_run.py', 90, 'python').
@@ -34,9 +84,9 @@ project_file('src/gillm/injection/os_injector.py', 324, 'python').
 project_file('src/gillm/intents/__init__.py', 6, 'python').
 project_file('src/gillm/intents/contract.py', 79, 'python').
 project_file('src/gillm/nlp_bridge/__init__.py', 6, 'python').
-project_file('src/gillm/nlp_bridge/client.py', 71, 'python').
-project_file('src/gillm/orchestrator/__init__.py', 6, 'python').
-project_file('src/gillm/orchestrator/drive.py', 155, 'python').
+project_file('src/gillm/nlp_bridge/client.py', 45, 'python').
+project_file('src/gillm/orchestrator/__init__.py', 9, 'python').
+project_file('src/gillm/orchestrator/drive.py', 169, 'python').
 project_file('src/gillm/recovery/__init__.py', 21, 'python').
 project_file('src/gillm/recovery/diagnose.py', 151, 'python').
 project_file('src/gillm/recovery/repair_hints.py', 99, 'python').
@@ -48,7 +98,7 @@ project_file('src/gillm/runtime/env.py', 88, 'python').
 project_file('src/gillm/runtime/errors.py', 6, 'python').
 project_file('src/gillm/runtime/profiles.py', 118, 'python').
 project_file('tests/test_drive_backend.py', 72, 'python').
-project_file('tests/test_gillm.py', 97, 'python').
+project_file('tests/test_gillm.py', 105, 'python').
 project_file('tests/test_gui_driver.py', 43, 'python').
 project_file('tests/test_injector.py', 286, 'python').
 project_file('tests/test_os_injector.py', 352, 'python').
@@ -57,6 +107,112 @@ project_file('tests/test_recovery.py', 49, 'python').
 project_file('tree.sh', 2, 'shell').
 
 % ── Python Functions ─────────────────────────────────────
+python_function('packages/cli2gillm/src/cli2gillm/cli.py', 'main', 1, 16, 15).
+python_function('packages/cli2gillm/src/cli2gillm/shell.py', 'run_shell', 0, 9, 8).
+python_function('packages/cli2gillm/tests/test_cli2gillm.py', 'test_exec_health_via_bus', 0, 2, 1).
+python_function('packages/dsl2gillm/src/dsl2gillm/bus.py', 'dispatch', 1, 15, 17).
+python_function('packages/dsl2gillm/src/dsl2gillm/bus.py', 'execute_dsl_line', 1, 1, 1).
+python_function('packages/dsl2gillm/src/dsl2gillm/bus.py', 'execute_dsl', 1, 4, 5).
+python_function('packages/dsl2gillm/src/dsl2gillm/cli.py', '_run_results', 1, 6, 4).
+python_function('packages/dsl2gillm/src/dsl2gillm/cli.py', 'main', 1, 4, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/cli.py', '_main_subcommand', 1, 1, 6).
+python_function('packages/dsl2gillm/src/dsl2gillm/cli.py', '_main_legacy', 1, 5, 11).
+python_function('packages/dsl2gillm/src/dsl2gillm/cli.py', '_handle_subcommand', 1, 19, 22).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', '_validate_with_pydantic', 2, 3, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'validate_payload', 1, 2, 7).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'parse_text', 1, 2, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'envelope_to_bytes', 1, 1, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'envelope_from_bytes', 1, 1, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'envelope_to_json', 1, 1, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'envelope_from_json', 1, 2, 5).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'roundtrip_text', 1, 1, 4).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', '_schema_type', 1, 10, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', '_model_name', 1, 2, 4).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', '_field_line', 2, 4, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', 'render_models', 1, 4, 8).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', 'load_schemas', 0, 4, 9).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', 'generate_models', 1, 2, 5).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', 'main', 0, 1, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/grammar.py', '_steps_from_line', 2, 8, 9).
+python_function('packages/dsl2gillm/src/dsl2gillm/grammar.py', 'parse_line', 1, 46, 12).
+python_function('packages/dsl2gillm/src/dsl2gillm/grammar.py', 'to_text', 1, 22, 8).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_load_steps', 1, 6, 6).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', 'run_query', 1, 8, 10).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', 'run_command', 1, 5, 7).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_health', 0, 4, 8).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_orient', 0, 2, 6).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_actions', 0, 1, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_parse', 1, 2, 7).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_validate', 1, 6, 10).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_resolve', 1, 2, 4).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_capture', 1, 1, 5).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_execute', 1, 4, 9).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_simulate', 1, 1, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_focus', 1, 4, 10).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_inject', 1, 2, 9).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', '_set_body', 2, 17, 7).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'envelope_to_dict', 1, 26, 5).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'encode_protobuf', 1, 1, 6).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'decode_protobuf', 1, 1, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'encode_text_to_protobuf', 1, 3, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'decode_protobuf_to_text', 1, 1, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'result_to_pb', 1, 3, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'encode_result_protobuf', 1, 1, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/schema_registry.py', '_load_schemas', 0, 4, 9).
+python_function('packages/dsl2gillm/src/dsl2gillm/schema_registry.py', 'schema_for_verb', 1, 2, 4).
+python_function('packages/dsl2gillm/src/dsl2gillm/schema_registry.py', 'all_verbs', 0, 1, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/schema_registry.py', 'validate_schemas', 0, 5, 5).
+python_function('packages/dsl2gillm/tests/test_bus.py', 'test_health', 0, 3, 1).
+python_function('packages/dsl2gillm/tests/test_bus.py', 'test_orient', 0, 3, 1).
+python_function('packages/dsl2gillm/tests/test_bus.py', 'test_actions', 0, 3, 1).
+python_function('packages/dsl2gillm/tests/test_bus.py', 'test_validate_steps', 0, 2, 1).
+python_function('packages/dsl2gillm/tests/test_bus.py', 'test_simulate_wait', 0, 3, 1).
+python_function('packages/dsl2gillm/tests/test_codegen.py', 'test_load_schemas_has_all_verbs', 0, 4, 2).
+python_function('packages/dsl2gillm/tests/test_codegen.py', 'test_generate_models', 1, 3, 2).
+python_function('packages/dsl2gillm/tests/test_dry_run.py', 'test_simulate_workflow_fixture', 0, 5, 4).
+python_function('packages/dsl2gillm/tests/test_parity.py', 'test_parity_text_vs_dict_health', 0, 3, 1).
+python_function('packages/dsl2gillm/tests/test_parity.py', 'test_parity_text_vs_dict_validate', 0, 3, 3).
+python_function('packages/dsl2gillm/tests/test_parity_adapters.py', '_baseline', 0, 1, 2).
+python_function('packages/dsl2gillm/tests/test_parity_adapters.py', 'test_parity_text_vs_protobuf', 0, 3, 2).
+python_function('packages/dsl2gillm/tests/test_parity_adapters.py', 'test_parity_uri_adapter', 0, 4, 5).
+python_function('packages/dsl2gillm/tests/test_parity_adapters.py', 'test_parity_rest_adapter', 0, 4, 5).
+python_function('packages/dsl2gillm/tests/test_parity_adapters.py', 'test_parity_simulate_offline', 0, 3, 1).
+python_function('packages/dsl2gillm/tests/test_protobuf.py', 'test_encode_decode_health', 0, 2, 2).
+python_function('packages/dsl2gillm/tests/test_protobuf.py', 'test_roundtrip_health', 0, 2, 1).
+python_function('packages/dsl2gillm/tests/test_protobuf.py', 'test_roundtrip_parse', 0, 2, 2).
+python_function('packages/mcp2gillm/src/mcp2gillm/cli.py', 'main', 1, 2, 5).
+python_function('packages/mcp2gillm/src/mcp2gillm/server.py', '_require_fastmcp', 0, 2, 1).
+python_function('packages/mcp2gillm/src/mcp2gillm/server.py', 'create_server', 1, 1, 1).
+python_function('packages/mcp2gillm/src/mcp2gillm/server.py', 'run_server', 0, 1, 2).
+python_function('packages/mcp2gillm/tests/test_mcp2gillm.py', 'test_create_server', 0, 2, 1).
+python_function('packages/nlp2gillm/src/nlp2gillm/cli.py', 'main', 1, 10, 12).
+python_function('packages/nlp2gillm/src/nlp2gillm/llm_backend.py', 'get_backend', 1, 2, 1).
+python_function('packages/nlp2gillm/src/nlp2gillm/llm_backend.py', 'nl_to_dsl_line', 1, 6, 8).
+python_function('packages/nlp2gillm/src/nlp2gillm/to_dsl.py', 'to_dsl', 1, 13, 10).
+python_function('packages/nlp2gillm/src/nlp2gillm/to_dsl.py', 'apply_nl', 1, 1, 3).
+python_function('packages/nlp2gillm/tests/test_llm_backend.py', 'test_nl_to_dsl_line_fake_backend', 0, 2, 2).
+python_function('packages/nlp2gillm/tests/test_to_dsl.py', 'test_to_dsl_health', 0, 2, 1).
+python_function('packages/nlp2gillm/tests/test_to_dsl.py', 'test_to_dsl_capture', 0, 2, 1).
+python_function('packages/rest2gillm/src/rest2gillm/app.py', 'create_app', 0, 1, 24).
+python_function('packages/rest2gillm/src/rest2gillm/cli.py', 'main', 1, 2, 7).
+python_function('packages/rest2gillm/tests/test_rest2gillm.py', 'test_root_endpoint', 0, 4, 4).
+python_function('packages/rest2gillm/tests/test_rest2gillm.py', 'test_health_endpoint', 0, 3, 4).
+python_function('packages/rest2gillm/tests/test_rest2gillm.py', 'test_post_dsl_health', 0, 4, 4).
+python_function('packages/uri2gillm/src/uri2gillm/cli.py', 'main', 1, 12, 12).
+python_function('packages/uri2gillm/src/uri2gillm/decode.py', 'uri_to_dsl', 1, 26, 8).
+python_function('packages/uri2gillm/src/uri2gillm/nlp2uri.py', 'nlp2uri', 1, 12, 8).
+python_function('packages/uri2gillm/src/uri2gillm/nlp2uri.py', 'best_uri', 1, 2, 1).
+python_function('packages/uri2gillm/src/uri2gillm/run.py', 'run_uri', 1, 1, 2).
+python_function('packages/uri2gillm/src/uri2gillm/uri.py', '_encode', 1, 1, 1).
+python_function('packages/uri2gillm/src/uri2gillm/uri.py', '_decode', 1, 2, 1).
+python_function('packages/uri2gillm/src/uri2gillm/uri.py', 'uri_for_block', 0, 4, 2).
+python_function('packages/uri2gillm/src/uri2gillm/uri.py', 'uri_for_cmd', 1, 4, 4).
+python_function('packages/uri2gillm/src/uri2gillm/uri.py', 'is_gillm_uri', 1, 1, 2).
+python_function('packages/uri2gillm/src/uri2gillm/uri.py', 'parse_gillm_uri', 1, 7, 5).
+python_function('packages/uri2gillm/tests/test_uri.py', 'test_decode_health_cmd', 0, 2, 2).
+python_function('packages/uri2gillm/tests/test_uri.py', 'test_nlp2uri_capture', 0, 3, 1).
+python_function('src/gillm/__init__.py', '__getattr__', 1, 3, 3).
+python_function('src/gillm/__init__.py', '__dir__', 0, 1, 2).
 python_function('src/gillm/adapters/koru.py', 'drive_payload_to_action_plan', 1, 21, 8).
 python_function('src/gillm/adapters/koru.py', 'koru_drive_to_payload', 0, 5, 1).
 python_function('src/gillm/adapters/koru.py', '_steps_from_prefer', 1, 8, 6).
@@ -68,14 +224,19 @@ python_function('src/gillm/capture/mss_backend.py', 'capture_primary_rgb_wayland
 python_function('src/gillm/capture/mss_backend.py', '_parse_png_to_rgb', 1, 4, 9).
 python_function('src/gillm/capture/portal_backend.py', '_portal_python', 0, 6, 4).
 python_function('src/gillm/capture/portal_backend.py', 'capture_portal_png', 0, 8, 7).
-python_function('src/gillm/cli/main.py', 'main', 0, 9, 15).
+python_function('src/gillm/cli/main.py', '_print_result', 1, 6, 4).
+python_function('src/gillm/cli/main.py', 'main', 0, 14, 12).
 python_function('src/gillm/config.py', 'resolve_xdg_path', 1, 2, 3).
 python_function('src/gillm/config.py', 'default_config_path', 0, 1, 1).
 python_function('src/gillm/config.py', '_merge_submit_keys', 1, 7, 3).
 python_function('src/gillm/config.py', 'load_config', 1, 4, 8).
 python_function('src/gillm/config.py', '_cached_config', 0, 1, 2).
-python_function('src/gillm/config.py', 'cached_config', 0, 6, 5).
+python_function('src/gillm/config.py', 'cached_config', 0, 1, 1).
 python_function('src/gillm/config.py', 'clear_config_cache', 0, 1, 1).
+python_function('src/gillm/control.py', 'dispatch_health', 0, 1, 2).
+python_function('src/gillm/control.py', 'dispatch_parse', 1, 1, 2).
+python_function('src/gillm/control.py', 'dispatch_execute', 0, 3, 2).
+python_function('src/gillm/control.py', 'dispatch_validate', 0, 3, 2).
 python_function('src/gillm/focus/darwin.py', '_run', 1, 1, 1).
 python_function('src/gillm/focus/registry.py', 'register_os_strategy', 1, 5, 2).
 python_function('src/gillm/focus/registry.py', 'get_os_strategy', 1, 3, 0).
@@ -116,6 +277,7 @@ python_function('src/gillm/injection/os_injector.py', '_os_injector_skip_reason'
 python_function('src/gillm/injection/os_injector.py', 'try_drive_with_profile', 0, 8, 7).
 python_function('src/gillm/intents/contract.py', 'gui_contract', 9, 1, 1).
 python_function('src/gillm/intents/contract.py', 'validate_contract_runtime', 1, 7, 6).
+python_function('src/gillm/nlp_bridge/client.py', '_heuristic_parse_intent', 1, 2, 4).
 python_function('src/gillm/recovery/diagnose.py', 'probe_environment', 0, 3, 6).
 python_function('src/gillm/recovery/diagnose.py', 'classify_failure', 0, 24, 1).
 python_function('src/gillm/recovery/diagnose.py', 'diagnose_drive_reply', 1, 9, 8).
@@ -164,9 +326,10 @@ python_function('tests/test_drive_backend.py', 'test_apply_keyboard_injection_pr
 python_function('tests/test_gillm.py', 'test_focus_strategies_registry', 0, 8, 3).
 python_function('tests/test_gillm.py', 'test_injector_dry_run', 0, 5, 2).
 python_function('tests/test_gillm.py', 'test_injector_empty_text_error', 0, 1, 3).
-python_function('tests/test_gillm.py', 'test_nlp_bridge_heuristic_parsing', 0, 6, 3).
+python_function('tests/test_gillm.py', 'test_nlp_bridge_heuristic_parsing', 1, 6, 4).
 python_function('tests/test_gillm.py', 'test_orchestrator_execution', 0, 4, 3).
-python_function('tests/test_gillm.py', 'test_orchestrator_nlp_drive', 1, 5, 5).
+python_function('tests/test_gillm.py', 'test_orchestrator_dry_run_focus', 0, 4, 3).
+python_function('tests/test_gillm.py', 'test_orchestrator_nlp_drive', 1, 6, 4).
 python_function('tests/test_gillm.py', 'test_contract_validation', 0, 3, 2).
 python_function('tests/test_gui_driver.py', 'test_session_backend_order_wayland_prefers_wtype', 0, 3, 1).
 python_function('tests/test_gui_driver.py', 'test_backend_selector_forced_backend', 0, 3, 2).
@@ -221,6 +384,41 @@ python_function('tests/test_recovery.py', 'test_koru_drive_payload_maps_to_actio
 python_function('tests/test_recovery.py', 'test_recovery_hints_for_wayland_reload', 0, 2, 2).
 
 % ── Python Classes ───────────────────────────────────────
+python_class('packages/dsl2gillm/src/dsl2gillm/events.py', 'StoredEvent').
+python_method('StoredEvent', 'to_dict', 0, 1, 1).
+python_class('packages/dsl2gillm/src/dsl2gillm/events.py', 'EventStore').
+python_method('EventStore', '__init__', 1, 3, 0).
+python_method('EventStore', 'for_workdir', 2, 2, 4).
+python_method('EventStore', 'append_command', 2, 3, 22).
+python_method('EventStore', 'read_all', 0, 8, 17).
+python_method('EventStore', 'replay', 0, 1, 1).
+python_class('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', 'HandlerResult').
+python_method('HandlerResult', 'to_dict', 0, 1, 0).
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'ActionsCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'CaptureCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'ExecuteCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'FocusCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'HealthCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'InjectCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'OrientCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'ParseCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'ResolveCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'SimulateCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'ValidateCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/result.py', 'DslResult').
+python_method('DslResult', 'to_dict', 0, 1, 0).
+python_class('packages/mcp2gillm/src/mcp2gillm/server.py', 'GillmMCPServer').
+python_method('GillmMCPServer', '__post_init__', 0, 1, 3).
+python_method('GillmMCPServer', '_register_tools', 0, 1, 6).
+python_method('GillmMCPServer', 'run', 0, 1, 1).
+python_class('packages/nlp2gillm/src/nlp2gillm/llm_backend.py', 'LLMBackend').
+python_method('LLMBackend', 'complete', 0, 3, 0).
+python_class('packages/nlp2gillm/src/nlp2gillm/llm_backend.py', 'LitellmBackend').
+python_method('LitellmBackend', 'complete', 0, 3, 2).
+python_class('packages/nlp2gillm/tests/test_llm_backend.py', '_FakeBackend').
+python_method('_FakeBackend', 'complete', 0, 1, 0).
+python_class('packages/uri2gillm/src/uri2gillm/nlp2uri.py', 'UriHit').
+python_method('UriHit', 'to_dict', 0, 1, 0).
 python_class('src/gillm/capture/mss_backend.py', 'CapturedImage').
 python_class('src/gillm/capture/portal_backend.py', 'PortalCaptureError').
 python_class('src/gillm/config.py', 'AutopilotConfig').
@@ -323,14 +521,14 @@ python_method('Injector', 'type_text', 1, 6, 8).
 python_method('Injector', 'submit_only', 0, 9, 8).
 python_method('Injector', '_call', 1, 10, 7).
 python_class('src/gillm/nlp_bridge/client.py', 'NLPBridgeClient').
-python_method('NLPBridgeClient', '__init__', 1, 2, 1).
-python_method('NLPBridgeClient', 'parse_intent', 1, 5, 4).
+python_method('NLPBridgeClient', '__init__', 0, 2, 1).
+python_method('NLPBridgeClient', 'parse_intent', 1, 2, 2).
 python_class('src/gillm/orchestrator/drive.py', 'DriveOrchestrator').
 python_method('DriveOrchestrator', '__init__', 2, 3, 2).
 python_method('DriveOrchestrator', 'log', 1, 2, 1).
-python_method('DriveOrchestrator', 'focus_target_window', 1, 1, 5).
+python_method('DriveOrchestrator', 'focus_target_window', 1, 2, 6).
 python_method('DriveOrchestrator', 'inject_text', 4, 1, 4).
-python_method('DriveOrchestrator', 'capture_screenshot', 1, 1, 4).
+python_method('DriveOrchestrator', 'capture_screenshot', 1, 3, 6).
 python_method('DriveOrchestrator', 'execute_step', 2, 12, 11).
 python_method('DriveOrchestrator', 'execute_workflow', 2, 3, 4).
 python_method('DriveOrchestrator', 'drive_natural_language', 2, 2, 3).
@@ -447,6 +645,7 @@ sumd_declared_file('testql-scenarios/generated-cli-tests.testql.toon.yaml', 'tes
 sumd_declared_file('project/map.toon.yaml', 'analysis').
 sumd_declared_file('project/logic.pl', 'analysis').
 sumd_declared_file('project/calls.toon.yaml', 'analysis').
+sumd_interface('api', '').
 sumd_interface('cli', 'argparse').
 sumd_interface('cli', '').
 sumd_workflow('venv', 'manual').

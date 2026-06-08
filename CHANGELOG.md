@@ -1,11 +1,45 @@
 # Changelog
 
+**See also:** [README.md](README.md) · [SUMD.md](SUMD.md) · [SUMR.md](SUMR.md)
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.1.11] - 2026-06-08
+
+### Docs
+- Update CHANGELOG.md
+- Update README.md
+- Update SUMD.md
+- Update SUMR.md
+- Update packages/CONTROL_LAYER_PROMPT.template.md
+- Update packages/README.md
+- Update packages/cli2gillm/README.md
+- Update packages/dsl2gillm/README.md
+- Update packages/mcp2gillm/README.md
+- Update packages/nlp2gillm/README.md
+- ... and 4 more files
+
+### Test
+- Update tests/test_gillm.py
+- Update tests/test_os_strategies.py
+
+### Other
+- Update .gitignore
+- Update app.doql.less
+- Update fixtures/workflow-dry.json
+- Update fixtures/workflow.json
+- Update packages/cli2gillm/pyproject.toml
+- Update packages/cli2gillm/src/cli2gillm/__init__.py
+- Update packages/cli2gillm/src/cli2gillm/cli.py
+- Update packages/cli2gillm/src/cli2gillm/shell.py
+- Update packages/cli2gillm/tests/test_cli2gillm.py
+- Update packages/dsl2gillm/proto/dsl2gillm/v1/command.proto
+- ... and 81 more files
 
 ## [0.1.10] - 2026-06-07
 

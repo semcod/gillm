@@ -1,18 +1,18 @@
-# redup/duplication | 3 groups | 42f 3606L | 2026-06-03
+# redup/duplication | 3 groups | 78f 5902L | 2026-06-08
 
 SUMMARY:
-  files_scanned: 42
-  total_lines:   3606
+  files_scanned: 78
+  total_lines:   5902
   dup_groups:    3
   dup_fragments: 7
   saved_lines:   31
-  scan_ms:       2688
+  scan_ms:       2243
 
 HOTSPOTS[4] (files with most duplication):
-  src/gillm/focus/wayland.py  dup=17L  groups=2  frags=2  (0.5%)
-  src/gillm/focus/x11.py  dup=17L  groups=2  frags=2  (0.5%)
-  src/gillm/injection/backends.py  dup=12L  groups=1  frags=2  (0.3%)
-  src/gillm/focus/darwin.py  dup=8L  groups=1  frags=1  (0.2%)
+  src/gillm/focus/wayland.py  dup=17L  groups=2  frags=2  (0.3%)
+  src/gillm/focus/x11.py  dup=17L  groups=2  frags=2  (0.3%)
+  src/gillm/injection/backends.py  dup=12L  groups=1  frags=2  (0.2%)
+  src/gillm/focus/darwin.py  dup=8L  groups=1  frags=1  (0.1%)
 
 DUPLICATES[3] (ranked by impact):
   [f4d731ab73329152]   EXAC  _run  L=8 N=3 saved=16 sim=1.00

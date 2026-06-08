@@ -1,23 +1,73 @@
-# gillm | 53f 5357L | python:50,shell:2,less:1 | 2026-06-03
-# stats: 162 func | 39 cls | 53 mod | CC̄=3.7 | critical:3 | cycles:0
-# alerts[5]: CC classify_failure=24; CC drive_payload_to_action_plan=21; CC _hints_for_kind=15; CC main=9; CC _os_injector_skip_reason=9
-# hotspots[5]: main fan=15; type_with_backend fan=10; inject_with_profile fan=10; _parse_png_to_rgb fan=9; test_inject_with_profile_paste_path_uses_clipboard_then_ctrl_v fan=9
+# gillm | 103f 8038L | python:98,shell:4,less:1 | 2026-06-08
+# stats: 275 func | 59 cls | 103 mod | CC̄=4.1 | critical:17 | cycles:0
+# alerts[5]: CC parse_line=46; CC envelope_to_dict=26; CC uri_to_dsl=26; CC classify_failure=24; CC to_text=22
+# hotspots[5]: create_app fan=24; _handle_subcommand fan=22; dispatch fan=17; main fan=15; parse_line fan=12
 # evolution: baseline
 # Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
-M[53]:
-  app.doql.less,288
+M[103]:
+  app.doql.less,366
+  packages/cli2gillm/src/cli2gillm/__init__.py,2
+  packages/cli2gillm/src/cli2gillm/cli.py,71
+  packages/cli2gillm/src/cli2gillm/shell.py,34
+  packages/cli2gillm/tests/test_cli2gillm.py,7
+  packages/dsl2gillm/scripts/generate-proto.sh,7
+  packages/dsl2gillm/src/dsl2gillm/__init__.py,35
+  packages/dsl2gillm/src/dsl2gillm/bus.py,89
+  packages/dsl2gillm/src/dsl2gillm/cli.py,167
+  packages/dsl2gillm/src/dsl2gillm/codec.py,67
+  packages/dsl2gillm/src/dsl2gillm/codegen.py,113
+  packages/dsl2gillm/src/dsl2gillm/engine.py,6
+  packages/dsl2gillm/src/dsl2gillm/events.py,134
+  packages/dsl2gillm/src/dsl2gillm/grammar.py,177
+  packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py,245
+  packages/dsl2gillm/src/dsl2gillm/models.py,97
+  packages/dsl2gillm/src/dsl2gillm/pb_codec.py,152
+  packages/dsl2gillm/src/dsl2gillm/result.py,29
+  packages/dsl2gillm/src/dsl2gillm/schema_registry.py,50
+  packages/dsl2gillm/src/dsl2gillm/v1/__init__.py,2
+  packages/dsl2gillm/src/dsl2gillm/v1/command_pb2.py,59
+  packages/dsl2gillm/src/dsl2gillm/v1/result_pb2.py,40
+  packages/dsl2gillm/tests/test_bus.py,41
+  packages/dsl2gillm/tests/test_codegen.py,19
+  packages/dsl2gillm/tests/test_dry_run.py,14
+  packages/dsl2gillm/tests/test_parity.py,19
+  packages/dsl2gillm/tests/test_parity_adapters.py,51
+  packages/dsl2gillm/tests/test_protobuf.py,18
+  packages/install-dev.sh,15
+  packages/mcp2gillm/src/mcp2gillm/__init__.py,6
+  packages/mcp2gillm/src/mcp2gillm/cli.py,23
+  packages/mcp2gillm/src/mcp2gillm/server.py,84
+  packages/mcp2gillm/tests/test_mcp2gillm.py,6
+  packages/nlp2gillm/src/nlp2gillm/__init__.py,7
+  packages/nlp2gillm/src/nlp2gillm/cli.py,56
+  packages/nlp2gillm/src/nlp2gillm/llm_backend.py,81
+  packages/nlp2gillm/src/nlp2gillm/to_dsl.py,54
+  packages/nlp2gillm/tests/test_llm_backend.py,12
+  packages/nlp2gillm/tests/test_to_dsl.py,10
+  packages/rest2gillm/src/rest2gillm/__init__.py,6
+  packages/rest2gillm/src/rest2gillm/app.py,88
+  packages/rest2gillm/src/rest2gillm/cli.py,28
+  packages/rest2gillm/tests/test_rest2gillm.py,29
+  packages/uri2gillm/src/uri2gillm/__init__.py,19
+  packages/uri2gillm/src/uri2gillm/cli.py,64
+  packages/uri2gillm/src/uri2gillm/decode.py,55
+  packages/uri2gillm/src/uri2gillm/nlp2uri.py,55
+  packages/uri2gillm/src/uri2gillm/run.py,12
+  packages/uri2gillm/src/uri2gillm/uri.py,53
+  packages/uri2gillm/tests/test_uri.py,15
   project.sh,50
-  src/gillm/__init__.py,25
+  src/gillm/__init__.py,56
   src/gillm/adapters/__init__.py,6
   src/gillm/adapters/koru.py,95
   src/gillm/capture/__init__.py,17
   src/gillm/capture/mss_backend.py,131
   src/gillm/capture/portal_backend.py,114
   src/gillm/cli/__init__.py,6
-  src/gillm/cli/main.py,81
-  src/gillm/config.py,113
+  src/gillm/cli/main.py,98
+  src/gillm/config.py,106
   src/gillm/contracts/__init__.py,24
   src/gillm/contracts/driver.py,137
+  src/gillm/control.py,40
   src/gillm/drivers/__init__.py,7
   src/gillm/drivers/composite.py,181
   src/gillm/drivers/dry_run.py,90
@@ -37,9 +87,9 @@ M[53]:
   src/gillm/intents/__init__.py,6
   src/gillm/intents/contract.py,79
   src/gillm/nlp_bridge/__init__.py,6
-  src/gillm/nlp_bridge/client.py,71
-  src/gillm/orchestrator/__init__.py,6
-  src/gillm/orchestrator/drive.py,155
+  src/gillm/nlp_bridge/client.py,45
+  src/gillm/orchestrator/__init__.py,9
+  src/gillm/orchestrator/drive.py,169
   src/gillm/recovery/__init__.py,21
   src/gillm/recovery/diagnose.py,151
   src/gillm/recovery/repair_hints.py,99
@@ -51,7 +101,7 @@ M[53]:
   src/gillm/runtime/errors.py,6
   src/gillm/runtime/profiles.py,118
   tests/test_drive_backend.py,72
-  tests/test_gillm.py,97
+  tests/test_gillm.py,105
   tests/test_gui_driver.py,43
   tests/test_injector.py,286
   tests/test_os_injector.py,352
@@ -59,7 +109,218 @@ M[53]:
   tests/test_recovery.py,49
   tree.sh,2
 D:
+  packages/cli2gillm/src/cli2gillm/__init__.py:
+  packages/cli2gillm/src/cli2gillm/cli.py:
+    e: main
+    main(argv)
+  packages/cli2gillm/src/cli2gillm/shell.py:
+    e: run_shell
+    run_shell()
+  packages/cli2gillm/tests/test_cli2gillm.py:
+    e: test_exec_health_via_bus
+    test_exec_health_via_bus()
+  packages/dsl2gillm/src/dsl2gillm/__init__.py:
+  packages/dsl2gillm/src/dsl2gillm/bus.py:
+    e: dispatch,execute_dsl_line,execute_dsl
+    dispatch(command)
+    execute_dsl_line(line)
+    execute_dsl(text)
+  packages/dsl2gillm/src/dsl2gillm/cli.py:
+    e: _run_results,main,_main_subcommand,_main_legacy,_handle_subcommand
+    _run_results(results)
+    main(argv)
+    _main_subcommand(argv)
+    _main_legacy(argv)
+    _handle_subcommand(args)
+  packages/dsl2gillm/src/dsl2gillm/codec.py:
+    e: _validate_with_pydantic,validate_payload,parse_text,envelope_to_bytes,envelope_from_bytes,envelope_to_json,envelope_from_json,roundtrip_text
+    _validate_with_pydantic(payload;verb)
+    validate_payload(payload)
+    parse_text(line)
+    envelope_to_bytes(payload)
+    envelope_from_bytes(data)
+    envelope_to_json(payload)
+    envelope_from_json(data)
+    roundtrip_text(line)
+  packages/dsl2gillm/src/dsl2gillm/codegen.py:
+    e: _schema_type,_model_name,_field_line,render_models,load_schemas,generate_models,main
+    _schema_type(prop)
+    _model_name(verb)
+    _field_line(name;prop)
+    render_models(schemas)
+    load_schemas()
+    generate_models(output)
+    main()
+  packages/dsl2gillm/src/dsl2gillm/engine.py:
+  packages/dsl2gillm/src/dsl2gillm/events.py:
+    e: StoredEvent,EventStore
+    StoredEvent: to_dict(0)
+    EventStore: __init__(1),for_workdir(2),append_command(2),read_all(0),replay(0)
+  packages/dsl2gillm/src/dsl2gillm/grammar.py:
+    e: _steps_from_line,parse_line,to_text
+    _steps_from_line(line;rest)
+    parse_line(line)
+    to_text(payload)
+  packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py:
+    e: _load_steps,run_query,run_command,_health,_orient,_actions,_parse,_validate,_resolve,_capture,_execute,_simulate,_focus,_inject,HandlerResult
+    HandlerResult: to_dict(0)
+    _load_steps(payload)
+    run_query(payload)
+    run_command(payload)
+    _health()
+    _orient()
+    _actions()
+    _parse(payload)
+    _validate(payload)
+    _resolve(payload)
+    _capture(payload)
+    _execute(payload)
+    _simulate(payload)
+    _focus(payload)
+    _inject(payload)
+  packages/dsl2gillm/src/dsl2gillm/models.py:
+    e: ActionsCommand,CaptureCommand,ExecuteCommand,FocusCommand,HealthCommand,InjectCommand,OrientCommand,ParseCommand,ResolveCommand,SimulateCommand,ValidateCommand
+    ActionsCommand:
+    CaptureCommand:
+    ExecuteCommand:
+    FocusCommand:
+    HealthCommand:
+    InjectCommand:
+    OrientCommand:
+    ParseCommand:
+    ResolveCommand:
+    SimulateCommand:
+    ValidateCommand:
+  packages/dsl2gillm/src/dsl2gillm/pb_codec.py:
+    e: _set_body,envelope_to_dict,encode_protobuf,decode_protobuf,encode_text_to_protobuf,decode_protobuf_to_text,result_to_pb,encode_result_protobuf
+    _set_body(envelope;cmd)
+    envelope_to_dict(envelope)
+    encode_protobuf(cmd)
+    decode_protobuf(data)
+    encode_text_to_protobuf(line)
+    decode_protobuf_to_text(data)
+    result_to_pb(result)
+    encode_result_protobuf(result)
+  packages/dsl2gillm/src/dsl2gillm/result.py:
+    e: DslResult
+    DslResult: to_dict(0)
+  packages/dsl2gillm/src/dsl2gillm/schema_registry.py:
+    e: _load_schemas,schema_for_verb,all_verbs,validate_schemas
+    _load_schemas()
+    schema_for_verb(verb)
+    all_verbs()
+    validate_schemas()
+  packages/dsl2gillm/src/dsl2gillm/v1/__init__.py:
+  packages/dsl2gillm/src/dsl2gillm/v1/command_pb2.py:
+  packages/dsl2gillm/src/dsl2gillm/v1/result_pb2.py:
+  packages/dsl2gillm/tests/test_bus.py:
+    e: test_health,test_orient,test_actions,test_validate_steps,test_simulate_wait
+    test_health()
+    test_orient()
+    test_actions()
+    test_validate_steps()
+    test_simulate_wait()
+  packages/dsl2gillm/tests/test_codegen.py:
+    e: test_load_schemas_has_all_verbs,test_generate_models
+    test_load_schemas_has_all_verbs()
+    test_generate_models(tmp_path)
+  packages/dsl2gillm/tests/test_dry_run.py:
+    e: test_simulate_workflow_fixture
+    test_simulate_workflow_fixture()
+  packages/dsl2gillm/tests/test_parity.py:
+    e: test_parity_text_vs_dict_health,test_parity_text_vs_dict_validate
+    test_parity_text_vs_dict_health()
+    test_parity_text_vs_dict_validate()
+  packages/dsl2gillm/tests/test_parity_adapters.py:
+    e: _baseline,test_parity_text_vs_protobuf,test_parity_uri_adapter,test_parity_rest_adapter,test_parity_simulate_offline
+    _baseline()
+    test_parity_text_vs_protobuf()
+    test_parity_uri_adapter()
+    test_parity_rest_adapter()
+    test_parity_simulate_offline()
+  packages/dsl2gillm/tests/test_protobuf.py:
+    e: test_encode_decode_health,test_roundtrip_health,test_roundtrip_parse
+    test_encode_decode_health()
+    test_roundtrip_health()
+    test_roundtrip_parse()
+  packages/mcp2gillm/src/mcp2gillm/__init__.py:
+  packages/mcp2gillm/src/mcp2gillm/cli.py:
+    e: main
+    main(argv)
+  packages/mcp2gillm/src/mcp2gillm/server.py:
+    e: _require_fastmcp,create_server,run_server,GillmMCPServer
+    GillmMCPServer: __post_init__(0),_register_tools(0),run(0)
+    _require_fastmcp()
+    create_server(name)
+    run_server()
+  packages/mcp2gillm/tests/test_mcp2gillm.py:
+    e: test_create_server
+    test_create_server()
+  packages/nlp2gillm/src/nlp2gillm/__init__.py:
+  packages/nlp2gillm/src/nlp2gillm/cli.py:
+    e: main
+    main(argv)
+  packages/nlp2gillm/src/nlp2gillm/llm_backend.py:
+    e: get_backend,nl_to_dsl_line,LLMBackend,LitellmBackend
+    LLMBackend: complete(0)
+    LitellmBackend: complete(0)
+    get_backend(backend)
+    nl_to_dsl_line(prompt)
+  packages/nlp2gillm/src/nlp2gillm/to_dsl.py:
+    e: to_dsl,apply_nl
+    to_dsl(prompt)
+    apply_nl(prompt)
+  packages/nlp2gillm/tests/test_llm_backend.py:
+    e: test_nl_to_dsl_line_fake_backend,_FakeBackend
+    _FakeBackend: complete(0)
+    test_nl_to_dsl_line_fake_backend()
+  packages/nlp2gillm/tests/test_to_dsl.py:
+    e: test_to_dsl_health,test_to_dsl_capture
+    test_to_dsl_health()
+    test_to_dsl_capture()
+  packages/rest2gillm/src/rest2gillm/__init__.py:
+  packages/rest2gillm/src/rest2gillm/app.py:
+    e: create_app
+    create_app()
+  packages/rest2gillm/src/rest2gillm/cli.py:
+    e: main
+    main(argv)
+  packages/rest2gillm/tests/test_rest2gillm.py:
+    e: test_root_endpoint,test_health_endpoint,test_post_dsl_health
+    test_root_endpoint()
+    test_health_endpoint()
+    test_post_dsl_health()
+  packages/uri2gillm/src/uri2gillm/__init__.py:
+  packages/uri2gillm/src/uri2gillm/cli.py:
+    e: main
+    main(argv)
+  packages/uri2gillm/src/uri2gillm/decode.py:
+    e: uri_to_dsl
+    uri_to_dsl(uri)
+  packages/uri2gillm/src/uri2gillm/nlp2uri.py:
+    e: nlp2uri,best_uri,UriHit
+    UriHit: to_dict(0)
+    nlp2uri(prompt)
+    best_uri(prompt)
+  packages/uri2gillm/src/uri2gillm/run.py:
+    e: run_uri
+    run_uri(uri)
+  packages/uri2gillm/src/uri2gillm/uri.py:
+    e: _encode,_decode,uri_for_block,uri_for_cmd,is_gillm_uri,parse_gillm_uri
+    _encode(value)
+    _decode(value)
+    uri_for_block()
+    uri_for_cmd(verb)
+    is_gillm_uri(uri)
+    parse_gillm_uri(uri)
+  packages/uri2gillm/tests/test_uri.py:
+    e: test_decode_health_cmd,test_nlp2uri_capture
+    test_decode_health_cmd()
+    test_nlp2uri_capture()
   src/gillm/__init__.py:
+    e: __getattr__,__dir__
+    __getattr__(name)
+    __dir__()
   src/gillm/adapters/__init__.py:
   src/gillm/adapters/koru.py:
     e: drive_payload_to_action_plan,koru_drive_to_payload,_steps_from_prefer
@@ -83,7 +344,8 @@ D:
     capture_portal_png()
   src/gillm/cli/__init__.py:
   src/gillm/cli/main.py:
-    e: main
+    e: _print_result,main
+    _print_result(result)
     main()
   src/gillm/config.py:
     e: resolve_xdg_path,default_config_path,_merge_submit_keys,load_config,_cached_config,cached_config,clear_config_cache,AutopilotConfig
@@ -105,6 +367,12 @@ D:
     ActionPlan: chat_inject_and_submit(1)
     ExecutionOutcome: to_dict(0)
     GuiDriver: probe(0),focus(1),type_text(1),hotkey(0),click(2),screenshot(0),execute(1)  # Stable GUI control surface for orchestrators (Koru, CLI, tes
+  src/gillm/control.py:
+    e: dispatch_health,dispatch_parse,dispatch_execute,dispatch_validate
+    dispatch_health()
+    dispatch_parse(instruction)
+    dispatch_execute()
+    dispatch_validate()
   src/gillm/drivers/__init__.py:
   src/gillm/drivers/composite.py:
     e: CompositeGuiDriver
@@ -194,8 +462,9 @@ D:
     validate_contract_runtime(func)
   src/gillm/nlp_bridge/__init__.py:
   src/gillm/nlp_bridge/client.py:
-    e: NLPBridgeClient
-    NLPBridgeClient: __init__(1),parse_intent(1)  # Bridge to nlp2dsl backend for resolving natural language GUI
+    e: _heuristic_parse_intent,NLPBridgeClient
+    NLPBridgeClient: __init__(0),parse_intent(1)  # Bridge to nlp2dsl when installed; otherwise a small heuristi
+    _heuristic_parse_intent(command)
   src/gillm/orchestrator/__init__.py:
   src/gillm/orchestrator/drive.py:
     e: DriveOrchestrator
@@ -272,12 +541,13 @@ D:
     test_apply_keyboard_injection_delegates_to_injector()
     test_apply_keyboard_injection_propagates_injector_error()
   tests/test_gillm.py:
-    e: test_focus_strategies_registry,test_injector_dry_run,test_injector_empty_text_error,test_nlp_bridge_heuristic_parsing,test_orchestrator_execution,test_orchestrator_nlp_drive,test_contract_validation
+    e: test_focus_strategies_registry,test_injector_dry_run,test_injector_empty_text_error,test_nlp_bridge_heuristic_parsing,test_orchestrator_execution,test_orchestrator_dry_run_focus,test_orchestrator_nlp_drive,test_contract_validation
     test_focus_strategies_registry()
     test_injector_dry_run()
     test_injector_empty_text_error()
-    test_nlp_bridge_heuristic_parsing()
+    test_nlp_bridge_heuristic_parsing(monkeypatch)
     test_orchestrator_execution()
+    test_orchestrator_dry_run_focus()
     test_orchestrator_nlp_drive(monkeypatch)
     test_contract_validation()
   tests/test_gui_driver.py:

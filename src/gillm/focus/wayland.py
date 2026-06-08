@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import os
 import shutil
-import subprocess
 import time
 from dataclasses import dataclass
 
+from gillm.focus.cmd import run_focus_cmd
 from gillm.focus.registry import register_os_strategy
+from gillm.focus.wmctrl import focus_via_wmctrl
 from gillm.focus.strategy import (
     FocusOutcome,
     KeySequence,
@@ -16,16 +17,6 @@ from gillm.focus.strategy import (
     OsStrategy,
     StaticOsIdentityMixin,
 )
-
-
-def _run(argv: list[str], *, timeout: float = 10.0) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(
-        argv,
-        capture_output=True,
-        text=True,
-        check=False,
-        timeout=timeout,
-    )
 
 
 _YDOTOOL_KEY_CODES: dict[str, int] = {
@@ -147,7 +138,7 @@ class WaylandLinuxStrategy(StaticOsIdentityMixin, OsStrategy):
         )
 
     def focus_window(self, window_name_hints: tuple[str, ...]) -> FocusOutcome:
-        if self._focus_via_wmctrl(window_name_hints):
+        if focus_via_wmctrl(window_name_hints):
             return FocusOutcome(ok=True, method="wmctrl")
         if self._term_program_is_vscode_family():
             return FocusOutcome(
@@ -177,17 +168,6 @@ class WaylandLinuxStrategy(StaticOsIdentityMixin, OsStrategy):
         return False
 
     @staticmethod
-    def _focus_via_wmctrl(hints: tuple[str, ...]) -> bool:
-        if not shutil.which("wmctrl"):
-            return False
-        for hint in hints:
-            proc = _run(["wmctrl", "-a", hint])
-            if proc.returncode == 0:
-                time.sleep(0.2)
-                return True
-        return False
-
-    @staticmethod
     def _inject_via_wtype(sequence: KeySequence) -> bool:
         argv: list[str] = ["wtype"]
         if sequence.literal_text is not None:
@@ -200,7 +180,7 @@ class WaylandLinuxStrategy(StaticOsIdentityMixin, OsStrategy):
                 argv.extend(["-p", key])
             else:
                 argv.extend(["-k", key])
-        proc = _run(argv)
+        proc = run_focus_cmd(argv)
         if proc.returncode != 0:
             return False
         stderr = (proc.stderr or "").lower()
@@ -211,7 +191,7 @@ class WaylandLinuxStrategy(StaticOsIdentityMixin, OsStrategy):
     @staticmethod
     def _inject_via_ydotool(sequence: KeySequence) -> bool:
         if sequence.literal_text is not None:
-            return _run(["ydotool", "type", "--", sequence.literal_text]).returncode == 0
+            return run_focus_cmd(["ydotool", "type", "--", sequence.literal_text]).returncode == 0
         codes: list[int] = []
         for modifier in sequence.modifiers:
             scan = _scan_for_key(modifier)
@@ -228,7 +208,7 @@ class WaylandLinuxStrategy(StaticOsIdentityMixin, OsStrategy):
         argv.append(f"{primary}:0")
         for code in reversed(codes):
             argv.append(f"{code}:0")
-        return _run(argv).returncode == 0
+        return run_focus_cmd(argv).returncode == 0
 
 
 register_os_strategy(WaylandLinuxStrategy())

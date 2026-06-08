@@ -66,18 +66,25 @@ def test_orchestrator_execution() -> None:
     assert results[0]["ok"] is True
 
 
-def test_orchestrator_nlp_drive(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_orchestrator_dry_run_focus() -> None:
     orchestrator = DriveOrchestrator()
-    # Mock focus_target_window to always succeed so we execute both steps
-    monkeypatch.setattr(
-        orchestrator,
-        "focus_target_window",
-        lambda window_name_hints: FocusOutcome(ok=True, method="mock"),
+    results = orchestrator.execute_workflow(
+        [{"action": "focus_window", "config": {"window_name_hints": ["vscode"]}}],
+        dry_run=True,
     )
+    assert len(results) == 1
+    assert results[0]["ok"] is True
+    assert results[0]["method"] == "dry_run"
+
+
+def test_orchestrator_nlp_drive(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr("gillm.nlp_bridge.client._ShimClient", None)
+    orchestrator = DriveOrchestrator()
     results = orchestrator.drive_natural_language("focus windsurf and type status", dry_run=True)
     assert len(results) == 2
     assert results[0]["action"] == "focus_window"
     assert results[0]["ok"] is True
+    assert results[0]["method"] == "dry_run"
     assert results[1]["action"] == "inject_keys"
 
 

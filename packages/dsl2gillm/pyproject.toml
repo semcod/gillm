@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dsl2gillm"
+version = "0.1.0"
+description = "Gillm control DSL with JSON Schema validation and CQRS bus"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+dependencies = [
+    "gillm>=0.1.10",
+    "jsonschema>=4.0",
+    "protobuf>=5.0",
+]
+
+[project.optional-dependencies]
+codegen = ["grpcio-tools>=1.60", "pydantic>=2.0"]
+dev = ["pytest>=8.0", "pydantic>=2.0"]
+
+[project.scripts]
+dsl2gillm = "dsl2gillm.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.uv.sources]
+gillm = { workspace = true }
+
+[tool.setuptools.package-data]
+"dsl2gillm" = ["schema/commands/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

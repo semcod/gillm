@@ -1,32 +1,56 @@
-# code2llm/evolution | 188 func | 28f | 2026-06-03
+# code2llm/evolution | 286 func | 54f | 2026-06-08
 # generated in 0.00s
 
-NEXT[4] (ranked by impact):
-  [1] !  SPLIT-FUNC      CompositeGuiDriver.execute  CC=18  fan=14
+NEXT[10] (ranked by impact):
+  [1] !! SPLIT-FUNC      parse_line  CC=46  fan=16
+      WHY: CC=46 exceeds 15
+      EFFORT: ~1h  IMPACT: 736
+
+  [2] !  SPLIT-FUNC      _handle_subcommand  CC=19  fan=22
+      WHY: CC=19 exceeds 15
+      EFFORT: ~1h  IMPACT: 418
+
+  [3] !  SPLIT-FUNC      main  CC=16  fan=17
+      WHY: CC=16 exceeds 15
+      EFFORT: ~1h  IMPACT: 272
+
+  [4] !  SPLIT-FUNC      dispatch  CC=15  fan=18
+      WHY: CC=15 exceeds 15
+      EFFORT: ~1h  IMPACT: 270
+
+  [5] !  SPLIT-FUNC      CompositeGuiDriver.execute  CC=18  fan=14
       WHY: CC=18 exceeds 15
       EFFORT: ~1h  IMPACT: 252
 
-  [2] !  SPLIT-FUNC      drive_payload_to_action_plan  CC=21  fan=11
+  [6] !  SPLIT-FUNC      drive_payload_to_action_plan  CC=21  fan=11
       WHY: CC=21 exceeds 15
       EFFORT: ~1h  IMPACT: 231
 
-  [3] !  SPLIT-FUNC      _hints_for_kind  CC=15  fan=3
-      WHY: CC=15 exceeds 15
-      EFFORT: ~1h  IMPACT: 45
+  [7] !! SPLIT-FUNC      uri_to_dsl  CC=26  fan=8
+      WHY: CC=26 exceeds 15
+      EFFORT: ~1h  IMPACT: 208
 
-  [4] !! SPLIT           goal.yaml
-      WHY: 511L, 0 classes, max CC=0
-      EFFORT: ~4h  IMPACT: 0
+  [8] !  SPLIT-FUNC      to_text  CC=22  fan=8
+      WHY: CC=22 exceeds 15
+      EFFORT: ~1h  IMPACT: 176
+
+  [9] !  SPLIT-FUNC      _set_body  CC=17  fan=8
+      WHY: CC=17 exceeds 15
+      EFFORT: ~1h  IMPACT: 136
+
+  [10] !! SPLIT-FUNC      envelope_to_dict  CC=26  fan=5
+      WHY: CC=26 exceeds 15
+      EFFORT: ~1h  IMPACT: 130
 
 
 RISKS[1]:
   ⚠ Splitting goal.yaml may break 0 import paths
 
 METRICS-TARGET:
-  CC̄:          3.6 → ≤2.5
-  max-CC:      24 → ≤12
+  CC̄:          4.0 → ≤2.8
+  max-CC:      46 → ≤20
   god-modules: 1 → 0
-  high-CC(≥15): 4 → ≤2
+  high-CC(≥15): 12 → ≤6
   hub-types:   0 → ≤0
 
 PATTERNS (language parser shared logic):
@@ -54,4 +78,4 @@ PATTERNS (language parser shared logic):
     - Standardized FunctionInfo/ClassInfo models
 
 HISTORY:
-  prev CC̄=3.5 → now CC̄=3.6
+  prev CC̄=3.6 → now CC̄=4.0

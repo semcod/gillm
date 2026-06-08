@@ -122,7 +122,7 @@ class WaylandLinuxStrategyTests(unittest.TestCase):
                 "gillm.focus.wayland.shutil.which",
                 lambda name: f"/usr/bin/{name}" if name == "wtype" else None,
             ),
-            mock.patch("gillm.focus.wayland._run", fake_run),
+            mock.patch("gillm.focus.wayland.run_focus_cmd", fake_run),
         ):
             self.assertTrue(
                 WaylandLinuxStrategy().inject_keys(
@@ -146,7 +146,7 @@ class WaylandLinuxStrategyTests(unittest.TestCase):
                 "gillm.focus.wayland.shutil.which",
                 lambda name: f"/usr/bin/{name}" if name == "wtype" else None,
             ),
-            mock.patch("gillm.focus.wayland._run", fake_run),
+            mock.patch("gillm.focus.wayland.run_focus_cmd", fake_run),
         ):
             self.assertTrue(
                 WaylandLinuxStrategy().inject_keys(
@@ -181,7 +181,7 @@ class WaylandLinuxStrategyTests(unittest.TestCase):
                 "gillm.focus.wayland.shutil.which",
                 lambda name: f"/usr/bin/{name}" if name in {"wtype", "ydotool"} else None,
             ),
-            mock.patch("gillm.focus.wayland._run", fake_run),
+            mock.patch("gillm.focus.wayland.run_focus_cmd", fake_run),
             mock.patch.dict(
                 "os.environ",
                 {"KORU_OS_PREFER_YDOTOOL": "0", "XDG_CURRENT_DESKTOP": "KDE"},
@@ -206,7 +206,7 @@ class WaylandLinuxStrategyTests(unittest.TestCase):
                 "gillm.focus.wayland.shutil.which",
                 lambda name: f"/usr/bin/{name}" if name in {"wtype", "ydotool"} else None,
             ),
-            mock.patch("gillm.focus.wayland._run", fake_run),
+            mock.patch("gillm.focus.wayland.run_focus_cmd", fake_run),
             mock.patch.dict(
                 "os.environ",
                 {"XDG_CURRENT_DESKTOP": "GNOME", "KORU_OS_PREFER_YDOTOOL": ""},
@@ -232,7 +232,7 @@ class WaylandLinuxStrategyTests(unittest.TestCase):
                 "gillm.focus.wayland.shutil.which",
                 lambda name: f"/usr/bin/{name}" if name == "ydotool" else None,
             ),
-            mock.patch("gillm.focus.wayland._run", fake_run),
+            mock.patch("gillm.focus.wayland.run_focus_cmd", fake_run),
             mock.patch.dict(
                 "os.environ",
                 {"KORU_OS_PREFER_YDOTOOL": "1"},
@@ -262,7 +262,7 @@ class WaylandLinuxStrategyTests(unittest.TestCase):
                 "gillm.focus.wayland.shutil.which",
                 lambda name: f"/usr/bin/{name}" if name == "ydotool" else None,
             ),
-            mock.patch("gillm.focus.wayland._run", fake_run),
+            mock.patch("gillm.focus.wayland.run_focus_cmd", fake_run),
             mock.patch.dict(
                 "os.environ",
                 {"KORU_OS_PREFER_YDOTOOL": "1"},
@@ -287,7 +287,7 @@ class WaylandLinuxStrategyTests(unittest.TestCase):
                 "gillm.focus.wayland.shutil.which",
                 lambda name: f"/usr/bin/{name}" if name in {"wtype", "ydotool"} else None,
             ),
-            mock.patch("gillm.focus.wayland._run", fake_run),
+            mock.patch("gillm.focus.wayland.run_focus_cmd", fake_run),
             mock.patch.dict(
                 "os.environ",
                 {"XDG_CURRENT_DESKTOP": "GNOME", "KORU_OS_PREFER_YDOTOOL": "0"},
@@ -336,7 +336,7 @@ class X11LinuxStrategyTests(unittest.TestCase):
                 "gillm.focus.x11.shutil.which",
                 lambda name: f"/usr/bin/{name}",
             ),
-            mock.patch("gillm.focus.x11._run", fake_run),
+            mock.patch("gillm.focus.x11.run_focus_cmd", fake_run),
         ):
             outcome = X11LinuxStrategy().focus_window(("Cursor",))
         self.assertTrue(outcome.ok)
@@ -357,7 +357,7 @@ class DarwinStrategyTests(unittest.TestCase):
                 lambda name: f"/usr/bin/{name}" if name == "osascript" else None,
             ),
             mock.patch(
-                "gillm.focus.darwin._run",
+                "gillm.focus.darwin.run_focus_cmd",
                 lambda *_a, **_kw: mock.Mock(returncode=0),
             ),
         ):

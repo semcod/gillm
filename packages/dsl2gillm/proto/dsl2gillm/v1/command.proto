@@ -1,0 +1,67 @@
+syntax = "proto3";
+package dsl2gillm.v1;
+
+message HealthQuery {}
+
+message OrientQuery {}
+
+message ActionsQuery {}
+
+message ParseQuery {
+  string instruction = 1;
+}
+
+message ValidateQuery {
+  string file = 1;
+  string steps_json = 2;
+}
+
+message ResolveQuery {
+  string prompt = 1;
+}
+
+message CaptureQuery {
+  double scale = 1;
+}
+
+message ExecuteCommand {
+  string file = 1;
+  string steps_json = 2;
+  bool dry_run = 3;
+}
+
+message SimulateCommand {
+  string file = 1;
+  string steps_json = 2;
+}
+
+message FocusCommand {
+  string hints = 1;
+  bool dry_run = 2;
+}
+
+message InjectCommand {
+  string text = 1;
+  string ide = 2;
+  bool submit = 3;
+  bool dry_run = 4;
+}
+
+message DslEnvelope {
+  string verb = 1;
+  oneof body {
+    HealthQuery health = 10;
+    OrientQuery orient = 11;
+    ActionsQuery actions = 12;
+    ParseQuery parse = 13;
+    ValidateQuery validate = 14;
+    ResolveQuery resolve = 15;
+    CaptureQuery capture = 16;
+    ExecuteCommand execute = 17;
+    SimulateCommand simulate = 18;
+    FocusCommand focus = 19;
+    InjectCommand inject = 20;
+  }
+  string default_file = 30;
+  string correlation_id = 31;
+}

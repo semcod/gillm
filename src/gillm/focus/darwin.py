@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 import shutil
-import subprocess
 import sys
 from dataclasses import dataclass
 
+from gillm.focus.cmd import run_focus_cmd
 from gillm.focus.registry import register_os_strategy
 from gillm.focus.strategy import (
     FocusOutcome,
@@ -15,16 +15,6 @@ from gillm.focus.strategy import (
     OsStrategy,
     StaticOsIdentityMixin,
 )
-
-
-def _run(argv: list[str], *, timeout: float = 10.0) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(
-        argv,
-        capture_output=True,
-        text=True,
-        check=False,
-        timeout=timeout,
-    )
 
 
 @dataclass(frozen=True)
@@ -56,7 +46,7 @@ class DarwinStrategy(StaticOsIdentityMixin, OsStrategy):
             return FocusOutcome(ok=False, detail="darwin: osascript not on PATH")
         for hint in window_name_hints:
             script = f'tell application "{hint}" to activate'
-            if _run(["osascript", "-e", script]).returncode == 0:
+            if run_focus_cmd(["osascript", "-e", script]).returncode == 0:
                 return FocusOutcome(ok=True, method="osascript")
         return FocusOutcome(
             ok=False,

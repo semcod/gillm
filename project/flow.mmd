@@ -1,26 +1,31 @@
 flowchart TD
-%% generated in 0.00s
+%% generated in 0.01s
 
     %% Entry points (blue)
     classDef entry fill:#4dabf7,stroke:#1971c2,color:#fff
 
-    subgraph Core
-        src__gillm__config__resolve_xdg_path["resolve_xdg_path"]
-        src__gillm__config__AutopilotConfig__submit_key_for["submit_key_for"]
-        src__gillm__config__default_config_path["default_config_path"]
-        src__gillm__config__load_config["load_config"]
-        src__gillm__config___cached_config["_cached_config"]
-        src__gillm__config__cached_config["cached_config"]
-        src__gillm__config__clear_config_cache["clear_config_cache"]
-        src__gillm__cli__main__main["main"]
-        src__gillm__nlp_bridge__client__NLPBridgeClient__parse_intent["parse_intent"]
-        src__gillm__injection__drive_backend__try_os_injector_drive["try_os_injector_drive"]
-        src__gillm__injection__drive_backend__format_os_injector_ack["format_os_injector_ack"]
-        src__gillm__injection__drive_backend__apply_keyboard_injection["apply_keyboard_injection"]
-        src__gillm__focus__registry__register_os_strategy["register_os_strategy"]
-        src__gillm__focus__registry__get_os_strategy["get_os_strategy"]
-        src__gillm__focus__registry__list_os_strategy_ids["list_os_strategy_ids"]
-        ...["+103 more"]
+    subgraph CLI
+        packages__cli2gillm__src__cli2gillm__cli__main["main"]
+        packages__cli2gillm__src__cli2gillm__shell__run_shell["run_shell"]
     end
 
-    class src__gillm__config__AutopilotConfig__submit_key_for,src__gillm__config__clear_config_cache,src__gillm__cli__main__main,src__gillm__nlp_bridge__client__NLPBridgeClient__parse_intent,src__gillm__injection__drive_backend__try_os_injector_drive,src__gillm__injection__drive_backend__format_os_injector_ack,src__gillm__injection__drive_backend__apply_keyboard_injection,src__gillm__focus__registry__register_os_strategy,src__gillm__focus__registry__get_os_strategy,src__gillm__focus__registry__list_os_strategy_ids entry
+    subgraph Core
+        src__gillm__recovery__repair_hints___hints_for_kind{{_hints_for_kind CC=15}}
+        src__gillm__recovery__diagnose__EnvironmentDiagnostics__to_dict["to_dict"]
+        src__gillm__recovery__diagnose__DriveFailureContext__to_dict["to_dict"]
+        src__gillm__recovery__diagnose__classify_failure{{classify_failure CC=24}}
+        src__gillm__recovery__diagnose__diagnose_drive_reply["diagnose_drive_reply"]
+        src__gillm__injection__injector___which["_which"]
+        src__gillm__injection__injector___session_type["_session_type"]
+        src__gillm__injection__injector__BackendStatus__to_dict["to_dict"]
+        src__gillm__injection__injector__InjectionResult__to_dict["to_dict"]
+        src__gillm__injection__injector___default_runner["_default_runner"]
+        src__gillm__injection__injector__Injector__probe["probe"]
+        src__gillm__injection__injector__Injector___candidate_backends["_candidate_backends"]
+        src__gillm__injection__injector__Injector__select_backend["select_backend"]
+        src__gillm__injection__injector__Injector___type_with_backend["_type_with_backend"]
+        src__gillm__injection__injector__Injector___type_text_backends["_type_text_backends"]
+        ...["+144 more"]
+    end
+
+    class src__gillm__recovery__diagnose__EnvironmentDiagnostics__to_dict,src__gillm__recovery__diagnose__DriveFailureContext__to_dict,src__gillm__recovery__diagnose__diagnose_drive_reply,src__gillm__injection__injector___which,src__gillm__injection__injector___session_type,src__gillm__injection__injector__BackendStatus__to_dict,src__gillm__injection__injector__InjectionResult__to_dict,src__gillm__injection__injector___default_runner,src__gillm__injection__injector__Injector__probe,src__gillm__injection__injector__Injector___candidate_backends entry

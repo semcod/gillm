@@ -3,13 +3,77 @@
 app {
   name: gillm;
   version: 0.1.10;
-  description: "GUI Control Plugin with NLP & Intent Contracts";
-  license: Apache-2.0;
 }
 
 dependencies {
   runtime: "pyyaml>=6.0, rich>=13.0, requests>=2.31.0, mss>=9.0";
-  dev: "pytest>=7.0, ruff>=0.4, goal>=2.1.0, costs>=0.1.20, pfix>=0.1.60";
+  control: "dsl2gillm>=0.1.0, uri2gillm>=0.1.0, nlp2gillm>=0.1.0, cli2gillm>=0.1.0, mcp2gillm>=0.1.0, rest2gillm>=0.1.0";
+  dev: "pytest>=7.0, ruff>=0.4, goal>=2.1.0, costs>=0.1.20, pfix>=0.1.60, dsl2gillm>=0.1.0, uri2gillm>=0.1.0, nlp2gillm>=0.1.0, rest2gillm>=0.1.0";
+}
+
+entity[name="ActionsCommand"] {
+  verb: Literal[!;
+}
+
+entity[name="CaptureCommand"] {
+  verb: Literal[!;
+  scale: float!;
+}
+
+entity[name="ExecuteCommand"] {
+  verb: Literal[!;
+  file: str | None;
+  steps: list[dict[str, Any]] | None;
+  dry_run: bool!;
+}
+
+entity[name="FocusCommand"] {
+  verb: Literal[!;
+  hints: string!;
+  dry_run: bool!;
+}
+
+entity[name="HealthCommand"] {
+  verb: Literal[!;
+}
+
+entity[name="InjectCommand"] {
+  verb: Literal[!;
+  text: string!;
+  ide: string!;
+  submit: bool!;
+  dry_run: bool!;
+}
+
+entity[name="OrientCommand"] {
+  verb: Literal[!;
+}
+
+entity[name="ParseCommand"] {
+  verb: Literal[!;
+  instruction: string!;
+}
+
+entity[name="ResolveCommand"] {
+  verb: Literal[!;
+  prompt: string!;
+}
+
+entity[name="SimulateCommand"] {
+  verb: Literal[!;
+  file: str | None;
+  steps: list[dict[str, Any]] | None;
+}
+
+entity[name="ValidateCommand"] {
+  verb: Literal[!;
+  file: str | None;
+  steps: list[dict[str, Any]] | None;
+}
+
+interface[type="api"] {
+  type: rest;
+  framework: fastapi;
 }
 
 interface[type="cli"] {

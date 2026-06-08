@@ -4,10 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gillm"
-version = "0.1.10"
+version = "0.1.11"
 description = "GUI Control Plugin with NLP & Intent Contracts"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.14"
 license = "Apache-2.0"
 dependencies = [
     "pyyaml>=6.0",
@@ -17,12 +17,24 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+control = [
+    "dsl2gillm>=0.1.0",
+    "uri2gillm>=0.1.0",
+    "nlp2gillm>=0.1.0",
+    "cli2gillm>=0.1.0",
+    "mcp2gillm>=0.1.0",
+    "rest2gillm>=0.1.0",
+]
 dev = [
     "pytest>=7.0",
     "ruff>=0.4",
     "goal>=2.1.0",
     "costs>=0.1.20",
     "pfix>=0.1.60",
+    "dsl2gillm>=0.1.0",
+    "uri2gillm>=0.1.0",
+    "nlp2gillm>=0.1.0",
+    "rest2gillm>=0.1.0",
 ]
 
 [project.scripts]
@@ -33,6 +45,24 @@ package-dir = { "" = "src" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.uv.workspace]
+members = [
+    "packages/dsl2gillm",
+    "packages/uri2gillm",
+    "packages/nlp2gillm",
+    "packages/cli2gillm",
+    "packages/mcp2gillm",
+    "packages/rest2gillm",
+]
+
+[tool.uv.sources]
+dsl2gillm = { workspace = true }
+uri2gillm = { workspace = true }
+nlp2gillm = { workspace = true }
+cli2gillm = { workspace = true }
+mcp2gillm = { workspace = true }
+rest2gillm = { workspace = true }
 
 [tool.pfix]
 # Self-healing Python configuration

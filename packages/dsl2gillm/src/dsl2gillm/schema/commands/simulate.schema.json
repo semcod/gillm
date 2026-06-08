@@ -1,0 +1,11 @@
+{
+  "$id": "dsl2gillm/commands/simulate",
+  "type": "object",
+  "required": ["verb"],
+  "properties": {
+    "verb": { "const": "SIMULATE" },
+    "file": { "type": "string" },
+    "steps": { "type": "array" }
+  },
+  "additionalProperties": false
+}

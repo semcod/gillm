@@ -1,0 +1,12 @@
+{
+  "$id": "dsl2gillm/commands/execute",
+  "type": "object",
+  "required": ["verb"],
+  "properties": {
+    "verb": { "const": "EXECUTE" },
+    "file": { "type": "string" },
+    "steps": { "type": "array" },
+    "dry_run": { "type": "boolean", "default": false }
+  },
+  "additionalProperties": false
+}

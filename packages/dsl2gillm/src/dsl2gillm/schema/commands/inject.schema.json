@@ -1,0 +1,13 @@
+{
+  "$id": "dsl2gillm/commands/inject",
+  "type": "object",
+  "required": ["verb", "text"],
+  "properties": {
+    "verb": { "const": "INJECT" },
+    "text": { "type": "string" },
+    "ide": { "type": "string", "default": "default" },
+    "submit": { "type": "boolean", "default": true },
+    "dry_run": { "type": "boolean", "default": false }
+  },
+  "additionalProperties": false
+}

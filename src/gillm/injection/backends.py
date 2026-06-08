@@ -11,12 +11,17 @@ RunnerCall = Callable[[list[str]], None]
 LogFn = Callable[[str], None] | None
 
 
-def ydotool_enter_keycode() -> str:
-    """Keycode used by ydotool for submit."""
-    raw = os.environ.get("KORU_YDOTOOL_ENTER_KEYCODE", "").strip()
+def _ydotool_keycode(env_var: str, default: str) -> str:
+    """Read a numeric ydotool keycode from the environment."""
+    raw = os.environ.get(env_var, "").strip()
     if raw.isdigit():
         return raw
-    return "28"
+    return default
+
+
+def ydotool_enter_keycode() -> str:
+    """Keycode used by ydotool for submit."""
+    return _ydotool_keycode("KORU_YDOTOOL_ENTER_KEYCODE", "28")
 
 
 def ydotool_submit_mode() -> str:
@@ -31,10 +36,7 @@ def ydotool_submit_mode() -> str:
 
 def ydotool_ctrl_keycode() -> str:
     """Keycode used for Ctrl in ydotool chord submit mode."""
-    raw = os.environ.get("KORU_YDOTOOL_CTRL_KEYCODE", "").strip()
-    if raw.isdigit():
-        return raw
-    return "29"
+    return _ydotool_keycode("KORU_YDOTOOL_CTRL_KEYCODE", "29")
 
 
 def extra_enter_count() -> int:

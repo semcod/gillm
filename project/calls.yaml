@@ -1,86 +1,30 @@
 project: /home/tom/github/semcod/gillm
 generated_from: code2llm call graph analysis
 stats:
-  total_nodes: 104
-  total_edges: 117
-  modules_count: 20
+  total_nodes: 187
+  total_edges: 203
+  modules_count: 42
 nodes:
-  src.gillm.injection.injector.Injector.submit_only:
-    name: submit_only
-    module: src.gillm.injection.injector
-    line: 213
-    cyclomatic_complexity: 9
-    calls_out: 13
-    calls_in: 0
-  src.gillm.injection.os_injector.focus_with_profile:
-    name: focus_with_profile
-    module: src.gillm.injection.os_injector
-    line: 165
-    cyclomatic_complexity: 2
-    calls_out: 5
-    calls_in: 1
-  src.gillm.capture.mss_backend.rgb_mostly_black:
-    name: rgb_mostly_black
-    module: src.gillm.capture.mss_backend
-    line: 42
-    cyclomatic_complexity: 5
-    calls_out: 4
-    calls_in: 1
-  src.gillm.capture.portal_backend._portal_python:
-    name: _portal_python
-    module: src.gillm.capture.portal_backend
-    line: 66
-    cyclomatic_complexity: 6
-    calls_out: 4
-    calls_in: 1
-  src.gillm.injection.backends.ydotool_enter_keycode:
-    name: ydotool_enter_keycode
-    module: src.gillm.injection.backends
-    line: 14
+  src.gillm.runtime.env.focus_mode_from_env:
+    name: focus_mode_from_env
+    module: src.gillm.runtime.env
+    line: 47
     cyclomatic_complexity: 2
     calls_out: 3
-    calls_in: 1
-  src.gillm.injection.backends._log:
-    name: _log
-    module: src.gillm.injection.backends
-    line: 52
+    calls_in: 2
+  src.gillm.runtime.env.is_wayland_session:
+    name: is_wayland_session
+    module: src.gillm.runtime.env
+    line: 21
+    cyclomatic_complexity: 6
+    calls_out: 5
+    calls_in: 2
+  packages.mcp2gillm.src.mcp2gillm.server._require_fastmcp:
+    name: _require_fastmcp
+    module: packages.mcp2gillm.src.mcp2gillm.server
+    line: 9
     cyclomatic_complexity: 2
     calls_out: 1
-    calls_in: 26
-  src.gillm.runtime.backend_selector.BackendSelector.candidate_backends:
-    name: candidate_backends
-    module: src.gillm.runtime.backend_selector
-    line: 45
-    cyclomatic_complexity: 5
-    calls_out: 6
-    calls_in: 0
-  src.gillm.drivers.composite.CompositeGuiDriver.focus:
-    name: focus
-    module: src.gillm.drivers.composite
-    line: 48
-    cyclomatic_complexity: 3
-    calls_out: 6
-    calls_in: 0
-  src.gillm.runtime.env.cmd_timeout_seconds:
-    name: cmd_timeout_seconds
-    module: src.gillm.runtime.env
-    line: 61
-    cyclomatic_complexity: 3
-    calls_out: 4
-    calls_in: 2
-  src.gillm.runtime.env.dry_run_from_env:
-    name: dry_run_from_env
-    module: src.gillm.runtime.env
-    line: 42
-    cyclomatic_complexity: 1
-    calls_out: 3
-    calls_in: 1
-  src.gillm.config.load_config:
-    name: load_config
-    module: src.gillm.config
-    line: 67
-    cyclomatic_complexity: 4
-    calls_out: 10
     calls_in: 1
   src.gillm.runtime.profiles.save_profile:
     name: save_profile
@@ -89,20 +33,27 @@ nodes:
     cyclomatic_complexity: 3
     calls_out: 7
     calls_in: 0
-  src.gillm.runtime.env.session_type:
-    name: session_type
-    module: src.gillm.runtime.env
-    line: 9
+  src.gillm.runtime.backend_selector.session_backend_order:
+    name: session_backend_order
+    module: src.gillm.runtime.backend_selector
+    line: 19
     cyclomatic_complexity: 4
-    calls_out: 4
-    calls_in: 6
-  src.gillm.capture.mss_backend.capture_primary_rgb:
-    name: capture_primary_rgb
-    module: src.gillm.capture.mss_backend
-    line: 65
-    cyclomatic_complexity: 2
-    calls_out: 8
+    calls_out: 2
     calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.grammar.parse_line:
+    name: parse_line
+    module: packages.dsl2gillm.src.dsl2gillm.grammar
+    line: 26
+    cyclomatic_complexity: 46
+    calls_out: 48
+    calls_in: 2
+  src.gillm.runtime.profiles.default_config_path:
+    name: default_config_path
+    module: src.gillm.runtime.profiles
+    line: 24
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 2
   src.gillm.runtime.profiles.capture_mouse_xy:
     name: capture_mouse_xy
     module: src.gillm.runtime.profiles
@@ -110,40 +61,47 @@ nodes:
     cyclomatic_complexity: 7
     calls_out: 10
     calls_in: 1
-  src.gillm.recovery.repair_hints.recovery_hints_for_context:
-    name: recovery_hints_for_context
-    module: src.gillm.recovery.repair_hints
-    line: 29
+  src.gillm.control.dispatch_execute:
+    name: dispatch_execute
+    module: src.gillm.control
+    line: 20
     cyclomatic_complexity: 3
-    calls_out: 3
-    calls_in: 2
-  src.gillm.recovery.diagnose.classify_failure:
-    name: classify_failure
-    module: src.gillm.recovery.diagnose
-    line: 78
-    cyclomatic_complexity: 24
-    calls_out: 1
-    calls_in: 3
-  src.gillm.runtime.activity.emit_activity_warn:
-    name: emit_activity_warn
-    module: src.gillm.runtime.activity
-    line: 38
-    cyclomatic_complexity: 3
+    calls_out: 2
+    calls_in: 0
+  packages.uri2gillm.src.uri2gillm.nlp2uri.best_uri:
+    name: best_uri
+    module: packages.uri2gillm.src.uri2gillm.nlp2uri
+    line: 52
+    cyclomatic_complexity: 2
     calls_out: 1
     calls_in: 1
-  src.gillm.orchestrator.drive.DriveOrchestrator.inject_text:
-    name: inject_text
-    module: src.gillm.orchestrator.drive
-    line: 57
-    cyclomatic_complexity: 1
-    calls_out: 4
-    calls_in: 0
-  src.gillm.runtime.activity.try_bootstrap_koru_activity_sink:
-    name: try_bootstrap_koru_activity_sink
-    module: src.gillm.runtime.activity
-    line: 47
-    cyclomatic_complexity: 3
+  src.gillm.capture.mss_backend.resolve_scale:
+    name: resolve_scale
+    module: src.gillm.capture.mss_backend
+    line: 11
+    cyclomatic_complexity: 4
+    calls_out: 5
+    calls_in: 2
+  src.gillm.runtime.profiles.try_load_profile:
+    name: try_load_profile
+    module: src.gillm.runtime.profiles
+    line: 88
+    cyclomatic_complexity: 4
     calls_out: 3
+    calls_in: 3
+  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_wtype:
+    name: _inject_via_wtype
+    module: src.gillm.focus.wayland
+    line: 191
+    cyclomatic_complexity: 9
+    calls_out: 7
+    calls_in: 0
+  src.gillm.control.dispatch_health:
+    name: dispatch_health
+    module: src.gillm.control
+    line: 8
+    cyclomatic_complexity: 1
+    calls_out: 2
     calls_in: 0
   src.gillm.focus.x11._run:
     name: _run
@@ -152,321 +110,6 @@ nodes:
     cyclomatic_complexity: 1
     calls_out: 1
     calls_in: 11
-  src.gillm.runtime.command_runner.resolve_input_method:
-    name: resolve_input_method
-    module: src.gillm.runtime.command_runner
-    line: 80
-    cyclomatic_complexity: 7
-    calls_out: 4
-    calls_in: 0
-  src.gillm.runtime.backend_selector.unique_backend_names:
-    name: unique_backend_names
-    module: src.gillm.runtime.backend_selector
-    line: 11
-    cyclomatic_complexity: 3
-    calls_out: 1
-    calls_in: 1
-  src.gillm.injection.injector.Injector.type_text:
-    name: type_text
-    module: src.gillm.injection.injector
-    line: 184
-    cyclomatic_complexity: 6
-    calls_out: 8
-    calls_in: 0
-  src.gillm.injection.os_injector.inject_with_profile:
-    name: inject_with_profile
-    module: src.gillm.injection.os_injector
-    line: 194
-    cyclomatic_complexity: 5
-    calls_out: 12
-    calls_in: 2
-  src.gillm.focus.darwin.DarwinStrategy.focus_window:
-    name: focus_window
-    module: src.gillm.focus.darwin
-    line: 54
-    cyclomatic_complexity: 4
-    calls_out: 5
-    calls_in: 0
-  src.gillm.injection.injector._submit_key_for:
-    name: _submit_key_for
-    module: src.gillm.injection.injector
-    line: 22
-    cyclomatic_complexity: 1
-    calls_out: 2
-    calls_in: 2
-  src.gillm.focus.wayland._prefer_ydotool:
-    name: _prefer_ydotool
-    module: src.gillm.focus.wayland
-    line: 107
-    cyclomatic_complexity: 3
-    calls_out: 4
-    calls_in: 1
-  src.gillm.injection.os_injector._injection_result:
-    name: _injection_result
-    module: src.gillm.injection.os_injector
-    line: 57
-    cyclomatic_complexity: 1
-    calls_out: 0
-    calls_in: 4
-  src.gillm.recovery.repair_hints._dedupe:
-    name: _dedupe
-    module: src.gillm.recovery.repair_hints
-    line: 89
-    cyclomatic_complexity: 4
-    calls_out: 5
-    calls_in: 1
-  src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window:
-    name: focus_target_window
-    module: src.gillm.orchestrator.drive
-    line: 41
-    cyclomatic_complexity: 1
-    calls_out: 5
-    calls_in: 0
-  src.gillm.injection.backends.type_with_ydotool:
-    name: type_with_ydotool
-    module: src.gillm.injection.backends
-    line: 133
-    cyclomatic_complexity: 5
-    calls_out: 12
-    calls_in: 1
-  src.gillm.focus.x11.X11LinuxStrategy._inject_via_xdotool:
-    name: _inject_via_xdotool
-    module: src.gillm.focus.x11
-    line: 117
-    cyclomatic_complexity: 3
-    calls_out: 4
-    calls_in: 0
-  src.gillm.runtime.command_runner.clipboard_backend:
-    name: clipboard_backend
-    module: src.gillm.runtime.command_runner
-    line: 59
-    cyclomatic_complexity: 3
-    calls_out: 2
-    calls_in: 1
-  src.gillm.runtime.command_runner.run_cmd_checked:
-    name: run_cmd_checked
-    module: src.gillm.runtime.command_runner
-    line: 41
-    cyclomatic_complexity: 4
-    calls_out: 4
-    calls_in: 4
-  src.gillm.focus.wayland.WaylandLinuxStrategy.inject_keys:
-    name: inject_keys
-    module: src.gillm.focus.wayland
-    line: 167
-    cyclomatic_complexity: 9
-    calls_out: 8
-    calls_in: 0
-  src.gillm.capture.mss_backend.downscale_rgb_nearest:
-    name: downscale_rgb_nearest
-    module: src.gillm.capture.mss_backend
-    line: 23
-    cyclomatic_complexity: 6
-    calls_out: 5
-    calls_in: 1
-  src.gillm.injection.os_injector.try_drive_with_profile:
-    name: try_drive_with_profile
-    module: src.gillm.injection.os_injector
-    line: 271
-    cyclomatic_complexity: 8
-    calls_out: 9
-    calls_in: 0
-  src.gillm.config.resolve_xdg_path:
-    name: resolve_xdg_path
-    module: src.gillm.config
-    line: 16
-    cyclomatic_complexity: 2
-    calls_out: 3
-    calls_in: 1
-  src.gillm.runtime.backend_selector.BackendSelector.__init__:
-    name: __init__
-    module: src.gillm.runtime.backend_selector
-    line: 34
-    cyclomatic_complexity: 3
-    calls_out: 2
-    calls_in: 0
-  src.gillm.runtime.profiles.load_profile:
-    name: load_profile
-    module: src.gillm.runtime.profiles
-    line: 55
-    cyclomatic_complexity: 5
-    calls_out: 12
-    calls_in: 1
-  src.gillm.drivers.composite.CompositeGuiDriver.execute:
-    name: execute
-    module: src.gillm.drivers.composite
-    line: 130
-    cyclomatic_complexity: 18
-    calls_out: 22
-    calls_in: 0
-  src.gillm.config.default_config_path:
-    name: default_config_path
-    module: src.gillm.config
-    line: 48
-    cyclomatic_complexity: 1
-    calls_out: 1
-    calls_in: 1
-  src.gillm.runtime.profiles.iter_config_paths:
-    name: iter_config_paths
-    module: src.gillm.runtime.profiles
-    line: 28
-    cyclomatic_complexity: 4
-    calls_out: 11
-    calls_in: 1
-  src.gillm.config._merge_submit_keys:
-    name: _merge_submit_keys
-    module: src.gillm.config
-    line: 53
-    cyclomatic_complexity: 7
-    calls_out: 5
-    calls_in: 1
-  src.gillm.injection.os_injector._focus_with_ydotool:
-    name: _focus_with_ydotool
-    module: src.gillm.injection.os_injector
-    line: 99
-    cyclomatic_complexity: 4
-    calls_out: 7
-    calls_in: 1
-  src.gillm.recovery.diagnose.probe_environment:
-    name: probe_environment
-    module: src.gillm.recovery.diagnose
-    line: 65
-    cyclomatic_complexity: 3
-    calls_out: 6
-    calls_in: 3
-  src.gillm.focus.wayland._scan_for_key:
-    name: _scan_for_key
-    module: src.gillm.focus.wayland
-    line: 85
-    cyclomatic_complexity: 5
-    calls_out: 1
-    calls_in: 2
-  src.gillm.injection.injector._session_type:
-    name: _session_type
-    module: src.gillm.injection.injector
-    line: 33
-    cyclomatic_complexity: 1
-    calls_out: 1
-    calls_in: 0
-  src.gillm.runtime.backend_selector.session_backend_order:
-    name: session_backend_order
-    module: src.gillm.runtime.backend_selector
-    line: 19
-    cyclomatic_complexity: 4
-    calls_out: 2
-    calls_in: 1
-  src.gillm.injection.backends.type_with_backend:
-    name: type_with_backend
-    module: src.gillm.injection.backends
-    line: 164
-    cyclomatic_complexity: 5
-    calls_out: 10
-    calls_in: 1
-  src.gillm.runtime.command_runner.set_clipboard:
-    name: set_clipboard
-    module: src.gillm.runtime.command_runner
-    line: 67
-    cyclomatic_complexity: 3
-    calls_out: 6
-    calls_in: 0
-  src.gillm.recovery.repair_hints._hints_for_kind:
-    name: _hints_for_kind
-    module: src.gillm.recovery.repair_hints
-    line: 36
-    cyclomatic_complexity: 15
-    calls_out: 4
-    calls_in: 1
-  src.gillm.config.cached_config:
-    name: cached_config
-    module: src.gillm.config
-    line: 89
-    cyclomatic_complexity: 6
-    calls_out: 5
-    calls_in: 1
-  src.gillm.injection.os_injector._os_injector_skip_reason:
-    name: _os_injector_skip_reason
-    module: src.gillm.injection.os_injector
-    line: 253
-    cyclomatic_complexity: 9
-    calls_out: 7
-    calls_in: 1
-  src.gillm.injection.backends.type_with_xdotool:
-    name: type_with_xdotool
-    module: src.gillm.injection.backends
-    line: 57
-    cyclomatic_complexity: 3
-    calls_out: 8
-    calls_in: 1
-  src.gillm.injection.backends.ydotool_ctrl_keycode:
-    name: ydotool_ctrl_keycode
-    module: src.gillm.injection.backends
-    line: 32
-    cyclomatic_complexity: 2
-    calls_out: 3
-    calls_in: 1
-  src.gillm.capture.portal_backend.capture_portal_png:
-    name: capture_portal_png
-    module: src.gillm.capture.portal_backend
-    line: 88
-    cyclomatic_complexity: 8
-    calls_out: 11
-    calls_in: 1
-  src.gillm.drivers.composite.CompositeGuiDriver.probe:
-    name: probe
-    module: src.gillm.drivers.composite
-    line: 38
-    cyclomatic_complexity: 3
-    calls_out: 3
-    calls_in: 0
-  src.gillm.injection.injector.Injector._type_with_backend:
-    name: _type_with_backend
-    module: src.gillm.injection.injector
-    line: 101
-    cyclomatic_complexity: 1
-    calls_out: 1
-    calls_in: 0
-  src.gillm.injection.os_injector._focus_profile_chat:
-    name: _focus_profile_chat
-    module: src.gillm.injection.os_injector
-    line: 80
-    cyclomatic_complexity: 6
-    calls_out: 7
-    calls_in: 2
-  src.gillm.drivers.composite.CompositeGuiDriver.type_text:
-    name: type_text
-    module: src.gillm.drivers.composite
-    line: 72
-    cyclomatic_complexity: 6
-    calls_out: 14
-    calls_in: 0
-  src.gillm.runtime.env.is_wayland_session:
-    name: is_wayland_session
-    module: src.gillm.runtime.env
-    line: 21
-    cyclomatic_complexity: 6
-    calls_out: 5
-    calls_in: 2
-  src.gillm.focus.wayland.WaylandLinuxStrategy._focus_via_wmctrl:
-    name: _focus_via_wmctrl
-    module: src.gillm.focus.wayland
-    line: 180
-    cyclomatic_complexity: 4
-    calls_out: 3
-    calls_in: 0
-  src.gillm.runtime.activity.emit_activity:
-    name: emit_activity
-    module: src.gillm.runtime.activity
-    line: 29
-    cyclomatic_complexity: 3
-    calls_out: 1
-    calls_in: 1
-  src.gillm.runtime.activity.set_activity_sink:
-    name: set_activity_sink
-    module: src.gillm.runtime.activity
-    line: 15
-    cyclomatic_complexity: 1
-    calls_out: 0
-    calls_in: 1
   src.gillm.injection.os_injector._inject_profile_text:
     name: _inject_profile_text
     module: src.gillm.injection.os_injector
@@ -474,26 +117,110 @@ nodes:
     cyclomatic_complexity: 7
     calls_out: 12
     calls_in: 1
-  src.gillm.runtime.env.post_focus_delay_seconds:
-    name: post_focus_delay_seconds
-    module: src.gillm.runtime.env
-    line: 72
-    cyclomatic_complexity: 3
-    calls_out: 5
+  src.gillm.runtime.profiles.capture_from_xdotool:
+    name: capture_from_xdotool
+    module: src.gillm.runtime.profiles
+    line: 115
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.codegen.render_models:
+    name: render_models
+    module: packages.dsl2gillm.src.dsl2gillm.codegen
+    line: 51
+    cyclomatic_complexity: 4
+    calls_out: 20
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_result_protobuf:
+    name: encode_result_protobuf
+    module: packages.dsl2gillm.src.dsl2gillm.pb_codec
+    line: 150
+    cyclomatic_complexity: 1
+    calls_out: 2
     calls_in: 2
-  src.gillm.runtime.env.input_mode_from_env:
-    name: input_mode_from_env
-    module: src.gillm.runtime.env
-    line: 54
+  src.gillm.capture.portal_backend._portal_python:
+    name: _portal_python
+    module: src.gillm.capture.portal_backend
+    line: 66
+    cyclomatic_complexity: 6
+    calls_out: 4
+    calls_in: 1
+  src.gillm.injection.injector._submit_key_for:
+    name: _submit_key_for
+    module: src.gillm.injection.injector
+    line: 22
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 2
+  src.gillm.runtime.command_runner.ydotool:
+    name: ydotool
+    module: src.gillm.runtime.command_runner
+    line: 52
     cyclomatic_complexity: 2
     calls_out: 3
-    calls_in: 2
-  src.gillm.runtime.env.focus_mode_from_env:
-    name: focus_mode_from_env
-    module: src.gillm.runtime.env
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.codec.envelope_from_bytes:
+    name: envelope_from_bytes
+    module: packages.dsl2gillm.src.dsl2gillm.codec
     line: 47
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 3
+  packages.dsl2gillm.src.dsl2gillm.handlers._orient:
+    name: _orient
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 111
     cyclomatic_complexity: 2
+    calls_out: 6
+    calls_in: 1
+  src.gillm.focus.x11.X11LinuxStrategy._focus_via_wmctrl:
+    name: _focus_via_wmctrl
+    module: src.gillm.focus.x11
+    line: 106
+    cyclomatic_complexity: 4
     calls_out: 3
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.handlers._validate:
+    name: _validate
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 145
+    cyclomatic_complexity: 6
+    calls_out: 12
+    calls_in: 1
+  packages.nlp2gillm.src.nlp2gillm.to_dsl.to_dsl:
+    name: to_dsl
+    module: packages.nlp2gillm.src.nlp2gillm.to_dsl
+    line: 13
+    cyclomatic_complexity: 13
+    calls_out: 10
+    calls_in: 4
+  packages.dsl2gillm.src.dsl2gillm.handlers.run_command:
+    name: run_command
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 66
+    cyclomatic_complexity: 5
+    calls_out: 7
+    calls_in: 1
+  src.gillm.drivers.composite.CompositeGuiDriver.type_text:
+    name: type_text
+    module: src.gillm.drivers.composite
+    line: 72
+    cyclomatic_complexity: 6
+    calls_out: 14
+    calls_in: 0
+  src.gillm.runtime.profiles.iter_config_paths:
+    name: iter_config_paths
+    module: src.gillm.runtime.profiles
+    line: 28
+    cyclomatic_complexity: 4
+    calls_out: 11
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.bus.execute_dsl_line:
+    name: execute_dsl_line
+    module: packages.dsl2gillm.src.dsl2gillm.bus
+    line: 78
+    cyclomatic_complexity: 1
+    calls_out: 1
     calls_in: 2
   src.gillm.runtime.command_runner.xdotool:
     name: xdotool
@@ -502,132 +229,76 @@ nodes:
     cyclomatic_complexity: 1
     calls_out: 1
     calls_in: 0
-  src.gillm.runtime.env.forced_injector_backend:
-    name: forced_injector_backend
-    module: src.gillm.runtime.env
-    line: 83
-    cyclomatic_complexity: 2
-    calls_out: 3
-    calls_in: 1
-  src.gillm.injection.os_injector._resolve_input_method:
-    name: _resolve_input_method
-    module: src.gillm.injection.os_injector
-    line: 21
-    cyclomatic_complexity: 7
-    calls_out: 4
-    calls_in: 1
-  src.gillm.injection.backends.extra_enter_count:
-    name: extra_enter_count
-    module: src.gillm.injection.backends
-    line: 40
-    cyclomatic_complexity: 3
-    calls_out: 4
-    calls_in: 1
-  src.gillm.injection.backends.ydotool_submit_mode:
-    name: ydotool_submit_mode
-    module: src.gillm.injection.backends
-    line: 22
-    cyclomatic_complexity: 3
-    calls_out: 3
-    calls_in: 1
-  src.gillm.drivers.composite.CompositeGuiDriver.__init__:
-    name: __init__
-    module: src.gillm.drivers.composite
-    line: 26
-    cyclomatic_complexity: 2
-    calls_out: 3
-    calls_in: 0
-  src.gillm.focus.x11.X11LinuxStrategy._focus_via_wmctrl:
-    name: _focus_via_wmctrl
-    module: src.gillm.focus.x11
-    line: 106
-    cyclomatic_complexity: 4
-    calls_out: 3
-    calls_in: 0
-  src.gillm.runtime.command_runner.run_cmd:
-    name: run_cmd
-    module: src.gillm.runtime.command_runner
-    line: 20
-    cyclomatic_complexity: 2
-    calls_out: 4
-    calls_in: 2
-  src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback:
-    name: capture_primary_rgb_wayland_fallback
-    module: src.gillm.capture.mss_backend
-    line: 94
-    cyclomatic_complexity: 3
-    calls_out: 4
-    calls_in: 1
-  src.gillm.recovery.repair_hints.recovery_hints_for_reload:
-    name: recovery_hints_for_reload
-    module: src.gillm.recovery.repair_hints
+  packages.uri2gillm.src.uri2gillm.decode.uri_to_dsl:
+    name: uri_to_dsl
+    module: packages.uri2gillm.src.uri2gillm.decode
     line: 8
+    cyclomatic_complexity: 26
+    calls_out: 20
+    calls_in: 2
+  src.gillm.runtime.env.session_type:
+    name: session_type
+    module: src.gillm.runtime.env
+    line: 9
     cyclomatic_complexity: 4
-    calls_out: 0
-    calls_in: 3
-  src.gillm.runtime.profiles.default_config_path:
-    name: default_config_path
-    module: src.gillm.runtime.profiles
-    line: 24
+    calls_out: 4
+    calls_in: 6
+  packages.nlp2gillm.src.nlp2gillm.to_dsl.apply_nl:
+    name: apply_nl
+    module: packages.nlp2gillm.src.nlp2gillm.to_dsl
+    line: 48
     cyclomatic_complexity: 1
-    calls_out: 1
-    calls_in: 2
-  src.gillm.capture.mss_backend.resolve_scale:
-    name: resolve_scale
-    module: src.gillm.capture.mss_backend
-    line: 11
-    cyclomatic_complexity: 4
-    calls_out: 5
-    calls_in: 2
-  src.gillm.focus.registry.resolve_active_os_strategy:
-    name: resolve_active_os_strategy
-    module: src.gillm.focus.registry
-    line: 32
-    cyclomatic_complexity: 4
-    calls_out: 2
-    calls_in: 1
-  src.gillm.focus.wayland._gnome_compositor:
-    name: _gnome_compositor
-    module: src.gillm.focus.wayland
-    line: 98
-    cyclomatic_complexity: 4
     calls_out: 3
     calls_in: 1
-  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool:
-    name: _inject_via_ydotool
-    module: src.gillm.focus.wayland
-    line: 212
-    cyclomatic_complexity: 7
-    calls_out: 10
+  packages.dsl2gillm.src.dsl2gillm.codegen.main:
+    name: main
+    module: packages.dsl2gillm.src.dsl2gillm.codegen
+    line: 105
+    cyclomatic_complexity: 1
+    calls_out: 2
     calls_in: 0
-  src.gillm.runtime.profiles._read_json:
-    name: _read_json
-    module: src.gillm.runtime.profiles
-    line: 45
+  src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window:
+    name: focus_target_window
+    module: src.gillm.orchestrator.drive
+    line: 41
+    cyclomatic_complexity: 2
+    calls_out: 7
+    calls_in: 0
+  src.gillm.nlp_bridge.client.NLPBridgeClient.parse_intent:
+    name: parse_intent
+    module: src.gillm.nlp_bridge.client
+    line: 38
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.pb_codec.envelope_to_dict:
+    name: envelope_to_dict
+    module: packages.dsl2gillm.src.dsl2gillm.pb_codec
+    line: 66
+    cyclomatic_complexity: 26
+    calls_out: 7
+    calls_in: 2
+  src.gillm.drivers.composite.CompositeGuiDriver.focus:
+    name: focus
+    module: src.gillm.drivers.composite
+    line: 48
+    cyclomatic_complexity: 3
+    calls_out: 6
+    calls_in: 0
+  packages.uri2gillm.src.uri2gillm.uri.uri_for_cmd:
+    name: uri_for_cmd
+    module: packages.uri2gillm.src.uri2gillm.uri
+    line: 28
     cyclomatic_complexity: 4
     calls_out: 5
-    calls_in: 2
-  src.gillm.intents.contract.gui_contract:
-    name: gui_contract
-    module: src.gillm.intents.contract
-    line: 16
-    cyclomatic_complexity: 1
-    calls_out: 1
-    calls_in: 3
-  src.gillm.runtime.profiles.capture_from_xdotool:
-    name: capture_from_xdotool
-    module: src.gillm.runtime.profiles
-    line: 115
-    cyclomatic_complexity: 1
-    calls_out: 1
-    calls_in: 0
-  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool:
-    name: _focus_via_xdotool
-    module: src.gillm.focus.x11
-    line: 86
-    cyclomatic_complexity: 11
-    calls_out: 10
-    calls_in: 0
+    calls_in: 5
+  src.gillm.injection.os_injector._focus_with_ydotool:
+    name: _focus_with_ydotool
+    module: src.gillm.injection.os_injector
+    line: 99
+    cyclomatic_complexity: 4
+    calls_out: 7
+    calls_in: 1
   src.gillm.injection.os_injector._focus_with_xdotool:
     name: _focus_with_xdotool
     module: src.gillm.injection.os_injector
@@ -635,81 +306,67 @@ nodes:
     cyclomatic_complexity: 4
     calls_out: 7
     calls_in: 1
-  src.gillm.injection.backends._ydotool_submit_command:
-    name: _ydotool_submit_command
-    module: src.gillm.injection.backends
-    line: 114
-    cyclomatic_complexity: 3
-    calls_out: 0
+  packages.dsl2gillm.src.dsl2gillm.grammar.to_text:
+    name: to_text
+    module: packages.dsl2gillm.src.dsl2gillm.grammar
+    line: 128
+    cyclomatic_complexity: 22
+    calls_out: 43
     calls_in: 2
-  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_wtype:
-    name: _inject_via_wtype
-    module: src.gillm.focus.wayland
-    line: 191
-    cyclomatic_complexity: 9
-    calls_out: 7
-    calls_in: 0
-  src.gillm.recovery.diagnose.diagnose_drive_reply:
-    name: diagnose_drive_reply
-    module: src.gillm.recovery.diagnose
-    line: 109
-    cyclomatic_complexity: 9
-    calls_out: 21
-    calls_in: 0
-  src.gillm.orchestrator.drive.DriveOrchestrator.log:
-    name: log
-    module: src.gillm.orchestrator.drive
-    line: 31
-    cyclomatic_complexity: 2
-    calls_out: 1
-    calls_in: 1
-  src.gillm.runtime.env.os_injector_env_disabled:
-    name: os_injector_env_disabled
-    module: src.gillm.runtime.env
-    line: 32
-    cyclomatic_complexity: 1
-    calls_out: 3
-    calls_in: 1
-  src.gillm.capture.mss_backend._parse_png_to_rgb:
-    name: _parse_png_to_rgb
-    module: src.gillm.capture.mss_backend
-    line: 108
-    cyclomatic_complexity: 4
-    calls_out: 10
-    calls_in: 1
-  src.gillm.runtime.env.os_injector_env_forced:
-    name: os_injector_env_forced
-    module: src.gillm.runtime.env
-    line: 37
-    cyclomatic_complexity: 1
-    calls_out: 3
-    calls_in: 3
-  src.gillm.runtime.command_runner.ydotool:
-    name: ydotool
-    module: src.gillm.runtime.command_runner
-    line: 52
-    cyclomatic_complexity: 2
-    calls_out: 3
-    calls_in: 0
-  src.gillm.injection.backends.type_with_wtype:
-    name: type_with_wtype
-    module: src.gillm.injection.backends
-    line: 95
+  src.gillm.runtime.backend_selector.BackendSelector.__init__:
+    name: __init__
+    module: src.gillm.runtime.backend_selector
+    line: 34
     cyclomatic_complexity: 3
+    calls_out: 2
+    calls_in: 0
+  src.gillm.recovery.repair_hints._hints_for_kind:
+    name: _hints_for_kind
+    module: src.gillm.recovery.repair_hints
+    line: 36
+    cyclomatic_complexity: 15
+    calls_out: 4
+    calls_in: 1
+  src.gillm.capture.mss_backend.capture_primary_rgb:
+    name: capture_primary_rgb
+    module: src.gillm.capture.mss_backend
+    line: 65
+    cyclomatic_complexity: 2
     calls_out: 8
     calls_in: 1
-  src.gillm.injection.backends.press_wtype:
-    name: press_wtype
+  src.gillm.injection.backends.ydotool_enter_keycode:
+    name: ydotool_enter_keycode
     module: src.gillm.injection.backends
-    line: 76
-    cyclomatic_complexity: 4
-    calls_out: 6
+    line: 14
+    cyclomatic_complexity: 2
+    calls_out: 3
     calls_in: 1
-  src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot:
-    name: capture_screenshot
-    module: src.gillm.orchestrator.drive
-    line: 78
+  src.gillm.runtime.command_runner.run_cmd_checked:
+    name: run_cmd_checked
+    module: src.gillm.runtime.command_runner
+    line: 41
+    cyclomatic_complexity: 4
+    calls_out: 4
+    calls_in: 4
+  src.gillm.injection.os_injector.inject_with_profile:
+    name: inject_with_profile
+    module: src.gillm.injection.os_injector
+    line: 194
+    cyclomatic_complexity: 5
+    calls_out: 12
+    calls_in: 2
+  src.gillm.control.dispatch_parse:
+    name: dispatch_parse
+    module: src.gillm.control
+    line: 14
     cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 0
+  src.gillm.runtime.command_runner.resolve_input_method:
+    name: resolve_input_method
+    module: src.gillm.runtime.command_runner
+    line: 80
+    cyclomatic_complexity: 7
     calls_out: 4
     calls_in: 0
   src.gillm.intents.contract.validate_contract_runtime:
@@ -719,13 +376,419 @@ nodes:
     cyclomatic_complexity: 7
     calls_out: 6
     calls_in: 3
-  src.gillm.runtime.profiles.try_load_profile:
-    name: try_load_profile
-    module: src.gillm.runtime.profiles
-    line: 88
+  src.gillm.capture.mss_backend.downscale_rgb_nearest:
+    name: downscale_rgb_nearest
+    module: src.gillm.capture.mss_backend
+    line: 23
+    cyclomatic_complexity: 6
+    calls_out: 5
+    calls_in: 1
+  src.gillm.config._merge_submit_keys:
+    name: _merge_submit_keys
+    module: src.gillm.config
+    line: 53
+    cyclomatic_complexity: 7
+    calls_out: 5
+    calls_in: 1
+  packages.uri2gillm.src.uri2gillm.uri.parse_gillm_uri:
+    name: parse_gillm_uri
+    module: packages.uri2gillm.src.uri2gillm.uri
+    line: 40
+    cyclomatic_complexity: 7
+    calls_out: 9
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.handlers._parse:
+    name: _parse
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 131
+    cyclomatic_complexity: 2
+    calls_out: 7
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.codec.validate_payload:
+    name: validate_payload
+    module: packages.dsl2gillm.src.dsl2gillm.codec
+    line: 25
+    cyclomatic_complexity: 2
+    calls_out: 7
+    calls_in: 6
+  src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot:
+    name: capture_screenshot
+    module: src.gillm.orchestrator.drive
+    line: 86
+    cyclomatic_complexity: 3
+    calls_out: 7
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.schema_registry.validate_schemas:
+    name: validate_schemas
+    module: packages.dsl2gillm.src.dsl2gillm.schema_registry
+    line: 40
+    cyclomatic_complexity: 5
+    calls_out: 9
+    calls_in: 2
+  src.gillm.focus.registry.resolve_active_os_strategy:
+    name: resolve_active_os_strategy
+    module: src.gillm.focus.registry
+    line: 32
+    cyclomatic_complexity: 4
+    calls_out: 2
+    calls_in: 3
+  packages.dsl2gillm.src.dsl2gillm.codec.envelope_to_bytes:
+    name: envelope_to_bytes
+    module: packages.dsl2gillm.src.dsl2gillm.codec
+    line: 42
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 2
+  src.gillm.recovery.diagnose.classify_failure:
+    name: classify_failure
+    module: src.gillm.recovery.diagnose
+    line: 78
+    cyclomatic_complexity: 24
+    calls_out: 1
+    calls_in: 3
+  src.gillm.runtime.backend_selector.BackendSelector.candidate_backends:
+    name: candidate_backends
+    module: src.gillm.runtime.backend_selector
+    line: 45
+    cyclomatic_complexity: 5
+    calls_out: 6
+    calls_in: 0
+  src.gillm.injection.backends.press_wtype:
+    name: press_wtype
+    module: src.gillm.injection.backends
+    line: 76
+    cyclomatic_complexity: 4
+    calls_out: 6
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.pb_codec._set_body:
+    name: _set_body
+    module: packages.dsl2gillm.src.dsl2gillm.pb_codec
+    line: 27
+    cyclomatic_complexity: 17
+    calls_out: 37
+    calls_in: 1
+  src.gillm.focus.wayland._gnome_compositor:
+    name: _gnome_compositor
+    module: src.gillm.focus.wayland
+    line: 98
     cyclomatic_complexity: 4
     calls_out: 3
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_text_to_protobuf:
+    name: encode_text_to_protobuf
+    module: packages.dsl2gillm.src.dsl2gillm.pb_codec
+    line: 127
+    cyclomatic_complexity: 3
+    calls_out: 3
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.handlers._focus:
+    name: _focus
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 219
+    cyclomatic_complexity: 4
+    calls_out: 12
+    calls_in: 1
+  src.gillm.runtime.env.input_mode_from_env:
+    name: input_mode_from_env
+    module: src.gillm.runtime.env
+    line: 54
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 2
+  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool:
+    name: _inject_via_ydotool
+    module: src.gillm.focus.wayland
+    line: 212
+    cyclomatic_complexity: 7
+    calls_out: 10
+    calls_in: 0
+  src.gillm.config.load_config:
+    name: load_config
+    module: src.gillm.config
+    line: 67
+    cyclomatic_complexity: 4
+    calls_out: 10
+    calls_in: 1
+  src.gillm.runtime.profiles._read_json:
+    name: _read_json
+    module: src.gillm.runtime.profiles
+    line: 45
+    cyclomatic_complexity: 4
+    calls_out: 5
+    calls_in: 2
+  src.gillm.focus.darwin.DarwinStrategy.focus_window:
+    name: focus_window
+    module: src.gillm.focus.darwin
+    line: 54
+    cyclomatic_complexity: 4
+    calls_out: 5
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.codec._validate_with_pydantic:
+    name: _validate_with_pydantic
+    module: packages.dsl2gillm.src.dsl2gillm.codec
+    line: 15
+    cyclomatic_complexity: 3
+    calls_out: 2
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.cli._main_subcommand:
+    name: _main_subcommand
+    module: packages.dsl2gillm.src.dsl2gillm.cli
+    line: 40
+    cyclomatic_complexity: 1
+    calls_out: 24
+    calls_in: 1
+  packages.mcp2gillm.src.mcp2gillm.server.GillmMCPServer._register_tools:
+    name: _register_tools
+    module: packages.mcp2gillm.src.mcp2gillm.server
+    line: 26
+    cyclomatic_complexity: 1
+    calls_out: 20
+    calls_in: 0
+  src.gillm.capture.portal_backend.capture_portal_png:
+    name: capture_portal_png
+    module: src.gillm.capture.portal_backend
+    line: 88
+    cyclomatic_complexity: 8
+    calls_out: 11
+    calls_in: 1
+  src.gillm.injection.os_injector.focus_with_profile:
+    name: focus_with_profile
+    module: src.gillm.injection.os_injector
+    line: 165
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 1
+  src.gillm.injection.backends.type_with_ydotool:
+    name: type_with_ydotool
+    module: src.gillm.injection.backends
+    line: 133
+    cyclomatic_complexity: 5
+    calls_out: 12
+    calls_in: 1
+  src.gillm.runtime.activity.try_bootstrap_koru_activity_sink:
+    name: try_bootstrap_koru_activity_sink
+    module: src.gillm.runtime.activity
+    line: 47
+    cyclomatic_complexity: 3
+    calls_out: 3
+    calls_in: 0
+  src.gillm.injection.backends.ydotool_ctrl_keycode:
+    name: ydotool_ctrl_keycode
+    module: src.gillm.injection.backends
+    line: 32
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 1
+  src.gillm.focus.wayland._prefer_ydotool:
+    name: _prefer_ydotool
+    module: src.gillm.focus.wayland
+    line: 107
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 1
+  src.gillm.injection.backends.type_with_wtype:
+    name: type_with_wtype
+    module: src.gillm.injection.backends
+    line: 95
+    cyclomatic_complexity: 3
+    calls_out: 8
+    calls_in: 1
+  src.gillm.injection.os_injector._os_injector_skip_reason:
+    name: _os_injector_skip_reason
+    module: src.gillm.injection.os_injector
+    line: 253
+    cyclomatic_complexity: 9
+    calls_out: 7
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.codegen.load_schemas:
+    name: load_schemas
+    module: packages.dsl2gillm.src.dsl2gillm.codegen
+    line: 85
+    cyclomatic_complexity: 4
+    calls_out: 11
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.handlers._actions:
+    name: _actions
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 126
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 1
+  src.gillm.injection.os_injector._injection_result:
+    name: _injection_result
+    module: src.gillm.injection.os_injector
+    line: 57
+    cyclomatic_complexity: 1
+    calls_out: 0
+    calls_in: 4
+  src.gillm.injection.os_injector._focus_profile_chat:
+    name: _focus_profile_chat
+    module: src.gillm.injection.os_injector
+    line: 80
+    cyclomatic_complexity: 6
+    calls_out: 7
+    calls_in: 2
+  src.gillm.focus.x11.X11LinuxStrategy._inject_via_xdotool:
+    name: _inject_via_xdotool
+    module: src.gillm.focus.x11
+    line: 117
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.codec.roundtrip_text:
+    name: roundtrip_text
+    module: packages.dsl2gillm.src.dsl2gillm.codec
+    line: 63
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.codegen._field_line:
+    name: _field_line
+    module: packages.dsl2gillm.src.dsl2gillm.codegen
+    line: 39
+    cyclomatic_complexity: 4
+    calls_out: 3
+    calls_in: 1
+  src.gillm.injection.injector.Injector.submit_only:
+    name: submit_only
+    module: src.gillm.injection.injector
+    line: 213
+    cyclomatic_complexity: 9
+    calls_out: 13
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.handlers._capture:
+    name: _capture
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 180
+    cyclomatic_complexity: 1
+    calls_out: 5
+    calls_in: 1
+  src.gillm.recovery.repair_hints._dedupe:
+    name: _dedupe
+    module: src.gillm.recovery.repair_hints
+    line: 89
+    cyclomatic_complexity: 4
+    calls_out: 5
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.handlers._resolve:
+    name: _resolve
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 169
+    cyclomatic_complexity: 2
+    calls_out: 6
+    calls_in: 1
+  src.gillm.injection.backends.type_with_backend:
+    name: type_with_backend
+    module: src.gillm.injection.backends
+    line: 164
+    cyclomatic_complexity: 5
+    calls_out: 10
+    calls_in: 1
+  src.gillm.recovery.diagnose.probe_environment:
+    name: probe_environment
+    module: src.gillm.recovery.diagnose
+    line: 65
+    cyclomatic_complexity: 3
+    calls_out: 6
     calls_in: 3
+  packages.dsl2gillm.src.dsl2gillm.pb_codec.decode_protobuf_to_text:
+    name: decode_protobuf_to_text
+    module: packages.dsl2gillm.src.dsl2gillm.pb_codec
+    line: 134
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 0
+  src.gillm.orchestrator.drive.DriveOrchestrator.inject_text:
+    name: inject_text
+    module: src.gillm.orchestrator.drive
+    line: 65
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.events.EventStore.append_command:
+    name: append_command
+    module: packages.dsl2gillm.src.dsl2gillm.events
+    line: 50
+    cyclomatic_complexity: 3
+    calls_out: 33
+    calls_in: 0
+  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool:
+    name: _focus_via_xdotool
+    module: src.gillm.focus.x11
+    line: 86
+    cyclomatic_complexity: 11
+    calls_out: 10
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.cli._main_legacy:
+    name: _main_legacy
+    module: packages.dsl2gillm.src.dsl2gillm.cli
+    line: 74
+    cyclomatic_complexity: 5
+    calls_out: 17
+    calls_in: 1
+  src.gillm.drivers.composite.CompositeGuiDriver.execute:
+    name: execute
+    module: src.gillm.drivers.composite
+    line: 130
+    cyclomatic_complexity: 18
+    calls_out: 22
+    calls_in: 0
+  src.gillm.injection.injector._session_type:
+    name: _session_type
+    module: src.gillm.injection.injector
+    line: 33
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.bus.dispatch:
+    name: dispatch
+    module: packages.dsl2gillm.src.dsl2gillm.bus
+    line: 15
+    cyclomatic_complexity: 15
+    calls_out: 29
+    calls_in: 22
+  packages.dsl2gillm.src.dsl2gillm.cli._handle_subcommand:
+    name: _handle_subcommand
+    module: packages.dsl2gillm.src.dsl2gillm.cli
+    line: 98
+    cyclomatic_complexity: 19
+    calls_out: 32
+    calls_in: 1
+  src.gillm.runtime.activity.emit_activity_warn:
+    name: emit_activity_warn
+    module: src.gillm.runtime.activity
+    line: 38
+    cyclomatic_complexity: 3
+    calls_out: 1
+    calls_in: 1
+  src.gillm.injection.os_injector.try_drive_with_profile:
+    name: try_drive_with_profile
+    module: src.gillm.injection.os_injector
+    line: 271
+    cyclomatic_complexity: 8
+    calls_out: 9
+    calls_in: 0
+  packages.mcp2gillm.src.mcp2gillm.server.run_server:
+    name: run_server
+    module: packages.mcp2gillm.src.mcp2gillm.server
+    line: 78
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 1
+  packages.uri2gillm.src.uri2gillm.run.run_uri:
+    name: run_uri
+    module: packages.uri2gillm.src.uri2gillm.run
+    line: 9
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.codegen._model_name:
+    name: _model_name
+    module: packages.dsl2gillm.src.dsl2gillm.codegen
+    line: 34
+    cyclomatic_complexity: 2
+    calls_out: 4
+    calls_in: 2
   src.gillm.config._cached_config:
     name: _cached_config
     module: src.gillm.config
@@ -733,21 +796,551 @@ nodes:
     cyclomatic_complexity: 1
     calls_out: 2
     calls_in: 1
+  src.gillm.injection.backends.extra_enter_count:
+    name: extra_enter_count
+    module: src.gillm.injection.backends
+    line: 40
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.handlers._execute:
+    name: _execute
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 193
+    cyclomatic_complexity: 4
+    calls_out: 11
+    calls_in: 2
+  packages.uri2gillm.src.uri2gillm.nlp2uri.nlp2uri:
+    name: nlp2uri
+    module: packages.uri2gillm.src.uri2gillm.nlp2uri
+    line: 21
+    cyclomatic_complexity: 12
+    calls_out: 26
+    calls_in: 2
+  src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback:
+    name: capture_primary_rgb_wayland_fallback
+    module: src.gillm.capture.mss_backend
+    line: 94
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 1
+  packages.mcp2gillm.src.mcp2gillm.server.create_server:
+    name: create_server
+    module: packages.mcp2gillm.src.mcp2gillm.server
+    line: 74
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 1
+  src.gillm.runtime.command_runner.run_cmd:
+    name: run_cmd
+    module: src.gillm.runtime.command_runner
+    line: 20
+    cyclomatic_complexity: 2
+    calls_out: 4
+    calls_in: 2
+  src.gillm.runtime.activity.emit_activity:
+    name: emit_activity
+    module: src.gillm.runtime.activity
+    line: 29
+    cyclomatic_complexity: 3
+    calls_out: 1
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.handlers.run_query:
+    name: run_query
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 47
+    cyclomatic_complexity: 8
+    calls_out: 10
+    calls_in: 1
+  src.gillm.runtime.backend_selector.unique_backend_names:
+    name: unique_backend_names
+    module: src.gillm.runtime.backend_selector
+    line: 11
+    cyclomatic_complexity: 3
+    calls_out: 1
+    calls_in: 1
+  packages.uri2gillm.src.uri2gillm.uri.is_gillm_uri:
+    name: is_gillm_uri
+    module: packages.uri2gillm.src.uri2gillm.uri
+    line: 36
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 1
+  src.gillm.runtime.command_runner.set_clipboard:
+    name: set_clipboard
+    module: src.gillm.runtime.command_runner
+    line: 67
+    cyclomatic_complexity: 3
+    calls_out: 6
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.bus.execute_dsl:
+    name: execute_dsl
+    module: packages.dsl2gillm.src.dsl2gillm.bus
+    line: 82
+    cyclomatic_complexity: 4
+    calls_out: 6
+    calls_in: 6
+  src.gillm.recovery.repair_hints.recovery_hints_for_reload:
+    name: recovery_hints_for_reload
+    module: src.gillm.recovery.repair_hints
+    line: 8
+    cyclomatic_complexity: 4
+    calls_out: 0
+    calls_in: 3
+  src.gillm.runtime.env.cmd_timeout_seconds:
+    name: cmd_timeout_seconds
+    module: src.gillm.runtime.env
+    line: 61
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 2
+  packages.dsl2gillm.src.dsl2gillm.pb_codec.decode_protobuf:
+    name: decode_protobuf
+    module: packages.dsl2gillm.src.dsl2gillm.pb_codec
+    line: 121
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 2
+  packages.dsl2gillm.src.dsl2gillm.handlers._health:
+    name: _health
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 84
+    cyclomatic_complexity: 4
+    calls_out: 10
+    calls_in: 1
+  packages.rest2gillm.src.rest2gillm.cli.main:
+    name: main
+    module: packages.rest2gillm.src.rest2gillm.cli
+    line: 8
+    cyclomatic_complexity: 2
+    calls_out: 8
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.codec.envelope_to_json:
+    name: envelope_to_json
+    module: packages.dsl2gillm.src.dsl2gillm.codec
+    line: 52
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 1
+  src.gillm.config.cached_config:
+    name: cached_config
+    module: src.gillm.config
+    line: 89
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 1
+  packages.mcp2gillm.src.mcp2gillm.cli.main:
+    name: main
+    module: packages.mcp2gillm.src.mcp2gillm.cli
+    line: 10
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 0
+  src.gillm.recovery.diagnose.diagnose_drive_reply:
+    name: diagnose_drive_reply
+    module: src.gillm.recovery.diagnose
+    line: 109
+    cyclomatic_complexity: 9
+    calls_out: 21
+    calls_in: 0
+  src.gillm.capture.mss_backend._parse_png_to_rgb:
+    name: _parse_png_to_rgb
+    module: src.gillm.capture.mss_backend
+    line: 108
+    cyclomatic_complexity: 4
+    calls_out: 10
+    calls_in: 1
+  src.gillm.runtime.env.os_injector_env_disabled:
+    name: os_injector_env_disabled
+    module: src.gillm.runtime.env
+    line: 32
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.schema_registry.schema_for_verb:
+    name: schema_for_verb
+    module: packages.dsl2gillm.src.dsl2gillm.schema_registry
+    line: 29
+    cyclomatic_complexity: 2
+    calls_out: 4
+    calls_in: 2
+  packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_protobuf:
+    name: encode_protobuf
+    module: packages.dsl2gillm.src.dsl2gillm.pb_codec
+    line: 112
+    cyclomatic_complexity: 1
+    calls_out: 6
+    calls_in: 3
+  src.gillm.injection.backends.type_with_xdotool:
+    name: type_with_xdotool
+    module: src.gillm.injection.backends
+    line: 57
+    cyclomatic_complexity: 3
+    calls_out: 8
+    calls_in: 1
+  src.gillm.config.resolve_xdg_path:
+    name: resolve_xdg_path
+    module: src.gillm.config
+    line: 16
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.codec.parse_text:
+    name: parse_text
+    module: packages.dsl2gillm.src.dsl2gillm.codec
+    line: 35
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 3
+  src.gillm.runtime.env.post_focus_delay_seconds:
+    name: post_focus_delay_seconds
+    module: src.gillm.runtime.env
+    line: 72
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 2
+  packages.dsl2gillm.src.dsl2gillm.codec.envelope_from_json:
+    name: envelope_from_json
+    module: packages.dsl2gillm.src.dsl2gillm.codec
+    line: 56
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.handlers._simulate:
+    name: _simulate
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 212
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 1
+  src.gillm.intents.contract.gui_contract:
+    name: gui_contract
+    module: src.gillm.intents.contract
+    line: 16
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 3
+  packages.dsl2gillm.src.dsl2gillm.handlers._inject:
+    name: _inject
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 235
+    cyclomatic_complexity: 2
+    calls_out: 15
+    calls_in: 1
+  src.gillm.injection.backends.ydotool_submit_mode:
+    name: ydotool_submit_mode
+    module: src.gillm.injection.backends
+    line: 22
+    cyclomatic_complexity: 3
+    calls_out: 3
+    calls_in: 1
+  packages.cli2gillm.src.cli2gillm.shell.run_shell:
+    name: run_shell
+    module: packages.cli2gillm.src.cli2gillm.shell
+    line: 10
+    cyclomatic_complexity: 9
+    calls_out: 12
+    calls_in: 1
+  packages.uri2gillm.src.uri2gillm.uri.uri_for_block:
+    name: uri_for_block
+    module: packages.uri2gillm.src.uri2gillm.uri
+    line: 20
+    cyclomatic_complexity: 4
+    calls_out: 3
+    calls_in: 1
+  src.gillm.injection.backends._log:
+    name: _log
+    module: src.gillm.injection.backends
+    line: 52
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 26
+  src.gillm.runtime.env.os_injector_env_forced:
+    name: os_injector_env_forced
+    module: src.gillm.runtime.env
+    line: 37
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 3
+  packages.dsl2gillm.src.dsl2gillm.grammar._steps_from_line:
+    name: _steps_from_line
+    module: packages.dsl2gillm.src.dsl2gillm.grammar
+    line: 11
+    cyclomatic_complexity: 8
+    calls_out: 12
+    calls_in: 3
+  packages.dsl2gillm.src.dsl2gillm.cli._run_results:
+    name: _run_results
+    module: packages.dsl2gillm.src.dsl2gillm.cli
+    line: 18
+    cyclomatic_complexity: 6
+    calls_out: 6
+    calls_in: 4
+  src.gillm.injection.os_injector._resolve_input_method:
+    name: _resolve_input_method
+    module: src.gillm.injection.os_injector
+    line: 21
+    cyclomatic_complexity: 7
+    calls_out: 4
+    calls_in: 1
+  packages.uri2gillm.src.uri2gillm.uri._encode:
+    name: _encode
+    module: packages.uri2gillm.src.uri2gillm.uri
+    line: 12
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 4
+  packages.dsl2gillm.src.dsl2gillm.schema_registry.all_verbs:
+    name: all_verbs
+    module: packages.dsl2gillm.src.dsl2gillm.schema_registry
+    line: 36
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 0
+  packages.uri2gillm.src.uri2gillm.uri._decode:
+    name: _decode
+    module: packages.uri2gillm.src.uri2gillm.uri
+    line: 16
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 3
+  src.gillm.injection.backends._ydotool_submit_command:
+    name: _ydotool_submit_command
+    module: src.gillm.injection.backends
+    line: 114
+    cyclomatic_complexity: 3
+    calls_out: 0
+    calls_in: 2
+  src.gillm.drivers.composite.CompositeGuiDriver.probe:
+    name: probe
+    module: src.gillm.drivers.composite
+    line: 38
+    cyclomatic_complexity: 3
+    calls_out: 3
+    calls_in: 0
+  packages.nlp2gillm.src.nlp2gillm.llm_backend.nl_to_dsl_line:
+    name: nl_to_dsl_line
+    module: packages.nlp2gillm.src.nlp2gillm.llm_backend
+    line: 51
+    cyclomatic_complexity: 6
+    calls_out: 8
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.schema_registry._load_schemas:
+    name: _load_schemas
+    module: packages.dsl2gillm.src.dsl2gillm.schema_registry
+    line: 17
+    cyclomatic_complexity: 4
+    calls_out: 11
+    calls_in: 4
+  src.gillm.config.default_config_path:
+    name: default_config_path
+    module: src.gillm.config
+    line: 48
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 1
+  src.gillm.runtime.command_runner.clipboard_backend:
+    name: clipboard_backend
+    module: src.gillm.runtime.command_runner
+    line: 59
+    cyclomatic_complexity: 3
+    calls_out: 2
+    calls_in: 1
+  src.gillm.capture.mss_backend.rgb_mostly_black:
+    name: rgb_mostly_black
+    module: src.gillm.capture.mss_backend
+    line: 42
+    cyclomatic_complexity: 5
+    calls_out: 4
+    calls_in: 1
+  src.gillm.orchestrator.drive.DriveOrchestrator.log:
+    name: log
+    module: src.gillm.orchestrator.drive
+    line: 31
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  packages.rest2gillm.src.rest2gillm.app.create_app:
+    name: create_app
+    module: packages.rest2gillm.src.rest2gillm.app
+    line: 17
+    cyclomatic_complexity: 1
+    calls_out: 42
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.codegen.generate_models:
+    name: generate_models
+    module: packages.dsl2gillm.src.dsl2gillm.codegen
+    line: 98
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 2
+  src.gillm.injection.injector.Injector._type_with_backend:
+    name: _type_with_backend
+    module: src.gillm.injection.injector
+    line: 101
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  src.gillm.focus.wayland.WaylandLinuxStrategy.inject_keys:
+    name: inject_keys
+    module: src.gillm.focus.wayland
+    line: 167
+    cyclomatic_complexity: 9
+    calls_out: 8
+    calls_in: 0
+  src.gillm.runtime.activity.set_activity_sink:
+    name: set_activity_sink
+    module: src.gillm.runtime.activity
+    line: 15
+    cyclomatic_complexity: 1
+    calls_out: 0
+    calls_in: 1
+  src.gillm.nlp_bridge.client._heuristic_parse_intent:
+    name: _heuristic_parse_intent
+    module: src.gillm.nlp_bridge.client
+    line: 14
+    cyclomatic_complexity: 2
+    calls_out: 7
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.handlers._load_steps:
+    name: _load_steps
+    module: packages.dsl2gillm.src.dsl2gillm.handlers
+    line: 32
+    cyclomatic_complexity: 6
+    calls_out: 10
+    calls_in: 2
+  src.gillm.control.dispatch_validate:
+    name: dispatch_validate
+    module: src.gillm.control
+    line: 31
+    cyclomatic_complexity: 3
+    calls_out: 2
+    calls_in: 0
+  packages.dsl2gillm.src.dsl2gillm.pb_codec.result_to_pb:
+    name: result_to_pb
+    module: packages.dsl2gillm.src.dsl2gillm.pb_codec
+    line: 138
+    cyclomatic_complexity: 3
+    calls_out: 3
+    calls_in: 2
+  packages.dsl2gillm.src.dsl2gillm.cli.main:
+    name: main
+    module: packages.dsl2gillm.src.dsl2gillm.cli
+    line: 33
+    cyclomatic_complexity: 4
+    calls_out: 2
+    calls_in: 0
+  src.gillm.injection.injector.Injector.type_text:
+    name: type_text
+    module: src.gillm.injection.injector
+    line: 184
+    cyclomatic_complexity: 6
+    calls_out: 8
+    calls_in: 0
+  src.gillm.runtime.env.dry_run_from_env:
+    name: dry_run_from_env
+    module: src.gillm.runtime.env
+    line: 42
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 1
+  src.gillm.drivers.composite.CompositeGuiDriver.__init__:
+    name: __init__
+    module: src.gillm.drivers.composite
+    line: 26
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 0
+  src.gillm.focus.registry.list_os_strategy_ids:
+    name: list_os_strategy_ids
+    module: src.gillm.focus.registry
+    line: 27
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 2
+  packages.mcp2gillm.src.mcp2gillm.server.GillmMCPServer.__post_init__:
+    name: __post_init__
+    module: packages.mcp2gillm.src.mcp2gillm.server
+    line: 21
+    cyclomatic_complexity: 1
+    calls_out: 3
+    calls_in: 0
+  src.gillm.recovery.repair_hints.recovery_hints_for_context:
+    name: recovery_hints_for_context
+    module: src.gillm.recovery.repair_hints
+    line: 29
+    cyclomatic_complexity: 3
+    calls_out: 3
+    calls_in: 2
+  src.gillm.focus.wayland._scan_for_key:
+    name: _scan_for_key
+    module: src.gillm.focus.wayland
+    line: 85
+    cyclomatic_complexity: 5
+    calls_out: 1
+    calls_in: 2
+  packages.nlp2gillm.src.nlp2gillm.llm_backend.get_backend:
+    name: get_backend
+    module: packages.nlp2gillm.src.nlp2gillm.llm_backend
+    line: 45
+    cyclomatic_complexity: 2
+    calls_out: 1
+    calls_in: 1
+  src.gillm.runtime.env.forced_injector_backend:
+    name: forced_injector_backend
+    module: src.gillm.runtime.env
+    line: 83
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 1
+  src.gillm.focus.wayland.WaylandLinuxStrategy._focus_via_wmctrl:
+    name: _focus_via_wmctrl
+    module: src.gillm.focus.wayland
+    line: 180
+    cyclomatic_complexity: 4
+    calls_out: 3
+    calls_in: 0
+  src.gillm.runtime.profiles.load_profile:
+    name: load_profile
+    module: src.gillm.runtime.profiles
+    line: 55
+    cyclomatic_complexity: 5
+    calls_out: 12
+    calls_in: 1
+  packages.dsl2gillm.src.dsl2gillm.codegen._schema_type:
+    name: _schema_type
+    module: packages.dsl2gillm.src.dsl2gillm.codegen
+    line: 12
+    cyclomatic_complexity: 10
+    calls_out: 3
+    calls_in: 1
 edges:
-- caller: src.gillm.config.default_config_path
-  callee: src.gillm.config.resolve_xdg_path
+- caller: src.gillm.recovery.repair_hints.recovery_hints_for_context
+  callee: src.gillm.recovery.repair_hints._hints_for_kind
   call_type: resolved
-- caller: src.gillm.config.load_config
-  callee: src.gillm.config._merge_submit_keys
+- caller: src.gillm.recovery.repair_hints.recovery_hints_for_context
+  callee: src.gillm.recovery.repair_hints._dedupe
   call_type: resolved
-- caller: src.gillm.config.load_config
-  callee: src.gillm.config.default_config_path
+- caller: src.gillm.recovery.repair_hints.recovery_hints_for_context
+  callee: src.gillm.recovery.repair_hints.recovery_hints_for_reload
   call_type: resolved
-- caller: src.gillm.config._cached_config
-  callee: src.gillm.config.load_config
+- caller: src.gillm.recovery.repair_hints._hints_for_kind
+  callee: src.gillm.recovery.repair_hints.recovery_hints_for_reload
   call_type: resolved
-- caller: src.gillm.config.cached_config
-  callee: src.gillm.config._cached_config
+- caller: src.gillm.recovery.diagnose.probe_environment
+  callee: src.gillm.runtime.env.session_type
+  call_type: resolved
+- caller: src.gillm.recovery.diagnose.probe_environment
+  callee: src.gillm.runtime.env.is_wayland_session
+  call_type: resolved
+- caller: src.gillm.recovery.diagnose.diagnose_drive_reply
+  callee: src.gillm.recovery.diagnose.classify_failure
+  call_type: resolved
+- caller: src.gillm.recovery.diagnose.diagnose_drive_reply
+  callee: src.gillm.recovery.diagnose.probe_environment
+  call_type: resolved
+- caller: src.gillm.recovery.diagnose.diagnose_drive_reply
+  callee: src.gillm.recovery.repair_hints.recovery_hints_for_context
   call_type: resolved
 - caller: src.gillm.capture.portal_backend.capture_portal_png
   callee: src.gillm.capture.portal_backend._portal_python
@@ -814,87 +1407,6 @@ edges:
   call_type: resolved
 - caller: src.gillm.injection.backends.type_with_backend
   callee: src.gillm.injection.backends.ydotool_ctrl_keycode
-  call_type: resolved
-- caller: src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
-  callee: src.gillm.focus.x11._run
-  call_type: resolved
-- caller: src.gillm.focus.x11.X11LinuxStrategy._focus_via_wmctrl
-  callee: src.gillm.focus.x11._run
-  call_type: resolved
-- caller: src.gillm.focus.x11.X11LinuxStrategy._inject_via_xdotool
-  callee: src.gillm.focus.x11._run
-  call_type: resolved
-- caller: src.gillm.focus.wayland._prefer_ydotool
-  callee: src.gillm.focus.wayland._gnome_compositor
-  call_type: resolved
-- caller: src.gillm.focus.wayland.WaylandLinuxStrategy.inject_keys
-  callee: src.gillm.focus.wayland._prefer_ydotool
-  call_type: resolved
-- caller: src.gillm.focus.wayland.WaylandLinuxStrategy._focus_via_wmctrl
-  callee: src.gillm.focus.x11._run
-  call_type: resolved
-- caller: src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_wtype
-  callee: src.gillm.focus.x11._run
-  call_type: resolved
-- caller: src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
-  callee: src.gillm.focus.wayland._scan_for_key
-  call_type: resolved
-- caller: src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
-  callee: src.gillm.focus.x11._run
-  call_type: resolved
-- caller: src.gillm.focus.darwin.DarwinStrategy.focus_window
-  callee: src.gillm.focus.x11._run
-  call_type: resolved
-- caller: src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window
-  callee: src.gillm.intents.contract.gui_contract
-  call_type: resolved
-- caller: src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window
-  callee: src.gillm.intents.contract.validate_contract_runtime
-  call_type: resolved
-- caller: src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window
-  callee: src.gillm.focus.registry.resolve_active_os_strategy
-  call_type: resolved
-- caller: src.gillm.orchestrator.drive.DriveOrchestrator.inject_text
-  callee: src.gillm.intents.contract.gui_contract
-  call_type: resolved
-- caller: src.gillm.orchestrator.drive.DriveOrchestrator.inject_text
-  callee: src.gillm.intents.contract.validate_contract_runtime
-  call_type: resolved
-- caller: src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot
-  callee: src.gillm.intents.contract.gui_contract
-  call_type: resolved
-- caller: src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot
-  callee: src.gillm.intents.contract.validate_contract_runtime
-  call_type: resolved
-- caller: src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot
-  callee: src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback
-  call_type: resolved
-- caller: src.gillm.recovery.repair_hints.recovery_hints_for_context
-  callee: src.gillm.recovery.repair_hints._hints_for_kind
-  call_type: resolved
-- caller: src.gillm.recovery.repair_hints.recovery_hints_for_context
-  callee: src.gillm.recovery.repair_hints._dedupe
-  call_type: resolved
-- caller: src.gillm.recovery.repair_hints.recovery_hints_for_context
-  callee: src.gillm.recovery.repair_hints.recovery_hints_for_reload
-  call_type: resolved
-- caller: src.gillm.recovery.repair_hints._hints_for_kind
-  callee: src.gillm.recovery.repair_hints.recovery_hints_for_reload
-  call_type: resolved
-- caller: src.gillm.recovery.diagnose.probe_environment
-  callee: src.gillm.runtime.env.session_type
-  call_type: resolved
-- caller: src.gillm.recovery.diagnose.probe_environment
-  callee: src.gillm.runtime.env.is_wayland_session
-  call_type: resolved
-- caller: src.gillm.recovery.diagnose.diagnose_drive_reply
-  callee: src.gillm.recovery.diagnose.classify_failure
-  call_type: resolved
-- caller: src.gillm.recovery.diagnose.diagnose_drive_reply
-  callee: src.gillm.recovery.diagnose.probe_environment
-  call_type: resolved
-- caller: src.gillm.recovery.diagnose.diagnose_drive_reply
-  callee: src.gillm.recovery.repair_hints.recovery_hints_for_context
   call_type: resolved
 - caller: src.gillm.injection.injector._submit_key_for
   callee: src.gillm.config.cached_config
@@ -995,6 +1507,36 @@ edges:
 - caller: src.gillm.injection.os_injector.try_drive_with_profile
   callee: src.gillm.runtime.env.dry_run_from_env
   call_type: resolved
+- caller: src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.focus.x11.X11LinuxStrategy._focus_via_wmctrl
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.focus.x11.X11LinuxStrategy._inject_via_xdotool
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.focus.wayland._prefer_ydotool
+  callee: src.gillm.focus.wayland._gnome_compositor
+  call_type: resolved
+- caller: src.gillm.focus.wayland.WaylandLinuxStrategy.inject_keys
+  callee: src.gillm.focus.wayland._prefer_ydotool
+  call_type: resolved
+- caller: src.gillm.focus.wayland.WaylandLinuxStrategy._focus_via_wmctrl
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_wtype
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
+  callee: src.gillm.focus.wayland._scan_for_key
+  call_type: resolved
+- caller: src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
+- caller: src.gillm.focus.darwin.DarwinStrategy.focus_window
+  callee: src.gillm.focus.x11._run
+  call_type: resolved
 - caller: src.gillm.drivers.composite.CompositeGuiDriver.__init__
   callee: src.gillm.runtime.env.session_type
   call_type: resolved
@@ -1085,7 +1627,400 @@ edges:
 - caller: src.gillm.runtime.activity.try_bootstrap_koru_activity_sink
   callee: src.gillm.runtime.activity.set_activity_sink
   call_type: resolved
+- caller: packages.rest2gillm.src.rest2gillm.cli.main
+  callee: packages.rest2gillm.src.rest2gillm.app.create_app
+  call_type: resolved
+- caller: packages.mcp2gillm.src.mcp2gillm.cli.main
+  callee: packages.mcp2gillm.src.mcp2gillm.server.run_server
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+  callee: packages.dsl2gillm.src.dsl2gillm.codec.envelope_from_bytes
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers.run_query
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.bus.execute_dsl_line
+  callee: packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.bus.execute_dsl
+  callee: packages.dsl2gillm.src.dsl2gillm.bus.execute_dsl_line
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.validate_payload
+  callee: packages.dsl2gillm.src.dsl2gillm.schema_registry.schema_for_verb
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.validate_payload
+  callee: packages.dsl2gillm.src.dsl2gillm.codec._validate_with_pydantic
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.parse_text
+  callee: packages.dsl2gillm.src.dsl2gillm.grammar.parse_line
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.parse_text
+  callee: packages.dsl2gillm.src.dsl2gillm.codec.validate_payload
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.envelope_to_bytes
+  callee: packages.dsl2gillm.src.dsl2gillm.codec.validate_payload
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.envelope_to_bytes
+  callee: packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_protobuf
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.envelope_from_bytes
+  callee: packages.dsl2gillm.src.dsl2gillm.pb_codec.decode_protobuf
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.envelope_from_bytes
+  callee: packages.dsl2gillm.src.dsl2gillm.codec.validate_payload
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.envelope_to_json
+  callee: packages.dsl2gillm.src.dsl2gillm.codec.validate_payload
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.envelope_from_json
+  callee: packages.dsl2gillm.src.dsl2gillm.codec.validate_payload
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.roundtrip_text
+  callee: packages.dsl2gillm.src.dsl2gillm.codec.parse_text
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.roundtrip_text
+  callee: packages.dsl2gillm.src.dsl2gillm.codec.envelope_from_bytes
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.roundtrip_text
+  callee: packages.dsl2gillm.src.dsl2gillm.grammar.to_text
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codec.roundtrip_text
+  callee: packages.dsl2gillm.src.dsl2gillm.codec.envelope_to_bytes
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.cli.main
+  callee: packages.dsl2gillm.src.dsl2gillm.cli._main_legacy
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.cli.main
+  callee: packages.dsl2gillm.src.dsl2gillm.cli._main_subcommand
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.cli._main_legacy
+  callee: packages.dsl2gillm.src.dsl2gillm.cli._run_results
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.cli._handle_subcommand
+  callee: packages.dsl2gillm.src.dsl2gillm.schema_registry.validate_schemas
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.cli._handle_subcommand
+  callee: packages.dsl2gillm.src.dsl2gillm.codegen.generate_models
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.cli._handle_subcommand
+  callee: packages.dsl2gillm.src.dsl2gillm.codec.parse_text
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codegen._field_line
+  callee: packages.dsl2gillm.src.dsl2gillm.codegen._schema_type
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codegen.render_models
+  callee: packages.dsl2gillm.src.dsl2gillm.codegen._model_name
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codegen.generate_models
+  callee: packages.dsl2gillm.src.dsl2gillm.codegen.render_models
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codegen.generate_models
+  callee: packages.dsl2gillm.src.dsl2gillm.codegen.load_schemas
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.codegen.main
+  callee: packages.dsl2gillm.src.dsl2gillm.codegen.generate_models
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_protobuf
+  callee: packages.dsl2gillm.src.dsl2gillm.pb_codec._set_body
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.pb_codec.decode_protobuf
+  callee: packages.dsl2gillm.src.dsl2gillm.pb_codec.envelope_to_dict
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_text_to_protobuf
+  callee: packages.dsl2gillm.src.dsl2gillm.grammar.parse_line
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_text_to_protobuf
+  callee: packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_protobuf
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.pb_codec.decode_protobuf_to_text
+  callee: packages.dsl2gillm.src.dsl2gillm.grammar.to_text
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.pb_codec.decode_protobuf_to_text
+  callee: packages.dsl2gillm.src.dsl2gillm.pb_codec.decode_protobuf
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_result_protobuf
+  callee: packages.dsl2gillm.src.dsl2gillm.pb_codec.result_to_pb
+  call_type: resolved
+- caller: packages.uri2gillm.src.uri2gillm.run.run_uri
+  callee: packages.uri2gillm.src.uri2gillm.decode.uri_to_dsl
+  call_type: resolved
+- caller: packages.uri2gillm.src.uri2gillm.run.run_uri
+  callee: packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+  call_type: resolved
+- caller: packages.uri2gillm.src.uri2gillm.uri.uri_for_block
+  callee: packages.uri2gillm.src.uri2gillm.uri._encode
+  call_type: resolved
+- caller: packages.uri2gillm.src.uri2gillm.uri.uri_for_cmd
+  callee: packages.uri2gillm.src.uri2gillm.uri._encode
+  call_type: resolved
+- caller: packages.uri2gillm.src.uri2gillm.uri.parse_gillm_uri
+  callee: packages.uri2gillm.src.uri2gillm.uri._decode
+  call_type: resolved
+- caller: packages.uri2gillm.src.uri2gillm.uri.parse_gillm_uri
+  callee: packages.uri2gillm.src.uri2gillm.uri.is_gillm_uri
+  call_type: resolved
+- caller: packages.uri2gillm.src.uri2gillm.decode.uri_to_dsl
+  callee: packages.uri2gillm.src.uri2gillm.uri.parse_gillm_uri
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.grammar.parse_line
+  callee: packages.dsl2gillm.src.dsl2gillm.grammar._steps_from_line
+  call_type: resolved
+- caller: src.gillm.control.dispatch_health
+  callee: packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+  call_type: resolved
+- caller: src.gillm.control.dispatch_parse
+  callee: packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+  call_type: resolved
+- caller: src.gillm.control.dispatch_execute
+  callee: packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+  call_type: resolved
+- caller: src.gillm.control.dispatch_validate
+  callee: packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+  call_type: resolved
+- caller: packages.nlp2gillm.src.nlp2gillm.to_dsl.to_dsl
+  callee: packages.uri2gillm.src.uri2gillm.nlp2uri.best_uri
+  call_type: resolved
+- caller: packages.nlp2gillm.src.nlp2gillm.to_dsl.to_dsl
+  callee: packages.nlp2gillm.src.nlp2gillm.llm_backend.nl_to_dsl_line
+  call_type: resolved
+- caller: packages.nlp2gillm.src.nlp2gillm.to_dsl.apply_nl
+  callee: packages.nlp2gillm.src.nlp2gillm.to_dsl.to_dsl
+  call_type: resolved
+- caller: packages.nlp2gillm.src.nlp2gillm.to_dsl.apply_nl
+  callee: packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+  call_type: resolved
+- caller: src.gillm.nlp_bridge.client.NLPBridgeClient.parse_intent
+  callee: src.gillm.nlp_bridge.client._heuristic_parse_intent
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window
+  callee: src.gillm.intents.contract.gui_contract
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window
+  callee: src.gillm.intents.contract.validate_contract_runtime
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window
+  callee: src.gillm.focus.registry.resolve_active_os_strategy
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.inject_text
+  callee: src.gillm.intents.contract.gui_contract
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.inject_text
+  callee: src.gillm.intents.contract.validate_contract_runtime
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot
+  callee: src.gillm.intents.contract.gui_contract
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot
+  callee: src.gillm.intents.contract.validate_contract_runtime
+  call_type: resolved
+- caller: src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot
+  callee: src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.events.EventStore.append_command
+  callee: packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_protobuf
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.schema_registry.schema_for_verb
+  callee: packages.dsl2gillm.src.dsl2gillm.schema_registry._load_schemas
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.schema_registry.all_verbs
+  callee: packages.dsl2gillm.src.dsl2gillm.schema_registry._load_schemas
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.schema_registry.validate_schemas
+  callee: packages.dsl2gillm.src.dsl2gillm.schema_registry._load_schemas
+  call_type: resolved
+- caller: packages.mcp2gillm.src.mcp2gillm.server.GillmMCPServer.__post_init__
+  callee: packages.mcp2gillm.src.mcp2gillm.server._require_fastmcp
+  call_type: resolved
+- caller: packages.mcp2gillm.src.mcp2gillm.server.GillmMCPServer._register_tools
+  callee: packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+  call_type: resolved
+- caller: packages.mcp2gillm.src.mcp2gillm.server.GillmMCPServer._register_tools
+  callee: packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_result_protobuf
+  call_type: resolved
+- caller: packages.mcp2gillm.src.mcp2gillm.server.run_server
+  callee: packages.mcp2gillm.src.mcp2gillm.server.create_server
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers.run_query
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._health
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers.run_query
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._orient
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers.run_query
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._actions
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers.run_query
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._parse
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers.run_query
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._validate
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers.run_query
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._resolve
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers.run_query
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._capture
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers.run_command
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._execute
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers.run_command
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._simulate
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers.run_command
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._focus
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers.run_command
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._inject
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers._health
+  callee: src.gillm.focus.registry.resolve_active_os_strategy
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers._health
+  callee: src.gillm.focus.registry.list_os_strategy_ids
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers._orient
+  callee: src.gillm.focus.registry.resolve_active_os_strategy
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers._orient
+  callee: src.gillm.focus.registry.list_os_strategy_ids
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers._validate
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._load_steps
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers._resolve
+  callee: packages.nlp2gillm.src.nlp2gillm.to_dsl.to_dsl
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers._execute
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._load_steps
+  call_type: resolved
+- caller: packages.dsl2gillm.src.dsl2gillm.handlers._simulate
+  callee: packages.dsl2gillm.src.dsl2gillm.handlers._execute
+  call_type: resolved
+- caller: packages.uri2gillm.src.uri2gillm.nlp2uri.best_uri
+  callee: packages.uri2gillm.src.uri2gillm.nlp2uri.nlp2uri
+  call_type: resolved
+- caller: packages.cli2gillm.src.cli2gillm.shell.run_shell
+  callee: packages.dsl2gillm.src.dsl2gillm.bus.execute_dsl_line
+  call_type: resolved
+- caller: packages.rest2gillm.src.rest2gillm.app.create_app
+  callee: packages.dsl2gillm.src.dsl2gillm.schema_registry.schema_for_verb
+  call_type: resolved
+- caller: src.gillm.config.default_config_path
+  callee: src.gillm.config.resolve_xdg_path
+  call_type: resolved
+- caller: src.gillm.config.load_config
+  callee: src.gillm.config._merge_submit_keys
+  call_type: resolved
+- caller: src.gillm.config.load_config
+  callee: src.gillm.config.default_config_path
+  call_type: resolved
+- caller: src.gillm.config._cached_config
+  callee: src.gillm.config.load_config
+  call_type: resolved
+- caller: src.gillm.config.cached_config
+  callee: src.gillm.config._cached_config
+  call_type: resolved
+- caller: packages.nlp2gillm.src.nlp2gillm.llm_backend.nl_to_dsl_line
+  callee: packages.nlp2gillm.src.nlp2gillm.llm_backend.get_backend
+  call_type: resolved
 modules:
+  packages.cli2gillm.src.cli2gillm.shell:
+  - packages.cli2gillm.src.cli2gillm.shell.run_shell
+  packages.dsl2gillm.src.dsl2gillm.bus:
+  - packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+  - packages.dsl2gillm.src.dsl2gillm.bus.execute_dsl
+  - packages.dsl2gillm.src.dsl2gillm.bus.execute_dsl_line
+  packages.dsl2gillm.src.dsl2gillm.cli:
+  - packages.dsl2gillm.src.dsl2gillm.cli._handle_subcommand
+  - packages.dsl2gillm.src.dsl2gillm.cli._main_legacy
+  - packages.dsl2gillm.src.dsl2gillm.cli._main_subcommand
+  - packages.dsl2gillm.src.dsl2gillm.cli._run_results
+  - packages.dsl2gillm.src.dsl2gillm.cli.main
+  packages.dsl2gillm.src.dsl2gillm.codec:
+  - packages.dsl2gillm.src.dsl2gillm.codec._validate_with_pydantic
+  - packages.dsl2gillm.src.dsl2gillm.codec.envelope_from_bytes
+  - packages.dsl2gillm.src.dsl2gillm.codec.envelope_from_json
+  - packages.dsl2gillm.src.dsl2gillm.codec.envelope_to_bytes
+  - packages.dsl2gillm.src.dsl2gillm.codec.envelope_to_json
+  - packages.dsl2gillm.src.dsl2gillm.codec.parse_text
+  - packages.dsl2gillm.src.dsl2gillm.codec.roundtrip_text
+  - packages.dsl2gillm.src.dsl2gillm.codec.validate_payload
+  packages.dsl2gillm.src.dsl2gillm.codegen:
+  - packages.dsl2gillm.src.dsl2gillm.codegen._field_line
+  - packages.dsl2gillm.src.dsl2gillm.codegen._model_name
+  - packages.dsl2gillm.src.dsl2gillm.codegen._schema_type
+  - packages.dsl2gillm.src.dsl2gillm.codegen.generate_models
+  - packages.dsl2gillm.src.dsl2gillm.codegen.load_schemas
+  - packages.dsl2gillm.src.dsl2gillm.codegen.main
+  - packages.dsl2gillm.src.dsl2gillm.codegen.render_models
+  packages.dsl2gillm.src.dsl2gillm.events:
+  - packages.dsl2gillm.src.dsl2gillm.events.EventStore.append_command
+  packages.dsl2gillm.src.dsl2gillm.grammar:
+  - packages.dsl2gillm.src.dsl2gillm.grammar._steps_from_line
+  - packages.dsl2gillm.src.dsl2gillm.grammar.parse_line
+  - packages.dsl2gillm.src.dsl2gillm.grammar.to_text
+  packages.dsl2gillm.src.dsl2gillm.handlers:
+  - packages.dsl2gillm.src.dsl2gillm.handlers._actions
+  - packages.dsl2gillm.src.dsl2gillm.handlers._capture
+  - packages.dsl2gillm.src.dsl2gillm.handlers._execute
+  - packages.dsl2gillm.src.dsl2gillm.handlers._focus
+  - packages.dsl2gillm.src.dsl2gillm.handlers._health
+  - packages.dsl2gillm.src.dsl2gillm.handlers._inject
+  - packages.dsl2gillm.src.dsl2gillm.handlers._load_steps
+  - packages.dsl2gillm.src.dsl2gillm.handlers._orient
+  - packages.dsl2gillm.src.dsl2gillm.handlers._parse
+  - packages.dsl2gillm.src.dsl2gillm.handlers._resolve
+  - packages.dsl2gillm.src.dsl2gillm.handlers._simulate
+  - packages.dsl2gillm.src.dsl2gillm.handlers._validate
+  - packages.dsl2gillm.src.dsl2gillm.handlers.run_command
+  - packages.dsl2gillm.src.dsl2gillm.handlers.run_query
+  packages.dsl2gillm.src.dsl2gillm.pb_codec:
+  - packages.dsl2gillm.src.dsl2gillm.pb_codec._set_body
+  - packages.dsl2gillm.src.dsl2gillm.pb_codec.decode_protobuf
+  - packages.dsl2gillm.src.dsl2gillm.pb_codec.decode_protobuf_to_text
+  - packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_protobuf
+  - packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_result_protobuf
+  - packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_text_to_protobuf
+  - packages.dsl2gillm.src.dsl2gillm.pb_codec.envelope_to_dict
+  - packages.dsl2gillm.src.dsl2gillm.pb_codec.result_to_pb
+  packages.dsl2gillm.src.dsl2gillm.schema_registry:
+  - packages.dsl2gillm.src.dsl2gillm.schema_registry._load_schemas
+  - packages.dsl2gillm.src.dsl2gillm.schema_registry.all_verbs
+  - packages.dsl2gillm.src.dsl2gillm.schema_registry.schema_for_verb
+  - packages.dsl2gillm.src.dsl2gillm.schema_registry.validate_schemas
+  packages.mcp2gillm.src.mcp2gillm.cli:
+  - packages.mcp2gillm.src.mcp2gillm.cli.main
+  packages.mcp2gillm.src.mcp2gillm.server:
+  - packages.mcp2gillm.src.mcp2gillm.server.GillmMCPServer.__post_init__
+  - packages.mcp2gillm.src.mcp2gillm.server.GillmMCPServer._register_tools
+  - packages.mcp2gillm.src.mcp2gillm.server._require_fastmcp
+  - packages.mcp2gillm.src.mcp2gillm.server.create_server
+  - packages.mcp2gillm.src.mcp2gillm.server.run_server
+  packages.nlp2gillm.src.nlp2gillm.llm_backend:
+  - packages.nlp2gillm.src.nlp2gillm.llm_backend.get_backend
+  - packages.nlp2gillm.src.nlp2gillm.llm_backend.nl_to_dsl_line
+  packages.nlp2gillm.src.nlp2gillm.to_dsl:
+  - packages.nlp2gillm.src.nlp2gillm.to_dsl.apply_nl
+  - packages.nlp2gillm.src.nlp2gillm.to_dsl.to_dsl
+  packages.rest2gillm.src.rest2gillm.app:
+  - packages.rest2gillm.src.rest2gillm.app.create_app
+  packages.rest2gillm.src.rest2gillm.cli:
+  - packages.rest2gillm.src.rest2gillm.cli.main
+  packages.uri2gillm.src.uri2gillm.decode:
+  - packages.uri2gillm.src.uri2gillm.decode.uri_to_dsl
+  packages.uri2gillm.src.uri2gillm.nlp2uri:
+  - packages.uri2gillm.src.uri2gillm.nlp2uri.best_uri
+  - packages.uri2gillm.src.uri2gillm.nlp2uri.nlp2uri
+  packages.uri2gillm.src.uri2gillm.run:
+  - packages.uri2gillm.src.uri2gillm.run.run_uri
+  packages.uri2gillm.src.uri2gillm.uri:
+  - packages.uri2gillm.src.uri2gillm.uri._decode
+  - packages.uri2gillm.src.uri2gillm.uri._encode
+  - packages.uri2gillm.src.uri2gillm.uri.is_gillm_uri
+  - packages.uri2gillm.src.uri2gillm.uri.parse_gillm_uri
+  - packages.uri2gillm.src.uri2gillm.uri.uri_for_block
+  - packages.uri2gillm.src.uri2gillm.uri.uri_for_cmd
   src.gillm.capture.mss_backend:
   - src.gillm.capture.mss_backend._parse_png_to_rgb
   - src.gillm.capture.mss_backend.capture_primary_rgb
@@ -1103,6 +2038,11 @@ modules:
   - src.gillm.config.default_config_path
   - src.gillm.config.load_config
   - src.gillm.config.resolve_xdg_path
+  src.gillm.control:
+  - src.gillm.control.dispatch_execute
+  - src.gillm.control.dispatch_health
+  - src.gillm.control.dispatch_parse
+  - src.gillm.control.dispatch_validate
   src.gillm.drivers.composite:
   - src.gillm.drivers.composite.CompositeGuiDriver.__init__
   - src.gillm.drivers.composite.CompositeGuiDriver.execute
@@ -1112,6 +2052,7 @@ modules:
   src.gillm.focus.darwin:
   - src.gillm.focus.darwin.DarwinStrategy.focus_window
   src.gillm.focus.registry:
+  - src.gillm.focus.registry.list_os_strategy_ids
   - src.gillm.focus.registry.resolve_active_os_strategy
   src.gillm.focus.wayland:
   - src.gillm.focus.wayland.WaylandLinuxStrategy._focus_via_wmctrl
@@ -1158,6 +2099,9 @@ modules:
   src.gillm.intents.contract:
   - src.gillm.intents.contract.gui_contract
   - src.gillm.intents.contract.validate_contract_runtime
+  src.gillm.nlp_bridge.client:
+  - src.gillm.nlp_bridge.client.NLPBridgeClient.parse_intent
+  - src.gillm.nlp_bridge.client._heuristic_parse_intent
   src.gillm.orchestrator.drive:
   - src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot
   - src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window
@@ -1211,6 +2155,32 @@ modules:
   - src.gillm.runtime.profiles.save_profile
   - src.gillm.runtime.profiles.try_load_profile
 entry_points:
+- packages.cli2gillm.src.cli2gillm.cli.main
+- packages.dsl2gillm.src.dsl2gillm.cli.main
+- packages.dsl2gillm.src.dsl2gillm.codegen.main
+- packages.dsl2gillm.src.dsl2gillm.events.EventStore.__init__
+- packages.dsl2gillm.src.dsl2gillm.events.EventStore.append_command
+- packages.dsl2gillm.src.dsl2gillm.events.EventStore.for_workdir
+- packages.dsl2gillm.src.dsl2gillm.events.EventStore.read_all
+- packages.dsl2gillm.src.dsl2gillm.events.EventStore.replay
+- packages.dsl2gillm.src.dsl2gillm.events.StoredEvent.to_dict
+- packages.dsl2gillm.src.dsl2gillm.handlers.HandlerResult.to_dict
+- packages.dsl2gillm.src.dsl2gillm.pb_codec.decode_protobuf_to_text
+- packages.dsl2gillm.src.dsl2gillm.pb_codec.encode_text_to_protobuf
+- packages.dsl2gillm.src.dsl2gillm.result.DslResult.to_dict
+- packages.dsl2gillm.src.dsl2gillm.schema_registry.all_verbs
+- packages.mcp2gillm.src.mcp2gillm.cli.main
+- packages.mcp2gillm.src.mcp2gillm.server.GillmMCPServer.__post_init__
+- packages.mcp2gillm.src.mcp2gillm.server.GillmMCPServer._register_tools
+- packages.mcp2gillm.src.mcp2gillm.server.GillmMCPServer.run
+- packages.nlp2gillm.src.nlp2gillm.cli.main
+- packages.nlp2gillm.src.nlp2gillm.llm_backend.LLMBackend.complete
+- packages.nlp2gillm.src.nlp2gillm.llm_backend.LitellmBackend.complete
+- packages.rest2gillm.src.rest2gillm.cli.main
+- packages.uri2gillm.src.uri2gillm.cli.main
+- packages.uri2gillm.src.uri2gillm.nlp2uri.UriHit.to_dict
+- src.gillm.__dir__
+- src.gillm.__getattr__
 - src.gillm.adapters.koru.drive_payload_to_action_plan
 - src.gillm.adapters.koru.koru_drive_to_payload
 - src.gillm.cli.main.main
@@ -1227,6 +2197,10 @@ entry_points:
 - src.gillm.contracts.driver.GuiDriver.probe
 - src.gillm.contracts.driver.GuiDriver.screenshot
 - src.gillm.contracts.driver.GuiDriver.type_text
+- src.gillm.control.dispatch_execute
+- src.gillm.control.dispatch_health
+- src.gillm.control.dispatch_parse
+- src.gillm.control.dispatch_validate
 - src.gillm.drivers.composite.CompositeGuiDriver.__init__
 - src.gillm.drivers.composite.CompositeGuiDriver.click
 - src.gillm.drivers.composite.CompositeGuiDriver.execute
@@ -1249,7 +2223,6 @@ entry_points:
 - src.gillm.focus.darwin.DarwinStrategy.matches_current_environment
 - src.gillm.focus.darwin._run
 - src.gillm.focus.registry.get_os_strategy
-- src.gillm.focus.registry.list_os_strategy_ids
 - src.gillm.focus.registry.register_os_strategy
 - src.gillm.focus.strategy.KeySequence.__post_init__
 - src.gillm.focus.strategy.OsStrategy.__repr__

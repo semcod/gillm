@@ -1,0 +1,10 @@
+{
+  "$id": "dsl2gillm/commands/parse",
+  "type": "object",
+  "required": ["verb", "instruction"],
+  "properties": {
+    "verb": { "const": "PARSE" },
+    "instruction": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

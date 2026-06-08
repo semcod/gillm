@@ -6,7 +6,18 @@ import argparse
 import json
 import sys
 
-from gillm.orchestrator.drive import DriveOrchestrator
+
+def _print_result(result: dict, *, label: str = "Execution") -> int:
+    if result.get("error"):
+        print(f"[-] Error: {result['error']}", file=sys.stderr)
+    print(f"[+] {label} finished:")
+    output = result.get("output")
+    data = result.get("data")
+    if data:
+        print(json.dumps(data if isinstance(data, dict) else {"data": data}, indent=2))
+    elif output:
+        print(output)
+    return 0 if result.get("ok") else 1
 
 
 def main() -> int:
@@ -15,17 +26,14 @@ def main() -> int:
     )
     subparsers = parser.add_subparsers(dest="command", help="Sub-commands")
 
-    # Command: run (execute direct actions or DSL file)
     run_parser = subparsers.add_parser("run", help="Execute GUI actions from file")
     run_parser.add_argument("file", help="Path to JSON file containing GUI steps")
     run_parser.add_argument("--dry-run", action="store_true", help="Log actions without executing them")
 
-    # Command: nlp (execute natural language command)
     nlp_parser = subparsers.add_parser("nlp", help="Translate and execute natural language GUI commands")
     nlp_parser.add_argument("instruction", help="Natural language instruction (e.g. 'focus vscode and type hello')")
     nlp_parser.add_argument("--dry-run", action="store_true", help="Log actions without executing them")
 
-    # Command: capture (take screen capture)
     capture_parser = subparsers.add_parser("capture", help="Take a primary display screen capture")
     capture_parser.add_argument("--scale", type=float, default=0.2, help="Image scale factor (default: 0.2)")
 
@@ -35,40 +43,49 @@ def main() -> int:
         parser.print_help()
         return 0
 
-    orchestrator = DriveOrchestrator(log_fn=lambda msg: print(f"[*] {msg}"))
+    try:
+        from dsl2gillm import dispatch
+    except ImportError:
+        print(
+            "[-] Error: dsl2gillm not installed. Run: cd gillm && bash packages/install-dev.sh",
+            file=sys.stderr,
+        )
+        return 1
 
     if args.command == "run":
         try:
-            with open(args.file, encoding="utf-8") as f:
-                steps = json.load(f)
-            if not isinstance(steps, list):
-                print("[-] Error: Workflow file must contain a JSON list of steps", file=sys.stderr)
-                return 1
-            results = orchestrator.execute_workflow(steps, dry_run=args.dry_run)
-            print("[+] Execution finished:")
-            print(json.dumps(results, indent=2))
-            return 0
+            verb = "SIMULATE" if args.dry_run else "EXECUTE"
+            line = f"{verb} FILE {args.file}"
+            result = dispatch(line, default_file=args.file).to_dict()
+            return _print_result(result)
         except Exception as exc:
             print(f"[-] Error: {exc}", file=sys.stderr)
             return 1
 
-    elif args.command == "nlp":
+    if args.command == "nlp":
         try:
             print(f"[*] Parsing and executing instruction: {args.instruction!r}")
-            results = orchestrator.drive_natural_language(args.instruction, dry_run=args.dry_run)
-            print("[+] Execution finished:")
-            print(json.dumps(results, indent=2))
-            return 0
+            parse_result = dispatch(
+                {"verb": "PARSE", "instruction": args.instruction},
+            ).to_dict()
+            if not parse_result.get("ok"):
+                return _print_result(parse_result, label="Parse")
+            steps = (parse_result.get("data") or {}).get("steps", [])
+            verb = "SIMULATE" if args.dry_run else "EXECUTE"
+            exec_result = dispatch({"verb": verb, "steps": steps}).to_dict()
+            return _print_result(exec_result)
         except Exception as exc:
             print(f"[-] Error: {exc}", file=sys.stderr)
             return 1
 
-    elif args.command == "capture":
+    if args.command == "capture":
         try:
             print(f"[*] Capturing screenshot (scale={args.scale})...")
-            img = orchestrator.capture_screenshot(scale=args.scale)
-            print(f"[+] Success: Captured {img.width}x{img.height} screen at scale {img.scale}")
-            return 0
+            result = dispatch({"verb": "CAPTURE", "scale": args.scale}).to_dict()
+            if result.get("ok"):
+                print(f"[+] Success: {result.get('output', '').strip()}")
+                return 0
+            return _print_result(result, label="Capture")
         except Exception as exc:
             print(f"[-] Error: {exc}", file=sys.stderr)
             return 1

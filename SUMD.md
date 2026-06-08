@@ -2,6 +2,8 @@
 
 GUI Control Plugin with NLP & Intent Contracts
 
+**See also:** [README.md](README.md) (user guide) · [SUMR.md](SUMR.md) (compact refactor view) · [packages/README.md](packages/README.md) (control layer) · [CHANGELOG.md](CHANGELOG.md) · [project/](project/README.md) (code analysis)
+
 ## Contents
 
 - [Metadata](#metadata)
@@ -22,7 +24,7 @@ GUI Control Plugin with NLP & Intent Contracts
 ## Metadata
 
 - **name**: `gillm`
-- **version**: `0.1.8`
+- **version**: `0.1.10`
 - **python_requires**: `>=3.10`
 - **license**: Apache-2.0
 - **ai_model**: `openrouter/qwen/qwen3-coder-next`
@@ -42,19 +44,85 @@ SUMD (description) → DOQL/source (code) → taskfile (automation) → testql (
 
 app {
   name: gillm;
-  version: 0.1.8;
+  version: 0.1.10;
 }
 
 dependencies {
   runtime: "pyyaml>=6.0, rich>=13.0, requests>=2.31.0, mss>=9.0";
-  dev: "pytest>=7.0, ruff>=0.4, goal>=2.1.0, costs>=0.1.20, pfix>=0.1.60";
+  control: "dsl2gillm>=0.1.0, uri2gillm>=0.1.0, nlp2gillm>=0.1.0, cli2gillm>=0.1.0, mcp2gillm>=0.1.0, rest2gillm>=0.1.0";
+  dev: "pytest>=7.0, ruff>=0.4, goal>=2.1.0, costs>=0.1.20, pfix>=0.1.60, dsl2gillm>=0.1.0, uri2gillm>=0.1.0, nlp2gillm>=0.1.0, rest2gillm>=0.1.0";
+}
+
+entity[name="ActionsCommand"] {
+  verb: Literal[!;
+}
+
+entity[name="CaptureCommand"] {
+  verb: Literal[!;
+  scale: float!;
+}
+
+entity[name="ExecuteCommand"] {
+  verb: Literal[!;
+  file: str | None;
+  steps: list[dict[str, Any]] | None;
+  dry_run: bool!;
+}
+
+entity[name="FocusCommand"] {
+  verb: Literal[!;
+  hints: string!;
+  dry_run: bool!;
+}
+
+entity[name="HealthCommand"] {
+  verb: Literal[!;
+}
+
+entity[name="InjectCommand"] {
+  verb: Literal[!;
+  text: string!;
+  ide: string!;
+  submit: bool!;
+  dry_run: bool!;
+}
+
+entity[name="OrientCommand"] {
+  verb: Literal[!;
+}
+
+entity[name="ParseCommand"] {
+  verb: Literal[!;
+  instruction: string!;
+}
+
+entity[name="ResolveCommand"] {
+  verb: Literal[!;
+  prompt: string!;
+}
+
+entity[name="SimulateCommand"] {
+  verb: Literal[!;
+  file: str | None;
+  steps: list[dict[str, Any]] | None;
+}
+
+entity[name="ValidateCommand"] {
+  verb: Literal[!;
+  file: str | None;
+  steps: list[dict[str, Any]] | None;
+}
+
+interface[type="api"] {
+  type: rest;
+  framework: fastapi;
 }
 
 interface[type="cli"] {
   framework: argparse;
 }
 interface[type="cli"] page[name="gillm"] {
-
+  entry: gillm.cli:main;
 }
 
 workflow[name="venv"] {
@@ -316,14 +384,26 @@ workflow[name="quickstart"] {
   step-9: run cmd=echo "📖 For more: make help";
 }
 
+tests {
+  import: testql-scenarios/**/*.testql.toon.yaml;
+}
+
+env_vars {
+  keys: OPENROUTER_API_KEY, LLM_MODEL, PFIX_AUTO_APPLY, PFIX_AUTO_INSTALL_DEPS, PFIX_AUTO_RESTART, PFIX_MAX_RETRIES, PFIX_DRY_RUN, PFIX_ENABLED, PFIX_GIT_COMMIT, PFIX_GIT_PREFIX, PFIX_CREATE_BACKUPS, XDG_CONFIG_HOME, KORU_PORTAL_PYTHON, KORU_VISION_SCALE, KORU_YDOTOOL_ENTER_KEYCODE, KORU_YDOTOOL_SUBMIT_MODE, KORU_YDOTOOL_CTRL_KEYCODE, KORU_INJECTOR_EXTRA_ENTER, WAYLAND_DISPLAY, XDG_SESSION_TYPE, DISPLAY, XDG_CURRENT_DESKTOP, GNOME_DESKTOP_SESSION_ID, KORU_OS_PREFER_YDOTOOL, TERM_PROGRAM, KORU_OS_INJECTOR, KORU_OS_INJECTOR_DRY_RUN, KORU_OS_INJECTOR_FOCUS, KORU_OS_INJECTOR_INPUT, KORU_OS_INJECTOR_CMD_TIMEOUT, KORU_OS_INJECTOR_POST_FOCUS_DELAY, KORU_INJECTOR_BACKEND;
+}
+
 deploy {
   target: makefile;
 }
 
 environment[name="local"] {
-  runtime: docker-compose;
+  runtime: python;
   env_file: .env;
+  template_file: .env.example;
   python_version: >=3.10;
+  vars: LLM_MODEL, OPENROUTER_API_KEY, PFIX_AUTO_APPLY, PFIX_AUTO_INSTALL_DEPS, PFIX_AUTO_RESTART, PFIX_CREATE_BACKUPS, PFIX_DRY_RUN, PFIX_ENABLED, PFIX_GIT_COMMIT, PFIX_GIT_PREFIX, PFIX_MAX_RETRIES;
+  runtime_llm: OPENROUTER_API_KEY;
+  runtime_pfix: PFIX_AUTO_APPLY, PFIX_AUTO_INSTALL_DEPS, PFIX_AUTO_RESTART, PFIX_CREATE_BACKUPS, PFIX_DRY_RUN, PFIX_ENABLED, PFIX_GIT_COMMIT, PFIX_GIT_PREFIX, PFIX_MAX_RETRIES;
 }
 ```
 
@@ -367,7 +447,7 @@ ASSERT_EXIT_CODE 0
 ```yaml
 project:
   name: gillm
-  version: 0.1.8
+  version: 0.1.10
   env: local
 ```
 
@@ -390,6 +470,10 @@ ruff>=0.4
 goal>=2.1.0
 costs>=0.1.20
 pfix>=0.1.60
+dsl2gillm>=0.1.0
+uri2gillm>=0.1.0
+nlp2gillm>=0.1.0
+rest2gillm>=0.1.0
 ```
 
 ## Deployment
@@ -473,26 +557,76 @@ pip install -e .[dev]
 ### `project/map.toon.yaml`
 
 ```toon markpact:analysis path=project/map.toon.yaml
-# gillm | 53f 5357L | python:50,shell:2,less:1 | 2026-06-03
-# stats: 162 func | 39 cls | 53 mod | CC̄=3.7 | critical:3 | cycles:0
-# alerts[5]: CC classify_failure=24; CC drive_payload_to_action_plan=21; CC _hints_for_kind=15; CC main=9; CC _os_injector_skip_reason=9
-# hotspots[5]: main fan=15; type_with_backend fan=10; inject_with_profile fan=10; _parse_png_to_rgb fan=9; test_inject_with_profile_paste_path_uses_clipboard_then_ctrl_v fan=9
+# gillm | 103f 8038L | python:98,shell:4,less:1 | 2026-06-08
+# stats: 275 func | 59 cls | 103 mod | CC̄=4.1 | critical:17 | cycles:0
+# alerts[5]: CC parse_line=46; CC envelope_to_dict=26; CC uri_to_dsl=26; CC classify_failure=24; CC to_text=22
+# hotspots[5]: create_app fan=24; _handle_subcommand fan=22; dispatch fan=17; main fan=15; parse_line fan=12
 # evolution: baseline
 # Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
-M[53]:
-  app.doql.less,288
+M[103]:
+  app.doql.less,366
+  packages/cli2gillm/src/cli2gillm/__init__.py,2
+  packages/cli2gillm/src/cli2gillm/cli.py,71
+  packages/cli2gillm/src/cli2gillm/shell.py,34
+  packages/cli2gillm/tests/test_cli2gillm.py,7
+  packages/dsl2gillm/scripts/generate-proto.sh,7
+  packages/dsl2gillm/src/dsl2gillm/__init__.py,35
+  packages/dsl2gillm/src/dsl2gillm/bus.py,89
+  packages/dsl2gillm/src/dsl2gillm/cli.py,167
+  packages/dsl2gillm/src/dsl2gillm/codec.py,67
+  packages/dsl2gillm/src/dsl2gillm/codegen.py,113
+  packages/dsl2gillm/src/dsl2gillm/engine.py,6
+  packages/dsl2gillm/src/dsl2gillm/events.py,134
+  packages/dsl2gillm/src/dsl2gillm/grammar.py,177
+  packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py,245
+  packages/dsl2gillm/src/dsl2gillm/models.py,97
+  packages/dsl2gillm/src/dsl2gillm/pb_codec.py,152
+  packages/dsl2gillm/src/dsl2gillm/result.py,29
+  packages/dsl2gillm/src/dsl2gillm/schema_registry.py,50
+  packages/dsl2gillm/src/dsl2gillm/v1/__init__.py,2
+  packages/dsl2gillm/src/dsl2gillm/v1/command_pb2.py,59
+  packages/dsl2gillm/src/dsl2gillm/v1/result_pb2.py,40
+  packages/dsl2gillm/tests/test_bus.py,41
+  packages/dsl2gillm/tests/test_codegen.py,19
+  packages/dsl2gillm/tests/test_dry_run.py,14
+  packages/dsl2gillm/tests/test_parity.py,19
+  packages/dsl2gillm/tests/test_parity_adapters.py,51
+  packages/dsl2gillm/tests/test_protobuf.py,18
+  packages/install-dev.sh,15
+  packages/mcp2gillm/src/mcp2gillm/__init__.py,6
+  packages/mcp2gillm/src/mcp2gillm/cli.py,23
+  packages/mcp2gillm/src/mcp2gillm/server.py,84
+  packages/mcp2gillm/tests/test_mcp2gillm.py,6
+  packages/nlp2gillm/src/nlp2gillm/__init__.py,7
+  packages/nlp2gillm/src/nlp2gillm/cli.py,56
+  packages/nlp2gillm/src/nlp2gillm/llm_backend.py,81
+  packages/nlp2gillm/src/nlp2gillm/to_dsl.py,54
+  packages/nlp2gillm/tests/test_llm_backend.py,12
+  packages/nlp2gillm/tests/test_to_dsl.py,10
+  packages/rest2gillm/src/rest2gillm/__init__.py,6
+  packages/rest2gillm/src/rest2gillm/app.py,88
+  packages/rest2gillm/src/rest2gillm/cli.py,28
+  packages/rest2gillm/tests/test_rest2gillm.py,29
+  packages/uri2gillm/src/uri2gillm/__init__.py,19
+  packages/uri2gillm/src/uri2gillm/cli.py,64
+  packages/uri2gillm/src/uri2gillm/decode.py,55
+  packages/uri2gillm/src/uri2gillm/nlp2uri.py,55
+  packages/uri2gillm/src/uri2gillm/run.py,12
+  packages/uri2gillm/src/uri2gillm/uri.py,53
+  packages/uri2gillm/tests/test_uri.py,15
   project.sh,50
-  src/gillm/__init__.py,25
+  src/gillm/__init__.py,56
   src/gillm/adapters/__init__.py,6
   src/gillm/adapters/koru.py,95
   src/gillm/capture/__init__.py,17
   src/gillm/capture/mss_backend.py,131
   src/gillm/capture/portal_backend.py,114
   src/gillm/cli/__init__.py,6
-  src/gillm/cli/main.py,81
-  src/gillm/config.py,113
+  src/gillm/cli/main.py,98
+  src/gillm/config.py,106
   src/gillm/contracts/__init__.py,24
   src/gillm/contracts/driver.py,137
+  src/gillm/control.py,40
   src/gillm/drivers/__init__.py,7
   src/gillm/drivers/composite.py,181
   src/gillm/drivers/dry_run.py,90
@@ -512,9 +646,9 @@ M[53]:
   src/gillm/intents/__init__.py,6
   src/gillm/intents/contract.py,79
   src/gillm/nlp_bridge/__init__.py,6
-  src/gillm/nlp_bridge/client.py,71
-  src/gillm/orchestrator/__init__.py,6
-  src/gillm/orchestrator/drive.py,155
+  src/gillm/nlp_bridge/client.py,45
+  src/gillm/orchestrator/__init__.py,9
+  src/gillm/orchestrator/drive.py,169
   src/gillm/recovery/__init__.py,21
   src/gillm/recovery/diagnose.py,151
   src/gillm/recovery/repair_hints.py,99
@@ -526,7 +660,7 @@ M[53]:
   src/gillm/runtime/errors.py,6
   src/gillm/runtime/profiles.py,118
   tests/test_drive_backend.py,72
-  tests/test_gillm.py,97
+  tests/test_gillm.py,105
   tests/test_gui_driver.py,43
   tests/test_injector.py,286
   tests/test_os_injector.py,352
@@ -534,7 +668,218 @@ M[53]:
   tests/test_recovery.py,49
   tree.sh,2
 D:
+  packages/cli2gillm/src/cli2gillm/__init__.py:
+  packages/cli2gillm/src/cli2gillm/cli.py:
+    e: main
+    main(argv)
+  packages/cli2gillm/src/cli2gillm/shell.py:
+    e: run_shell
+    run_shell()
+  packages/cli2gillm/tests/test_cli2gillm.py:
+    e: test_exec_health_via_bus
+    test_exec_health_via_bus()
+  packages/dsl2gillm/src/dsl2gillm/__init__.py:
+  packages/dsl2gillm/src/dsl2gillm/bus.py:
+    e: dispatch,execute_dsl_line,execute_dsl
+    dispatch(command)
+    execute_dsl_line(line)
+    execute_dsl(text)
+  packages/dsl2gillm/src/dsl2gillm/cli.py:
+    e: _run_results,main,_main_subcommand,_main_legacy,_handle_subcommand
+    _run_results(results)
+    main(argv)
+    _main_subcommand(argv)
+    _main_legacy(argv)
+    _handle_subcommand(args)
+  packages/dsl2gillm/src/dsl2gillm/codec.py:
+    e: _validate_with_pydantic,validate_payload,parse_text,envelope_to_bytes,envelope_from_bytes,envelope_to_json,envelope_from_json,roundtrip_text
+    _validate_with_pydantic(payload;verb)
+    validate_payload(payload)
+    parse_text(line)
+    envelope_to_bytes(payload)
+    envelope_from_bytes(data)
+    envelope_to_json(payload)
+    envelope_from_json(data)
+    roundtrip_text(line)
+  packages/dsl2gillm/src/dsl2gillm/codegen.py:
+    e: _schema_type,_model_name,_field_line,render_models,load_schemas,generate_models,main
+    _schema_type(prop)
+    _model_name(verb)
+    _field_line(name;prop)
+    render_models(schemas)
+    load_schemas()
+    generate_models(output)
+    main()
+  packages/dsl2gillm/src/dsl2gillm/engine.py:
+  packages/dsl2gillm/src/dsl2gillm/events.py:
+    e: StoredEvent,EventStore
+    StoredEvent: to_dict(0)
+    EventStore: __init__(1),for_workdir(2),append_command(2),read_all(0),replay(0)
+  packages/dsl2gillm/src/dsl2gillm/grammar.py:
+    e: _steps_from_line,parse_line,to_text
+    _steps_from_line(line;rest)
+    parse_line(line)
+    to_text(payload)
+  packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py:
+    e: _load_steps,run_query,run_command,_health,_orient,_actions,_parse,_validate,_resolve,_capture,_execute,_simulate,_focus,_inject,HandlerResult
+    HandlerResult: to_dict(0)
+    _load_steps(payload)
+    run_query(payload)
+    run_command(payload)
+    _health()
+    _orient()
+    _actions()
+    _parse(payload)
+    _validate(payload)
+    _resolve(payload)
+    _capture(payload)
+    _execute(payload)
+    _simulate(payload)
+    _focus(payload)
+    _inject(payload)
+  packages/dsl2gillm/src/dsl2gillm/models.py:
+    e: ActionsCommand,CaptureCommand,ExecuteCommand,FocusCommand,HealthCommand,InjectCommand,OrientCommand,ParseCommand,ResolveCommand,SimulateCommand,ValidateCommand
+    ActionsCommand:
+    CaptureCommand:
+    ExecuteCommand:
+    FocusCommand:
+    HealthCommand:
+    InjectCommand:
+    OrientCommand:
+    ParseCommand:
+    ResolveCommand:
+    SimulateCommand:
+    ValidateCommand:
+  packages/dsl2gillm/src/dsl2gillm/pb_codec.py:
+    e: _set_body,envelope_to_dict,encode_protobuf,decode_protobuf,encode_text_to_protobuf,decode_protobuf_to_text,result_to_pb,encode_result_protobuf
+    _set_body(envelope;cmd)
+    envelope_to_dict(envelope)
+    encode_protobuf(cmd)
+    decode_protobuf(data)
+    encode_text_to_protobuf(line)
+    decode_protobuf_to_text(data)
+    result_to_pb(result)
+    encode_result_protobuf(result)
+  packages/dsl2gillm/src/dsl2gillm/result.py:
+    e: DslResult
+    DslResult: to_dict(0)
+  packages/dsl2gillm/src/dsl2gillm/schema_registry.py:
+    e: _load_schemas,schema_for_verb,all_verbs,validate_schemas
+    _load_schemas()
+    schema_for_verb(verb)
+    all_verbs()
+    validate_schemas()
+  packages/dsl2gillm/src/dsl2gillm/v1/__init__.py:
+  packages/dsl2gillm/src/dsl2gillm/v1/command_pb2.py:
+  packages/dsl2gillm/src/dsl2gillm/v1/result_pb2.py:
+  packages/dsl2gillm/tests/test_bus.py:
+    e: test_health,test_orient,test_actions,test_validate_steps,test_simulate_wait
+    test_health()
+    test_orient()
+    test_actions()
+    test_validate_steps()
+    test_simulate_wait()
+  packages/dsl2gillm/tests/test_codegen.py:
+    e: test_load_schemas_has_all_verbs,test_generate_models
+    test_load_schemas_has_all_verbs()
+    test_generate_models(tmp_path)
+  packages/dsl2gillm/tests/test_dry_run.py:
+    e: test_simulate_workflow_fixture
+    test_simulate_workflow_fixture()
+  packages/dsl2gillm/tests/test_parity.py:
+    e: test_parity_text_vs_dict_health,test_parity_text_vs_dict_validate
+    test_parity_text_vs_dict_health()
+    test_parity_text_vs_dict_validate()
+  packages/dsl2gillm/tests/test_parity_adapters.py:
+    e: _baseline,test_parity_text_vs_protobuf,test_parity_uri_adapter,test_parity_rest_adapter,test_parity_simulate_offline
+    _baseline()
+    test_parity_text_vs_protobuf()
+    test_parity_uri_adapter()
+    test_parity_rest_adapter()
+    test_parity_simulate_offline()
+  packages/dsl2gillm/tests/test_protobuf.py:
+    e: test_encode_decode_health,test_roundtrip_health,test_roundtrip_parse
+    test_encode_decode_health()
+    test_roundtrip_health()
+    test_roundtrip_parse()
+  packages/mcp2gillm/src/mcp2gillm/__init__.py:
+  packages/mcp2gillm/src/mcp2gillm/cli.py:
+    e: main
+    main(argv)
+  packages/mcp2gillm/src/mcp2gillm/server.py:
+    e: _require_fastmcp,create_server,run_server,GillmMCPServer
+    GillmMCPServer: __post_init__(0),_register_tools(0),run(0)
+    _require_fastmcp()
+    create_server(name)
+    run_server()
+  packages/mcp2gillm/tests/test_mcp2gillm.py:
+    e: test_create_server
+    test_create_server()
+  packages/nlp2gillm/src/nlp2gillm/__init__.py:
+  packages/nlp2gillm/src/nlp2gillm/cli.py:
+    e: main
+    main(argv)
+  packages/nlp2gillm/src/nlp2gillm/llm_backend.py:
+    e: get_backend,nl_to_dsl_line,LLMBackend,LitellmBackend
+    LLMBackend: complete(0)
+    LitellmBackend: complete(0)
+    get_backend(backend)
+    nl_to_dsl_line(prompt)
+  packages/nlp2gillm/src/nlp2gillm/to_dsl.py:
+    e: to_dsl,apply_nl
+    to_dsl(prompt)
+    apply_nl(prompt)
+  packages/nlp2gillm/tests/test_llm_backend.py:
+    e: test_nl_to_dsl_line_fake_backend,_FakeBackend
+    _FakeBackend: complete(0)
+    test_nl_to_dsl_line_fake_backend()
+  packages/nlp2gillm/tests/test_to_dsl.py:
+    e: test_to_dsl_health,test_to_dsl_capture
+    test_to_dsl_health()
+    test_to_dsl_capture()
+  packages/rest2gillm/src/rest2gillm/__init__.py:
+  packages/rest2gillm/src/rest2gillm/app.py:
+    e: create_app
+    create_app()
+  packages/rest2gillm/src/rest2gillm/cli.py:
+    e: main
+    main(argv)
+  packages/rest2gillm/tests/test_rest2gillm.py:
+    e: test_root_endpoint,test_health_endpoint,test_post_dsl_health
+    test_root_endpoint()
+    test_health_endpoint()
+    test_post_dsl_health()
+  packages/uri2gillm/src/uri2gillm/__init__.py:
+  packages/uri2gillm/src/uri2gillm/cli.py:
+    e: main
+    main(argv)
+  packages/uri2gillm/src/uri2gillm/decode.py:
+    e: uri_to_dsl
+    uri_to_dsl(uri)
+  packages/uri2gillm/src/uri2gillm/nlp2uri.py:
+    e: nlp2uri,best_uri,UriHit
+    UriHit: to_dict(0)
+    nlp2uri(prompt)
+    best_uri(prompt)
+  packages/uri2gillm/src/uri2gillm/run.py:
+    e: run_uri
+    run_uri(uri)
+  packages/uri2gillm/src/uri2gillm/uri.py:
+    e: _encode,_decode,uri_for_block,uri_for_cmd,is_gillm_uri,parse_gillm_uri
+    _encode(value)
+    _decode(value)
+    uri_for_block()
+    uri_for_cmd(verb)
+    is_gillm_uri(uri)
+    parse_gillm_uri(uri)
+  packages/uri2gillm/tests/test_uri.py:
+    e: test_decode_health_cmd,test_nlp2uri_capture
+    test_decode_health_cmd()
+    test_nlp2uri_capture()
   src/gillm/__init__.py:
+    e: __getattr__,__dir__
+    __getattr__(name)
+    __dir__()
   src/gillm/adapters/__init__.py:
   src/gillm/adapters/koru.py:
     e: drive_payload_to_action_plan,koru_drive_to_payload,_steps_from_prefer
@@ -558,7 +903,8 @@ D:
     capture_portal_png()
   src/gillm/cli/__init__.py:
   src/gillm/cli/main.py:
-    e: main
+    e: _print_result,main
+    _print_result(result)
     main()
   src/gillm/config.py:
     e: resolve_xdg_path,default_config_path,_merge_submit_keys,load_config,_cached_config,cached_config,clear_config_cache,AutopilotConfig
@@ -580,6 +926,12 @@ D:
     ActionPlan: chat_inject_and_submit(1)
     ExecutionOutcome: to_dict(0)
     GuiDriver: probe(0),focus(1),type_text(1),hotkey(0),click(2),screenshot(0),execute(1)  # Stable GUI control surface for orchestrators (Koru, CLI, tes
+  src/gillm/control.py:
+    e: dispatch_health,dispatch_parse,dispatch_execute,dispatch_validate
+    dispatch_health()
+    dispatch_parse(instruction)
+    dispatch_execute()
+    dispatch_validate()
   src/gillm/drivers/__init__.py:
   src/gillm/drivers/composite.py:
     e: CompositeGuiDriver
@@ -669,8 +1021,9 @@ D:
     validate_contract_runtime(func)
   src/gillm/nlp_bridge/__init__.py:
   src/gillm/nlp_bridge/client.py:
-    e: NLPBridgeClient
-    NLPBridgeClient: __init__(1),parse_intent(1)  # Bridge to nlp2dsl backend for resolving natural language GUI
+    e: _heuristic_parse_intent,NLPBridgeClient
+    NLPBridgeClient: __init__(0),parse_intent(1)  # Bridge to nlp2dsl when installed; otherwise a small heuristi
+    _heuristic_parse_intent(command)
   src/gillm/orchestrator/__init__.py:
   src/gillm/orchestrator/drive.py:
     e: DriveOrchestrator
@@ -747,12 +1100,13 @@ D:
     test_apply_keyboard_injection_delegates_to_injector()
     test_apply_keyboard_injection_propagates_injector_error()
   tests/test_gillm.py:
-    e: test_focus_strategies_registry,test_injector_dry_run,test_injector_empty_text_error,test_nlp_bridge_heuristic_parsing,test_orchestrator_execution,test_orchestrator_nlp_drive,test_contract_validation
+    e: test_focus_strategies_registry,test_injector_dry_run,test_injector_empty_text_error,test_nlp_bridge_heuristic_parsing,test_orchestrator_execution,test_orchestrator_dry_run_focus,test_orchestrator_nlp_drive,test_contract_validation
     test_focus_strategies_registry()
     test_injector_dry_run()
     test_injector_empty_text_error()
-    test_nlp_bridge_heuristic_parsing()
+    test_nlp_bridge_heuristic_parsing(monkeypatch)
     test_orchestrator_execution()
+    test_orchestrator_dry_run_focus()
     test_orchestrator_nlp_drive(monkeypatch)
     test_contract_validation()
   tests/test_gui_driver.py:
@@ -828,22 +1182,72 @@ D:
 
 ```prolog markpact:analysis path=project/logic.pl
 % ── Project Metadata ─────────────────────────────────────
-project_metadata('gillm', '0.1.8', 'python').
+project_metadata('gillm', '0.1.10', 'python').
 
 % ── Project Files ────────────────────────────────────────
-project_file('app.doql.less', 288, 'less').
+project_file('app.doql.less', 366, 'less').
+project_file('packages/cli2gillm/src/cli2gillm/__init__.py', 2, 'python').
+project_file('packages/cli2gillm/src/cli2gillm/cli.py', 71, 'python').
+project_file('packages/cli2gillm/src/cli2gillm/shell.py', 34, 'python').
+project_file('packages/cli2gillm/tests/test_cli2gillm.py', 7, 'python').
+project_file('packages/dsl2gillm/scripts/generate-proto.sh', 7, 'shell').
+project_file('packages/dsl2gillm/src/dsl2gillm/__init__.py', 35, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/bus.py', 89, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/cli.py', 167, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/codec.py', 67, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/codegen.py', 113, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/engine.py', 6, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/events.py', 134, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/grammar.py', 177, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', 245, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/models.py', 97, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 152, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/result.py', 29, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/schema_registry.py', 50, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/v1/__init__.py', 2, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/v1/command_pb2.py', 59, 'python').
+project_file('packages/dsl2gillm/src/dsl2gillm/v1/result_pb2.py', 40, 'python').
+project_file('packages/dsl2gillm/tests/test_bus.py', 41, 'python').
+project_file('packages/dsl2gillm/tests/test_codegen.py', 19, 'python').
+project_file('packages/dsl2gillm/tests/test_dry_run.py', 14, 'python').
+project_file('packages/dsl2gillm/tests/test_parity.py', 19, 'python').
+project_file('packages/dsl2gillm/tests/test_parity_adapters.py', 51, 'python').
+project_file('packages/dsl2gillm/tests/test_protobuf.py', 18, 'python').
+project_file('packages/install-dev.sh', 15, 'shell').
+project_file('packages/mcp2gillm/src/mcp2gillm/__init__.py', 6, 'python').
+project_file('packages/mcp2gillm/src/mcp2gillm/cli.py', 23, 'python').
+project_file('packages/mcp2gillm/src/mcp2gillm/server.py', 84, 'python').
+project_file('packages/mcp2gillm/tests/test_mcp2gillm.py', 6, 'python').
+project_file('packages/nlp2gillm/src/nlp2gillm/__init__.py', 7, 'python').
+project_file('packages/nlp2gillm/src/nlp2gillm/cli.py', 56, 'python').
+project_file('packages/nlp2gillm/src/nlp2gillm/llm_backend.py', 81, 'python').
+project_file('packages/nlp2gillm/src/nlp2gillm/to_dsl.py', 54, 'python').
+project_file('packages/nlp2gillm/tests/test_llm_backend.py', 12, 'python').
+project_file('packages/nlp2gillm/tests/test_to_dsl.py', 10, 'python').
+project_file('packages/rest2gillm/src/rest2gillm/__init__.py', 6, 'python').
+project_file('packages/rest2gillm/src/rest2gillm/app.py', 88, 'python').
+project_file('packages/rest2gillm/src/rest2gillm/cli.py', 28, 'python').
+project_file('packages/rest2gillm/tests/test_rest2gillm.py', 29, 'python').
+project_file('packages/uri2gillm/src/uri2gillm/__init__.py', 19, 'python').
+project_file('packages/uri2gillm/src/uri2gillm/cli.py', 64, 'python').
+project_file('packages/uri2gillm/src/uri2gillm/decode.py', 55, 'python').
+project_file('packages/uri2gillm/src/uri2gillm/nlp2uri.py', 55, 'python').
+project_file('packages/uri2gillm/src/uri2gillm/run.py', 12, 'python').
+project_file('packages/uri2gillm/src/uri2gillm/uri.py', 53, 'python').
+project_file('packages/uri2gillm/tests/test_uri.py', 15, 'python').
 project_file('project.sh', 50, 'shell').
-project_file('src/gillm/__init__.py', 25, 'python').
+project_file('src/gillm/__init__.py', 56, 'python').
 project_file('src/gillm/adapters/__init__.py', 6, 'python').
 project_file('src/gillm/adapters/koru.py', 95, 'python').
 project_file('src/gillm/capture/__init__.py', 17, 'python').
 project_file('src/gillm/capture/mss_backend.py', 131, 'python').
 project_file('src/gillm/capture/portal_backend.py', 114, 'python').
 project_file('src/gillm/cli/__init__.py', 6, 'python').
-project_file('src/gillm/cli/main.py', 81, 'python').
-project_file('src/gillm/config.py', 113, 'python').
+project_file('src/gillm/cli/main.py', 98, 'python').
+project_file('src/gillm/config.py', 106, 'python').
 project_file('src/gillm/contracts/__init__.py', 24, 'python').
 project_file('src/gillm/contracts/driver.py', 137, 'python').
+project_file('src/gillm/control.py', 40, 'python').
 project_file('src/gillm/drivers/__init__.py', 7, 'python').
 project_file('src/gillm/drivers/composite.py', 181, 'python').
 project_file('src/gillm/drivers/dry_run.py', 90, 'python').
@@ -863,9 +1267,9 @@ project_file('src/gillm/injection/os_injector.py', 324, 'python').
 project_file('src/gillm/intents/__init__.py', 6, 'python').
 project_file('src/gillm/intents/contract.py', 79, 'python').
 project_file('src/gillm/nlp_bridge/__init__.py', 6, 'python').
-project_file('src/gillm/nlp_bridge/client.py', 71, 'python').
-project_file('src/gillm/orchestrator/__init__.py', 6, 'python').
-project_file('src/gillm/orchestrator/drive.py', 155, 'python').
+project_file('src/gillm/nlp_bridge/client.py', 45, 'python').
+project_file('src/gillm/orchestrator/__init__.py', 9, 'python').
+project_file('src/gillm/orchestrator/drive.py', 169, 'python').
 project_file('src/gillm/recovery/__init__.py', 21, 'python').
 project_file('src/gillm/recovery/diagnose.py', 151, 'python').
 project_file('src/gillm/recovery/repair_hints.py', 99, 'python').
@@ -877,7 +1281,7 @@ project_file('src/gillm/runtime/env.py', 88, 'python').
 project_file('src/gillm/runtime/errors.py', 6, 'python').
 project_file('src/gillm/runtime/profiles.py', 118, 'python').
 project_file('tests/test_drive_backend.py', 72, 'python').
-project_file('tests/test_gillm.py', 97, 'python').
+project_file('tests/test_gillm.py', 105, 'python').
 project_file('tests/test_gui_driver.py', 43, 'python').
 project_file('tests/test_injector.py', 286, 'python').
 project_file('tests/test_os_injector.py', 352, 'python').
@@ -886,6 +1290,112 @@ project_file('tests/test_recovery.py', 49, 'python').
 project_file('tree.sh', 2, 'shell').
 
 % ── Python Functions ─────────────────────────────────────
+python_function('packages/cli2gillm/src/cli2gillm/cli.py', 'main', 1, 16, 15).
+python_function('packages/cli2gillm/src/cli2gillm/shell.py', 'run_shell', 0, 9, 8).
+python_function('packages/cli2gillm/tests/test_cli2gillm.py', 'test_exec_health_via_bus', 0, 2, 1).
+python_function('packages/dsl2gillm/src/dsl2gillm/bus.py', 'dispatch', 1, 15, 17).
+python_function('packages/dsl2gillm/src/dsl2gillm/bus.py', 'execute_dsl_line', 1, 1, 1).
+python_function('packages/dsl2gillm/src/dsl2gillm/bus.py', 'execute_dsl', 1, 4, 5).
+python_function('packages/dsl2gillm/src/dsl2gillm/cli.py', '_run_results', 1, 6, 4).
+python_function('packages/dsl2gillm/src/dsl2gillm/cli.py', 'main', 1, 4, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/cli.py', '_main_subcommand', 1, 1, 6).
+python_function('packages/dsl2gillm/src/dsl2gillm/cli.py', '_main_legacy', 1, 5, 11).
+python_function('packages/dsl2gillm/src/dsl2gillm/cli.py', '_handle_subcommand', 1, 19, 22).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', '_validate_with_pydantic', 2, 3, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'validate_payload', 1, 2, 7).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'parse_text', 1, 2, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'envelope_to_bytes', 1, 1, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'envelope_from_bytes', 1, 1, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'envelope_to_json', 1, 1, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'envelope_from_json', 1, 2, 5).
+python_function('packages/dsl2gillm/src/dsl2gillm/codec.py', 'roundtrip_text', 1, 1, 4).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', '_schema_type', 1, 10, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', '_model_name', 1, 2, 4).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', '_field_line', 2, 4, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', 'render_models', 1, 4, 8).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', 'load_schemas', 0, 4, 9).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', 'generate_models', 1, 2, 5).
+python_function('packages/dsl2gillm/src/dsl2gillm/codegen.py', 'main', 0, 1, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/grammar.py', '_steps_from_line', 2, 8, 9).
+python_function('packages/dsl2gillm/src/dsl2gillm/grammar.py', 'parse_line', 1, 46, 12).
+python_function('packages/dsl2gillm/src/dsl2gillm/grammar.py', 'to_text', 1, 22, 8).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_load_steps', 1, 6, 6).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', 'run_query', 1, 8, 10).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', 'run_command', 1, 5, 7).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_health', 0, 4, 8).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_orient', 0, 2, 6).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_actions', 0, 1, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_parse', 1, 2, 7).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_validate', 1, 6, 10).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_resolve', 1, 2, 4).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_capture', 1, 1, 5).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_execute', 1, 4, 9).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_simulate', 1, 1, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_focus', 1, 4, 10).
+python_function('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', '_inject', 1, 2, 9).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', '_set_body', 2, 17, 7).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'envelope_to_dict', 1, 26, 5).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'encode_protobuf', 1, 1, 6).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'decode_protobuf', 1, 1, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'encode_text_to_protobuf', 1, 3, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'decode_protobuf_to_text', 1, 1, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'result_to_pb', 1, 3, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/pb_codec.py', 'encode_result_protobuf', 1, 1, 2).
+python_function('packages/dsl2gillm/src/dsl2gillm/schema_registry.py', '_load_schemas', 0, 4, 9).
+python_function('packages/dsl2gillm/src/dsl2gillm/schema_registry.py', 'schema_for_verb', 1, 2, 4).
+python_function('packages/dsl2gillm/src/dsl2gillm/schema_registry.py', 'all_verbs', 0, 1, 3).
+python_function('packages/dsl2gillm/src/dsl2gillm/schema_registry.py', 'validate_schemas', 0, 5, 5).
+python_function('packages/dsl2gillm/tests/test_bus.py', 'test_health', 0, 3, 1).
+python_function('packages/dsl2gillm/tests/test_bus.py', 'test_orient', 0, 3, 1).
+python_function('packages/dsl2gillm/tests/test_bus.py', 'test_actions', 0, 3, 1).
+python_function('packages/dsl2gillm/tests/test_bus.py', 'test_validate_steps', 0, 2, 1).
+python_function('packages/dsl2gillm/tests/test_bus.py', 'test_simulate_wait', 0, 3, 1).
+python_function('packages/dsl2gillm/tests/test_codegen.py', 'test_load_schemas_has_all_verbs', 0, 4, 2).
+python_function('packages/dsl2gillm/tests/test_codegen.py', 'test_generate_models', 1, 3, 2).
+python_function('packages/dsl2gillm/tests/test_dry_run.py', 'test_simulate_workflow_fixture', 0, 5, 4).
+python_function('packages/dsl2gillm/tests/test_parity.py', 'test_parity_text_vs_dict_health', 0, 3, 1).
+python_function('packages/dsl2gillm/tests/test_parity.py', 'test_parity_text_vs_dict_validate', 0, 3, 3).
+python_function('packages/dsl2gillm/tests/test_parity_adapters.py', '_baseline', 0, 1, 2).
+python_function('packages/dsl2gillm/tests/test_parity_adapters.py', 'test_parity_text_vs_protobuf', 0, 3, 2).
+python_function('packages/dsl2gillm/tests/test_parity_adapters.py', 'test_parity_uri_adapter', 0, 4, 5).
+python_function('packages/dsl2gillm/tests/test_parity_adapters.py', 'test_parity_rest_adapter', 0, 4, 5).
+python_function('packages/dsl2gillm/tests/test_parity_adapters.py', 'test_parity_simulate_offline', 0, 3, 1).
+python_function('packages/dsl2gillm/tests/test_protobuf.py', 'test_encode_decode_health', 0, 2, 2).
+python_function('packages/dsl2gillm/tests/test_protobuf.py', 'test_roundtrip_health', 0, 2, 1).
+python_function('packages/dsl2gillm/tests/test_protobuf.py', 'test_roundtrip_parse', 0, 2, 2).
+python_function('packages/mcp2gillm/src/mcp2gillm/cli.py', 'main', 1, 2, 5).
+python_function('packages/mcp2gillm/src/mcp2gillm/server.py', '_require_fastmcp', 0, 2, 1).
+python_function('packages/mcp2gillm/src/mcp2gillm/server.py', 'create_server', 1, 1, 1).
+python_function('packages/mcp2gillm/src/mcp2gillm/server.py', 'run_server', 0, 1, 2).
+python_function('packages/mcp2gillm/tests/test_mcp2gillm.py', 'test_create_server', 0, 2, 1).
+python_function('packages/nlp2gillm/src/nlp2gillm/cli.py', 'main', 1, 10, 12).
+python_function('packages/nlp2gillm/src/nlp2gillm/llm_backend.py', 'get_backend', 1, 2, 1).
+python_function('packages/nlp2gillm/src/nlp2gillm/llm_backend.py', 'nl_to_dsl_line', 1, 6, 8).
+python_function('packages/nlp2gillm/src/nlp2gillm/to_dsl.py', 'to_dsl', 1, 13, 10).
+python_function('packages/nlp2gillm/src/nlp2gillm/to_dsl.py', 'apply_nl', 1, 1, 3).
+python_function('packages/nlp2gillm/tests/test_llm_backend.py', 'test_nl_to_dsl_line_fake_backend', 0, 2, 2).
+python_function('packages/nlp2gillm/tests/test_to_dsl.py', 'test_to_dsl_health', 0, 2, 1).
+python_function('packages/nlp2gillm/tests/test_to_dsl.py', 'test_to_dsl_capture', 0, 2, 1).
+python_function('packages/rest2gillm/src/rest2gillm/app.py', 'create_app', 0, 1, 24).
+python_function('packages/rest2gillm/src/rest2gillm/cli.py', 'main', 1, 2, 7).
+python_function('packages/rest2gillm/tests/test_rest2gillm.py', 'test_root_endpoint', 0, 4, 4).
+python_function('packages/rest2gillm/tests/test_rest2gillm.py', 'test_health_endpoint', 0, 3, 4).
+python_function('packages/rest2gillm/tests/test_rest2gillm.py', 'test_post_dsl_health', 0, 4, 4).
+python_function('packages/uri2gillm/src/uri2gillm/cli.py', 'main', 1, 12, 12).
+python_function('packages/uri2gillm/src/uri2gillm/decode.py', 'uri_to_dsl', 1, 26, 8).
+python_function('packages/uri2gillm/src/uri2gillm/nlp2uri.py', 'nlp2uri', 1, 12, 8).
+python_function('packages/uri2gillm/src/uri2gillm/nlp2uri.py', 'best_uri', 1, 2, 1).
+python_function('packages/uri2gillm/src/uri2gillm/run.py', 'run_uri', 1, 1, 2).
+python_function('packages/uri2gillm/src/uri2gillm/uri.py', '_encode', 1, 1, 1).
+python_function('packages/uri2gillm/src/uri2gillm/uri.py', '_decode', 1, 2, 1).
+python_function('packages/uri2gillm/src/uri2gillm/uri.py', 'uri_for_block', 0, 4, 2).
+python_function('packages/uri2gillm/src/uri2gillm/uri.py', 'uri_for_cmd', 1, 4, 4).
+python_function('packages/uri2gillm/src/uri2gillm/uri.py', 'is_gillm_uri', 1, 1, 2).
+python_function('packages/uri2gillm/src/uri2gillm/uri.py', 'parse_gillm_uri', 1, 7, 5).
+python_function('packages/uri2gillm/tests/test_uri.py', 'test_decode_health_cmd', 0, 2, 2).
+python_function('packages/uri2gillm/tests/test_uri.py', 'test_nlp2uri_capture', 0, 3, 1).
+python_function('src/gillm/__init__.py', '__getattr__', 1, 3, 3).
+python_function('src/gillm/__init__.py', '__dir__', 0, 1, 2).
 python_function('src/gillm/adapters/koru.py', 'drive_payload_to_action_plan', 1, 21, 8).
 python_function('src/gillm/adapters/koru.py', 'koru_drive_to_payload', 0, 5, 1).
 python_function('src/gillm/adapters/koru.py', '_steps_from_prefer', 1, 8, 6).
@@ -897,14 +1407,19 @@ python_function('src/gillm/capture/mss_backend.py', 'capture_primary_rgb_wayland
 python_function('src/gillm/capture/mss_backend.py', '_parse_png_to_rgb', 1, 4, 9).
 python_function('src/gillm/capture/portal_backend.py', '_portal_python', 0, 6, 4).
 python_function('src/gillm/capture/portal_backend.py', 'capture_portal_png', 0, 8, 7).
-python_function('src/gillm/cli/main.py', 'main', 0, 9, 15).
+python_function('src/gillm/cli/main.py', '_print_result', 1, 6, 4).
+python_function('src/gillm/cli/main.py', 'main', 0, 14, 12).
 python_function('src/gillm/config.py', 'resolve_xdg_path', 1, 2, 3).
 python_function('src/gillm/config.py', 'default_config_path', 0, 1, 1).
 python_function('src/gillm/config.py', '_merge_submit_keys', 1, 7, 3).
 python_function('src/gillm/config.py', 'load_config', 1, 4, 8).
 python_function('src/gillm/config.py', '_cached_config', 0, 1, 2).
-python_function('src/gillm/config.py', 'cached_config', 0, 6, 5).
+python_function('src/gillm/config.py', 'cached_config', 0, 1, 1).
 python_function('src/gillm/config.py', 'clear_config_cache', 0, 1, 1).
+python_function('src/gillm/control.py', 'dispatch_health', 0, 1, 2).
+python_function('src/gillm/control.py', 'dispatch_parse', 1, 1, 2).
+python_function('src/gillm/control.py', 'dispatch_execute', 0, 3, 2).
+python_function('src/gillm/control.py', 'dispatch_validate', 0, 3, 2).
 python_function('src/gillm/focus/darwin.py', '_run', 1, 1, 1).
 python_function('src/gillm/focus/registry.py', 'register_os_strategy', 1, 5, 2).
 python_function('src/gillm/focus/registry.py', 'get_os_strategy', 1, 3, 0).
@@ -945,6 +1460,7 @@ python_function('src/gillm/injection/os_injector.py', '_os_injector_skip_reason'
 python_function('src/gillm/injection/os_injector.py', 'try_drive_with_profile', 0, 8, 7).
 python_function('src/gillm/intents/contract.py', 'gui_contract', 9, 1, 1).
 python_function('src/gillm/intents/contract.py', 'validate_contract_runtime', 1, 7, 6).
+python_function('src/gillm/nlp_bridge/client.py', '_heuristic_parse_intent', 1, 2, 4).
 python_function('src/gillm/recovery/diagnose.py', 'probe_environment', 0, 3, 6).
 python_function('src/gillm/recovery/diagnose.py', 'classify_failure', 0, 24, 1).
 python_function('src/gillm/recovery/diagnose.py', 'diagnose_drive_reply', 1, 9, 8).
@@ -993,9 +1509,10 @@ python_function('tests/test_drive_backend.py', 'test_apply_keyboard_injection_pr
 python_function('tests/test_gillm.py', 'test_focus_strategies_registry', 0, 8, 3).
 python_function('tests/test_gillm.py', 'test_injector_dry_run', 0, 5, 2).
 python_function('tests/test_gillm.py', 'test_injector_empty_text_error', 0, 1, 3).
-python_function('tests/test_gillm.py', 'test_nlp_bridge_heuristic_parsing', 0, 6, 3).
+python_function('tests/test_gillm.py', 'test_nlp_bridge_heuristic_parsing', 1, 6, 4).
 python_function('tests/test_gillm.py', 'test_orchestrator_execution', 0, 4, 3).
-python_function('tests/test_gillm.py', 'test_orchestrator_nlp_drive', 1, 5, 5).
+python_function('tests/test_gillm.py', 'test_orchestrator_dry_run_focus', 0, 4, 3).
+python_function('tests/test_gillm.py', 'test_orchestrator_nlp_drive', 1, 6, 4).
 python_function('tests/test_gillm.py', 'test_contract_validation', 0, 3, 2).
 python_function('tests/test_gui_driver.py', 'test_session_backend_order_wayland_prefers_wtype', 0, 3, 1).
 python_function('tests/test_gui_driver.py', 'test_backend_selector_forced_backend', 0, 3, 2).
@@ -1050,6 +1567,41 @@ python_function('tests/test_recovery.py', 'test_koru_drive_payload_maps_to_actio
 python_function('tests/test_recovery.py', 'test_recovery_hints_for_wayland_reload', 0, 2, 2).
 
 % ── Python Classes ───────────────────────────────────────
+python_class('packages/dsl2gillm/src/dsl2gillm/events.py', 'StoredEvent').
+python_method('StoredEvent', 'to_dict', 0, 1, 1).
+python_class('packages/dsl2gillm/src/dsl2gillm/events.py', 'EventStore').
+python_method('EventStore', '__init__', 1, 3, 0).
+python_method('EventStore', 'for_workdir', 2, 2, 4).
+python_method('EventStore', 'append_command', 2, 3, 22).
+python_method('EventStore', 'read_all', 0, 8, 17).
+python_method('EventStore', 'replay', 0, 1, 1).
+python_class('packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py', 'HandlerResult').
+python_method('HandlerResult', 'to_dict', 0, 1, 0).
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'ActionsCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'CaptureCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'ExecuteCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'FocusCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'HealthCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'InjectCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'OrientCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'ParseCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'ResolveCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'SimulateCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/models.py', 'ValidateCommand').
+python_class('packages/dsl2gillm/src/dsl2gillm/result.py', 'DslResult').
+python_method('DslResult', 'to_dict', 0, 1, 0).
+python_class('packages/mcp2gillm/src/mcp2gillm/server.py', 'GillmMCPServer').
+python_method('GillmMCPServer', '__post_init__', 0, 1, 3).
+python_method('GillmMCPServer', '_register_tools', 0, 1, 6).
+python_method('GillmMCPServer', 'run', 0, 1, 1).
+python_class('packages/nlp2gillm/src/nlp2gillm/llm_backend.py', 'LLMBackend').
+python_method('LLMBackend', 'complete', 0, 3, 0).
+python_class('packages/nlp2gillm/src/nlp2gillm/llm_backend.py', 'LitellmBackend').
+python_method('LitellmBackend', 'complete', 0, 3, 2).
+python_class('packages/nlp2gillm/tests/test_llm_backend.py', '_FakeBackend').
+python_method('_FakeBackend', 'complete', 0, 1, 0).
+python_class('packages/uri2gillm/src/uri2gillm/nlp2uri.py', 'UriHit').
+python_method('UriHit', 'to_dict', 0, 1, 0).
 python_class('src/gillm/capture/mss_backend.py', 'CapturedImage').
 python_class('src/gillm/capture/portal_backend.py', 'PortalCaptureError').
 python_class('src/gillm/config.py', 'AutopilotConfig').
@@ -1152,14 +1704,14 @@ python_method('Injector', 'type_text', 1, 6, 8).
 python_method('Injector', 'submit_only', 0, 9, 8).
 python_method('Injector', '_call', 1, 10, 7).
 python_class('src/gillm/nlp_bridge/client.py', 'NLPBridgeClient').
-python_method('NLPBridgeClient', '__init__', 1, 2, 1).
-python_method('NLPBridgeClient', 'parse_intent', 1, 5, 4).
+python_method('NLPBridgeClient', '__init__', 0, 2, 1).
+python_method('NLPBridgeClient', 'parse_intent', 1, 2, 2).
 python_class('src/gillm/orchestrator/drive.py', 'DriveOrchestrator').
 python_method('DriveOrchestrator', '__init__', 2, 3, 2).
 python_method('DriveOrchestrator', 'log', 1, 2, 1).
-python_method('DriveOrchestrator', 'focus_target_window', 1, 1, 5).
+python_method('DriveOrchestrator', 'focus_target_window', 1, 2, 6).
 python_method('DriveOrchestrator', 'inject_text', 4, 1, 4).
-python_method('DriveOrchestrator', 'capture_screenshot', 1, 1, 4).
+python_method('DriveOrchestrator', 'capture_screenshot', 1, 3, 6).
 python_method('DriveOrchestrator', 'execute_step', 2, 12, 11).
 python_method('DriveOrchestrator', 'execute_workflow', 2, 3, 4).
 python_method('DriveOrchestrator', 'drive_natural_language', 2, 2, 3).
@@ -1276,6 +1828,7 @@ sumd_declared_file('testql-scenarios/generated-cli-tests.testql.toon.yaml', 'tes
 sumd_declared_file('project/map.toon.yaml', 'analysis').
 sumd_declared_file('project/logic.pl', 'analysis').
 sumd_declared_file('project/calls.toon.yaml', 'analysis').
+sumd_interface('api', '').
 sumd_interface('cli', 'argparse').
 sumd_interface('cli', '').
 sumd_workflow('venv', 'manual').
@@ -1406,70 +1959,162 @@ sumd_workflow_step('quickstart', 9, 'echo "📖 For more: make help"').
 
 ## Call Graph
 
-*104 nodes · 117 edges · 20 modules · CC̄=3.6*
+*187 nodes · 203 edges · 42 modules · CC̄=4.0*
 
 ### Hubs (by degree)
 
 | Function | CC | in | out | total |
 |----------|----|----|-----|-------|
-| `_log` *(in src.gillm.injection.backends)* | 2 | 26 | 1 | **27** |
-| `execute` *(in src.gillm.drivers.composite.CompositeGuiDriver)* | 18 ⚠ | 0 | 22 | **22** |
-| `diagnose_drive_reply` *(in src.gillm.recovery.diagnose)* | 9 | 0 | 21 | **21** |
-| `inject_with_profile` *(in src.gillm.injection.os_injector)* | 5 | 2 | 12 | **14** |
-| `type_text` *(in src.gillm.drivers.composite.CompositeGuiDriver)* | 6 | 0 | 14 | **14** |
-| `submit_only` *(in src.gillm.injection.injector.Injector)* | 9 | 0 | 13 | **13** |
-| `type_with_ydotool` *(in src.gillm.injection.backends)* | 5 | 1 | 12 | **13** |
-| `load_profile` *(in src.gillm.runtime.profiles)* | 5 | 1 | 12 | **13** |
+| `dispatch` *(in packages.dsl2gillm.src.dsl2gillm.bus)* | 15 ⚠ | 22 | 29 | **51** |
+| `parse_line` *(in packages.dsl2gillm.src.dsl2gillm.grammar)* | 46 ⚠ | 2 | 48 | **50** |
+| `to_text` *(in packages.dsl2gillm.src.dsl2gillm.grammar)* | 22 ⚠ | 2 | 43 | **45** |
+| `create_app` *(in packages.rest2gillm.src.rest2gillm.app)* | 1 | 1 | 42 | **43** |
+| `_set_body` *(in packages.dsl2gillm.src.dsl2gillm.pb_codec)* | 17 ⚠ | 1 | 37 | **38** |
+| `append_command` *(in packages.dsl2gillm.src.dsl2gillm.events.EventStore)* | 3 | 0 | 33 | **33** |
+| `_handle_subcommand` *(in packages.dsl2gillm.src.dsl2gillm.cli)* | 19 ⚠ | 1 | 32 | **33** |
+| `nlp2uri` *(in packages.uri2gillm.src.uri2gillm.nlp2uri)* | 12 ⚠ | 2 | 26 | **28** |
 
 ```toon markpact:analysis path=project/calls.toon.yaml
 # code2llm call graph | /home/tom/github/semcod/gillm
-# generated in 0.05s
-# nodes: 104 | edges: 117 | modules: 20
-# CC̄=3.6
+# generated in 0.08s
+# nodes: 187 | edges: 203 | modules: 42
+# CC̄=4.0
 
 HUBS[20]:
+  packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+    CC=15  in:22  out:29  total:51
+  packages.dsl2gillm.src.dsl2gillm.grammar.parse_line
+    CC=46  in:2  out:48  total:50
+  packages.dsl2gillm.src.dsl2gillm.grammar.to_text
+    CC=22  in:2  out:43  total:45
+  packages.rest2gillm.src.rest2gillm.app.create_app
+    CC=1  in:1  out:42  total:43
+  packages.dsl2gillm.src.dsl2gillm.pb_codec._set_body
+    CC=17  in:1  out:37  total:38
+  packages.dsl2gillm.src.dsl2gillm.events.EventStore.append_command
+    CC=3  in:0  out:33  total:33
+  packages.dsl2gillm.src.dsl2gillm.cli._handle_subcommand
+    CC=19  in:1  out:32  total:33
+  packages.uri2gillm.src.uri2gillm.nlp2uri.nlp2uri
+    CC=12  in:2  out:26  total:28
   src.gillm.injection.backends._log
     CC=2  in:26  out:1  total:27
+  packages.dsl2gillm.src.dsl2gillm.cli._main_subcommand
+    CC=1  in:1  out:24  total:25
+  packages.uri2gillm.src.uri2gillm.decode.uri_to_dsl
+    CC=26  in:2  out:20  total:22
   src.gillm.drivers.composite.CompositeGuiDriver.execute
     CC=18  in:0  out:22  total:22
+  packages.dsl2gillm.src.dsl2gillm.codegen.render_models
+    CC=4  in:1  out:20  total:21
   src.gillm.recovery.diagnose.diagnose_drive_reply
     CC=9  in:0  out:21  total:21
-  src.gillm.injection.os_injector.inject_with_profile
-    CC=5  in:2  out:12  total:14
-  src.gillm.drivers.composite.CompositeGuiDriver.type_text
-    CC=6  in:0  out:14  total:14
-  src.gillm.injection.injector.Injector.submit_only
-    CC=9  in:0  out:13  total:13
-  src.gillm.injection.backends.type_with_ydotool
-    CC=5  in:1  out:12  total:13
-  src.gillm.runtime.profiles.load_profile
-    CC=5  in:1  out:12  total:13
-  src.gillm.injection.os_injector._inject_profile_text
-    CC=7  in:1  out:12  total:13
-  src.gillm.focus.x11._run
-    CC=1  in:11  out:1  total:12
-  src.gillm.runtime.profiles.iter_config_paths
-    CC=4  in:1  out:11  total:12
-  src.gillm.capture.portal_backend.capture_portal_png
-    CC=8  in:1  out:11  total:12
-  src.gillm.config.load_config
-    CC=4  in:1  out:10  total:11
-  src.gillm.runtime.profiles.capture_mouse_xy
-    CC=7  in:1  out:10  total:11
-  src.gillm.injection.backends.type_with_backend
-    CC=5  in:1  out:10  total:11
-  src.gillm.capture.mss_backend._parse_png_to_rgb
-    CC=4  in:1  out:10  total:11
-  src.gillm.runtime.env.session_type
-    CC=4  in:6  out:4  total:10
-  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
-    CC=7  in:0  out:10  total:10
-  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
-    CC=11  in:0  out:10  total:10
-  src.gillm.capture.mss_backend.capture_primary_rgb
-    CC=2  in:1  out:8  total:9
+  packages.mcp2gillm.src.mcp2gillm.server.GillmMCPServer._register_tools
+    CC=1  in:0  out:20  total:20
+  packages.dsl2gillm.src.dsl2gillm.cli._main_legacy
+    CC=5  in:1  out:17  total:18
+  packages.dsl2gillm.src.dsl2gillm.handlers._inject
+    CC=2  in:1  out:15  total:16
+  packages.dsl2gillm.src.dsl2gillm.grammar._steps_from_line
+    CC=8  in:3  out:12  total:15
+  packages.dsl2gillm.src.dsl2gillm.schema_registry._load_schemas
+    CC=4  in:4  out:11  total:15
+  packages.nlp2gillm.src.nlp2gillm.to_dsl.to_dsl
+    CC=13  in:4  out:10  total:14
 
 MODULES:
+  packages.cli2gillm.src.cli2gillm.shell  [1 funcs]
+    run_shell  CC=9  out:12
+  packages.dsl2gillm.src.dsl2gillm.bus  [3 funcs]
+    dispatch  CC=15  out:29
+    execute_dsl  CC=4  out:6
+    execute_dsl_line  CC=1  out:1
+  packages.dsl2gillm.src.dsl2gillm.cli  [5 funcs]
+    _handle_subcommand  CC=19  out:32
+    _main_legacy  CC=5  out:17
+    _main_subcommand  CC=1  out:24
+    _run_results  CC=6  out:6
+    main  CC=4  out:2
+  packages.dsl2gillm.src.dsl2gillm.codec  [8 funcs]
+    _validate_with_pydantic  CC=3  out:2
+    envelope_from_bytes  CC=1  out:2
+    envelope_from_json  CC=2  out:5
+    envelope_to_bytes  CC=1  out:2
+    envelope_to_json  CC=1  out:3
+    parse_text  CC=2  out:2
+    roundtrip_text  CC=1  out:4
+    validate_payload  CC=2  out:7
+  packages.dsl2gillm.src.dsl2gillm.codegen  [7 funcs]
+    _field_line  CC=4  out:3
+    _model_name  CC=2  out:4
+    _schema_type  CC=10  out:3
+    generate_models  CC=2  out:5
+    load_schemas  CC=4  out:11
+    main  CC=1  out:2
+    render_models  CC=4  out:20
+  packages.dsl2gillm.src.dsl2gillm.events  [1 funcs]
+    append_command  CC=3  out:33
+  packages.dsl2gillm.src.dsl2gillm.grammar  [3 funcs]
+    _steps_from_line  CC=8  out:12
+    parse_line  CC=46  out:48
+    to_text  CC=22  out:43
+  packages.dsl2gillm.src.dsl2gillm.handlers  [14 funcs]
+    _actions  CC=1  out:3
+    _capture  CC=1  out:5
+    _execute  CC=4  out:11
+    _focus  CC=4  out:12
+    _health  CC=4  out:10
+    _inject  CC=2  out:15
+    _load_steps  CC=6  out:10
+    _orient  CC=2  out:6
+    _parse  CC=2  out:7
+    _resolve  CC=2  out:6
+  packages.dsl2gillm.src.dsl2gillm.pb_codec  [8 funcs]
+    _set_body  CC=17  out:37
+    decode_protobuf  CC=1  out:3
+    decode_protobuf_to_text  CC=1  out:2
+    encode_protobuf  CC=1  out:6
+    encode_result_protobuf  CC=1  out:2
+    encode_text_to_protobuf  CC=3  out:3
+    envelope_to_dict  CC=26  out:7
+    result_to_pb  CC=3  out:3
+  packages.dsl2gillm.src.dsl2gillm.schema_registry  [4 funcs]
+    _load_schemas  CC=4  out:11
+    all_verbs  CC=1  out:3
+    schema_for_verb  CC=2  out:4
+    validate_schemas  CC=5  out:9
+  packages.mcp2gillm.src.mcp2gillm.cli  [1 funcs]
+    main  CC=2  out:5
+  packages.mcp2gillm.src.mcp2gillm.server  [5 funcs]
+    __post_init__  CC=1  out:3
+    _register_tools  CC=1  out:20
+    _require_fastmcp  CC=2  out:1
+    create_server  CC=1  out:1
+    run_server  CC=1  out:2
+  packages.nlp2gillm.src.nlp2gillm.llm_backend  [2 funcs]
+    get_backend  CC=2  out:1
+    nl_to_dsl_line  CC=6  out:8
+  packages.nlp2gillm.src.nlp2gillm.to_dsl  [2 funcs]
+    apply_nl  CC=1  out:3
+    to_dsl  CC=13  out:10
+  packages.rest2gillm.src.rest2gillm.app  [1 funcs]
+    create_app  CC=1  out:42
+  packages.rest2gillm.src.rest2gillm.cli  [1 funcs]
+    main  CC=2  out:8
+  packages.uri2gillm.src.uri2gillm.decode  [1 funcs]
+    uri_to_dsl  CC=26  out:20
+  packages.uri2gillm.src.uri2gillm.nlp2uri  [2 funcs]
+    best_uri  CC=2  out:1
+    nlp2uri  CC=12  out:26
+  packages.uri2gillm.src.uri2gillm.run  [1 funcs]
+    run_uri  CC=1  out:2
+  packages.uri2gillm.src.uri2gillm.uri  [6 funcs]
+    _decode  CC=2  out:1
+    _encode  CC=1  out:1
+    is_gillm_uri  CC=1  out:2
+    parse_gillm_uri  CC=7  out:9
+    uri_for_block  CC=4  out:3
+    uri_for_cmd  CC=4  out:5
   src.gillm.capture.mss_backend  [6 funcs]
     _parse_png_to_rgb  CC=4  out:10
     capture_primary_rgb  CC=2  out:8
@@ -1483,10 +2128,15 @@ MODULES:
   src.gillm.config  [6 funcs]
     _cached_config  CC=1  out:2
     _merge_submit_keys  CC=7  out:5
-    cached_config  CC=6  out:5
+    cached_config  CC=1  out:1
     default_config_path  CC=1  out:1
     load_config  CC=4  out:10
     resolve_xdg_path  CC=2  out:3
+  src.gillm.control  [4 funcs]
+    dispatch_execute  CC=3  out:2
+    dispatch_health  CC=1  out:2
+    dispatch_parse  CC=1  out:2
+    dispatch_validate  CC=3  out:2
   src.gillm.drivers.composite  [5 funcs]
     __init__  CC=2  out:3
     execute  CC=18  out:22
@@ -1495,7 +2145,8 @@ MODULES:
     type_text  CC=6  out:14
   src.gillm.focus.darwin  [1 funcs]
     focus_window  CC=4  out:5
-  src.gillm.focus.registry  [1 funcs]
+  src.gillm.focus.registry  [2 funcs]
+    list_os_strategy_ids  CC=2  out:1
     resolve_active_os_strategy  CC=4  out:2
   src.gillm.focus.wayland  [7 funcs]
     _focus_via_wmctrl  CC=4  out:3
@@ -1541,9 +2192,12 @@ MODULES:
   src.gillm.intents.contract  [2 funcs]
     gui_contract  CC=1  out:1
     validate_contract_runtime  CC=7  out:6
+  src.gillm.nlp_bridge.client  [2 funcs]
+    parse_intent  CC=2  out:2
+    _heuristic_parse_intent  CC=2  out:7
   src.gillm.orchestrator.drive  [4 funcs]
-    capture_screenshot  CC=1  out:4
-    focus_target_window  CC=1  out:5
+    capture_screenshot  CC=3  out:7
+    focus_target_window  CC=2  out:7
     inject_text  CC=1  out:4
     log  CC=2  out:1
   src.gillm.recovery.diagnose  [3 funcs]
@@ -1595,11 +2249,15 @@ MODULES:
     try_load_profile  CC=4  out:3
 
 EDGES:
-  src.gillm.config.default_config_path → src.gillm.config.resolve_xdg_path
-  src.gillm.config.load_config → src.gillm.config._merge_submit_keys
-  src.gillm.config.load_config → src.gillm.config.default_config_path
-  src.gillm.config._cached_config → src.gillm.config.load_config
-  src.gillm.config.cached_config → src.gillm.config._cached_config
+  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints._hints_for_kind
+  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints._dedupe
+  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints.recovery_hints_for_reload
+  src.gillm.recovery.repair_hints._hints_for_kind → src.gillm.recovery.repair_hints.recovery_hints_for_reload
+  src.gillm.recovery.diagnose.probe_environment → src.gillm.runtime.env.session_type
+  src.gillm.recovery.diagnose.probe_environment → src.gillm.runtime.env.is_wayland_session
+  src.gillm.recovery.diagnose.diagnose_drive_reply → src.gillm.recovery.diagnose.classify_failure
+  src.gillm.recovery.diagnose.diagnose_drive_reply → src.gillm.recovery.diagnose.probe_environment
+  src.gillm.recovery.diagnose.diagnose_drive_reply → src.gillm.recovery.repair_hints.recovery_hints_for_context
   src.gillm.capture.portal_backend.capture_portal_png → src.gillm.capture.portal_backend._portal_python
   src.gillm.capture.mss_backend.capture_primary_rgb → src.gillm.capture.mss_backend.resolve_scale
   src.gillm.capture.mss_backend.capture_primary_rgb → src.gillm.capture.mss_backend.downscale_rgb_nearest
@@ -1622,29 +2280,25 @@ EDGES:
   src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.ydotool_enter_keycode
   src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.ydotool_submit_mode
   src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.ydotool_ctrl_keycode
-  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool → src.gillm.focus.x11._run
-  src.gillm.focus.x11.X11LinuxStrategy._focus_via_wmctrl → src.gillm.focus.x11._run
-  src.gillm.focus.x11.X11LinuxStrategy._inject_via_xdotool → src.gillm.focus.x11._run
-  src.gillm.focus.wayland._prefer_ydotool → src.gillm.focus.wayland._gnome_compositor
-  src.gillm.focus.wayland.WaylandLinuxStrategy.inject_keys → src.gillm.focus.wayland._prefer_ydotool
-  src.gillm.focus.wayland.WaylandLinuxStrategy._focus_via_wmctrl → src.gillm.focus.x11._run
-  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_wtype → src.gillm.focus.x11._run
-  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool → src.gillm.focus.wayland._scan_for_key
-  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool → src.gillm.focus.x11._run
-  src.gillm.focus.darwin.DarwinStrategy.focus_window → src.gillm.focus.x11._run
-  src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window → src.gillm.intents.contract.gui_contract
-  src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window → src.gillm.intents.contract.validate_contract_runtime
-  src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window → src.gillm.focus.registry.resolve_active_os_strategy
-  src.gillm.orchestrator.drive.DriveOrchestrator.inject_text → src.gillm.intents.contract.gui_contract
-  src.gillm.orchestrator.drive.DriveOrchestrator.inject_text → src.gillm.intents.contract.validate_contract_runtime
-  src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot → src.gillm.intents.contract.gui_contract
-  src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot → src.gillm.intents.contract.validate_contract_runtime
-  src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot → src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback
-  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints._hints_for_kind
-  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints._dedupe
-  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints.recovery_hints_for_reload
-  src.gillm.recovery.repair_hints._hints_for_kind → src.gillm.recovery.repair_hints.recovery_hints_for_reload
-  src.gillm.recovery.diagnose.probe_environment → src.gillm.runtime.env.session_type
+  src.gillm.injection.injector._submit_key_for → src.gillm.config.cached_config
+  src.gillm.injection.injector._session_type → src.gillm.runtime.env.session_type
+  src.gillm.injection.injector.Injector._type_with_backend → src.gillm.injection.backends.type_with_backend
+  src.gillm.injection.injector.Injector.type_text → src.gillm.injection.injector._submit_key_for
+  src.gillm.injection.injector.Injector.submit_only → src.gillm.injection.injector._submit_key_for
+  src.gillm.injection.os_injector._resolve_input_method → src.gillm.runtime.env.input_mode_from_env
+  src.gillm.injection.os_injector._focus_profile_chat → src.gillm.injection.backends._log
+  src.gillm.injection.os_injector._focus_profile_chat → src.gillm.injection.os_injector._focus_with_ydotool
+  src.gillm.injection.os_injector._focus_profile_chat → src.gillm.injection.os_injector._focus_with_xdotool
+  src.gillm.injection.os_injector._focus_with_ydotool → src.gillm.injection.backends._log
+  src.gillm.injection.os_injector._focus_with_xdotool → src.gillm.injection.backends._log
+  src.gillm.injection.os_injector._inject_profile_text → src.gillm.injection.backends._log
+  src.gillm.injection.os_injector.focus_with_profile → src.gillm.runtime.env.focus_mode_from_env
+  src.gillm.injection.os_injector.focus_with_profile → src.gillm.runtime.env.post_focus_delay_seconds
+  src.gillm.injection.os_injector.focus_with_profile → src.gillm.injection.os_injector._focus_profile_chat
+  src.gillm.injection.os_injector.focus_with_profile → src.gillm.injection.os_injector._injection_result
+  src.gillm.injection.os_injector.inject_with_profile → src.gillm.runtime.env.focus_mode_from_env
+  src.gillm.injection.os_injector.inject_with_profile → src.gillm.injection.os_injector._resolve_input_method
+  src.gillm.injection.os_injector.inject_with_profile → src.gillm.runtime.env.post_focus_delay_seconds
 ```
 
 ## Test Contracts
@@ -1658,3 +2312,5 @@ EDGES:
 ## Intent
 
 GUI Control Plugin with NLP & Intent Contracts
+
+**Navigation:** [README.md](README.md) · [packages/README.md](packages/README.md) · [project/context.md](project/context.md) · [CHANGELOG.md](CHANGELOG.md)

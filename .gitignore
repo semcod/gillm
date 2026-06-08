@@ -1,5 +1,7 @@
 # Byte-compiled / optimized / DLL files
-.code2llm_cache/Makefile_1780501878397000000_11621.pkl
+.idea
+.gillm
+.code2llm_cache/
 .code2llm_cache/__init___1780507995134714539_520.pkl
 .code2llm_cache/__init___1780508761853400467_418.pkl
 .code2llm_cache/__init___1780508767142171777_1288.pkl

@@ -1,0 +1,4 @@
+[
+  {"action": "focus_window", "config": {"window_name_hints": ["vscode"]}},
+  {"action": "inject_keys", "config": {"literal_text": "hello", "submit": false}}
+]

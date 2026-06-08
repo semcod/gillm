@@ -38,12 +38,20 @@ class DriveOrchestrator:
         outputs=("outcome",),
         meaning="Focuses the window matching the given hints.",
     )
-    def focus_target_window(self, window_name_hints: tuple[str, ...]) -> FocusOutcome:
+    def focus_target_window(
+        self,
+        window_name_hints: tuple[str, ...],
+        *,
+        dry_run: bool = False,
+    ) -> FocusOutcome:
         """Focus the target window using the active OS strategy.
 
         # @intract.v1 scope:method intent:gui:focus priority:3 domain:gui input:window_name_hints output:FocusOutcome effect:focus_window meaning:"Focus the target window using active OS strategy."
         """
         validate_contract_runtime(self.focus_target_window, window_name_hints=window_name_hints)
+        if dry_run:
+            self.log(f"orchestrator: dry_run focus hints={window_name_hints}")
+            return FocusOutcome(ok=True, method="dry_run", detail=f"would focus {window_name_hints}")
         strategy = resolve_active_os_strategy()
         self.log(f"orchestrator: focusing window via active strategy {strategy.id} hints={window_name_hints}")
         return strategy.focus_window(window_name_hints)
@@ -75,12 +83,18 @@ class DriveOrchestrator:
         outputs=("screenshot",),
         meaning="Captures the primary monitor screen.",
     )
-    def capture_screenshot(self, scale: float | None = None) -> Any:
+    def capture_screenshot(self, scale: float | None = None, *, dry_run: bool = False) -> Any:
         """Capture primary screen.
 
         # @intract.v1 scope:method intent:gui:capture priority:3 domain:gui input:scale output:CapturedImage effect:capture_primary_rgb_wayland_fallback meaning:"Captures screenshot of primary display."
         """
         validate_contract_runtime(self.capture_screenshot, scale=scale)
+        if dry_run:
+            from gillm.capture import CapturedImage
+
+            scale_val = float(scale if scale is not None else 0.2)
+            self.log(f"orchestrator: dry_run capture scale={scale_val}")
+            return CapturedImage(width=1, height=1, rgb=b"\x00\x00\x00", scale=scale_val)
         self.log(f"orchestrator: capturing screen, scale={scale}")
         return capture_primary_rgb_wayland_fallback(scale=scale)
 
@@ -98,7 +112,7 @@ class DriveOrchestrator:
             if isinstance(hints, str):
                 hints = [hints]
             hints_tuple = tuple(hints or [])
-            outcome = self.focus_target_window(hints_tuple)
+            outcome = self.focus_target_window(hints_tuple, dry_run=dry_run)
             return {"action": action, "ok": outcome.ok, "detail": outcome.detail, "method": outcome.method}
 
         elif action in ("inject_keys", "type_text"):
@@ -110,7 +124,7 @@ class DriveOrchestrator:
 
         elif action == "capture_screen":
             scale = config.get("scale")
-            img = self.capture_screenshot(scale=scale)
+            img = self.capture_screenshot(scale=scale, dry_run=dry_run)
             return {
                 "action": action,
                 "ok": True,

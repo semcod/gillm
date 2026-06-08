@@ -1,54 +1,52 @@
-# gillm | 188 func | 28f | 4632L | python | 2026-06-03
+# gillm | 286 func | 54f | 7357L | python | 2026-06-08
 # generated in 0.00s
 
 HEALTH:
-  CC̄=3.6  critical=8 (limit:10)  dup=1  cycles=0
+  CC̄=4.0  critical=22 (limit:10)  dup=1  cycles=0
 
-ALERTS[10]:
+ALERTS[20]:
+  !!! cc_exceeded      parse_line = 46 (limit:15)
+  !!! cc_exceeded      envelope_to_dict = 26 (limit:15)
+  !!! cc_exceeded      uri_to_dsl = 26 (limit:15)
+  !!! high_fan_out     create_app = 26 (limit:10)
+  !!! high_fan_out     EventStore.append_command = 23 (limit:10)
+  !!! high_fan_out     _handle_subcommand = 22 (limit:10)
   !!  cc_exceeded      classify_failure = 24 (limit:15)
+  !!  cc_exceeded      to_text = 22 (limit:15)
   !!  cc_exceeded      drive_payload_to_action_plan = 21 (limit:15)
-  !!  high_fan_out     main = 17 (limit:10)
-  !   cc_exceeded      CompositeGuiDriver.execute = 18 (limit:15)
-  !   cc_exceeded      _hints_for_kind = 15 (limit:15)
-  !   high_fan_out     CompositeGuiDriver.execute = 14 (limit:10)
-  !   high_fan_out     DriveOrchestrator.execute_step = 12 (limit:10)
-  !   high_fan_out     drive_payload_to_action_plan = 11 (limit:10)
-  !   high_fan_out     type_with_backend = 10 (limit:10)
-  !   high_fan_out     inject_with_profile = 10 (limit:10)
+  !!  high_fan_out     dispatch = 18 (limit:10)
 
-MODULES[49] (top by size):
+MODULES[108] (top by size):
   M[goal.yaml] 511L C:0 F:0 CC↑0 D:0 (yaml)
   M[src/gillm/injection/os_injector.py] 323L C:0 F:10 CC↑9 D:1 (python)
   M[Makefile] 293L C:0 F:0 CC↑0 D:0 ()
   M[src/gillm/injection/injector.py] 276L C:3 F:18 CC↑10 D:0 (python)
+  M[packages/dsl2gillm/src/dsl2gillm/handlers/__init__.py] 244L C:1 F:15 CC↑8 D:1 (python)
   M[src/gillm/focus/wayland.py] 236L C:1 F:11 CC↑9 D:0 (python)
   M[src/gillm/injection/backends.py] 207L C:0 F:11 CC↑5 D:2 (python)
   M[src/gillm/drivers/composite.py] 180L C:1 F:8 CC↑18 D:0 (python)
-  M[src/gillm/orchestrator/drive.py] 154L C:1 F:8 CC↑12 D:1 (python)
+  M[packages/dsl2gillm/src/dsl2gillm/grammar.py] 176L C:0 F:3 CC↑46 D:2 (python)
+  M[src/gillm/orchestrator/drive.py] 168L C:1 F:8 CC↑12 D:1 (python)
+  M[packages/dsl2gillm/src/dsl2gillm/cli.py] 166L C:0 F:5 CC↑19 D:0 (python)
+  M[packages/dsl2gillm/src/dsl2gillm/pb_codec.py] 151L C:0 F:8 CC↑26 D:4 (python)
   M[src/gillm/recovery/diagnose.py] 150L C:2 F:5 CC↑24 D:1 (python)
   M[src/gillm/contracts/driver.py] 136L C:7 F:11 CC↑2 D:0 (python)
-  M[src/gillm/capture/mss_backend.py] 130L C:1 F:6 CC↑6 D:1 (python)
-  M[src/gillm/focus/x11.py] 128L C:1 F:8 CC↑11 D:2 (python)
-  M[src/gillm/runtime/profiles.py] 117L C:1 F:9 CC↑7 D:2 (python)
-  M[src/gillm/capture/portal_backend.py] 113L C:1 F:2 CC↑8 D:1 (python)
-  M[src/gillm/config.py] 112L C:1 F:8 CC↑7 D:1 (python)
-  LANGS: python:43/yaml:2/shell:2/other:1/toml:1
+  M[packages/dsl2gillm/src/dsl2gillm/events.py] 133L C:2 F:6 CC↑8 D:0 (python)
+  LANGS: python:79/json:13/toml:7/shell:4/yaml:2/proto:2/other:1
 
-HOTSPOTS[6]:
+HOTSPOTS[10]:
+  ★ create_app fan=26  // Orchestrates 26 calls
+  ★ EventStore.append_command fan=23  // Orchestrates 23 calls
+  ★ _handle_subcommand fan=22  // Orchestrates 22 calls
+  ★ dispatch fan=18  // 18-way dispatch
   ★ main fan=17  // Orchestrates 17 calls
-  ★ CompositeGuiDriver.execute fan=14  // Orchestrates 14 calls
-  ★ DriveOrchestrator.execute_step fan=12  // Execute a single workflow step.
 
-# @intract.v1 scope:method intent:execute:step 
-  ★ drive_payload_to_action_plan fan=11  // Convert a structured Koru/gillm drive payload into an ActionPlan.
-  ★ type_with_backend fan=10  // Dispatch a text injection request to a concrete backend.
-
-REFACTOR[6]:
-  [1] H/H Split god module goal.yaml (511L, 0 classes)
-  [2] M/L Split _hints_for_kind (CC=15)
-  [3] M/L Split classify_failure (CC=24)
-  [4] M/L Split CompositeGuiDriver.execute (CC=18)
-  [5] M/L Split drive_payload_to_action_plan (CC=21)
+REFACTOR[15]:
+  [1] H/L Split envelope_to_dict (CC=26)
+  [2] H/L Split uri_to_dsl (CC=26)
+  [3] H/L Split parse_line (CC=46)
+  [4] H/H Split god module goal.yaml (511L, 0 classes)
+  [5] M/L Split _hints_for_kind (CC=15)
 
 EVOLUTION:
-  2026-06-03 CC̄=3.6 crit=8 4632L // Automated analysis
+  2026-06-08 CC̄=4.0 crit=22 7357L // Automated analysis

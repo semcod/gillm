@@ -1,51 +1,143 @@
 # code2llm call graph | /home/tom/github/semcod/gillm
-# generated in 0.05s
-# nodes: 104 | edges: 117 | modules: 20
-# CC̄=3.6
+# generated in 0.08s
+# nodes: 187 | edges: 203 | modules: 42
+# CC̄=4.0
 
 HUBS[20]:
+  packages.dsl2gillm.src.dsl2gillm.bus.dispatch
+    CC=15  in:22  out:29  total:51
+  packages.dsl2gillm.src.dsl2gillm.grammar.parse_line
+    CC=46  in:2  out:48  total:50
+  packages.dsl2gillm.src.dsl2gillm.grammar.to_text
+    CC=22  in:2  out:43  total:45
+  packages.rest2gillm.src.rest2gillm.app.create_app
+    CC=1  in:1  out:42  total:43
+  packages.dsl2gillm.src.dsl2gillm.pb_codec._set_body
+    CC=17  in:1  out:37  total:38
+  packages.dsl2gillm.src.dsl2gillm.events.EventStore.append_command
+    CC=3  in:0  out:33  total:33
+  packages.dsl2gillm.src.dsl2gillm.cli._handle_subcommand
+    CC=19  in:1  out:32  total:33
+  packages.uri2gillm.src.uri2gillm.nlp2uri.nlp2uri
+    CC=12  in:2  out:26  total:28
   src.gillm.injection.backends._log
     CC=2  in:26  out:1  total:27
+  packages.dsl2gillm.src.dsl2gillm.cli._main_subcommand
+    CC=1  in:1  out:24  total:25
+  packages.uri2gillm.src.uri2gillm.decode.uri_to_dsl
+    CC=26  in:2  out:20  total:22
   src.gillm.drivers.composite.CompositeGuiDriver.execute
     CC=18  in:0  out:22  total:22
+  packages.dsl2gillm.src.dsl2gillm.codegen.render_models
+    CC=4  in:1  out:20  total:21
   src.gillm.recovery.diagnose.diagnose_drive_reply
     CC=9  in:0  out:21  total:21
-  src.gillm.injection.os_injector.inject_with_profile
-    CC=5  in:2  out:12  total:14
-  src.gillm.drivers.composite.CompositeGuiDriver.type_text
-    CC=6  in:0  out:14  total:14
-  src.gillm.injection.injector.Injector.submit_only
-    CC=9  in:0  out:13  total:13
-  src.gillm.injection.backends.type_with_ydotool
-    CC=5  in:1  out:12  total:13
-  src.gillm.runtime.profiles.load_profile
-    CC=5  in:1  out:12  total:13
-  src.gillm.injection.os_injector._inject_profile_text
-    CC=7  in:1  out:12  total:13
-  src.gillm.focus.x11._run
-    CC=1  in:11  out:1  total:12
-  src.gillm.runtime.profiles.iter_config_paths
-    CC=4  in:1  out:11  total:12
-  src.gillm.capture.portal_backend.capture_portal_png
-    CC=8  in:1  out:11  total:12
-  src.gillm.config.load_config
-    CC=4  in:1  out:10  total:11
-  src.gillm.runtime.profiles.capture_mouse_xy
-    CC=7  in:1  out:10  total:11
-  src.gillm.injection.backends.type_with_backend
-    CC=5  in:1  out:10  total:11
-  src.gillm.capture.mss_backend._parse_png_to_rgb
-    CC=4  in:1  out:10  total:11
-  src.gillm.runtime.env.session_type
-    CC=4  in:6  out:4  total:10
-  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool
-    CC=7  in:0  out:10  total:10
-  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool
-    CC=11  in:0  out:10  total:10
-  src.gillm.capture.mss_backend.capture_primary_rgb
-    CC=2  in:1  out:8  total:9
+  packages.mcp2gillm.src.mcp2gillm.server.GillmMCPServer._register_tools
+    CC=1  in:0  out:20  total:20
+  packages.dsl2gillm.src.dsl2gillm.cli._main_legacy
+    CC=5  in:1  out:17  total:18
+  packages.dsl2gillm.src.dsl2gillm.handlers._inject
+    CC=2  in:1  out:15  total:16
+  packages.dsl2gillm.src.dsl2gillm.grammar._steps_from_line
+    CC=8  in:3  out:12  total:15
+  packages.dsl2gillm.src.dsl2gillm.schema_registry._load_schemas
+    CC=4  in:4  out:11  total:15
+  packages.nlp2gillm.src.nlp2gillm.to_dsl.to_dsl
+    CC=13  in:4  out:10  total:14
 
 MODULES:
+  packages.cli2gillm.src.cli2gillm.shell  [1 funcs]
+    run_shell  CC=9  out:12
+  packages.dsl2gillm.src.dsl2gillm.bus  [3 funcs]
+    dispatch  CC=15  out:29
+    execute_dsl  CC=4  out:6
+    execute_dsl_line  CC=1  out:1
+  packages.dsl2gillm.src.dsl2gillm.cli  [5 funcs]
+    _handle_subcommand  CC=19  out:32
+    _main_legacy  CC=5  out:17
+    _main_subcommand  CC=1  out:24
+    _run_results  CC=6  out:6
+    main  CC=4  out:2
+  packages.dsl2gillm.src.dsl2gillm.codec  [8 funcs]
+    _validate_with_pydantic  CC=3  out:2
+    envelope_from_bytes  CC=1  out:2
+    envelope_from_json  CC=2  out:5
+    envelope_to_bytes  CC=1  out:2
+    envelope_to_json  CC=1  out:3
+    parse_text  CC=2  out:2
+    roundtrip_text  CC=1  out:4
+    validate_payload  CC=2  out:7
+  packages.dsl2gillm.src.dsl2gillm.codegen  [7 funcs]
+    _field_line  CC=4  out:3
+    _model_name  CC=2  out:4
+    _schema_type  CC=10  out:3
+    generate_models  CC=2  out:5
+    load_schemas  CC=4  out:11
+    main  CC=1  out:2
+    render_models  CC=4  out:20
+  packages.dsl2gillm.src.dsl2gillm.events  [1 funcs]
+    append_command  CC=3  out:33
+  packages.dsl2gillm.src.dsl2gillm.grammar  [3 funcs]
+    _steps_from_line  CC=8  out:12
+    parse_line  CC=46  out:48
+    to_text  CC=22  out:43
+  packages.dsl2gillm.src.dsl2gillm.handlers  [14 funcs]
+    _actions  CC=1  out:3
+    _capture  CC=1  out:5
+    _execute  CC=4  out:11
+    _focus  CC=4  out:12
+    _health  CC=4  out:10
+    _inject  CC=2  out:15
+    _load_steps  CC=6  out:10
+    _orient  CC=2  out:6
+    _parse  CC=2  out:7
+    _resolve  CC=2  out:6
+  packages.dsl2gillm.src.dsl2gillm.pb_codec  [8 funcs]
+    _set_body  CC=17  out:37
+    decode_protobuf  CC=1  out:3
+    decode_protobuf_to_text  CC=1  out:2
+    encode_protobuf  CC=1  out:6
+    encode_result_protobuf  CC=1  out:2
+    encode_text_to_protobuf  CC=3  out:3
+    envelope_to_dict  CC=26  out:7
+    result_to_pb  CC=3  out:3
+  packages.dsl2gillm.src.dsl2gillm.schema_registry  [4 funcs]
+    _load_schemas  CC=4  out:11
+    all_verbs  CC=1  out:3
+    schema_for_verb  CC=2  out:4
+    validate_schemas  CC=5  out:9
+  packages.mcp2gillm.src.mcp2gillm.cli  [1 funcs]
+    main  CC=2  out:5
+  packages.mcp2gillm.src.mcp2gillm.server  [5 funcs]
+    __post_init__  CC=1  out:3
+    _register_tools  CC=1  out:20
+    _require_fastmcp  CC=2  out:1
+    create_server  CC=1  out:1
+    run_server  CC=1  out:2
+  packages.nlp2gillm.src.nlp2gillm.llm_backend  [2 funcs]
+    get_backend  CC=2  out:1
+    nl_to_dsl_line  CC=6  out:8
+  packages.nlp2gillm.src.nlp2gillm.to_dsl  [2 funcs]
+    apply_nl  CC=1  out:3
+    to_dsl  CC=13  out:10
+  packages.rest2gillm.src.rest2gillm.app  [1 funcs]
+    create_app  CC=1  out:42
+  packages.rest2gillm.src.rest2gillm.cli  [1 funcs]
+    main  CC=2  out:8
+  packages.uri2gillm.src.uri2gillm.decode  [1 funcs]
+    uri_to_dsl  CC=26  out:20
+  packages.uri2gillm.src.uri2gillm.nlp2uri  [2 funcs]
+    best_uri  CC=2  out:1
+    nlp2uri  CC=12  out:26
+  packages.uri2gillm.src.uri2gillm.run  [1 funcs]
+    run_uri  CC=1  out:2
+  packages.uri2gillm.src.uri2gillm.uri  [6 funcs]
+    _decode  CC=2  out:1
+    _encode  CC=1  out:1
+    is_gillm_uri  CC=1  out:2
+    parse_gillm_uri  CC=7  out:9
+    uri_for_block  CC=4  out:3
+    uri_for_cmd  CC=4  out:5
   src.gillm.capture.mss_backend  [6 funcs]
     _parse_png_to_rgb  CC=4  out:10
     capture_primary_rgb  CC=2  out:8
@@ -59,10 +151,15 @@ MODULES:
   src.gillm.config  [6 funcs]
     _cached_config  CC=1  out:2
     _merge_submit_keys  CC=7  out:5
-    cached_config  CC=6  out:5
+    cached_config  CC=1  out:1
     default_config_path  CC=1  out:1
     load_config  CC=4  out:10
     resolve_xdg_path  CC=2  out:3
+  src.gillm.control  [4 funcs]
+    dispatch_execute  CC=3  out:2
+    dispatch_health  CC=1  out:2
+    dispatch_parse  CC=1  out:2
+    dispatch_validate  CC=3  out:2
   src.gillm.drivers.composite  [5 funcs]
     __init__  CC=2  out:3
     execute  CC=18  out:22
@@ -71,7 +168,8 @@ MODULES:
     type_text  CC=6  out:14
   src.gillm.focus.darwin  [1 funcs]
     focus_window  CC=4  out:5
-  src.gillm.focus.registry  [1 funcs]
+  src.gillm.focus.registry  [2 funcs]
+    list_os_strategy_ids  CC=2  out:1
     resolve_active_os_strategy  CC=4  out:2
   src.gillm.focus.wayland  [7 funcs]
     _focus_via_wmctrl  CC=4  out:3
@@ -117,9 +215,12 @@ MODULES:
   src.gillm.intents.contract  [2 funcs]
     gui_contract  CC=1  out:1
     validate_contract_runtime  CC=7  out:6
+  src.gillm.nlp_bridge.client  [2 funcs]
+    parse_intent  CC=2  out:2
+    _heuristic_parse_intent  CC=2  out:7
   src.gillm.orchestrator.drive  [4 funcs]
-    capture_screenshot  CC=1  out:4
-    focus_target_window  CC=1  out:5
+    capture_screenshot  CC=3  out:7
+    focus_target_window  CC=2  out:7
     inject_text  CC=1  out:4
     log  CC=2  out:1
   src.gillm.recovery.diagnose  [3 funcs]
@@ -171,11 +272,15 @@ MODULES:
     try_load_profile  CC=4  out:3
 
 EDGES:
-  src.gillm.config.default_config_path → src.gillm.config.resolve_xdg_path
-  src.gillm.config.load_config → src.gillm.config._merge_submit_keys
-  src.gillm.config.load_config → src.gillm.config.default_config_path
-  src.gillm.config._cached_config → src.gillm.config.load_config
-  src.gillm.config.cached_config → src.gillm.config._cached_config
+  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints._hints_for_kind
+  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints._dedupe
+  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints.recovery_hints_for_reload
+  src.gillm.recovery.repair_hints._hints_for_kind → src.gillm.recovery.repair_hints.recovery_hints_for_reload
+  src.gillm.recovery.diagnose.probe_environment → src.gillm.runtime.env.session_type
+  src.gillm.recovery.diagnose.probe_environment → src.gillm.runtime.env.is_wayland_session
+  src.gillm.recovery.diagnose.diagnose_drive_reply → src.gillm.recovery.diagnose.classify_failure
+  src.gillm.recovery.diagnose.diagnose_drive_reply → src.gillm.recovery.diagnose.probe_environment
+  src.gillm.recovery.diagnose.diagnose_drive_reply → src.gillm.recovery.repair_hints.recovery_hints_for_context
   src.gillm.capture.portal_backend.capture_portal_png → src.gillm.capture.portal_backend._portal_python
   src.gillm.capture.mss_backend.capture_primary_rgb → src.gillm.capture.mss_backend.resolve_scale
   src.gillm.capture.mss_backend.capture_primary_rgb → src.gillm.capture.mss_backend.downscale_rgb_nearest
@@ -198,26 +303,22 @@ EDGES:
   src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.ydotool_enter_keycode
   src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.ydotool_submit_mode
   src.gillm.injection.backends.type_with_backend → src.gillm.injection.backends.ydotool_ctrl_keycode
-  src.gillm.focus.x11.X11LinuxStrategy._focus_via_xdotool → src.gillm.focus.x11._run
-  src.gillm.focus.x11.X11LinuxStrategy._focus_via_wmctrl → src.gillm.focus.x11._run
-  src.gillm.focus.x11.X11LinuxStrategy._inject_via_xdotool → src.gillm.focus.x11._run
-  src.gillm.focus.wayland._prefer_ydotool → src.gillm.focus.wayland._gnome_compositor
-  src.gillm.focus.wayland.WaylandLinuxStrategy.inject_keys → src.gillm.focus.wayland._prefer_ydotool
-  src.gillm.focus.wayland.WaylandLinuxStrategy._focus_via_wmctrl → src.gillm.focus.x11._run
-  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_wtype → src.gillm.focus.x11._run
-  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool → src.gillm.focus.wayland._scan_for_key
-  src.gillm.focus.wayland.WaylandLinuxStrategy._inject_via_ydotool → src.gillm.focus.x11._run
-  src.gillm.focus.darwin.DarwinStrategy.focus_window → src.gillm.focus.x11._run
-  src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window → src.gillm.intents.contract.gui_contract
-  src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window → src.gillm.intents.contract.validate_contract_runtime
-  src.gillm.orchestrator.drive.DriveOrchestrator.focus_target_window → src.gillm.focus.registry.resolve_active_os_strategy
-  src.gillm.orchestrator.drive.DriveOrchestrator.inject_text → src.gillm.intents.contract.gui_contract
-  src.gillm.orchestrator.drive.DriveOrchestrator.inject_text → src.gillm.intents.contract.validate_contract_runtime
-  src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot → src.gillm.intents.contract.gui_contract
-  src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot → src.gillm.intents.contract.validate_contract_runtime
-  src.gillm.orchestrator.drive.DriveOrchestrator.capture_screenshot → src.gillm.capture.mss_backend.capture_primary_rgb_wayland_fallback
-  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints._hints_for_kind
-  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints._dedupe
-  src.gillm.recovery.repair_hints.recovery_hints_for_context → src.gillm.recovery.repair_hints.recovery_hints_for_reload
-  src.gillm.recovery.repair_hints._hints_for_kind → src.gillm.recovery.repair_hints.recovery_hints_for_reload
-  src.gillm.recovery.diagnose.probe_environment → src.gillm.runtime.env.session_type
+  src.gillm.injection.injector._submit_key_for → src.gillm.config.cached_config
+  src.gillm.injection.injector._session_type → src.gillm.runtime.env.session_type
+  src.gillm.injection.injector.Injector._type_with_backend → src.gillm.injection.backends.type_with_backend
+  src.gillm.injection.injector.Injector.type_text → src.gillm.injection.injector._submit_key_for
+  src.gillm.injection.injector.Injector.submit_only → src.gillm.injection.injector._submit_key_for
+  src.gillm.injection.os_injector._resolve_input_method → src.gillm.runtime.env.input_mode_from_env
+  src.gillm.injection.os_injector._focus_profile_chat → src.gillm.injection.backends._log
+  src.gillm.injection.os_injector._focus_profile_chat → src.gillm.injection.os_injector._focus_with_ydotool
+  src.gillm.injection.os_injector._focus_profile_chat → src.gillm.injection.os_injector._focus_with_xdotool
+  src.gillm.injection.os_injector._focus_with_ydotool → src.gillm.injection.backends._log
+  src.gillm.injection.os_injector._focus_with_xdotool → src.gillm.injection.backends._log
+  src.gillm.injection.os_injector._inject_profile_text → src.gillm.injection.backends._log
+  src.gillm.injection.os_injector.focus_with_profile → src.gillm.runtime.env.focus_mode_from_env
+  src.gillm.injection.os_injector.focus_with_profile → src.gillm.runtime.env.post_focus_delay_seconds
+  src.gillm.injection.os_injector.focus_with_profile → src.gillm.injection.os_injector._focus_profile_chat
+  src.gillm.injection.os_injector.focus_with_profile → src.gillm.injection.os_injector._injection_result
+  src.gillm.injection.os_injector.inject_with_profile → src.gillm.runtime.env.focus_mode_from_env
+  src.gillm.injection.os_injector.inject_with_profile → src.gillm.injection.os_injector._resolve_input_method
+  src.gillm.injection.os_injector.inject_with_profile → src.gillm.runtime.env.post_focus_delay_seconds
