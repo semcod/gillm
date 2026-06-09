@@ -4,19 +4,27 @@
 
 Sterowanie GUI przez DSL, NLP i wiele adapterów wejścia (CLI, REST, MCP, URI). Domena (focus, inject, capture, orchestrator) żyje w `src/gillm/`; warstwa kontroli w `packages/*2gillm`.
 
-![PyPI](https://img.shields.io/badge/pypi-gillm-blue) ![Version](https://img.shields.io/badge/version-0.1.12-blue) ![Python](https://img.shields.io/badge/python-3.10+-blue) ![License](https://img.shields.io/badge/license-Apache--2.0-green)
+![PyPI](https://img.shields.io/badge/pypi-gillm-blue) ![Version](https://img.shields.io/badge/version-0.1.13-blue) ![Python](https://img.shields.io/badge/python-3.10+-blue) ![License](https://img.shields.io/badge/license-Apache--2.0-green)
 
 ## AI Cost Tracking
 
-![PyPI](https://img.shields.io/badge/pypi-costs-blue) ![Version](https://img.shields.io/badge/version-0.1.12-blue) ![Python](https://img.shields.io/badge/python-3.9+-blue) ![License](https://img.shields.io/badge/license-Apache--2.0-green)
+![PyPI](https://img.shields.io/badge/pypi-costs-blue) ![Version](https://img.shields.io/badge/version-0.1.13-blue) ![Python](https://img.shields.io/badge/python-3.9+-blue) ![License](https://img.shields.io/badge/license-Apache--2.0-green)
 ![AI Cost](https://img.shields.io/badge/AI%20Cost-$2.62-orange) ![Human Time](https://img.shields.io/badge/Human%20Time-8.9h-blue) ![Model](https://img.shields.io/badge/Model-openrouter%2Fqwen%2Fqwen3--coder--next-lightgrey)
 
-- 🤖 **LLM usage:** $2.6237 (12 commits)
+- 🤖 **LLM usage:** $2.6249 (13 commits)
 - 👤 **Human dev:** ~$894 (8.9h @ $100/h, 30min dedup)
 
-Generated on 2026-06-08 using [openrouter/qwen/qwen3-coder-next](https://openrouter.ai/qwen/qwen3-coder-next)
+Generated on 2026-06-09 using [openrouter/qwen/qwen3-coder-next](https://openrouter.ai/qwen/qwen3-coder-next)
 
 ---
+
+**Graphical interface** for LLM automation in the semcod/coru ecosystem. Pair with
+[`tillm`](../tillm) for **text / shell** control (`aider`, `claude`, `codex`, …).
+
+| Package | Interface | Role |
+| --- | --- | --- |
+| **gillm** | graphical | GUI domain + `*2gillm` adapters (REST, MCP, URI, NLP) |
+| **tillm** | text / shell | vendor CLI `drive`, NLP → shell DSL |
 
 ## Contents
 
