@@ -2,31 +2,17 @@
 
 from __future__ import annotations
 
-import re
 from typing import Any
+
+from gillm.nlp_bridge.heuristic_parser import parse_intent_heuristic
 
 try:
     from nlpshim.client import NLPBridgeClient as _ShimClient
 except ImportError:  # pragma: no cover - optional NLP stack
     _ShimClient = None
 
-
-def _heuristic_parse_intent(command: str) -> list[dict[str, Any]]:
-    """Minimal offline parser for ``focus <ide> and type <text>`` patterns."""
-    text = command.strip()
-    match = re.match(
-        r"focus\s+([^\s]+)\s+and\s+type\s+(.+)",
-        text,
-        flags=re.IGNORECASE,
-    )
-    if not match:
-        return []
-    ide = match.group(1).strip().lower()
-    literal = match.group(2).strip()
-    return [
-        {"action": "focus_window", "config": {"window_name_hints": [ide]}},
-        {"action": "inject_keys", "config": {"literal_text": literal}},
-    ]
+# Backward-compat alias for consumers importing from this module
+_heuristic_parse_intent = parse_intent_heuristic
 
 
 class NLPBridgeClient:
