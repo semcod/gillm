@@ -96,7 +96,28 @@ def try_load_profile(tool_id: str, *, project: Path | None = None) -> OsInjector
     return None
 
 
+def _capture_via_vdisplay_hmi() -> tuple[int, int] | None:
+    try:
+        from vdisplay.hmi.capture import capture_mouse_xy as vdisplay_capture
+    except ImportError:
+        return None
+    try:
+        x, y, _source = vdisplay_capture()
+        if (x, y) == (0, 0):
+            return None
+        return int(x), int(y)
+    except Exception:
+        return None
+
+
 def capture_mouse_xy() -> tuple[int, int]:
+    from gillm.runtime.env import is_wayland_session
+
+    if is_wayland_session():
+        coords = _capture_via_vdisplay_hmi()
+        if coords is not None:
+            return coords
+
     proc = run_cmd(["xdotool", "getmouselocation", "--shell"], text=True)
     if proc.returncode != 0:
         err = (proc.stderr or "").strip()
