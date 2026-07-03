@@ -75,6 +75,39 @@ def probe_environment() -> EnvironmentDiagnostics:
     )
 
 
+def classify_plugin_failure(blob: str) -> FailureKind | None:
+    """Classify plugin-bridge failures from a lowercased reason/message blob."""
+    if "no connected autopilot plugin" in blob:
+        return "plugin_unavailable"
+    if "version mismatch" in blob or "build mismatch" in blob:
+        return "plugin_version_mismatch"
+    return None
+
+
+def classify_input_failure(blob: str) -> FailureKind | None:
+    """Classify chat-input/submit failures from a lowercased reason/message blob."""
+    if "submit" in blob and ("unverified" in blob or "could not be verified" in blob):
+        return "submit_unverified"
+    if "input_busy" in blob or "chat_input_not_empty" in blob or "unrelated draft" in blob:
+        return "input_busy"
+    if "focus" in blob and ("failed" in blob or "not focused" in blob):
+        return "focus_failed"
+    return None
+
+
+def classify_environment_failure(blob: str, backend: str | None = None) -> FailureKind:
+    """Classify environment/backend failures; falls through to "unknown"."""
+    if "brak kalibracji" in blob or "no calibrated profile" in blob or "missing profile" in blob:
+        return "no_calibrated_profile"
+    if "wayland" in blob and ("blocked" in blob or "without ydotool" in blob):
+        return "wayland_injection_blocked"
+    if "no keyboard injection backend" in blob or "xdotool missing" in blob:
+        return "no_keyboard_backend"
+    if backend and "wayland" in blob:
+        return "wayland_injection_blocked"
+    return "unknown"
+
+
 def classify_failure(
     *,
     ok: bool,
@@ -85,25 +118,12 @@ def classify_failure(
     if ok:
         return "ok"
     blob = f"{reason} {message}".lower()
-    if "no connected autopilot plugin" in blob:
-        return "plugin_unavailable"
-    if "version mismatch" in blob or "build mismatch" in blob:
-        return "plugin_version_mismatch"
-    if "submit" in blob and ("unverified" in blob or "could not be verified" in blob):
-        return "submit_unverified"
-    if "input_busy" in blob or "chat_input_not_empty" in blob or "unrelated draft" in blob:
-        return "input_busy"
-    if "focus" in blob and ("failed" in blob or "not focused" in blob):
-        return "focus_failed"
-    if "brak kalibracji" in blob or "no calibrated profile" in blob or "missing profile" in blob:
-        return "no_calibrated_profile"
-    if "wayland" in blob and ("blocked" in blob or "without ydotool" in blob):
-        return "wayland_injection_blocked"
-    if "no keyboard injection backend" in blob or "xdotool missing" in blob:
-        return "no_keyboard_backend"
-    if backend and "wayland" in blob:
-        return "wayland_injection_blocked"
-    return "unknown"
+    kind = classify_plugin_failure(blob)
+    if kind is None:
+        kind = classify_input_failure(blob)
+    if kind is None:
+        kind = classify_environment_failure(blob, backend)
+    return kind
 
 
 def diagnose_drive_reply(reply: dict[str, Any]) -> DriveFailureContext:
