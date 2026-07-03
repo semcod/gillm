@@ -208,7 +208,22 @@ class Injector:
                 submit=submit,
                 submit_key=submit_key,
             )
+        self._check_window_guard(ide)
         return self._try_type_text_backends(backends, text, submit, submit_key)
+
+    def _check_window_guard(self, ide: str) -> None:
+        """Refuse to type when the focused window is clearly not the target IDE.
+
+        2026-07-03 incident: a lane mismatch let the fallback injector type an
+        autopilot prompt into an unrelated focused application.
+        """
+        from gillm.injection.window_guard import injection_guard_reason
+
+        reason = injection_guard_reason(ide, which=self.which, log=self.log)
+        if reason:
+            if self.log:
+                self.log(f"injector: BLOCKED by window guard: {reason}")
+            raise InjectorError(f"window guard: {reason}")
 
     def submit_only(
         self,
@@ -236,6 +251,7 @@ class Injector:
                 dry_run=True,
                 output=f"[dry-run] would press {submit_key} via {backend0}",
             )
+        self._check_window_guard(ide)
         errors: list[str] = []
         for backend in backends:
             if self.log:
