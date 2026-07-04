@@ -180,6 +180,18 @@ def guard_mode() -> str:
     return "on"
 
 
+def _gnome_wayland_session() -> bool:
+    if (os.environ.get("XDG_SESSION_TYPE") or "").strip().lower() != "wayland":
+        return False
+    desktop = (os.environ.get("XDG_CURRENT_DESKTOP") or "").lower()
+    return "gnome" in desktop
+
+
+def _blind_fallback_allowed() -> bool:
+    raw = (os.environ.get("KORU_ALLOW_BLIND_KEYBOARD_FALLBACK") or "").strip().lower()
+    return raw in ("1", "true", "yes", "on")
+
+
 def injection_guard_reason(
     ide: str,
     which: Callable[[str], str | None],
@@ -198,6 +210,19 @@ def injection_guard_reason(
             return (
                 "focused window could not be detected and "
                 f"{_GUARD_ENV}=strict — refusing blind keyboard injection"
+            )
+        # 2026-07-04 incident: on GNOME Wayland no detector can ever work
+        # (Shell Introspect/Eval are locked down, xdotool only sees XWayland)
+        # and ydotool absolute-coordinate focus clicks are unreliable — a
+        # probe typed its prompt into the focused terminal while reporting
+        # ok=true. Blind injection there needs an explicit opt-in.
+        if _gnome_wayland_session() and not _blind_fallback_allowed():
+            return (
+                "GNOME Wayland: the focused window cannot be verified (compositor "
+                "exposes no introspection) and absolute-coordinate focus clicks are "
+                "unreliable — refusing blind keyboard injection. Use the IDE plugin "
+                "or the vdisplay pipeline, or set "
+                "KORU_ALLOW_BLIND_KEYBOARD_FALLBACK=1 to type anyway"
             )
         if log:
             log("injector: window guard: focus detection unavailable — proceeding")

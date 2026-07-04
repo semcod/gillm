@@ -138,3 +138,31 @@ class TestInjectorIntegration:
         inj = Injector(session="wayland", which=_which_factory({"wtype"}))
         result = inj.type_text("hello", ide="vscode", dry_run=True)
         assert result.dry_run is True
+
+
+class TestGnomeWaylandBlindRefusal:
+    """GNOME Wayland: undetectable focus must refuse instead of typing blind."""
+
+    def _gnome_env(self, monkeypatch):
+        monkeypatch.setenv("KORU_WINDOW_GUARD", "on")
+        monkeypatch.setenv("XDG_SESSION_TYPE", "wayland")
+        monkeypatch.setenv("XDG_CURRENT_DESKTOP", "ubuntu:GNOME")
+        monkeypatch.setattr(wg, "focused_window", lambda _which: None)
+
+    def test_gnome_wayland_undetectable_refuses(self, monkeypatch):
+        self._gnome_env(monkeypatch)
+        reason = wg.injection_guard_reason("jetbrains", which=lambda _n: None)
+        assert reason is not None
+        assert "GNOME Wayland" in reason
+
+    def test_gnome_wayland_opt_in_allows(self, monkeypatch):
+        self._gnome_env(monkeypatch)
+        monkeypatch.setenv("KORU_ALLOW_BLIND_KEYBOARD_FALLBACK", "1")
+        assert wg.injection_guard_reason("jetbrains", which=lambda _n: None) is None
+
+    def test_non_gnome_wayland_undetectable_still_allows(self, monkeypatch):
+        monkeypatch.setenv("KORU_WINDOW_GUARD", "on")
+        monkeypatch.setenv("XDG_SESSION_TYPE", "wayland")
+        monkeypatch.setenv("XDG_CURRENT_DESKTOP", "sway")
+        monkeypatch.setattr(wg, "focused_window", lambda _which: None)
+        assert wg.injection_guard_reason("jetbrains", which=lambda _n: None) is None

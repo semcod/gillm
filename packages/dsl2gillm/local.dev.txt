@@ -4,6 +4,6 @@
 # deps declared: 6 | with local source: 1
 
 ## LOCAL DEPS  (dep | required | local source (version) | installed | status)
-gillm | >=0.1.10 | /home/tom/github/semcod/gillm (0.1.18) | 0.1.17 editable | OK-EDITABLE  [pyproject.toml]
+gillm | >=0.1.10 | /home/tom/github/semcod/gillm (0.1.20) | 0.1.19 editable | OK-EDITABLE  [pyproject.toml]
 
 ## EXTERNAL DEPS (no local source, 5): grpcio-tools, jsonschema, protobuf, pydantic, pytest

@@ -1,7 +1,7 @@
 # local.dev.txt — locally developed dependencies of this project (generated 2026-07-04)
 # by ~/github/local.dev.sh — DO NOT EDIT; see ~/github/local.dev.md
-# project: gillm 0.1.18 (python) at /home/tom/github/semcod/gillm
-# deps declared: 15 | with local source: 9
+# project: gillm 0.1.20 (python) at /home/tom/github/semcod/gillm
+# deps declared: 14 | with local source: 9
 
 ## LOCAL DEPS  (dep | required | local source (version) | installed | status)
 cli2gillm | >=0.1.0 | /home/tom/github/semcod/gillm/packages/cli2gillm (0.1.0) | - | NOT-INSTALLED  [pyproject.toml[control]]
@@ -14,4 +14,4 @@ pfix | >=0.1.60 | /home/tom/github/semcod/pfix (0.1.76) | 0.1.73 non-editable | 
 rest2gillm | >=0.1.0 | /home/tom/github/semcod/gillm/packages/rest2gillm (0.1.0) | - | NOT-INSTALLED  [pyproject.toml[control]]
 uri2gillm | >=0.1.0 | /home/tom/github/semcod/gillm/packages/uri2gillm (0.1.0) | - | NOT-INSTALLED  [pyproject.toml[control]]
 
-## EXTERNAL DEPS (no local source, 6): mss, pytest, pyyaml, requests, rich, ruff
+## EXTERNAL DEPS (no local source, 5): mss, pytest, pyyaml, rich, ruff
