@@ -20,6 +20,32 @@ def _print_result(result: dict, *, label: str = "Execution") -> int:
     return 0 if result.get("ok") else 1
 
 
+def _run_route(args: argparse.Namespace) -> int:
+    from gillm.routing import route_for
+
+    plan = route_for(args.app, plugin_connected=args.plugin_connected)
+    if args.json:
+        print(json.dumps(plan.to_dict(), indent=2))
+        return 0 if plan.selected else 1
+    env = plan.environment
+    print(f"environment: session={env.session or 'unknown'} desktop={env.desktop or '-'}")
+    print(
+        f"  keyboard={', '.join(env.keyboard_backends) or '-'}; "
+        f"focus_detection={env.focus_detection}; vdisplay={env.vdisplay_available}; "
+        f"blind_opt_in={env.blind_opt_in}"
+    )
+    print(f"app: {plan.app.app_id or '-'} (calibration={plan.app.has_calibration}, plugin={plan.app.plugin_connected})")
+    print("solutions:")
+    for s in plan.solutions:
+        mark = "→" if plan.selected is s else ("✓" if s.viable else "✗")
+        ext = " [external]" if s.external else ""
+        print(f"  {mark} {s.solution_id:<28} {s.confidence:<9}{ext} {s.reason}")
+    if plan.selected is None:
+        print("no viable solution — see reasons above")
+        return 1
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="gillm: LLM/NLP-driven GUI Control Engine"
@@ -37,11 +63,26 @@ def main() -> int:
     capture_parser = subparsers.add_parser("capture", help="Take a primary display screen capture")
     capture_parser.add_argument("--scale", type=float, default=0.2, help="Image scale factor (default: 0.2)")
 
+    route_parser = subparsers.add_parser(
+        "route",
+        help="Pick a control solution for (this environment, an application)",
+    )
+    route_parser.add_argument("--app", default="", help="Target app id (jetbrains, vscode, cursor, …)")
+    route_parser.add_argument(
+        "--plugin-connected",
+        action="store_true",
+        help="Declare that a live IDE-plugin channel exists for the app",
+    )
+    route_parser.add_argument("--json", action="store_true", help="Emit the full plan as JSON")
+
     args = parser.parse_args()
 
     if not args.command:
         parser.print_help()
         return 0
+
+    if args.command == "route":
+        return _run_route(args)
 
     try:
         from dsl2gillm import dispatch
