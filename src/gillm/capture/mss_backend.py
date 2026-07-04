@@ -64,7 +64,12 @@ class CapturedImage:
 
 def capture_primary_rgb(*, scale: float | None = None) -> CapturedImage:
     """Capture the primary monitor as RGB pixels, scaled by ``scale``."""
-    import mss
+    try:
+        import mss
+    except ImportError as exc:  # optional extra keeps headless installs light
+        raise ImportError(
+            "screen capture requires the 'mss' package; install gillm[capture]"
+        ) from exc
 
     scale_val = resolve_scale(scale)
     with mss.mss() as sct:

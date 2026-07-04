@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gillm"
-version = "0.1.18"
+version = "0.1.19"
 description = "GUI Control Plugin with NLP & Intent Contracts"
 readme = "README.md"
 requires-python = ">=3.10,<3.14"
@@ -12,11 +12,13 @@ license = "Apache-2.0"
 dependencies = [
     "pyyaml>=6.0",
     "rich>=13.0",
-    "requests>=2.31.0",
-    "mss>=9.0",
 ]
 
 [project.optional-dependencies]
+# screen capture (mss is only imported inside capture_primary_rgb)
+capture = [
+    "mss>=9.0",
+]
 control = [
     "dsl2gillm>=0.1.0",
     "uri2gillm>=0.1.0",
