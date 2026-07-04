@@ -808,16 +808,17 @@ wheels = [
 
 [[package]]
 name = "gillm"
-version = "0.1.18"
+version = "0.1.20"
 source = { editable = "." }
 dependencies = [
-    { name = "mss" },
     { name = "pyyaml" },
-    { name = "requests" },
     { name = "rich" },
 ]
 
 [package.optional-dependencies]
+capture = [
+    { name = "mss" },
+]
 control = [
     { name = "cli2gillm" },
     { name = "dsl2gillm" },
@@ -846,13 +847,12 @@ requires-dist = [
     { name = "dsl2gillm", marker = "extra == 'dev'", editable = "packages/dsl2gillm" },
     { name = "goal", marker = "extra == 'dev'", specifier = ">=2.1.0" },
     { name = "mcp2gillm", marker = "extra == 'control'", editable = "packages/mcp2gillm" },
-    { name = "mss", specifier = ">=9.0" },
+    { name = "mss", marker = "extra == 'capture'", specifier = ">=9.0" },
     { name = "nlp2gillm", marker = "extra == 'control'", editable = "packages/nlp2gillm" },
     { name = "nlp2gillm", marker = "extra == 'dev'", editable = "packages/nlp2gillm" },
     { name = "pfix", marker = "extra == 'dev'", specifier = ">=0.1.60" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0" },
     { name = "pyyaml", specifier = ">=6.0" },
-    { name = "requests", specifier = ">=2.31.0" },
     { name = "rest2gillm", marker = "extra == 'control'", editable = "packages/rest2gillm" },
     { name = "rest2gillm", marker = "extra == 'dev'", editable = "packages/rest2gillm" },
     { name = "rich", specifier = ">=13.0" },
@@ -860,7 +860,7 @@ requires-dist = [
     { name = "uri2gillm", marker = "extra == 'control'", editable = "packages/uri2gillm" },
     { name = "uri2gillm", marker = "extra == 'dev'", editable = "packages/uri2gillm" },
 ]
-provides-extras = ["control", "dev"]
+provides-extras = ["capture", "control", "dev"]
 
 [[package]]
 name = "gitdb"

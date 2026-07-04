@@ -1,0 +1,17 @@
+# local.dev.txt — locally developed dependencies of this project (generated 2026-07-04)
+# by ~/github/local.dev.sh — DO NOT EDIT; see ~/github/local.dev.md
+# project: gillm 0.1.18 (python) at /home/tom/github/semcod/gillm
+# deps declared: 15 | with local source: 9
+
+## LOCAL DEPS  (dep | required | local source (version) | installed | status)
+cli2gillm | >=0.1.0 | /home/tom/github/semcod/gillm/packages/cli2gillm (0.1.0) | - | NOT-INSTALLED  [pyproject.toml[control]]
+costs | >=0.1.20 | /home/tom/github/semcod/costs (0.1.53) | 0.1.51 non-editable | STALE-INSTALL (local 0.1.53) -> fix: pip install -e /home/tom/github/semcod/costs  [pyproject.toml[dev]]
+dsl2gillm | >=0.1.0 | /home/tom/github/semcod/gillm/packages/dsl2gillm (0.1.0) | - | NOT-INSTALLED  [pyproject.toml[control]]
+goal | >=2.1.0 | /home/tom/github/semcod/goal (2.1.266) | 2.1.246 non-editable | STALE-INSTALL (local 2.1.266) -> fix: pip install -e /home/tom/github/semcod/goal  [pyproject.toml[dev]]
+mcp2gillm | >=0.1.0 | /home/tom/github/semcod/gillm/packages/mcp2gillm (0.1.0) | - | NOT-INSTALLED  [pyproject.toml[control]]
+nlp2gillm | >=0.1.0 | /home/tom/github/semcod/gillm/packages/nlp2gillm (0.1.0) | - | NOT-INSTALLED  [pyproject.toml[control]]
+pfix | >=0.1.60 | /home/tom/github/semcod/pfix (0.1.76) | 0.1.73 non-editable | STALE-INSTALL (local 0.1.76) -> fix: pip install -e /home/tom/github/semcod/pfix  [pyproject.toml[dev]]
+rest2gillm | >=0.1.0 | /home/tom/github/semcod/gillm/packages/rest2gillm (0.1.0) | - | NOT-INSTALLED  [pyproject.toml[control]]
+uri2gillm | >=0.1.0 | /home/tom/github/semcod/gillm/packages/uri2gillm (0.1.0) | - | NOT-INSTALLED  [pyproject.toml[control]]
+
+## EXTERNAL DEPS (no local source, 6): mss, pytest, pyyaml, requests, rich, ruff

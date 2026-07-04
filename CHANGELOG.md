@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.20] - 2026-07-04
+
+### Docs
+- Update README.md
+
+### Other
+- Update local.dev.txt
+- Update packages/cli2gillm/local.dev.txt
+- Update packages/dsl2gillm/local.dev.txt
+- Update packages/mcp2gillm/local.dev.txt
+- Update packages/nlp2gillm/local.dev.txt
+- Update packages/rest2gillm/local.dev.txt
+- Update packages/uri2gillm/local.dev.txt
+- Update uv.lock
+
 ## [0.1.18] - 2026-07-03
 
 ### Docs

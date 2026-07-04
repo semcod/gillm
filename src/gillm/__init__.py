@@ -5,7 +5,7 @@ from __future__ import annotations
 from importlib import import_module
 from typing import Any
 
-__version__ = "0.1.18"
+__version__ = "0.1.20"
 
 _LAZY_SUBMODULES = frozenset(
     {
