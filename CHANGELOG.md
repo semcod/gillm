@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.23] - 2026-07-06
+
+### Docs
+- Update README.md
+
+### Test
+- Update tests/test_recovery.py
+
+### Other
+- Update uv.lock
+
 ## [0.1.22] - 2026-07-04
 
 ### Docs

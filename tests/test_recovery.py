@@ -132,3 +132,16 @@ def test_diagnose_input_busy_from_submit_failure_reason() -> None:
     )
     assert ctx.kind == "input_busy"
     assert any("draft" in hint.lower() or "input" in hint.lower() for hint in ctx.recovery)
+
+
+def test_embedded_recovery_path_matches_normal_retryable() -> None:
+    # no_calibrated_profile must be non-retryable on BOTH paths (STARTER-028)
+    reply = {"ok": False, "message": "no calibrated profile for ide"}
+    normal = diagnose_drive_reply(reply)
+    embedded = diagnose_drive_reply(
+        {**reply, "diagnostics": {"recovery": ["run koru calibrate"]}}
+    )
+    assert normal.kind == embedded.kind == "no_calibrated_profile"
+    assert normal.retryable is False
+    assert embedded.retryable is False
+    assert embedded.recovery == ["run koru calibrate"]

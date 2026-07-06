@@ -146,7 +146,12 @@ def diagnose_drive_reply(reply: dict[str, Any]) -> DriveFailureContext:
                 reason=reason,
                 message=message,
                 backend=backend_str,
-                retryable=kind not in {"plugin_version_mismatch", "plugin_unavailable"},
+                retryable=kind
+                not in {
+                    "plugin_version_mismatch",
+                    "plugin_unavailable",
+                    "no_calibrated_profile",
+                },
                 recovery=[str(item) for item in embedded],
                 environment=env,
             )
