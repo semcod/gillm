@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wron.ai/schemas/gillm/gui-action-result-v1.schema.json",
+  "title": "Gillm GUI Action Result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "ok",
+    "intent",
+    "backend",
+    "evidence",
+    "diagnostics",
+    "recovery",
+    "retryable",
+    "reason",
+    "steps",
+    "result_hash"
+  ],
+  "properties": {
+    "schema": {"const": "gillm.gui-action-result.v1"},
+    "ok": {"type": "boolean"},
+    "intent": {"type": "string", "minLength": 1},
+    "backend": {"type": ["string", "null"]},
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "diagnostics": {"type": "array", "items": {"type": "string"}},
+    "recovery": {"type": "array", "items": {"type": "string"}},
+    "retryable": {"type": "boolean"},
+    "reason": {"type": ["string", "null"]},
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ok",
+          "backend",
+          "evidence",
+          "diagnostics",
+          "retryable",
+          "reason"
+        ],
+        "properties": {
+          "ok": {"type": "boolean"},
+          "backend": {"type": ["string", "null"]},
+          "evidence": {"type": "array", "items": {"type": "string"}},
+          "diagnostics": {"type": "array", "items": {"type": "string"}},
+          "retryable": {"type": "boolean"},
+          "reason": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "result_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

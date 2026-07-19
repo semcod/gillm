@@ -9,6 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Add the versioned `gillm.gui-action-result.v1` execution result, deterministic
+  result hashing, and a packaged JSON Schema.
+
+### Changed
+- Replace Gillm's reverse import of Koru activity logging with host-registered
+  activity and warning callbacks.
+
+## [0.1.24] - 2026-07-19
+
+### Docs
+- Update CHANGELOG.md
+- Update README.md
+
+### Test
+- Update tests/test_action_result_contract.py
+- Update tests/test_activity_sink.py
+
+### Other
+- Update src/gillm/data/gui-action-result-v1.schema.json
+
 ## [0.1.23] - 2026-07-06
 
 ### Docs
@@ -238,4 +259,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update .idea/modules.xml
 - Update .idea/vcs.xml
 - Update uv.lock
-

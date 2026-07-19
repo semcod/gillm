@@ -4,17 +4,17 @@
 
 Sterowanie GUI przez DSL, NLP i wiele adapterów wejścia (CLI, REST, MCP, URI). Domena (focus, inject, capture, orchestrator) żyje w `src/gillm/`; warstwa kontroli w `packages/*2gillm`.
 
-![PyPI](https://img.shields.io/badge/pypi-gillm-blue) ![Version](https://img.shields.io/badge/version-0.1.23-blue) ![Python](https://img.shields.io/badge/python-3.10+-blue) ![License](https://img.shields.io/badge/license-Apache--2.0-green)
+![PyPI](https://img.shields.io/badge/pypi-gillm-blue) ![Version](https://img.shields.io/badge/version-0.1.24-blue) ![Python](https://img.shields.io/badge/python-3.10+-blue) ![License](https://img.shields.io/badge/license-Apache--2.0-green)
 
 ## AI Cost Tracking
 
-![PyPI](https://img.shields.io/badge/pypi-costs-blue) ![Version](https://img.shields.io/badge/version-0.1.23-blue) ![Python](https://img.shields.io/badge/python-3.9+-blue) ![License](https://img.shields.io/badge/license-Apache--2.0-green)
-![AI Cost](https://img.shields.io/badge/AI%20Cost-$2.72-orange) ![Human Time](https://img.shields.io/badge/Human%20Time-19.5h-blue) ![Model](https://img.shields.io/badge/Model-openrouter%2Fqwen%2Fqwen3--coder--next-lightgrey)
+![PyPI](https://img.shields.io/badge/pypi-costs-blue) ![Version](https://img.shields.io/badge/version-0.1.24-blue) ![Python](https://img.shields.io/badge/python-3.9+-blue) ![License](https://img.shields.io/badge/license-Apache--2.0-green)
+![AI Cost](https://img.shields.io/badge/AI%20Cost-$2.81-orange) ![Human Time](https://img.shields.io/badge/Human%20Time-21.5h-blue) ![Model](https://img.shields.io/badge/Model-openrouter%2Fqwen%2Fqwen3--coder--next-lightgrey)
 
-- 🤖 **LLM usage:** $2.7157 (29 commits)
-- 👤 **Human dev:** ~$1954 (19.5h @ $100/h, 30min dedup)
+- 🤖 **LLM usage:** $2.8146 (30 commits)
+- 👤 **Human dev:** ~$2154 (21.5h @ $100/h, 30min dedup)
 
-Generated on 2026-07-06 using [openrouter/qwen/qwen3-coder-next](https://openrouter.ai/qwen/qwen3-coder-next)
+Generated on 2026-07-19 using [openrouter/qwen/qwen3-coder-next](https://openrouter.ai/qwen/qwen3-coder-next)
 
 ---
 
@@ -263,6 +263,16 @@ python -m pytest packages/dsl2gillm/tests packages/uri2gillm/tests packages/nlp2
 Makefile shortcuts: `make test-fast`, `make test-unit`, `make test-integration`, `make test-slow`.
 
 Koru keeps integration tests only (daemon wire protocol, IDE shims, CLI). Do not re-add duplicate injector unit tests under `koru/tests/`.
+
+### GUI action result contract
+
+`GuiDriver.execute()` returns an `ExecutionOutcome` whose serialized form is the
+versioned `gillm.gui-action-result.v1` contract. The payload includes a canonical
+SHA-256 `result_hash`; its packaged JSON Schema is available through
+`gillm.contracts.gui_action_result_v1_schema()`.
+
+Gillm does not import Koru. A host that wants Gillm activity in its own log can
+register callbacks with `gillm.runtime.set_activity_sink(...)`.
 
 ## Project layout
 

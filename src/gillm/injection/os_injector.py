@@ -13,19 +13,7 @@ from pathlib import Path
 from typing import Any
 
 import gillm.runtime.command_runner as command_runner
-
-# Tests monkeypatch ``oi.shutil``; keep command_runner on the same module refs.
-command_runner.shutil = shutil
-
-
-def _resolve_input_method() -> tuple[str, bool]:
-    mode = input_mode_from_env()
-    clip_ok = command_runner.clipboard_backend() is not None
-    use_paste = mode == "paste" or (mode == "auto" and clip_ok and not _is_wayland_session())
-    if mode == "paste" and not clip_ok:
-        raise OsInjectorError("KORU_OS_INJECTOR_INPUT=paste requires xclip or xsel on PATH")
-    return ("paste" if use_paste else "type"), use_paste
-from gillm.runtime.activity import emit_activity, emit_activity_warn, try_bootstrap_koru_activity_sink
+from gillm.runtime.activity import emit_activity, emit_activity_warn
 from gillm.runtime.env import (
     dry_run_from_env,
     focus_mode_from_env,
@@ -48,10 +36,20 @@ from gillm.runtime.profiles import (
     try_load_profile,
 )
 
+# Tests monkeypatch ``oi.shutil``; keep command_runner on the same module refs.
+command_runner.shutil = shutil
+
 # Test compatibility: monkeypatch targets on this module.
 _is_wayland_session = is_wayland_session
 
-try_bootstrap_koru_activity_sink()
+
+def _resolve_input_method() -> tuple[str, bool]:
+    mode = input_mode_from_env()
+    clip_ok = command_runner.clipboard_backend() is not None
+    use_paste = mode == "paste" or (mode == "auto" and clip_ok and not _is_wayland_session())
+    if mode == "paste" and not clip_ok:
+        raise OsInjectorError("KORU_OS_INJECTOR_INPUT=paste requires xclip or xsel on PATH")
+    return ("paste" if use_paste else "type"), use_paste
 
 
 def _injection_result(

@@ -2,8 +2,20 @@
 
 from __future__ import annotations
 
+import hashlib
+import json
 from dataclasses import dataclass, field
+from importlib import resources
 from typing import Any, Literal, Protocol, runtime_checkable
+
+GUI_ACTION_RESULT_V1 = "gillm.gui-action-result.v1"
+_GUI_ACTION_RESULT_SCHEMA = "gui-action-result-v1.schema.json"
+
+
+def gui_action_result_v1_schema() -> dict[str, Any]:
+    """Load the packaged JSON Schema for the canonical execution result."""
+    schema = resources.files("gillm.data").joinpath(_GUI_ACTION_RESULT_SCHEMA)
+    return json.loads(schema.read_text(encoding="utf-8"))
 
 
 @dataclass(frozen=True)
@@ -103,8 +115,13 @@ class ExecutionOutcome:
     reason: str | None = None
     steps: list[ActionResult] = field(default_factory=list)
 
-    def to_dict(self) -> dict[str, Any]:
+    @property
+    def schema(self) -> str:
+        return GUI_ACTION_RESULT_V1
+
+    def canonical_dict(self) -> dict[str, Any]:
         return {
+            "schema": self.schema,
             "ok": self.ok,
             "intent": self.intent,
             "backend": self.backend,
@@ -115,6 +132,22 @@ class ExecutionOutcome:
             "reason": self.reason,
             "steps": [step.to_dict() for step in self.steps],
         }
+
+    def canonical_json(self) -> str:
+        return json.dumps(
+            self.canonical_dict(),
+            sort_keys=True,
+            separators=(",", ":"),
+            ensure_ascii=False,
+            allow_nan=False,
+        )
+
+    @property
+    def result_hash(self) -> str:
+        return hashlib.sha256(self.canonical_json().encode("utf-8")).hexdigest()
+
+    def to_dict(self) -> dict[str, Any]:
+        return {**self.canonical_dict(), "result_hash": self.result_hash}
 
 
 @runtime_checkable
