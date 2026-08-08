@@ -11,6 +11,7 @@ requires-python = ">=3.10"
 license = "Apache-2.0"
 dependencies = [
     "dsl2gillm>=0.1.0",
+    "jsonschema>=4.21",
     "uri2gillm>=0.1.0",
 ]
 
@@ -26,6 +27,13 @@ package-dir = { "" = "src" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+nlp2gillm = [
+    "contracts/v1/*.gbnf",
+    "contracts/v1/*.json",
+    "contracts/v1/*.proto",
+]
 
 [tool.uv.sources]
 dsl2gillm = { workspace = true }

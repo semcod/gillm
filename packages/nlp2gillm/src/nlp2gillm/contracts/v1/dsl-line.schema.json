@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gillm.dev/contracts/nlp2gillm/v1/dsl-line.schema.json",
+  "title": "DslLineResponse v1",
+  "type": "object",
+  "required": ["contractVersion", "dsl"],
+  "properties": {
+    "contractVersion": { "const": "1.0.0" },
+    "dsl": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 8192,
+      "pattern": "^(HEALTH|ORIENT|PARSE|ACTIONS|VALIDATE|RESOLVE|CAPTURE|EXECUTE|SIMULATE|FOCUS|INJECT)(?:\\s.*)?$"
+    }
+  },
+  "additionalProperties": false
+}

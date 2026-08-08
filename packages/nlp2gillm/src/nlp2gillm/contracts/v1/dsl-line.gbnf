@@ -1,0 +1,5 @@
+root ::= "{" ws "\"contractVersion\"" ws ":" ws "\"1.0.0\"" ws "," ws "\"dsl\"" ws ":" ws dsl-string ws "}"
+dsl-string ::= "\"" verb (" " dsl-char*)? "\""
+verb ::= "HEALTH" | "ORIENT" | "PARSE" | "ACTIONS" | "VALIDATE" | "RESOLVE" | "CAPTURE" | "EXECUTE" | "SIMULATE" | "FOCUS" | "INJECT"
+dsl-char ::= [^"\\\x00-\x1f] | "\\" (["\\/bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F])
+ws ::= [ \t\n\r]*
