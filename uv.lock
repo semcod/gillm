@@ -1702,7 +1702,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "dsl2gillm", editable = "packages/dsl2gillm" },
-    { name = "mcp", specifier = ">=1.0" },
+    { name = "mcp", specifier = ">=1.0,<2" },
     { name = "nlp2gillm", editable = "packages/nlp2gillm" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0" },
 ]
