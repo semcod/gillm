@@ -49,7 +49,7 @@ class LitellmBackend:
                 or Path.cwd().name
                 or "gillm"
             )
-            headers = {"X-Title": app_name}
+            headers = {"X-OpenRouter-Title": app_name}
             app_url = os.getenv("OPENROUTER_APP_URL", "").strip()
             if app_url:
                 headers["HTTP-Referer"] = app_url
