@@ -28,7 +28,7 @@ class StoredEvent:
         return asdict(self)
 
 
-class EventStore:
+class GillmEventStore:
     def __init__(self, path: Path, *, fmt: StoreFormat | None = None) -> None:
         self.path = path
         if fmt is not None:
@@ -39,7 +39,7 @@ class EventStore:
             self.fmt = "jsonl"
 
     @classmethod
-    def for_workdir(cls, workdir: Path, *, prefer_pb: bool = True) -> EventStore:
+    def for_workdir(cls, workdir: Path, *, prefer_pb: bool = True) -> GillmEventStore:
         root = workdir.expanduser().resolve()
         events_dir = root / ".gillm" / "events"
         events_dir.mkdir(parents=True, exist_ok=True)
@@ -131,3 +131,6 @@ class EventStore:
 
     def replay(self) -> list[StoredEvent]:
         return self.read_all()
+
+
+EventStore = GillmEventStore
